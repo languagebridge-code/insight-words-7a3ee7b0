@@ -5,8 +5,13 @@ import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudent2 from "@/assets/hero-student-2.jpg";
 
 export const Hero = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.querySelector(id);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
       {/* Shooting stars */}
       <div className="shooting-star" />
       <div className="shooting-star" />
@@ -29,11 +34,20 @@ export const Hero = () => {
             The first Language Accessibility Screen Reader for preliterate English language learners
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
-            <Button variant="hero" size="xl" className="group">
+            <Button
+              variant="hero"
+              size="xl"
+              className="group"
+              onClick={() => scrollToSection("#forms")}
+            >
               Become an Ohio Pilot School
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" size="xl">
+            <Button
+              variant="outline"
+              size="xl"
+              onClick={() => scrollToSection("#contact")}
+            >
               Schedule a Demo
             </Button>
           </div>

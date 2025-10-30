@@ -3,8 +3,13 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import ohioMap from "@/assets/ohio-map.png";
 
 export const OhioPilot = () => {
+  const scrollToForms = () => {
+    const element = document.querySelector("#forms");
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section id="ohio-pilot" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="relative gradient-primary rounded-3xl p-12 md:p-16 shadow-2xl text-center fade-in-up">
@@ -36,6 +41,7 @@ export const OhioPilot = () => {
               <Button 
                 size="xl" 
                 className="bg-white text-primary hover:bg-white/90 font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                onClick={scrollToForms}
               >
                 Partner With Us - Join Ohio's Language Revolution
                 <ArrowRight className="ml-2" />
