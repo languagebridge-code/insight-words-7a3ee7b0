@@ -90,9 +90,9 @@ export const InteractiveDemo = () => {
             <div ref={demoContentRef} className="p-8 relative min-h-[500px]">
               {/* Welcome Tooltip */}
               {!toolbarVisible && !selectedText && (
-                <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-peach border-2 border-burnt-orange rounded-lg p-4 shadow-lg z-10 animate-pulse">
-                  <p className="text-sm font-medium text-foreground">
-                    👋 Click "Activate LanguageBridge" below or select any text to translate
+                <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-gradient-primary text-white rounded-lg p-4 shadow-2xl z-10 animate-pulse max-w-md">
+                  <p className="text-sm font-medium">
+                    👋 Welcome! Click "Activate LanguageBridge" below or click any text to see instant translation
                   </p>
                 </div>
               )}
@@ -123,23 +123,23 @@ export const InteractiveDemo = () => {
 
                 {/* Translation Tooltip */}
                 {selectedText && (
-                  <div className="bg-white border-2 gradient-primary rounded-lg p-4 shadow-2xl mt-4 animate-in fade-in-up">
+                  <div className="bg-white border-2 border-deep-purple rounded-xl p-6 shadow-2xl mt-4 animate-in fade-in-up duration-300">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        <p className="text-sm text-muted-foreground mb-1">Original:</p>
-                        <p className="font-medium text-foreground mb-3">{selectedText}</p>
-                        <p className="text-sm text-muted-foreground mb-1">Translation ({selectedLanguage}):</p>
-                        <p className="text-xl font-bold text-deep-purple">
+                        <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Original:</p>
+                        <p className="font-medium text-foreground mb-4 text-lg">{selectedText}</p>
+                        <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Translation ({selectedLanguage}):</p>
+                        <p className="text-2xl font-bold gradient-text mb-1">
                           {translations[selectedLanguage][selectedText as keyof typeof translations['dari']] || "[Translation]"}
                         </p>
                       </div>
                     </div>
-                    <div className="flex gap-2 mt-4">
-                      <Button size="sm" variant="outline" className="gap-2">
+                    <div className="flex gap-2 mt-6">
+                      <Button size="sm" className="gradient-primary text-white gap-2 hover:scale-105 transition-transform">
                         <Volume2 className="w-4 h-4" />
-                        Hear in {selectedLanguage}
+                        <span>Listen in {selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)}</span>
                       </Button>
-                      <Button size="sm" variant="ghost" onClick={() => setSelectedText(null)}>
+                      <Button size="sm" variant="ghost" onClick={() => setSelectedText(null)} className="text-muted-foreground">
                         Close
                       </Button>
                     </div>
@@ -172,57 +172,56 @@ export const InteractiveDemo = () => {
 
               {/* LanguageBridge Toolbar */}
               {toolbarVisible && (
-                <div className="absolute bottom-8 right-8 gradient-primary rounded-xl p-4 shadow-2xl backdrop-blur-lg w-72 animate-in slide-in-from-right">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-white font-bold flex items-center gap-2">
-                        <Globe className="w-5 h-5" />
+                <div className="absolute bottom-8 right-8 gradient-primary rounded-2xl p-5 shadow-2xl backdrop-blur-lg w-80 animate-in slide-in-from-right glow-primary">
+                  <div className="space-y-5">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/20">
+                      <h4 className="text-white font-bold flex items-center gap-2 text-lg">
+                        <Globe className="w-6 h-6" />
                         LanguageBridge
                       </h4>
-                      <Button size="icon" variant="ghost" className="text-white hover:bg-white/20">
+                      <Button size="icon" variant="ghost" className="text-white hover:bg-white/20 h-8 w-8">
                         <Settings className="w-4 h-4" />
                       </Button>
                     </div>
 
                     <div>
-                      <label className="text-white text-sm mb-2 block">Language:</label>
+                      <label className="text-white text-sm mb-2 block font-medium">Active Language:</label>
                       <Select value={selectedLanguage} onValueChange={(value) => setSelectedLanguage(value as keyof typeof translations)}>
-                        <SelectTrigger className="bg-white/20 border-white/30 text-white">
+                        <SelectTrigger className="bg-white/20 border-white/30 text-white h-11">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="dari">🇦🇫 Dari</SelectItem>
-                          <SelectItem value="pashto">🇦🇫 Pashto</SelectItem>
+                          <SelectItem value="dari">🇦🇫 Dari (Afghanistan)</SelectItem>
+                          <SelectItem value="pashto">🇦🇫 Pashto (Afghanistan)</SelectItem>
                           <SelectItem value="arabic">🇸🇦 Arabic</SelectItem>
                           <SelectItem value="spanish">🇪🇸 Spanish</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       <Button 
                         size="sm" 
-                        variant={isReading ? "secondary" : "ghost"} 
-                        className="text-white hover:bg-white/20"
+                        className={`${isReading ? "bg-white/30" : "bg-white/10"} hover:bg-white/20 text-white border border-white/20 h-10`}
                         onClick={startReading}
                       >
-                        {isReading ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                        {isReading ? "Pause" : "Read Page"}
+                        {isReading ? <Pause className="w-4 h-4 mr-1" /> : <Play className="w-4 h-4 mr-1" />}
+                        {isReading ? "Pause" : "Read"}
                       </Button>
                       <Button 
-                        size="sm" 
-                        variant={showVoiceInput ? "secondary" : "ghost"}
-                        className="text-white hover:bg-white/20"
+                        size="sm"
+                        className={`${showVoiceInput ? "bg-white/30" : "bg-white/10"} hover:bg-white/20 text-white border border-white/20 h-10`}
                         onClick={toggleVoiceInput}
                       >
-                        <Mic className="w-4 h-4" />
+                        <Mic className="w-4 h-4 mr-1" />
                         Voice
                       </Button>
                     </div>
 
-                    <p className="text-white/80 text-xs text-center">
-                      Keyboard: Alt+Shift+L
-                    </p>
+                    <div className="bg-white/10 rounded-lg p-3 text-center">
+                      <p className="text-white/90 text-xs font-medium mb-1">Keyboard Shortcut</p>
+                      <p className="text-white font-mono text-sm">Alt + Shift + L</p>
+                    </div>
                   </div>
                 </div>
               )}
