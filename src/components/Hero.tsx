@@ -15,6 +15,9 @@ export const Hero = () => {
       {/* Shooting stars */}
       <div className="shooting-star" />
       <div className="shooting-star" />
+      <div className="shooting-star" />
+      <div className="shooting-star" />
+      <div className="shooting-star" />
       
       <div className="container mx-auto px-4 py-24 md:py-32">
         <div className="text-center mb-16 fade-in-up">
