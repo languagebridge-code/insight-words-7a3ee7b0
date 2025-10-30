@@ -57,7 +57,7 @@ export const InteractiveDemo = () => {
   };
 
   return (
-    <section className="py-24 bg-lavender">
+    <section id="demo" className="py-24 bg-lavender">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">

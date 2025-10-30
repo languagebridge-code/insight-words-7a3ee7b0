@@ -6,7 +6,7 @@ import heroStudent2 from "@/assets/hero-student-2.jpg";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
       {/* Shooting stars */}
       <div className="shooting-star" />
       <div className="shooting-star" />
