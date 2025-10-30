@@ -23,7 +23,7 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-background">
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
@@ -40,7 +40,7 @@ export const HowItWorks = () => {
               key={index}
               className={`relative fade-in-up delay-${index + 1}00`}
             >
-              <div className="text-6xl font-bold text-deep-purple mb-4 opacity-20">
+              <div className="text-6xl font-bold text-lavender mb-4 opacity-50">
                 {step.number}
               </div>
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-peach mb-6">

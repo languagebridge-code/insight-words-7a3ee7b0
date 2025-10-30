@@ -2,7 +2,7 @@ import { Mail, Phone, Twitter } from "lucide-react";
 
 export const Contact = () => {
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto fade-in-up">
           <div className="gradient-primary rounded-3xl p-12 md:p-16 text-center shadow-2xl">

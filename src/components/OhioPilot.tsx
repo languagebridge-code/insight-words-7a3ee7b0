@@ -4,7 +4,7 @@ import ohioMap from "@/assets/ohio-map.png";
 
 export const OhioPilot = () => {
   return (
-    <section id="ohio-pilot" className="py-24 bg-background relative overflow-hidden">
+    <section className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="relative gradient-primary rounded-3xl p-12 md:p-16 shadow-2xl text-center fade-in-up">
