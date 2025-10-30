@@ -40,7 +40,7 @@ export const HowItWorks = () => {
               key={index}
               className={`relative fade-in-up delay-${index + 1}00`}
             >
-              <div className="text-6xl font-bold text-lavender mb-4 opacity-50">
+              <div className="text-6xl font-bold text-deep-purple mb-4 opacity-20">
                 {step.number}
               </div>
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-peach mb-6">
