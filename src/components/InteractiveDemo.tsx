@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { Volume2, BookOpen, MessageSquare, Flag, Minus, Play, Pause } from "lucide-react";
+import { Volume2, BookOpen, MessageSquare, Flag, Minus, Play, Pause, Mic, Square } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 export const InteractiveDemo = () => {
   const [toolbarExpanded, setToolbarExpanded] = useState(false);
@@ -9,7 +11,12 @@ export const InteractiveDemo = () => {
   const [statusMessage, setStatusMessage] = useState('Active');
   const [selectedText, setSelectedText] = useState('');
   const [translationTooltip, setTranslationTooltip] = useState<{ text: string; visible: boolean } | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const [isTalking, setIsTalking] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+  const { toast } = useToast();
 
   const demoContent = `Dennis and Mack sat in the car and looked at the deserted parking lot. "Dennis!" Mack shouted from the passenger seat. Dennis! Mack looked crazy. Dennis ran from the parking lot toward the gas pump. "I'm coming, Mack!" he yelled to his friend and went into the store. Mack was behind the counter. When Dennis came in, Mack pointed to the back of the store.`;
 
@@ -97,6 +104,102 @@ export const InteractiveDemo = () => {
     if (isPlaying) {
       setIsPlaying(false);
       setIsPaused(true);
+    }
+  };
+
+  const handleTalkWithTeacher = async () => {
+    if (isRecording) {
+      // Stop recording
+      setIsRecording(false);
+      setStatusMessage('Processing...');
+      
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+        mediaRecorderRef.current.stop();
+      }
+    } else {
+      // Start recording
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+        
+        audioChunksRef.current = [];
+        
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunksRef.current.push(event.data);
+          }
+        };
+        
+        mediaRecorder.onstop = async () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+          
+          // Convert to base64
+          const reader = new FileReader();
+          reader.onloadend = async () => {
+            const base64Audio = (reader.result as string).split(',')[1];
+            
+            try {
+              setIsTalking(true);
+              const { data, error } = await supabase.functions.invoke('azure-voice-translate', {
+                body: { audio: base64Audio, targetLanguage: 'fa' }
+              });
+
+              if (error) throw error;
+
+              // Display transcript and translation
+              setTranslationTooltip({
+                text: `English: ${data.transcript}\n\nدری: ${data.translation}`,
+                visible: true
+              });
+
+              // Play the audio response
+              const audio = new Audio(`data:audio/mp3;base64,${data.audioContent}`);
+              audio.onended = () => {
+                setIsTalking(false);
+                setStatusMessage('Active');
+              };
+              audio.play();
+              
+              setStatusMessage('Teacher responding...');
+              
+              toast({
+                title: "Translation complete",
+                description: "Teacher's response is playing",
+              });
+            } catch (err) {
+              console.error('Error:', err);
+              setIsTalking(false);
+              setStatusMessage('Error - Please try again');
+              toast({
+                title: "Error",
+                description: "Failed to process audio. Please try again.",
+                variant: "destructive",
+              });
+            }
+          };
+          reader.readAsDataURL(audioBlob);
+          
+          // Stop all tracks
+          stream.getTracks().forEach(track => track.stop());
+        };
+        
+        mediaRecorderRef.current = mediaRecorder;
+        mediaRecorder.start();
+        setIsRecording(true);
+        setStatusMessage('Recording... Click again to stop');
+        
+        toast({
+          title: "Recording started",
+          description: "Speak your question in English",
+        });
+      } catch (err) {
+        console.error('Error accessing microphone:', err);
+        toast({
+          title: "Microphone access denied",
+          description: "Please allow microphone access to use this feature.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -214,11 +317,33 @@ export const InteractiveDemo = () => {
                       </button>
 
                       <button
-                        className="bg-primary-foreground/20 hover:bg-primary-foreground/30 px-4 py-2 rounded-lg transition-all flex items-center gap-2"
-                        title="Talk with Teacher"
+                        onClick={handleTalkWithTeacher}
+                        className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${
+                          isRecording 
+                            ? 'bg-red-500/80 hover:bg-red-500 animate-pulse' 
+                            : isTalking
+                            ? 'bg-green-500/80 cursor-wait'
+                            : 'bg-primary-foreground/20 hover:bg-primary-foreground/30'
+                        }`}
+                        title={isRecording ? "Stop recording" : "Talk with Teacher"}
+                        disabled={isTalking}
                       >
-                        <MessageSquare className="w-5 h-5" />
-                        <span className="text-sm font-medium">Talk with Teacher</span>
+                        {isRecording ? (
+                          <>
+                            <Square className="w-5 h-5" />
+                            <span className="text-sm font-medium">Stop Recording</span>
+                          </>
+                        ) : isTalking ? (
+                          <>
+                            <Volume2 className="w-5 h-5 animate-pulse" />
+                            <span className="text-sm font-medium">Teacher Speaking...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Mic className="w-5 h-5" />
+                            <span className="text-sm font-medium">Talk with Teacher</span>
+                          </>
+                        )}
                       </button>
 
                       <div className="text-sm font-medium px-3 py-1.5 bg-primary-foreground/10 rounded">

@@ -1,1 +1,4 @@
 project_id = "yodkqpdzyiugygzudbsv"
+
+[functions.azure-voice-translate]
+verify_jwt = false
