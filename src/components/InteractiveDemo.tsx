@@ -172,9 +172,10 @@ export const InteractiveDemo = () => {
 
               {/* LanguageBridge Toolbar */}
               <div 
-                className={`fixed bottom-0 left-0 right-0 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-elegant transition-all duration-300 ease-in-out z-40 ${
+                className={`fixed bottom-0 left-0 right-0 text-primary-foreground shadow-elegant transition-all duration-300 ease-in-out z-40 ${
                   toolbarExpanded ? 'h-16' : 'h-10'
                 }`}
+                style={{ background: 'linear-gradient(135deg, hsl(284 59% 45%), hsl(16 100% 60%))' }}
               >
                 {/* Collapsed View */}
                 {!toolbarExpanded && (
