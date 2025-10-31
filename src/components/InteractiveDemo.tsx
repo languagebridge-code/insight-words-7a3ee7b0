@@ -1,25 +1,102 @@
-import { useState } from "react";
-import { MousePointer2, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useRef, useEffect } from "react";
+import { Volume2, BookOpen, MessageSquare, Flag, Minus, Play, Pause } from "lucide-react";
 
 export const InteractiveDemo = () => {
-  const [selectedWord, setSelectedWord] = useState<string | null>(null);
-  const [translation, setTranslation] = useState<string>("");
+  const [toolbarExpanded, setToolbarExpanded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [showTranslation, setShowTranslation] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('Active');
+  const [selectedText, setSelectedText] = useState('');
+  const [translationTooltip, setTranslationTooltip] = useState<{ text: string; visible: boolean } | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  const demoText = "The mitochondria is the powerhouse of the cell.";
-  const words = demoText.split(" ");
+  const demoContent = `Dennis and Mack sat in the car and looked at the deserted parking lot. "Dennis!" Mack shouted from the passenger seat. Dennis! Mack looked crazy. Dennis ran from the parking lot toward the gas pump. "I'm coming, Mack!" he yelled to his friend and went into the store. Mack was behind the counter. When Dennis came in, Mack pointed to the back of the store.`;
 
-  const translations: Record<string, { spanish: string; arabic: string }> = {
-    mitochondria: { spanish: "mitocondrias", arabic: "الميتوكوندريا" },
-    powerhouse: { spanish: "central eléctrica", arabic: "محطة الطاقة" },
-    cell: { spanish: "célula", arabic: "خلية" },
+  const dariTranslation = `دنیس و مک در ماشین نشستند و به پارکینگ خالی نگاه کردند. «دنیس!» مک از صندلی مسافر فریاد زد. دنیس! مک دیوانه به نظر می رسید. دنیس از پارکینگ به سمت پمپ بنزین دوید. «من می آیم، مک!» او به دوستش فریاد زد و وارد مغازه شد. مک پشت پیشخوان بود. وقتی دنیس وارد شد، مک به پشت فروشگاه اشاره کرد.`;
+
+  const handleMouseUp = () => {
+    const selection = window.getSelection();
+    const text = selection?.toString().trim();
+    
+    if (text && contentRef.current?.contains(selection?.anchorNode || null)) {
+      setSelectedText(text);
+      setToolbarExpanded(true);
+      setStatusMessage('Text selected - Click ▶ for audio or 📖 to read');
+      setShowTranslation(false);
+      setTranslationTooltip(null);
+      setIsPlaying(false);
+      setIsPaused(false);
+    }
   };
 
-  const handleWordClick = (word: string) => {
-    const cleanWord = word.toLowerCase().replace(/[.,]/g, "");
-    if (translations[cleanWord]) {
-      setSelectedWord(cleanWord);
-      setTranslation(translations[cleanWord].spanish);
+  useEffect(() => {
+    const handleKeyboard = (e: KeyboardEvent) => {
+      if (e.altKey && e.shiftKey && e.key === 'L') {
+        e.preventDefault();
+        setToolbarExpanded(!toolbarExpanded);
+      }
+    };
+    window.addEventListener('keydown', handleKeyboard);
+    return () => window.removeEventListener('keydown', handleKeyboard);
+  }, [toolbarExpanded]);
+
+  const handlePlayPause = () => {
+    if (!selectedText) {
+      setStatusMessage('Please select some text first');
+      setTimeout(() => setStatusMessage('Active'), 2000);
+      return;
+    }
+
+    if (isPlaying) {
+      setIsPlaying(false);
+      setIsPaused(true);
+      setStatusMessage('Paused - Click play to resume');
+    } else if (isPaused) {
+      setIsPlaying(true);
+      setIsPaused(false);
+      setStatusMessage('Resuming...');
+      
+      setTimeout(() => {
+        setIsPlaying(false);
+        setStatusMessage('Completed');
+      }, 3000);
+    } else {
+      setIsPlaying(true);
+      setStatusMessage('Playing audio translation...');
+      
+      setTranslationTooltip({
+        text: dariTranslation.substring(0, 200) + '...',
+        visible: true
+      });
+
+      setTimeout(() => {
+        setIsPlaying(false);
+        setStatusMessage('Completed');
+      }, 5000);
+    }
+  };
+
+  const handleShowTranslation = () => {
+    if (!selectedText) {
+      setStatusMessage('Please select some text first');
+      setTimeout(() => setStatusMessage('Active'), 2000);
+      return;
+    }
+
+    setShowTranslation(true);
+    setTranslationTooltip({
+      text: dariTranslation,
+      visible: true
+    });
+    setStatusMessage('Translation shown');
+  };
+
+  const handleCollapse = () => {
+    setToolbarExpanded(false);
+    if (isPlaying) {
+      setIsPlaying(false);
+      setIsPaused(true);
     }
   };
 
@@ -31,133 +108,158 @@ export const InteractiveDemo = () => {
             See It <span className="gradient-text">In Action</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Try it yourself! Click any highlighted word to see instant translation
+            Try our interactive demo - Select any text to see instant translation
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-card rounded-3xl p-8 md:p-16 shadow-2xl fade-in-up delay-100">
-            {/* Demo Browser Frame */}
-            <div className="bg-secondary/50 rounded-2xl p-6 mb-8">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-destructive" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                </div>
-                <div className="flex-1 bg-background rounded-lg px-4 py-2 text-sm text-muted-foreground ml-4">
-                  classroom.google.com/science-lesson
-                </div>
+        <div className="max-w-5xl mx-auto fade-in-up delay-100">
+          {/* Browser Window */}
+          <div className="bg-muted/50 rounded-t-2xl border border-border shadow-2xl">
+            {/* Browser Chrome */}
+            <div className="flex items-center gap-2 px-4 py-3 bg-muted rounded-t-2xl border-b border-border">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-destructive" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+              </div>
+              <div className="flex-1 mx-4 bg-background rounded px-4 py-1.5 text-sm text-muted-foreground">
+                classroom.google.com/c/assignment-123
+              </div>
+            </div>
+
+            {/* Page Content */}
+            <div className="bg-card min-h-[500px] p-8 relative rounded-b-2xl">
+              {/* Google Classroom Header */}
+              <div className="mb-6 pb-4 border-b border-border">
+                <h3 className="text-2xl font-bold mb-2">English Literature</h3>
+                <p className="text-sm text-muted-foreground">Mrs. Johnson • Period 3</p>
               </div>
 
-              {/* Demo Content */}
-              <div className="bg-background rounded-xl p-8 relative">
-                <div className="absolute top-4 right-4 flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  <span className="text-xs font-semibold text-primary">
-                    LanguageBridge Active
-                  </span>
+              {/* Assignment Content */}
+              <div 
+                ref={contentRef}
+                onMouseUp={handleMouseUp}
+                className="prose prose-lg max-w-none select-text"
+              >
+                <h4 className="text-xl font-semibold mb-4">Assignment: Read Chapter 1 - The Survivors</h4>
+                <div className="bg-primary/10 border-l-4 border-primary p-4 mb-4 rounded">
+                  <p className="text-sm">
+                    💡 <strong>Tip:</strong> Try selecting any text below, then use the LanguageBridge toolbar to translate!
+                  </p>
                 </div>
-
-                <h3 className="text-2xl font-bold mb-6">Cell Biology Lesson</h3>
-                <p className="text-lg leading-relaxed mb-4">
-                  {words.map((word, index) => {
-                    const cleanWord = word.toLowerCase().replace(/[.,]/g, "");
-                    const isClickable = translations[cleanWord];
-                    return (
-                      <span key={index}>
-                        <span
-                          className={`${
-                            isClickable
-                              ? "bg-primary/20 px-1 cursor-pointer hover:bg-primary/30 transition-colors rounded"
-                              : ""
-                          } ${
-                            selectedWord === cleanWord ? "bg-primary/40" : ""
-                          }`}
-                          onClick={() => isClickable && handleWordClick(word)}
-                        >
-                          {word}
-                        </span>
-                        {index < words.length - 1 && " "}
-                      </span>
-                    );
-                  })}
+                <p className="leading-relaxed whitespace-pre-wrap">
+                  {demoContent}
                 </p>
+              </div>
 
-                {/* Translation Tooltip */}
-                {selectedWord && (
-                  <div className="mt-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 animate-fade-in border-2 border-primary/30">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center shrink-0">
-                        <MousePointer2 className="w-5 h-5 text-white" />
+              {/* Translation Tooltip */}
+              {translationTooltip?.visible && (
+                <div className="absolute top-40 left-1/2 transform -translate-x-1/2 bg-card rounded-lg shadow-elegant border-2 border-primary p-6 max-w-md z-50 animate-fade-in">
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-border">
+                    <span className="text-sm font-semibold text-primary">دری Dari</span>
+                    <button 
+                      onClick={() => setTranslationTooltip(null)}
+                      className="text-muted-foreground hover:text-foreground text-xl leading-none"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <div className="text-right leading-relaxed" dir="rtl">
+                    {translationTooltip.text}
+                  </div>
+                </div>
+              )}
+
+              {/* LanguageBridge Toolbar */}
+              <div 
+                className={`fixed bottom-0 left-0 right-0 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground shadow-elegant transition-all duration-300 ease-in-out z-40 ${
+                  toolbarExpanded ? 'h-16' : 'h-10'
+                }`}
+              >
+                {/* Collapsed View */}
+                {!toolbarExpanded && (
+                  <div 
+                    className="flex items-center h-10 px-4 cursor-pointer hover:bg-primary/90 transition-colors"
+                    onClick={() => setToolbarExpanded(true)}
+                  >
+                    <Volume2 className="w-5 h-5 mr-2" />
+                    <span className="font-semibold">LanguageBridge</span>
+                    <span className="ml-2 w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  </div>
+                )}
+
+                {/* Expanded View */}
+                {toolbarExpanded && (
+                  <div className="flex items-center justify-between h-16 px-6">
+                    <div className="flex items-center gap-3">
+                      <Volume2 className="w-6 h-6" />
+                      <span className="font-bold text-lg">LanguageBridge</span>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={handlePlayPause}
+                        className="bg-primary-foreground/20 hover:bg-primary-foreground/30 p-2 rounded-lg transition-all"
+                        title="Play audio translation"
+                      >
+                        {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+                      </button>
+
+                      <button
+                        onClick={handleShowTranslation}
+                        className="bg-primary-foreground/20 hover:bg-primary-foreground/30 p-2 rounded-lg transition-all"
+                        title="Show written translation"
+                      >
+                        <BookOpen className="w-5 h-5" />
+                      </button>
+
+                      <button
+                        className="bg-primary-foreground/20 hover:bg-primary-foreground/30 px-4 py-2 rounded-lg transition-all flex items-center gap-2"
+                        title="Talk with Teacher"
+                      >
+                        <MessageSquare className="w-5 h-5" />
+                        <span className="text-sm font-medium">Talk with Teacher</span>
+                      </button>
+
+                      <div className="text-sm font-medium px-3 py-1.5 bg-primary-foreground/10 rounded">
+                        دری Dari
                       </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-sm text-muted-foreground mb-2">
-                          Translation (Spanish):
-                        </p>
-                        <p className="text-2xl font-bold gradient-text mb-4">
-                          {translation}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          English: <span className="font-semibold">{selectedWord}</span>
-                        </p>
+
+                      <div className="flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-green-400 animate-pulse' : isPaused ? 'bg-yellow-400' : 'bg-green-400'}`}></span>
+                        <span className="text-sm">{statusMessage}</span>
                       </div>
+
+                      <button
+                        className="bg-primary-foreground/20 hover:bg-primary-foreground/30 p-2 rounded-lg transition-all text-red-300"
+                        title="Report a problem"
+                      >
+                        <Flag className="w-5 h-5" />
+                      </button>
+
+                      <button
+                        onClick={handleCollapse}
+                        className="bg-primary-foreground/20 hover:bg-primary-foreground/30 p-2 rounded-lg transition-all"
+                        title="Collapse toolbar"
+                      >
+                        <Minus className="w-5 h-5" />
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
             </div>
-
-            <div className="text-center">
-              <p className="text-muted-foreground mb-6">
-                <MousePointer2 className="w-5 h-5 inline mr-2" />
-                Click on <span className="bg-primary/20 px-2 py-1 rounded">
-                  highlighted words
-                </span>{" "}
-                above to see translations
-              </p>
-              <Button
-                size="lg"
-                onClick={() => {
-                  const element = document.querySelector("#forms");
-                  if (element) element.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="gradient-primary text-white hover:opacity-90"
-              >
-                Schedule a Full Demo
-              </Button>
-            </div>
           </div>
 
-          {/* Feature Highlights */}
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            <div className="text-center p-6 fade-in-up delay-200">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-primary" />
-              </div>
-              <h4 className="font-bold mb-2">Instant Translation</h4>
-              <p className="text-sm text-muted-foreground">
-                No copying, pasting, or leaving the page
-              </p>
-            </div>
-            <div className="text-center p-6 fade-in-up delay-300">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <MousePointer2 className="w-8 h-8 text-primary" />
-              </div>
-              <h4 className="font-bold mb-2">Simple Highlight</h4>
-              <p className="text-sm text-muted-foreground">
-                Just click or highlight any word
-              </p>
-            </div>
-            <div className="text-center p-6 fade-in-up delay-400">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🌍</span>
-              </div>
-              <h4 className="font-bold mb-2">100+ Languages</h4>
-              <p className="text-sm text-muted-foreground">
-                Support for every student's home language
-              </p>
-            </div>
+          {/* Instructions */}
+          <div className="mt-6 p-6 bg-primary/10 rounded-lg border border-primary/20">
+            <h4 className="font-semibold mb-3">Try the Demo:</h4>
+            <ul className="text-sm space-y-2">
+              <li>1. <strong>Select any text</strong> in the assignment above</li>
+              <li>2. <strong>Click the Play button (▶)</strong> to hear the Dari translation</li>
+              <li>3. <strong>Click the Book icon (📖)</strong> to see written translation</li>
+              <li>4. <strong>Press Alt+Shift+L</strong> to toggle the toolbar</li>
+            </ul>
           </div>
         </div>
       </div>
