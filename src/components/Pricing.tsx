@@ -3,23 +3,21 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 
 export const Pricing = () => {
-  const [students, setStudents] = useState(50);
+  const [interpreters, setInterpreters] = useState(2);
   const [hours, setHours] = useState(20);
-  const [hourlyCost, setHourlyCost] = useState(35);
+  const [hourlyCost, setHourlyCost] = useState(19);
 
-  const calculateSavings = () => {
-    const annualInterpreterCost = hours * hourlyCost * 52; // 52 weeks
-    let languageBridgeCost = 0;
+  const calculateCosts = () => {
+    const annualInterpreterCost = interpreters * hours * hourlyCost * 52; // interpreters * hours/week * rate * 52 weeks
+    const languageBridgeCost = 2000; // Medium package as comparison
     
-    if (students <= 20) languageBridgeCost = 1200;
-    else if (students <= 50) languageBridgeCost = 2000;
-    else if (students <= 100) languageBridgeCost = 3500;
-    else languageBridgeCost = students * 50; // $50 per student for 51+
-    
-    return Math.max(0, annualInterpreterCost - languageBridgeCost);
+    return {
+      interpreterCost: annualInterpreterCost,
+      savings: Math.max(0, annualInterpreterCost - languageBridgeCost)
+    };
   };
 
-  const savings = calculateSavings();
+  const { interpreterCost, savings } = calculateCosts();
   const packages = [
     {
       name: "Small School Package",
@@ -149,9 +147,11 @@ export const Pricing = () => {
             <h3 className="text-2xl font-bold mb-6 text-center">Compare the Cost</h3>
             <div className="grid md:grid-cols-3 gap-6 text-center mb-6">
               <div>
-                <p className="text-sm text-muted-foreground mb-2">One part-time interpreter</p>
-                <p className="text-3xl font-bold text-foreground">$15,000-40,000</p>
-                <p className="text-sm text-muted-foreground">per year</p>
+                <p className="text-sm text-muted-foreground mb-2">Multiple interpreters needed</p>
+                <p className="text-xl font-bold text-foreground mb-1">One interpreter per language</p>
+                <p className="text-sm text-muted-foreground mb-2">@ $18-20/hour, part-time or as needed</p>
+                <p className="text-3xl font-bold text-foreground">$19,760+</p>
+                <p className="text-sm text-muted-foreground">per interpreter, per year</p>
               </div>
               <div className="flex items-center justify-center">
                 <div className="text-4xl font-bold text-primary">VS</div>
@@ -159,13 +159,13 @@ export const Pricing = () => {
               <div>
                 <p className="text-sm text-muted-foreground mb-2">LanguageBridge for 50 students</p>
                 <p className="text-3xl font-bold text-primary">$2,000</p>
-                <p className="text-sm text-muted-foreground">per year</p>
+                <p className="text-sm text-muted-foreground">per year, all languages</p>
               </div>
             </div>
             <div className="text-center bg-card rounded-xl p-6">
               <p className="text-lg font-semibold mb-2">Cost per student per day: <span className="text-primary">Less than 22 cents</span></p>
               <p className="text-muted-foreground">
-                That's less than one interpreter hour per week, but gives <strong>ALL</strong> your students 24/7 language support.
+                You need an interpreter for every language spoken—that adds up fast. LanguageBridge covers <strong>ALL</strong> languages with 24/7 support.
               </p>
             </div>
           </div>
@@ -198,44 +198,53 @@ export const Pricing = () => {
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div>
-                <label className="block text-sm font-medium mb-2">Number of ELL Students</label>
+                <label className="block text-sm font-medium mb-2">Number of Interpreters Needed</label>
                 <input 
                   type="number" 
-                  value={students}
-                  onChange={(e) => setStudents(Number(e.target.value))}
-                  placeholder="50" 
+                  value={interpreters}
+                  onChange={(e) => setInterpreters(Number(e.target.value))}
+                  placeholder="2" 
                   className="w-full px-4 py-2 rounded-lg border border-border bg-background"
+                  min="1"
                 />
+                <p className="text-xs text-muted-foreground mt-1">One per language spoken</p>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Current Interpreter Hours/Week</label>
+                <label className="block text-sm font-medium mb-2">Hours Per Week (per interpreter)</label>
                 <input 
                   type="number" 
                   value={hours}
                   onChange={(e) => setHours(Number(e.target.value))}
                   placeholder="20" 
                   className="w-full px-4 py-2 rounded-lg border border-border bg-background"
+                  min="1"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Hourly Interpreter Cost</label>
+                <label className="block text-sm font-medium mb-2">Hourly Rate ($)</label>
                 <input 
                   type="number" 
                   value={hourlyCost}
                   onChange={(e) => setHourlyCost(Number(e.target.value))}
-                  placeholder="35" 
+                  placeholder="19" 
                   className="w-full px-4 py-2 rounded-lg border border-border bg-background"
+                  min="1"
                 />
+                <p className="text-xs text-muted-foreground mt-1">Typically $18-20/hour</p>
               </div>
             </div>
 
             <div className="text-center">
               <div className="bg-card rounded-xl p-6 mb-6">
-                <p className="text-sm text-muted-foreground mb-2">Your Estimated Annual Savings</p>
+                <p className="text-sm text-muted-foreground mb-2">Your Current Annual Interpreter Cost</p>
+                <p className="text-3xl font-bold text-foreground mb-4">
+                  ${interpreterCost.toLocaleString()}
+                </p>
+                <p className="text-sm text-muted-foreground mb-2">Your Estimated Annual Savings with LanguageBridge</p>
                 <p className="text-4xl font-bold text-primary mb-2">
                   ${savings.toLocaleString()}
                 </p>
-                <p className="text-sm text-muted-foreground">Based on typical interpreter costs vs. LanguageBridge</p>
+                <p className="text-sm text-muted-foreground">Based on LanguageBridge Medium Package ($2,000/year)</p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
