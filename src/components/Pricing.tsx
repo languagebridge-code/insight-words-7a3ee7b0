@@ -1,7 +1,25 @@
 import { Check } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState } from "react";
 
 export const Pricing = () => {
+  const [students, setStudents] = useState(50);
+  const [hours, setHours] = useState(20);
+  const [hourlyCost, setHourlyCost] = useState(35);
+
+  const calculateSavings = () => {
+    const annualInterpreterCost = hours * hourlyCost * 52; // 52 weeks
+    let languageBridgeCost = 0;
+    
+    if (students <= 20) languageBridgeCost = 1200;
+    else if (students <= 50) languageBridgeCost = 2000;
+    else if (students <= 100) languageBridgeCost = 3500;
+    else languageBridgeCost = students * 50; // $50 per student for 51+
+    
+    return Math.max(0, annualInterpreterCost - languageBridgeCost);
+  };
+
+  const savings = calculateSavings();
   const packages = [
     {
       name: "Small School Package",
@@ -183,6 +201,8 @@ export const Pricing = () => {
                 <label className="block text-sm font-medium mb-2">Number of ELL Students</label>
                 <input 
                   type="number" 
+                  value={students}
+                  onChange={(e) => setStudents(Number(e.target.value))}
                   placeholder="50" 
                   className="w-full px-4 py-2 rounded-lg border border-border bg-background"
                 />
@@ -191,6 +211,8 @@ export const Pricing = () => {
                 <label className="block text-sm font-medium mb-2">Current Interpreter Hours/Week</label>
                 <input 
                   type="number" 
+                  value={hours}
+                  onChange={(e) => setHours(Number(e.target.value))}
                   placeholder="20" 
                   className="w-full px-4 py-2 rounded-lg border border-border bg-background"
                 />
@@ -199,6 +221,8 @@ export const Pricing = () => {
                 <label className="block text-sm font-medium mb-2">Hourly Interpreter Cost</label>
                 <input 
                   type="number" 
+                  value={hourlyCost}
+                  onChange={(e) => setHourlyCost(Number(e.target.value))}
                   placeholder="35" 
                   className="w-full px-4 py-2 rounded-lg border border-border bg-background"
                 />
@@ -208,7 +232,9 @@ export const Pricing = () => {
             <div className="text-center">
               <div className="bg-card rounded-xl p-6 mb-6">
                 <p className="text-sm text-muted-foreground mb-2">Your Estimated Annual Savings</p>
-                <p className="text-4xl font-bold text-primary mb-2">$34,400</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  ${savings.toLocaleString()}
+                </p>
                 <p className="text-sm text-muted-foreground">Based on typical interpreter costs vs. LanguageBridge</p>
               </div>
               
