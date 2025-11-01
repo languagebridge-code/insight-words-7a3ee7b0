@@ -114,10 +114,10 @@ export const ValueProposition = () => {
 
             <div className="text-center">
               <a 
-                href="#trust" 
+                href="#contact" 
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
-                Learn More About Compliance
+                Contact Us About Compliance
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

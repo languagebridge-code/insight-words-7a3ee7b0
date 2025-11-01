@@ -10,9 +10,9 @@ export const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4 text-white">Navigate</h3>
             <ul className="space-y-2">
-              <li><a href="#about" className="text-white/80 hover:text-white transition-colors">About LanguageBridge</a></li>
+              <li><a href="#home" className="text-white/80 hover:text-white transition-colors">Home</a></li>
               <li><a href="#how-it-works" className="text-white/80 hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="#ohio-pilot" className="text-white/80 hover:text-white transition-colors">Ohio Pilot Program</a></li>
+              <li><a href="#demo" className="text-white/80 hover:text-white transition-colors">Demo</a></li>
               <li><a href="#pricing" className="text-white/80 hover:text-white transition-colors">Pricing</a></li>
               <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact Us</a></li>
               <li><a href="#faq" className="text-white/80 hover:text-white transition-colors">FAQ</a></li>
@@ -23,10 +23,10 @@ export const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4 text-white">For Schools</h3>
             <ul className="space-y-2">
-              <li><a href="#pilot" className="text-white/80 hover:text-white transition-colors">Become a Pilot School</a></li>
+              <li><a href="#forms" className="text-white/80 hover:text-white transition-colors">Become a Pilot School</a></li>
               <li><a href="#demo" className="text-white/80 hover:text-white transition-colors">Schedule a Demo</a></li>
-              <li><a href="#professional-development" className="text-white/80 hover:text-white transition-colors">Professional Development</a></li>
-              <li><a href="#support" className="text-white/80 hover:text-white transition-colors">Implementation Support</a></li>
+              <li><span className="text-white/40 cursor-not-allowed">Professional Development</span></li>
+              <li><span className="text-white/40 cursor-not-allowed">Implementation Support</span></li>
             </ul>
           </div>
 
