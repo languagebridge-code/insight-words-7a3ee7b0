@@ -60,15 +60,15 @@ export const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto fade-in-up delay-300">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale">
             <img 
-              src={heroStudent2} 
-              alt="Happy student engaged with Chromebook in classroom" 
+              src={heroStudent1} 
+              alt="Happy Afghan student working confidently on Chromebook" 
               className="w-full h-auto object-cover"
             />
           </div>
           <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale">
             <img 
-              src={heroStudent1} 
-              alt="Happy Afghan student working confidently on Chromebook" 
+              src={heroStudent2} 
+              alt="Happy student engaged with Chromebook in classroom" 
               className="w-full h-auto object-cover"
             />
           </div>
