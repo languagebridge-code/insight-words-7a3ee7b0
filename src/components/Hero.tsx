@@ -19,12 +19,12 @@ export const Hero = () => {
       <div className="shooting-star" />
       <div className="shooting-star" />
       
-      <div className="container mx-auto px-4 py-24 md:py-32">
+      <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="text-center mb-16 fade-in-up">
           <img 
             src={logo} 
             alt="LanguageBridge Logo" 
-            className="w-32 h-32 mx-auto mb-8 hover:scale-110 transition-transform duration-300"
+            className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
             Every Student Deserves to Be{" "}
