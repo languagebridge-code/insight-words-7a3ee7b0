@@ -33,14 +33,31 @@ export const PilotApplicationForm = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Ohio Pilot Application:", data);
-    toast({
-      title: "Application Submitted!",
-      description: "We'll contact you within 48 hours to discuss your pilot program.",
-    });
-    reset();
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      const { error } = await supabase.functions.invoke("send-form-submission", {
+        body: {
+          type: "pilot",
+          ...data,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Application Submitted!",
+        description: "We'll contact you within 48 hours to discuss your pilot program.",
+      });
+      reset();
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit application. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
