@@ -13,8 +13,8 @@ export const Contact = () => {
             <div className="space-y-6 mb-8">
               <div className="flex items-center justify-center gap-3 text-white text-xl">
                 <Mail className="w-6 h-6" />
-                <a href="mailto:inquiry@languagebridge.app" className="hover:underline font-medium">
-                  inquiry@languagebridge.app
+                <a href="mailto:languagebridge.contact@gmail.com" className="hover:underline font-medium">
+                  languagebridge.contact@gmail.com
                 </a>
               </div>
               
