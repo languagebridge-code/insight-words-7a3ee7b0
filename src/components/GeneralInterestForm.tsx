@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -13,6 +14,7 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   organization: z.string().optional(),
   interest: z.string().min(10, "Please tell us about your interest"),
+  partnershipInterest: z.boolean().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -113,6 +115,22 @@ export const GeneralInterestForm = () => {
           {errors.interest && (
             <p className="text-destructive text-sm mt-1">{errors.interest.message}</p>
           )}
+        </div>
+
+        <div className="flex items-start space-x-3 p-4 bg-primary/5 rounded-lg border border-primary/20">
+          <Checkbox
+            id="partnershipInterest"
+            {...register("partnershipInterest")}
+            className="mt-1"
+          />
+          <div className="flex-1">
+            <Label htmlFor="partnershipInterest" className="text-base font-semibold cursor-pointer">
+              I'm interested in a partnership for free access to LanguageBridge for 1 year
+            </Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              Schools selected for our partnership program will receive full access to LanguageBridge at no cost for one year.
+            </p>
+          </div>
         </div>
 
         <Button

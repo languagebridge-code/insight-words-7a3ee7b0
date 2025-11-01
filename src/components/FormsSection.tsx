@@ -13,25 +13,8 @@ export const FormsSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-          <div className="fade-in-up delay-100">
-            <div className="bg-card rounded-lg border border-border overflow-hidden h-full">
-              <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSeSxZh-KLoUsBQhi8qlq0JfjVv9uuUlpvERWYbkxlJ0Cj2-3g/viewform?embedded=true" 
-                width="100%" 
-                height="2191" 
-                frameBorder="0" 
-                marginHeight={0} 
-                marginWidth={0}
-                className="w-full"
-              >
-                Loading…
-              </iframe>
-            </div>
-          </div>
-          <div className="fade-in-up delay-200">
-            <GeneralInterestForm />
-          </div>
+        <div className="max-w-3xl mx-auto fade-in-up">
+          <GeneralInterestForm />
         </div>
       </div>
     </section>
