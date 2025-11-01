@@ -5,7 +5,7 @@ export const ValueProposition = () => {
     {
       icon: Globe,
       title: "Real-time Translation",
-      description: "Support for 4+ languages: Dari, Pashto, Arabic, Spanish - with more coming soon"
+      description: "Support for 8 languages including Dari, Pashto, Arabic, Spanish, Urdu, Uzbek, and Ukrainian - with more coming soon"
     },
     {
       icon: Volume2,
