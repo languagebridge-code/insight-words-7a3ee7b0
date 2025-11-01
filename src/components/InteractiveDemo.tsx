@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Play, Pause, Square, Languages, Volume2, Settings, HelpCircle, X } from 'lucide-react';
+import languageBridgeIcon from '@/assets/languagebridge-icon.png';
 
 export const InteractiveDemo = () => {
   const [selectedText, setSelectedText] = useState('');
@@ -117,7 +118,7 @@ export const InteractiveDemo = () => {
                 <div className="flex items-center justify-between">
                   {/* Logo */}
                   <div className="flex items-center space-x-3">
-                    <div className="text-2xl">🌉</div>
+                    <img src={languageBridgeIcon} alt="LanguageBridge" className="w-8 h-8" />
                     <span className="font-bold text-lg">LanguageBridge</span>
                   </div>
 
