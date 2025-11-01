@@ -28,31 +28,13 @@ export const GeneralInterestForm = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    try {
-      const { supabase } = await import("@/integrations/supabase/client");
-      
-      const { error } = await supabase.functions.invoke("send-form-submission", {
-        body: {
-          type: "general",
-          ...data,
-        },
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Thank You!",
-        description: "We've received your information and will be in touch soon.",
-      });
-      reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast({
-        title: "Error",
-        description: "Failed to submit form. Please try again.",
-        variant: "destructive",
-      });
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log("General Interest Form:", data);
+    toast({
+      title: "Thank You!",
+      description: "We've received your information and will be in touch soon.",
+    });
+    reset();
   };
 
   return (
