@@ -4,15 +4,15 @@ export const UseCases = () => {
   const cases = [
     {
       name: "Carlos",
-      problem: "Due to his lack of understanding, Carlos misbehaves in class and gets referred to the principal. During the meeting, he can't fully grasp the issue because he doesn't know enough English, and the administrator doesn't speak his native language. Google Translate fails because Carlos cannot read his native language yet. They pull another student in to translate—violating Carlos's privacy.",
-      solution: "With LanguageBridge, Carlos can hear the administrator's concerns in his own language and respond appropriately. The conversation stays private, professional, and effective—no student translators needed.",
-      impact: "Dignity preserved. Privacy protected. Understanding achieved."
+      problem: "A bright 4th grader who teachers say 'doesn't do any work' because he cannot read English yet. He shuts down in class, unable to access grade-level content. Teachers flag him for special education services, when what he really needs is language support.",
+      solution: "With LanguageBridge, Carlos gains the confidence to ask questions directly in his own language and relay them to the teacher. He can read along with the class, accessing the same content as his peers and demonstrating his true academic abilities.",
+      impact: "No more misdiagnosis. No more isolation. Just access."
     },
     {
       name: "Amira",
-      problem: "A bright 4th grader who teachers say 'doesn't do any work' because she cannot read English yet. She shuts down in class, unable to access grade-level content. Teachers flag her for special education services, when what she really needs is language support.",
-      solution: "With LanguageBridge, Amira gains the confidence to ask questions directly in her own language and relay them to the teacher. She can read along with the class, accessing the same content as her peers and demonstrating her true academic abilities.",
-      impact: "No more misdiagnosis. No more isolation. Just access."
+      problem: "Due to her lack of understanding, Amira misbehaves in class and gets referred to the principal. During the meeting, she can't fully grasp the issue because she doesn't know enough English, and the administrator doesn't speak her native language. Google Translate fails because Amira cannot read her native language yet. They pull another student in to translate—violating Amira's privacy.",
+      solution: "With LanguageBridge, Amira can hear the administrator's concerns in her own language and respond appropriately. The conversation stays private, professional, and effective—no student translators needed.",
+      impact: "Dignity preserved. Privacy protected. Understanding achieved."
     }
   ];
 
