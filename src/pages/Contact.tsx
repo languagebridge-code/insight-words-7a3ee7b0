@@ -34,10 +34,12 @@ export default function Contact() {
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       
-      const { error } = await supabase.functions.invoke("send-form-submission", {
+      const { error } = await supabase.functions.invoke("submit-contact-form", {
         body: {
-          type: "contact",
-          ...data,
+          name: data.name,
+          email: data.email,
+          school: data.school,
+          message: `Subject: ${data.subject}\nRole: ${data.role}\n\n${data.message}`,
         },
       });
 

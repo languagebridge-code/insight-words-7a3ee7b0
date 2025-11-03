@@ -35,6 +35,102 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+          school: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+          school?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          school?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          subscribed: boolean | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          subscribed?: boolean | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          subscribed?: boolean | null
+        }
+        Relationships: []
+      }
+      pilot_applications: {
+        Row: {
+          created_at: string | null
+          email: string
+          heard_from: string | null
+          id: string
+          languages: string | null
+          name: string
+          num_students: number
+          phone: string | null
+          role: string
+          school_name: string
+          status: string | null
+          timeline: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          heard_from?: string | null
+          id?: string
+          languages?: string | null
+          name: string
+          num_students: number
+          phone?: string | null
+          role: string
+          school_name: string
+          status?: string | null
+          timeline?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          heard_from?: string | null
+          id?: string
+          languages?: string | null
+          name?: string
+          num_students?: number
+          phone?: string | null
+          role?: string
+          school_name?: string
+          status?: string | null
+          timeline?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null

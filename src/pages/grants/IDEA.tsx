@@ -275,37 +275,36 @@ export default function IDEA() {
               {[
                 {
                   title: "IEP Accommodation Language Templates",
-                  format: "DOCX",
+                  format: "Coming Soon",
                   description: "Ready-to-use text for including LanguageBridge in IEPs"
                 },
                 {
                   title: "IDEA Part B Budget Justification",
-                  format: "DOCX",
+                  format: "Coming Soon",
                   description: "Show how LanguageBridge qualifies as assistive technology"
                 },
                 {
-                  title: "Dual-Barrier Student Identification Worksheet",
-                  format: "XLSX",
-                  description: "Find students who are both ELL and have IEPs"
+                  title: "Documentation for AT Evaluation",
+                  format: "Coming Soon",
+                  description: "Prove LanguageBridge meets AT requirements"
                 },
                 {
-                  title: "Assistive Technology Evaluation Template",
-                  format: "PDF",
-                  description: "Documentation for AT needs assessment"
+                  title: "Parent Consent & Notification Templates",
+                  format: "Coming Soon",
+                  description: "FERPA-compliant forms for dual-identified students"
                 }
               ].map((doc, i) => (
                 <Card key={i} className="hover-scale">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <CardTitle className="text-base">{doc.title}</CardTitle>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">{doc.format}</span>
+                      <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">{doc.format}</span>
                     </div>
                     <CardDescription>{doc.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="outline" size="sm" className="w-full">
-                      <Download className="w-4 h-4 mr-2" />
-                      Download
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                      <Link to="/contact">Request Template</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -369,9 +368,8 @@ export default function IDEA() {
               Let's discuss how to fund LanguageBridge through IDEA Part B
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent">
-                <Download className="mr-2" />
-                Download IEP Templates
+              <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent">
+                <Link to="/contact">Request IDEA Templates</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/contact">Schedule Special Ed Consultation</Link>

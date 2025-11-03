@@ -314,37 +314,36 @@ export default function ESSA() {
               {[
                 {
                   title: "ESSA Evidence-Based Justification Template",
-                  format: "DOCX",
+                  format: "Coming Soon",
                   description: "Shows research basis for LanguageBridge under ESSA standards"
                 },
                 {
                   title: "Title I Budget Narrative for LanguageBridge",
-                  format: "DOCX",
+                  format: "Coming Soon",
                   description: "Pre-written justification for Title I funding"
                 },
                 {
-                  title: "Title IV Technology Plan Integration",
-                  format: "PDF",
-                  description: "How to include LanguageBridge in your tech plan"
+                  title: "Title II Professional Development Plan",
+                  format: "Coming Soon",
+                  description: "How LanguageBridge supports teacher effectiveness"
                 },
                 {
-                  title: "Student Outcome Tracking Template",
-                  format: "XLSX",
-                  description: "Track and report student progress for ESSA accountability"
+                  title: "Title IV Well-Rounded Education Justification",
+                  format: "Coming Soon",
+                  description: "Educational technology and equity alignment"
                 }
               ].map((doc, i) => (
                 <Card key={i} className="hover-scale">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <CardTitle className="text-base">{doc.title}</CardTitle>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">{doc.format}</span>
+                      <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">{doc.format}</span>
                     </div>
                     <CardDescription>{doc.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="outline" size="sm" className="w-full">
-                      <Download className="w-4 h-4 mr-2" />
-                      Download
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                      <Link to="/contact">Request Template</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -408,9 +407,8 @@ export default function ESSA() {
               We'll help you navigate Title I, II, or IV funding for LanguageBridge
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent">
-                <Download className="mr-2" />
-                Download ESSA Templates
+              <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent">
+                <Link to="/contact">Request ESSA Templates</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/contact">Schedule Grant Consultation</Link>

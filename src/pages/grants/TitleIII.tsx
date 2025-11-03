@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, Calculator, Check } from "lucide-react";
+import { Download, Calculator, Check, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -227,63 +227,52 @@ export default function TitleIII() {
               {[
                 {
                   title: "Title III Budget Justification Template",
-                  format: "DOCX",
+                  format: "Coming Soon",
                   description: "Pre-written narrative aligned with federal requirements"
                 },
                 {
                   title: "Title III Narrative Template",
-                  format: "DOCX",
+                  format: "Coming Soon",
                   description: "Explains how LanguageBridge supports your ELL program"
                 },
                 {
                   title: "Letters of Support from Ohio Schools",
-                  format: "PDF",
+                  format: "Coming Soon",
                   description: "Sample letters you can reference or adapt"
                 },
                 {
                   title: "Alignment with Title III Priorities",
-                  format: "PDF",
+                  format: "Coming Soon",
                   description: "Shows how LanguageBridge meets all federal priorities"
                 }
               ].map((doc, i) => (
                 <div key={i} className="bg-card rounded-xl p-6 border border-border">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="font-bold">{doc.title}</h3>
-                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">{doc.format}</span>
+                    <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">{doc.format}</span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">{doc.description}</p>
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <Link to="/contact">Request Template</Link>
                   </Button>
                 </div>
               ))}
             </div>
 
-            {/* Email Capture */}
+            {/* Email Capture for Future Use */}
             <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8 border-2 border-primary/20">
-              <h3 className="text-2xl font-bold mb-4 text-center">Download All Templates at Once</h3>
-              <form className="space-y-4 max-w-md mx-auto">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background"
-                />
-                <input
-                  type="text"
-                  placeholder="School/District"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background"
-                />
-                <Button size="lg" className="w-full gradient-primary text-white">
-                  <Download className="mr-2" />
-                  Download All Title III Templates
+              <h3 className="text-2xl font-bold mb-4 text-center">Get Notified When Templates Are Ready</h3>
+              <p className="text-center text-muted-foreground mb-6">
+                We're finalizing the templates. Enter your email to be notified when they're available.
+              </p>
+              <div className="max-w-md mx-auto">
+                <Button asChild size="lg" className="w-full gradient-primary text-white">
+                  <Link to="/contact">
+                    <Mail className="mr-2" />
+                    Notify Me
+                  </Link>
                 </Button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -404,12 +393,14 @@ export default function TitleIII() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Fund with Title III?</h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="hero">
-                <Download className="mr-2" />
-                Download Templates
+              <Button asChild size="lg" variant="hero">
+                <Link to="/contact">
+                  <Mail className="mr-2" />
+                  Request Templates
+                </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link to="/grants/consultation">Schedule Consultation</Link>
+                <Link to="/pilot">Schedule Free Pilot</Link>
               </Button>
             </div>
           </div>

@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/languagebridge-logo.png";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,9 +24,16 @@ export const Navigation = () => {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Grants", href: "/grants" },
     { label: "Resources", href: "/resources" },
     { label: "Case Studies", href: "/#case-studies" },
+  ];
+
+  const grantLinks = [
+    { label: "Grant Overview", href: "/grants" },
+    { label: "Title III (ELL Funding)", href: "/grants/title-iii" },
+    { label: "Title VI (Compliance)", href: "/grants/title-vi" },
+    { label: "IDEA Part B (Special Ed)", href: "/grants/idea" },
+    { label: "ESSA (Title I/II/IV)", href: "/grants/essa" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -87,11 +100,28 @@ export const Navigation = () => {
                 {link.label}
               </a>
             ))}
+            
+            {/* Grants Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-foreground hover:text-primary font-medium transition-colors">
+                Funding <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {grantLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} asChild>
+                    <a href={link.href} className="cursor-pointer">
+                      {link.label}
+                    </a>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button
               onClick={() => window.location.href = '/pilot'}
               className="gradient-primary text-white hover:opacity-90"
             >
-              Get Started
+              Start Free Pilot
             </Button>
           </div>
 
@@ -125,11 +155,30 @@ export const Navigation = () => {
                   {link.label}
                 </a>
               ))}
+              
+              {/* Grants section in mobile */}
+              <div className="border-t border-border pt-2 mt-2">
+                <p className="text-sm font-semibold text-muted-foreground mb-2">Grant Funding</p>
+                {grantLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      window.location.href = link.href;
+                    }}
+                    className="text-foreground hover:text-primary font-medium transition-colors py-2 pl-4 block text-sm"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+
               <Button
                 onClick={() => window.location.href = '/pilot'}
                 className="gradient-primary text-white hover:opacity-90 w-full"
               >
-                Get Started
+                Start Free Pilot
               </Button>
             </div>
           </div>

@@ -36,10 +36,16 @@ export const PilotApplicationForm = () => {
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       
-      const { error } = await supabase.functions.invoke("send-form-submission", {
+      const { error } = await supabase.functions.invoke("submit-pilot-application", {
         body: {
-          type: "pilot",
-          ...data,
+          name: data.contactName,
+          email: data.email,
+          schoolName: data.schoolName,
+          role: data.role,
+          numStudents: parseInt(data.studentCount),
+          languages: data.grades, // Using grades field for now
+          timeline: data.message,
+          phone: data.phone,
         },
       });
 
@@ -47,7 +53,7 @@ export const PilotApplicationForm = () => {
 
       toast({
         title: "Application Submitted!",
-        description: "We'll contact you within 48 hours to discuss your pilot program.",
+        description: "We'll contact you within 1-2 business days to discuss your pilot program.",
       });
       reset();
     } catch (error) {

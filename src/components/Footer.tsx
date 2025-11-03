@@ -9,14 +9,33 @@ export const Footer = () => {
   const [email, setEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "submitting" | "success">("idle");
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email) return;
+    
     setNewsletterStatus("submitting");
-    // TODO: Implement newsletter signup edge function
-    setTimeout(() => {
+    
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      const { error } = await supabase.functions.invoke("subscribe-newsletter", {
+        body: { email },
+      });
+
+      if (error) throw error;
+
       setNewsletterStatus("success");
       setEmail("");
-    }, 1000);
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setNewsletterStatus("idle"), 3000);
+    } catch (error: any) {
+      console.error("Newsletter subscription error:", error);
+      setNewsletterStatus("idle");
+      alert(error.message === "This email is already subscribed" 
+        ? "This email is already subscribed!" 
+        : "Failed to subscribe. Please try again.");
+    }
   };
 
   return (

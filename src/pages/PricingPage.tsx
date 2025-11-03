@@ -847,10 +847,12 @@ export default function PricingPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button variant="outline" size="lg">
-                    <FileDown className="w-4 h-4 mr-2" />
-                    Download ROI Report as PDF
-                  </Button>
+                <Button asChild size="lg" className="w-full gradient-primary text-white">
+                  <Link to="/contact">
+                    <Mail className="mr-2" />
+                    Request Templates
+                  </Link>
+                </Button>
                   <Button asChild variant="outline" size="lg">
                     <Link to="/contact">
                       <Mail className="w-4 h-4 mr-2" />
