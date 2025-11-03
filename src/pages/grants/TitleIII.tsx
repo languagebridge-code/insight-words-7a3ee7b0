@@ -226,9 +226,9 @@ export default function TitleIII() {
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               {[
                 {
-                  title: "Title III Budget Justification Template",
-                  format: "Coming Soon",
-                  description: "Pre-written narrative aligned with federal requirements"
+                  title: "Title III Grant Application Template",
+                  format: "Word",
+                  description: "Complete grant application with LanguageBridge integration"
                 },
                 {
                   title: "Title III Narrative Template",
@@ -253,7 +253,9 @@ export default function TitleIII() {
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">{doc.description}</p>
                   <Button asChild variant="outline" size="sm" className="w-full">
-                    <Link to="/contact">Request Template</Link>
+                    <Link to={i === 0 ? "/resources/title-iii-application" : "/contact"}>
+                      {i === 0 ? "View Template" : "Request Template"}
+                    </Link>
                   </Button>
                 </div>
               ))}

@@ -239,9 +239,9 @@ export default function TitleVI() {
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 {
-                  title: "Title VI Compliance Documentation",
-                  format: "Coming Soon",
-                  description: "Show how LanguageBridge addresses OCR requirements"
+                  title: "Title VI Compliance Checklist",
+                  format: "PDF",
+                  description: "Comprehensive checklist to assess your district's Title VI compliance"
                 },
                 {
                   title: "Language Access Gap Analysis Template",
@@ -269,7 +269,9 @@ export default function TitleVI() {
                   </CardHeader>
                   <CardContent>
                     <Button asChild variant="outline" size="sm" className="w-full">
-                      <Link to="/contact">Request Template</Link>
+                      <Link to={i === 0 ? "/resources/title-vi-checklist" : "/contact"}>
+                        {i === 0 ? "View Checklist" : "Request Template"}
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
