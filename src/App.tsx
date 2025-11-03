@@ -11,6 +11,9 @@ import Pilot from "./pages/Pilot";
 import Resources from "./pages/Resources";
 import CaseStudies from "./pages/CaseStudies";
 import TitleIII from "./pages/grants/TitleIII";
+import TitleVI from "./pages/grants/TitleVI";
+import IDEA from "./pages/grants/IDEA";
+import ESSA from "./pages/grants/ESSA";
 import Contact from "./pages/Contact";
 import ROICalculator from "./pages/ROICalculator";
 import GetStarted from "./pages/GetStarted";
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/grants" element={<Grants />} />
           <Route path="/grants/title-iii" element={<TitleIII />} />
+          <Route path="/grants/title-vi" element={<TitleVI />} />
+          <Route path="/grants/idea" element={<IDEA />} />
+          <Route path="/grants/essa" element={<ESSA />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/pilot" element={<Pilot />} />
           <Route path="/resources" element={<Resources />} />

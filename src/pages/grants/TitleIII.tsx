@@ -289,25 +289,68 @@ export default function TitleIII() {
         </div>
       </section>
 
-      {/* Success Story */}
+      {/* Realistic Scenario */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Success Story</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+              Realistic Scenario: Before LanguageBridge
+            </h2>
             
             <div className="bg-card rounded-2xl p-8 border border-border">
               <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-2">Parma City Schools</h3>
-                <p className="text-primary font-semibold">Used Title III Funds • $5,100 • Approved in 14 Days</p>
+                <h3 className="text-2xl font-bold mb-2">Small Ohio District - 45 ELL Students</h3>
+                <p className="text-primary font-semibold">What the ESL coordinator was facing:</p>
               </div>
               
-              <p className="text-lg text-muted-foreground italic mb-6">
-                "We used Title III funds to cover the entire cost of LanguageBridge for our 85 ELL students. The application took me less than 3 hours to customize using their templates, and we were approved in just 14 days. Now our students have instant translation support across all their devices."
-              </p>
-              
-              <div className="border-t border-border pt-6">
-                <p className="font-bold">Sarah Martinez</p>
-                <p className="text-sm text-muted-foreground">Director of ELL Services, Parma City Schools</p>
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-bold mb-3 text-destructive">The Problem:</h4>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex gap-3">
+                      <span className="font-bold text-destructive">•</span>
+                      <span>5 Spanish-speaking students, 3 Arabic speakers, 2 Somali speakers. Only one bilingual aide (Spanish only) for 3 hours/day.</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="font-bold text-destructive">•</span>
+                      <span>Arabic and Somali students had zero language support. Teachers frustrated: "They sit there all day not understanding anything."</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="font-bold text-destructive">•</span>
+                      <span>District had $82,000 in Title III funds but spent most on a reading intervention program that didn't help non-readers.</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="font-bold text-destructive">•</span>
+                      <span>Parents complained to school board: "Our children are falling behind. The school isn't helping them."</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="border-t pt-6">
+                  <h4 className="font-bold mb-3 text-primary">With Title III-Funded LanguageBridge:</h4>
+                  <ul className="space-y-3">
+                    <li className="flex gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>All 45 students get 24/7 translation in their native languages</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Arabic and Somali students can finally access grade-level content</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Cost: $3,150 (45 students × $70/student Professional tier) = just 3.8% of Title III budget</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Supplement, don't replace, the bilingual aide (meets Title III "supplemental services" requirement)</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>Easy Title III justification: "Technology-based language instruction for all ELL students"</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
