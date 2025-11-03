@@ -16,17 +16,34 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Demo", href: "#demo" },
+    { label: "Home", href: "/" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Grants", href: "/grants" },
+    { label: "Resources", href: "/resources" },
+    { label: "Case Studies", href: "/#case-studies" },
   ];
 
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // Check if it's a route (starts with /) or anchor (starts with #)
+    if (href.startsWith('/') && !href.includes('#')) {
+      window.location.href = href;
+    } else if (href.includes('/#')) {
+      // Handle routes with anchors like /#case-studies
+      const [path, anchor] = href.split('#');
+      if (window.location.pathname !== path) {
+        window.location.href = href;
+      } else {
+        const element = document.getElementById(anchor);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -71,10 +88,10 @@ export const Navigation = () => {
               </a>
             ))}
             <Button
-              onClick={() => scrollToSection("#forms")}
+              onClick={() => window.location.href = '/pilot'}
               className="gradient-primary text-white hover:opacity-90"
             >
-              Apply Now
+              Get Started
             </Button>
           </div>
 
@@ -109,10 +126,10 @@ export const Navigation = () => {
                 </a>
               ))}
               <Button
-                onClick={() => scrollToSection("#forms")}
+                onClick={() => window.location.href = '/pilot'}
                 className="gradient-primary text-white hover:opacity-90 w-full"
               >
-                Apply Now
+                Get Started
               </Button>
             </div>
           </div>

@@ -1,7 +1,11 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
+import { HomeCrisisSection } from "@/components/HomeCrisisSection";
 import { UseCases } from "@/components/UseCases";
+import { MeasurableImpactCarlos } from "@/components/MeasurableImpactCarlos";
+import { MeasurableImpactAmira } from "@/components/MeasurableImpactAmira";
 import { ValueProposition } from "@/components/ValueProposition";
+import { ComplianceWarning } from "@/components/ComplianceWarning";
 import { HowItWorks } from "@/components/HowItWorks";
 import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { OhioPilot } from "@/components/OhioPilot";
@@ -17,8 +21,16 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
+      <HomeCrisisSection />
       <UseCases />
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="grid md:grid-cols-2 gap-8 py-8">
+          <MeasurableImpactCarlos />
+          <MeasurableImpactAmira />
+        </div>
+      </div>
       <ValueProposition />
+      <ComplianceWarning />
       <HowItWorks />
       <InteractiveDemo />
       <OhioPilot />
