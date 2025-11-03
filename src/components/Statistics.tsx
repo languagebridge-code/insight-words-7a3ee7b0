@@ -22,9 +22,9 @@ export const Statistics = () => {
     },
     {
       icon: Globe,
-      number: "100+",
+      number: "8",
       label: "Languages Supported",
-      description: "By LanguageBridge platform",
+      description: "Arabic, Spanish, Urdu, Ukrainian, Pashto, Dari, Uzbek",
     },
   ];
 

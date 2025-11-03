@@ -76,20 +76,17 @@ export const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-24 bg-background">
+    <section id="pricing" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Affordable. Scalable. <span className="gradient-text">Transformative.</span>
+        <div className="text-center mb-12 fade-in-up">
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="gradient-text">Pricing</span>
           </h2>
-          <div className="inline-block bg-primary/10 border border-primary/20 rounded-full px-6 py-2 mb-8">
-            <p className="text-primary font-semibold">
-              🌟 Ohio Pilot Program - Founding Partner Pricing
+          <div className="inline-block bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+            <p className="text-primary font-semibold text-sm">
+              🌟 Ohio Pilot - Founding Partner Pricing
             </p>
           </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Simple flat-rate packages designed for schools of all sizes
-          </p>
         </div>
 
         {/* Pricing Cards */}

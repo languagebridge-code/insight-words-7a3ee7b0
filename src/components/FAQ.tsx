@@ -8,29 +8,29 @@ import {
 export const FAQ = () => {
   const faqs = [
     {
-      question: "Isn't Google Translate good enough?",
-      answer: "No - and here's why it's dangerous for schools: Google Translate is NOT FERPA compliant. When students use the consumer Google Translate service, their data is vulnerable and may be used to train Google's AI models. Districts using it risk Title VI violations and lawsuits. Beyond compliance, Google Translate provides robotic, literal translations that confuse preliterate students. LanguageBridge is purpose-built for education with full FERPA/COPPA compliance, authentic conversational translations developed with native speakers, and integrated screen reader functionality. We process student data securely, store nothing permanently, and never use student information for any purpose beyond translation.",
+      question: "Why not just use Google Translate?",
+      answer: "Google Translate isn't FERPA compliant—student data is vulnerable and may train Google's AI. Districts risk Title VI violations. Plus, it gives robotic translations that confuse preliterate students. LanguageBridge is built for schools: FERPA/COPPA compliant, authentic translations with native speakers, integrated screen reader for audio. We process data securely and never store it.",
     },
     {
-      question: "What is the Ohio Pilot Program?",
-      answer: "The Ohio Pilot is a FREE program for the 2025-2026 school year where selected Ohio schools get full access to LanguageBridge. Pilot schools help us refine the product while giving their ELL students powerful tools for success. Applications are reviewed on a rolling basis with limited spots available.",
+      question: "What's the Ohio Pilot?",
+      answer: "FREE access for selected Ohio schools in 2025-2026. You help us refine the product while your ELL students get powerful tools. Rolling applications, limited spots.",
     },
     {
-      question: "What technical requirements are needed?",
-      answer: "LanguageBridge runs as a Chrome extension on any device with Google Chrome. Students need a Chromebook, laptop, or desktop with Chrome installed and internet access. No additional software or apps are required.",
+      question: "What do we need technically?",
+      answer: "Just Chrome. Works on any Chromebook, laptop, or desktop with internet access. No extra software needed.",
     },
     {
-      question: "How do we budget for this?",
-      answer: "LanguageBridge qualifies under Title III funding (English Language Acquisition), special education budgets, assistive technology funds, and general instructional technology budgets. We can provide a budget justification letter. At less than 22 cents per student per day, it costs far less than one interpreter hour per week.",
+      question: "How do we pay for it?",
+      answer: "Qualifies under Title III, special ed, assistive tech, or general instructional budgets. Under 22¢ per student per day—far less than one interpreter hour per week. We provide budget justification letters.",
     },
   ];
 
   return (
-    <section id="faq" className="py-24 bg-background">
+    <section id="faq" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Common <span className="gradient-text">Questions</span>
+        <div className="text-center mb-12 fade-in-up">
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="gradient-text">FAQ</span>
           </h2>
         </div>
 

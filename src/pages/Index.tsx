@@ -7,7 +7,6 @@ import { MeasurableImpactAmira } from "@/components/MeasurableImpactAmira";
 import { ValueProposition } from "@/components/ValueProposition";
 import { ComplianceWarning } from "@/components/ComplianceWarning";
 import { HowItWorks } from "@/components/HowItWorks";
-import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { OhioPilot } from "@/components/OhioPilot";
 import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
@@ -32,7 +31,6 @@ const Index = () => {
       <ValueProposition />
       <ComplianceWarning />
       <HowItWorks />
-      <InteractiveDemo />
       <OhioPilot />
       <Pricing />
       <FAQ />
