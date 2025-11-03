@@ -68,19 +68,6 @@ export const Statistics = () => {
           ))}
         </div>
 
-        <div className="max-w-4xl mx-auto mt-16 bg-card rounded-3xl p-8 md:p-12 shadow-xl fade-in-up delay-400">
-          <h3 className="text-3xl font-bold text-center mb-6">
-            Why <span className="gradient-text">Now</span> Matters
-          </h3>
-          <p className="text-lg text-muted-foreground text-center leading-relaxed mb-4">
-            The number of ELL students in U.S. schools continues to grow, yet many still struggle with grade-level content 
-            due to language barriers. LanguageBridge isn't just a tool—it's an equity solution that ensures every student can 
-            access the same high-quality education, regardless of their English proficiency.
-          </p>
-          <p className="text-center text-muted-foreground italic">
-            Together, we can close the language accessibility gap.
-          </p>
-        </div>
       </div>
     </section>
   );

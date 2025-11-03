@@ -20,7 +20,7 @@ export const ValueProposition = () => {
   ];
 
   return (
-    <section className="py-24 bg-secondary">
+    <section className="py-16 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">

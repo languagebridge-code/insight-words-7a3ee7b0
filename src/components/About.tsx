@@ -12,11 +12,11 @@ export const About = () => {
           </div>
 
           <div className="prose prose-lg max-w-none text-center mb-12">
-            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-              LanguageBridge is an assistive technology platform that empowers preliterate and emerging English language learners to independently navigate digital learning environments. Unlike standard translation tools, LanguageBridge functions as a bilingual screen reader and real-time interpreter, bridging both comprehension and communication barriers.
+            <p className="text-2xl text-foreground font-semibold mb-4">
+              Built by a teacher. For teachers.
             </p>
-            <p className="text-xl text-foreground font-semibold mb-8">
-              We're not just a translation tool - we're an accessibility revolution for language. <span className="gradient-text">Starting in Ohio and expanding nationwide</span>, we're committed to ensuring every student has an independent voice in the classroom.
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              LanguageBridge started in a classroom with real students who needed more than Google Translate could give them. We're not just translation—we're a screen reader, interpreter, and independence builder for students who can't read in any language yet. <span className="gradient-text">Starting in Ohio, going nationwide.</span>
             </p>
           </div>
 

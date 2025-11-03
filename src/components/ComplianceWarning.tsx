@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const ComplianceWarning = () => {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="bg-destructive/5 border-2 border-destructive/30 rounded-2xl p-8 md:p-12">

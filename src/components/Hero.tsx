@@ -30,11 +30,8 @@ export const Hero = () => {
             Every Student Deserves to Be{" "}
             <span className="gradient-text">Heard</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-            Translations wherever you need them - highlight any text and LanguageBridge translates it!
-          </p>
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            The first Language Accessibility Screen Reader for preliterate English language learners
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Language accessibility for preliterate English learners. Highlight any text—LanguageBridge translates and reads it aloud.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button
@@ -56,15 +53,8 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Split Hero Images */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto fade-in-up delay-300">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale">
-            <img 
-              src={heroStudent2} 
-              alt="Happy student engaged with Chromebook in classroom" 
-              className="w-full h-auto object-cover"
-            />
-          </div>
+        {/* Hero Image - Single Focus */}
+        <div className="max-w-4xl mx-auto fade-in-up delay-300">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale">
             <img 
               src={heroStudent1} 

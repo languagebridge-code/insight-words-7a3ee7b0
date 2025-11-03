@@ -23,14 +23,14 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-background">
+    <section id="how-it-works" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+        <div className="text-center mb-12 fade-in-up">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             How It Works
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Three simple steps to language accessibility
+          <p className="text-lg text-muted-foreground">
+            Three steps. Under a minute.
           </p>
         </div>
 

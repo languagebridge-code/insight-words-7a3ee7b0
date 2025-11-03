@@ -14,45 +14,45 @@ export const HomeCrisisSection = () => {
             <div className="bg-card rounded-xl p-8 border-2 border-destructive/30 hover-scale">
               <div className="text-5xl mb-4">🚨</div>
               <h3 className="text-2xl font-bold mb-4">Title VI Violations</h3>
-              <div className="bg-muted/50 rounded-lg p-4 mb-4">
-                <p className="text-sm text-muted-foreground italic">
-                  "We were cited by OCR for inadequate language access. The investigation costs alone were $50K in legal fees. We needed a solution fast."
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">— Superintendent, Urban District</p>
-              </div>
-              <p className="text-muted-foreground">
-                Schools face federal investigations when they fail to provide meaningful language access to ELL families and students.
+              <p className="text-muted-foreground mb-3">
+                Federal investigations cost $50K+ in legal fees alone. Schools must provide meaningful language access—or face consequences.
               </p>
+              <div className="bg-muted/50 rounded-lg p-3">
+                <p className="text-sm italic">
+                  "We were cited by OCR. We needed a solution fast."
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">— Superintendent</p>
+              </div>
             </div>
 
             {/* Interpreter Costs */}
             <div className="bg-card rounded-xl p-8 border-2 border-accent/30 hover-scale">
               <div className="text-5xl mb-4">💰</div>
               <h3 className="text-2xl font-bold mb-4">Interpreter Costs Exploding</h3>
-              <div className="bg-muted/50 rounded-lg p-4 mb-4">
-                <p className="text-sm text-muted-foreground italic">
-                  "We're spending $80K per year on part-time interpreters, and they're still not available when students need them most—during instruction."
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">— ESL Coordinator, Ohio District</p>
-              </div>
-              <p className="text-muted-foreground">
-                Human interpreters are expensive, limited in availability, and can't provide real-time support during lessons.
+              <p className="text-muted-foreground mb-3">
+                Districts spend $80K+ yearly on interpreters who still can't be there during instruction. Real-time support is impossible.
               </p>
+              <div className="bg-muted/50 rounded-lg p-3">
+                <p className="text-sm italic">
+                  "Interpreters cost us $80K/year and they're never there when students need them."
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">— ESL Coordinator</p>
+              </div>
             </div>
 
             {/* Achievement Gap */}
             <div className="bg-card rounded-xl p-8 border-2 border-primary/30 hover-scale">
               <div className="text-5xl mb-4">🎓</div>
               <h3 className="text-2xl font-bold mb-4">Achievement Gap Widening</h3>
-              <div className="bg-muted/50 rounded-lg p-4 mb-4">
-                <p className="text-sm text-muted-foreground italic">
-                  "Our ELL students are 2-3 grade levels behind in reading. But it's not because they can't learn—it's because they can't access the content."
-                </p>
-                <p className="text-xs text-muted-foreground mt-2">— Principal, Title I School</p>
-              </div>
-              <p className="text-muted-foreground">
-                Preliterate ELL students fall further behind each day they can't access grade-level instruction in their native language.
+              <p className="text-muted-foreground mb-3">
+                ELL students fall 2-3 grade levels behind—not because they can't learn, but because they can't access the content.
               </p>
+              <div className="bg-muted/50 rounded-lg p-3">
+                <p className="text-sm italic">
+                  "It's not that they can't learn. They just can't access the content."
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">— Principal</p>
+              </div>
             </div>
           </div>
         </div>
