@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Download, Users, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function CaseStudies() {
   const [selectedType, setSelectedType] = useState("all");
@@ -64,7 +66,7 @@ export default function CaseStudies() {
       size: "medium",
       district: "Parma City School District",
       students: "85 ELL students",
-      languages: "8 languages (Dari, Pashto, Spanish, Arabic, Ukrainian, Urdu, Uzbek, Somali)",
+      languages: "8 languages (Arabic, Spanish, Urdu, Ukrainian, Pashto, Dari, Uzbek, English)",
       challenge: "With 85 ELL students speaking 8 different languages, Parma struggled to provide adequate interpreter support. Costs were escalating, availability was limited, and Title VI compliance was at risk.",
       solution: "Deployed LanguageBridge district-wide using Title III funds. All Chromebooks were configured in under 2 hours, and students started using it immediately.",
       outcomes: [
@@ -142,6 +144,7 @@ export default function CaseStudies() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -339,6 +342,7 @@ export default function CaseStudies() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

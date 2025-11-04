@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Download, CheckCircle, Clock, Users, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Implementation() {
   const timeline = [
@@ -108,6 +110,7 @@ export default function Implementation() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -457,6 +460,7 @@ export default function Implementation() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

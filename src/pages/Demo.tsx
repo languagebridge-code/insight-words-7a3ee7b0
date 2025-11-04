@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play, Check } from "lucide-react";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Demo() {
   const coverageTopics = [
@@ -31,6 +33,7 @@ export default function Demo() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -230,6 +233,7 @@ export default function Demo() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

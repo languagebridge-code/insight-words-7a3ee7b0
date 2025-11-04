@@ -8,6 +8,8 @@ import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Mail, Phone, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -89,6 +91,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -298,6 +301,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

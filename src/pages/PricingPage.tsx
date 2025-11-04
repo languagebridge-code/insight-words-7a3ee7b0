@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function PricingPage() {
   // ROI Calculator State
@@ -37,6 +39,7 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* HERO SECTION */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container mx-auto px-4">
@@ -1139,6 +1142,7 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

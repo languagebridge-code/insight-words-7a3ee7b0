@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Rocket, Calendar, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function GetStarted() {
   const [hasBudget, setHasBudget] = useState("");
@@ -23,6 +25,7 @@ export default function GetStarted() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -390,6 +393,7 @@ export default function GetStarted() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

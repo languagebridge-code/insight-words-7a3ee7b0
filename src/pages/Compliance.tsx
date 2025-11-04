@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Download, Shield, CheckCircle, Lock, FileText } from "lucide-react";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Compliance() {
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -427,6 +430,7 @@ export default function Compliance() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

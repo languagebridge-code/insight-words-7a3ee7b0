@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Download, FileText, Video, Shield, Code } from "lucide-react";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Resources() {
   const resourcesByTab = {
@@ -143,6 +145,7 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
@@ -346,6 +349,7 @@ export default function Resources() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
