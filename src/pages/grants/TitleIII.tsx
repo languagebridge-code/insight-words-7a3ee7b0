@@ -96,7 +96,7 @@ export default function TitleIII() {
                 },
                 {
                   title: "Meets 'supplemental services' requirement",
-                  description: "Adds to, not replaces, core ELL instruction—perfect for Title III compliance"
+                  description: "Adds to, not replaces, core ELL instruction. Perfect for Title III compliance"
                 },
                 {
                   title: "FERPA compliant for federal fund usage",

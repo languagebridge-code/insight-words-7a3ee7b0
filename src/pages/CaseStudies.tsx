@@ -30,7 +30,7 @@ export default function CaseStudies() {
         { metric: "Parent Calls", value: "Zero complaints" }
       ],
       testimonial: {
-        quote: "LanguageBridge revealed that Carlos wasn't struggling academically—he was struggling with English. Once we gave him access in his language, he thrived.",
+        quote: "LanguageBridge revealed that Carlos wasn't struggling academically. He was struggling with English. Once we gave him access in his language, he thrived.",
         name: "Maria Rodriguez",
         title: "ESL Teacher"
       }
@@ -45,7 +45,7 @@ export default function CaseStudies() {
       grade: "3rd Grade",
       language: "Dari",
       challenge: "Amira misbehaved due to lack of understanding and got referred to the principal. During meetings, she couldn't grasp the issues in English, and administrators couldn't speak Dari. They violated her privacy by pulling in another student to translate.",
-      solution: "With LanguageBridge, Amira could hear the administrator's concerns in Dari and respond appropriately. Conversations stayed private and professional—no student translators needed.",
+      solution: "With LanguageBridge, Amira could hear the administrator's concerns in Dari and respond appropriately. Conversations stayed private and professional. No student translators needed.",
       outcomes: [
         { metric: "Disciplinary Referrals", value: "Dropped to zero" },
         { metric: "Class Participation", value: "Now volunteers" },
@@ -99,7 +99,7 @@ export default function CaseStudies() {
         { metric: "Family Communication", value: "Transformed" }
       ],
       testimonial: {
-        quote: "LanguageBridge didn't just solve our compliance problem—it fundamentally changed how we serve ELL families. The grant paid for itself many times over.",
+        quote: "LanguageBridge didn't just solve our compliance problem. It fundamentally changed how we serve ELL families. The grant paid for itself many times over.",
         name: "Dr. Lisa Chen",
         title: "Assistant Superintendent"
       },
@@ -321,7 +321,7 @@ export default function CaseStudies() {
 
               <div className="bg-card rounded-xl p-6 border-2 border-primary/30">
                 <h3 className="text-xl font-bold mb-4 text-primary">✓ Unlimited Translations</h3>
-                <p className="text-muted-foreground">No caps on usage—students can translate as much as they need, every day</p>
+                <p className="text-muted-foreground">No caps on usage. Students can translate as much as they need, every day</p>
               </div>
 
               <div className="bg-card rounded-xl p-6 border-2 border-primary/30">

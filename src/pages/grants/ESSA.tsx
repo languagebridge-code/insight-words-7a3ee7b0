@@ -201,7 +201,7 @@ export default function ESSA() {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold text-destructive">•</span>
-                      <span>Tried hiring more ESL teachers—not enough qualified applicants. Can't afford 1:1 paraprofessionals for 60 ELL students.</span>
+                      <span>Tried hiring more ESL teachers but not enough qualified applicants. Can't afford 1:1 paraprofessionals for 60 ELL students.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold text-destructive">•</span>
@@ -219,7 +219,7 @@ export default function ESSA() {
                     </li>
                     <li className="flex gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span>Teachers can deliver rigorous instruction—LanguageBridge provides scaffolding</span>
+                      <span>Teachers can deliver rigorous instruction while LanguageBridge provides scaffolding</span>
                     </li>
                     <li className="flex gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -369,7 +369,7 @@ export default function ESSA() {
                 },
                 {
                   q: "Can we use multiple ESSA titles to fund LanguageBridge?",
-                  a: "No—avoid 'stacking' federal funds for the same purpose. Choose the most appropriate title based on your primary goal (achievement, teacher support, or technology)."
+                  a: "No. Avoid 'stacking' federal funds for the same purpose. Choose the most appropriate title based on your primary goal (achievement, teacher support, or technology)."
                 },
                 {
                   q: "Do we need state approval to use ESSA funds for LanguageBridge?",

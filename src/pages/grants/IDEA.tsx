@@ -16,7 +16,7 @@ export default function IDEA() {
             <p className="text-2xl font-semibold mb-4">For ELL Students with IEPs</p>
             <p className="text-xl text-muted-foreground mb-8">
               When ELL students also have IEPs, LanguageBridge qualifies as assistive technology 
-              under IDEA Part B funding—helping students access their education despite dual barriers.
+              under IDEA Part B funding, helping students access their education despite dual barriers.
             </p>
           </div>
         </div>
@@ -50,7 +50,7 @@ export default function IDEA() {
                     <h3 className="font-bold mb-3">How LanguageBridge Qualifies</h3>
                     <p className="text-sm text-muted-foreground">
                       For ELL students with IEPs, language is a functional barrier to accessing education. 
-                      LanguageBridge removes that barrier—qualifying as assistive technology.
+                      LanguageBridge removes that barrier, qualifying as assistive technology.
                     </p>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export default function IDEA() {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold text-destructive">•</span>
-                      <span>IEP requires text-to-speech accommodation—but district's assistive tech only works in English.</span>
+                      <span>IEP requires text-to-speech accommodation but district's assistive tech only works in English.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold text-destructive">•</span>
@@ -127,7 +127,7 @@ export default function IDEA() {
                   <ul className="space-y-3">
                     <li className="flex gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span>Text-to-speech in Spanish built-in—meets IEP accommodation requirement</span>
+                      <span>Text-to-speech in Spanish built-in, meets IEP accommodation requirement</span>
                     </li>
                     <li className="flex gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -135,7 +135,7 @@ export default function IDEA() {
                     </li>
                     <li className="flex gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span>Works across all websites—not limited to specific platforms</span>
+                      <span>Works across all websites, not limited to specific platforms</span>
                     </li>
                     <li className="flex gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />

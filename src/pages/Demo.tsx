@@ -42,7 +42,7 @@ export default function Demo() {
               See LanguageBridge in <span className="gradient-text">Action</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              15-minute live demo with our team—see exactly how LanguageBridge works in your school
+              15-minute live demo with our team. See exactly how LanguageBridge works in your school
             </p>
           </div>
         </div>

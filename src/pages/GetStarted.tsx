@@ -34,7 +34,7 @@ export default function GetStarted() {
               Get LanguageBridge in <span className="gradient-text">Your School</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Three simple ways to start today—choose the path that works best for you
+              Three simple ways to start today. Choose the path that works best for you
             </p>
           </div>
         </div>

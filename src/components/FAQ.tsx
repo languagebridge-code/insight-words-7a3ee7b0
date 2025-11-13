@@ -8,8 +8,12 @@ import {
 export const FAQ = () => {
   const faqs = [
     {
-      question: "Why not just use Google Translate?",
-      answer: "Google Translate isn't FERPA compliant—student data is vulnerable and may train Google's AI. Districts risk Title VI violations. Plus, it gives robotic translations that confuse preliterate students. LanguageBridge is built for schools: FERPA/COPPA compliant, authentic translations with native speakers, integrated screen reader for audio. We process data securely and never store it.",
+      question: "Why isn't Google Translate compliant for schools?",
+      answer: "Google Translate has serious compliance issues that put schools at risk. First, it's not FERPA compliant. When students use Google Translate, their data can be used to train Google's AI models. There's no data protection agreement for schools. Second, districts face Title VI violations because Google Translate doesn't provide meaningful language access. It gives robotic, confusing translations that don't actually help students understand. For preliterate students who can't read in any language yet, Google Translate is completely useless. LanguageBridge is different. We're FERPA and COPPA compliant, we never store student data, and we provide authentic translations with audio support so students can actually access their education.",
+    },
+    {
+      question: "Why isn't 'good enough' actually good enough?",
+      answer: "When it comes to education, 'good enough' means students fall behind, get misdiagnosed with learning disabilities, and never catch up. 'Good enough' means pulling other students out of class to translate, which violates privacy and disrupts learning for everyone. 'Good enough' means schools face federal investigations and lawsuits. Every day a student can't access grade-level content is a day they fall further behind. We're not talking about convenience. We're talking about whether kids graduate, go to college, and have opportunities. That's why LanguageBridge isn't just better than Google Translate. It's built specifically for education, with compliance, audio support, and authentic translations that actually work for preliterate students.",
     },
     {
       question: "What's the Ohio Pilot?",
@@ -21,7 +25,7 @@ export const FAQ = () => {
     },
     {
       question: "How do we pay for it?",
-      answer: "Qualifies under Title III, special ed, assistive tech, or general instructional budgets. Under 22¢ per student per day—far less than one interpreter hour per week. We provide budget justification letters.",
+      answer: "Qualifies under Title III, special ed, assistive tech, or general instructional budgets. Under 22 cents per student per day, far less than one interpreter hour per week. We provide budget justification letters.",
     },
   ];
 

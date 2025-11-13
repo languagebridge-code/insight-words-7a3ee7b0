@@ -634,7 +634,7 @@ export default function PricingPage() {
                 🎓 How Schools Pay for LanguageBridge
               </h2>
               <p className="text-xl text-muted-foreground">
-                Most schools don't pay out-of-pocket—they use existing grant funds
+                Most schools don't pay out-of-pocket. They use existing grant funds
               </p>
             </div>
 

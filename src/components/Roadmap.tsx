@@ -123,7 +123,7 @@ export const Roadmap = () => {
           </p>
           <p className="text-muted-foreground italic">
             Imagine a student learning not just what a word means, but discovering related terms, synonyms, and concepts 
-            across languages—all in context as they read.
+            across languages, all in context as they read.
           </p>
         </div>
       </div>

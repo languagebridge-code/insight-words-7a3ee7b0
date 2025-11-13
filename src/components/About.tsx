@@ -16,7 +16,7 @@ export const About = () => {
               Built by a teacher. For teachers.
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              LanguageBridge started in a classroom with real students who needed more than Google Translate could give them. We're not just translation—we're a screen reader, interpreter, and independence builder for students who can't read in any language yet. <span className="gradient-text">Starting in Ohio, going nationwide.</span>
+              LanguageBridge started in a classroom with real students who needed more than Google Translate could give them. We're not just translation. We're a screen reader, interpreter, and independence builder for students who can't read in any language yet. <span className="gradient-text">Starting in Ohio, going nationwide.</span>
             </p>
           </div>
 

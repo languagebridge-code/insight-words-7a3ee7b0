@@ -16,7 +16,7 @@ export default function TitleVI() {
             <p className="text-2xl font-semibold mb-4">Remediate Language Access Violations</p>
             <p className="text-xl text-muted-foreground mb-8">
               If your district is facing Title VI complaints or OCR investigations for lack of language access, 
-              LanguageBridge can be part of your compliance remediation plan—and paid for with compliance funds.
+              LanguageBridge can be part of your compliance remediation plan and paid for with compliance funds.
             </p>
           </div>
         </div>
@@ -297,7 +297,7 @@ export default function TitleVI() {
                 },
                 {
                   q: "What if we're not under investigation but want to avoid one?",
-                  a: "Proactive compliance is the best strategy. LanguageBridge costs $3,500/year—far less than the $50K+ cost of an OCR investigation."
+                  a: "Proactive compliance is the best strategy. LanguageBridge costs $3,500/year, far less than the $50K+ cost of an OCR investigation."
                 },
                 {
                   q: "Does LanguageBridge replace the need for human interpreters?",

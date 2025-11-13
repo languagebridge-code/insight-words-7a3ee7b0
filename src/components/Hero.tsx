@@ -31,7 +31,7 @@ export const Hero = () => {
             <span className="gradient-text">Heard</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Language accessibility for preliterate English learners. Highlight any text—LanguageBridge translates and reads it aloud.
+            Language accessibility for preliterate English learners. Highlight any text and LanguageBridge translates and reads it aloud.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button
