@@ -162,7 +162,7 @@ export const Pricing = () => {
             <div className="text-center bg-card rounded-xl p-6">
               <p className="text-lg font-semibold mb-2">Cost per student per day: <span className="text-primary">Less than 22 cents</span></p>
               <p className="text-muted-foreground">
-                You need an interpreter for every language spoken—that adds up fast. LanguageBridge covers <strong>ALL</strong> languages with 24/7 support.
+                You need an interpreter for every language spoken, and that adds up fast. LanguageBridge covers <strong>ALL</strong> languages with 24/7 support.
               </p>
             </div>
           </div>

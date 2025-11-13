@@ -16,7 +16,7 @@ export default function Compliance() {
               Built for Education. <span className="gradient-text">Secured for Students.</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Complete FERPA, COPPA, and Title VI compliance—because student safety isn't optional
+              Complete FERPA, COPPA, and Title VI compliance because student safety isn't optional
             </p>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function Compliance() {
                   {[
                     {
                       title: "School-Based Consent",
-                      description: "We operate under the school's authority—schools act as parent agents for educational technology"
+                      description: "We operate under the school's authority. Schools act as parent agents for educational technology"
                     },
                     {
                       title: "Minimal Data Policy",
@@ -229,7 +229,7 @@ export default function Compliance() {
                     },
                     {
                       title: "Comprehensive Coverage",
-                      description: "Works across all subjects, websites, and digital materials—not just translated worksheets"
+                      description: "Works across all subjects, websites, and digital materials, not just translated worksheets"
                     },
                     {
                       title: "Documented Compliance",
@@ -237,7 +237,7 @@ export default function Compliance() {
                     },
                     {
                       title: "Prevents Common Violations",
-                      description: "Eliminates reliance on student translators and Google Translate—both cited in OCR investigations"
+                      description: "Eliminates reliance on student translators and Google Translate, both cited in OCR investigations"
                     }
                   ].map((item, i) => (
                     <div key={i} className="flex gap-3">

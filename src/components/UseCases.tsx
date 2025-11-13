@@ -10,8 +10,8 @@ export const UseCases = () => {
     },
     {
       name: "Amira",
-      problem: "Due to her lack of understanding, Amira misbehaves in class and gets referred to the principal. During the meeting, she can't fully grasp the issue because she doesn't know enough English, and the administrator doesn't speak her native language. Google Translate fails because Amira cannot read her native language yet. They pull another student in to translate—violating Amira's privacy.",
-      solution: "With LanguageBridge, Amira can hear the administrator's concerns in her own language and respond appropriately. The conversation stays private, professional, and effective—no student translators needed.",
+      problem: "Due to her lack of understanding, Amira misbehaves in class and gets referred to the principal. During the meeting, she can't fully grasp the issue because she doesn't know enough English, and the administrator doesn't speak her native language. Google Translate fails because Amira cannot read her native language yet. They pull another student in to translate, violating Amira's privacy.",
+      solution: "With LanguageBridge, Amira can hear the administrator's concerns in her own language and respond appropriately. The conversation stays private, professional, and effective. No student translators needed.",
       impact: "Dignity preserved. Privacy protected. Understanding achieved."
     }
   ];
