@@ -9,7 +9,6 @@ import { ValueProposition } from "@/components/ValueProposition";
 import { ComplianceWarning } from "@/components/ComplianceWarning";
 import { HowItWorks } from "@/components/HowItWorks";
 import { OhioPilot } from "@/components/OhioPilot";
-import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { FormsSection } from "@/components/FormsSection";
 import { Contact } from "@/components/Contact";
@@ -34,7 +33,6 @@ const Index = () => {
       <ComplianceWarning />
       <HowItWorks />
       <OhioPilot />
-      <Pricing />
       <FAQ />
       <FormsSection />
       <Contact />
