@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/languagebridge-logo.png";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,41 +16,17 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Resources", href: "/resources" },
-    { label: "Case Studies", href: "/#case-studies" },
-  ];
-
-  const grantLinks = [
-    { label: "Grant Overview", href: "/grants" },
-    { label: "Title III (ELL Funding)", href: "/grants/title-iii" },
-    { label: "Title VI (Compliance)", href: "/grants/title-vi" },
-    { label: "IDEA Part B (Special Ed)", href: "/grants/idea" },
-    { label: "ESSA (Title I/II/IV)", href: "/grants/essa" },
+    { label: "Features", href: "#demo" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Compliance", href: "#compliance" },
+    { label: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
-    // Check if it's a route (starts with /) or anchor (starts with #)
-    if (href.startsWith('/') && !href.includes('#')) {
-      window.location.href = href;
-    } else if (href.includes('/#')) {
-      // Handle routes with anchors like /#case-studies
-      const [path, anchor] = href.split('#');
-      if (window.location.pathname !== path) {
-        window.location.href = href;
-      } else {
-        const element = document.getElementById(anchor);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -101,27 +71,12 @@ export const Navigation = () => {
               </a>
             ))}
             
-            {/* Grants Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-foreground hover:text-primary font-medium transition-colors">
-                Funding <ChevronDown className="w-4 h-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {grantLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} asChild>
-                    <a href={link.href} className="cursor-pointer">
-                      {link.label}
-                    </a>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <Button
-              onClick={() => window.location.href = '/pilot'}
-              className="gradient-primary text-white hover:opacity-90"
+              variant="hero"
+              size="default"
+              onClick={() => scrollToSection("#contact")}
             >
-              Start Free Pilot
+              Get Pricing
             </Button>
           </div>
 
@@ -156,29 +111,12 @@ export const Navigation = () => {
                 </a>
               ))}
               
-              {/* Grants section in mobile */}
-              <div className="border-t border-border pt-2 mt-2">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Grant Funding</p>
-                {grantLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      window.location.href = link.href;
-                    }}
-                    className="text-foreground hover:text-primary font-medium transition-colors py-2 pl-4 block text-sm"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-
               <Button
-                onClick={() => window.location.href = '/pilot'}
-                className="gradient-primary text-white hover:opacity-90 w-full"
+                variant="hero"
+                className="w-full"
+                onClick={() => scrollToSection("#contact")}
               >
-                Start Free Pilot
+                Get Pricing
               </Button>
             </div>
           </div>
