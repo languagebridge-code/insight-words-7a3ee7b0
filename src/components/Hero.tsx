@@ -27,28 +27,28 @@ export const Hero = () => {
             className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-            Every Student Deserves to Be{" "}
-            <span className="gradient-text">Heard</span>
+            FERPA-Compliant Translation for{" "}
+            <span className="gradient-text">Every Student</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Language accessibility for preliterate English learners. Highlight any text and LanguageBridge translates and reads it aloud.
+            Real-time translation with audio support. No data tracking. No compliance risk. Just students who can finally access their education.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button
               variant="hero"
               size="xl"
               className="group"
-              onClick={() => scrollToSection("#forms")}
+              onClick={() => scrollToSection("#contact")}
             >
-              Become an Ohio Pilot School
+              Request Pilot Program Info
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               variant="outline"
               size="xl"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("#demo")}
             >
-              Schedule a Demo
+              See Demo
             </Button>
           </div>
         </div>
