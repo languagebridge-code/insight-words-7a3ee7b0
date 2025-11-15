@@ -16,7 +16,7 @@ export const FAQ = () => {
       answer: "When it comes to education, 'good enough' means students fall behind, get misdiagnosed with learning disabilities, and never catch up. 'Good enough' means pulling other students out of class to translate, which violates privacy and disrupts learning for everyone. 'Good enough' means schools face federal investigations and lawsuits. Every day a student can't access grade-level content is a day they fall further behind. We're not talking about convenience. We're talking about whether kids graduate, go to college, and have opportunities. That's why LanguageBridge isn't just better than Google Translate. It's built specifically for education, with compliance, audio support, and authentic translations that actually work for preliterate students.",
     },
     {
-      question: "What's the Ohio Pilot?",
+      question: "Can we try it before we purchase it?",
       answer: "FREE access for selected Ohio schools in 2025-2026. You help us refine the product while your ELL students get powerful tools. Rolling applications, limited spots.",
     },
     {
