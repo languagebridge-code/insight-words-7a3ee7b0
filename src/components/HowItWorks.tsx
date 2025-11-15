@@ -12,13 +12,13 @@ export const HowItWorks = () => {
       icon: MousePointer,
       number: "02",
       title: "Highlight Any Text",
-      description: "Select text on any webpage, in any learning platform"
+      description: "Highlight any text or Control+C any text into the toolbar"
     },
     {
       icon: Volume2,
       number: "03",
       title: "Translate & Listen",
-      description: "LanguageBridge translates and reads aloud instantly (Alt+Shift+L)"
+      description: "Use the Talk to Teacher button for 1-to-1 conversations with students, teachers, and administrators. Access popup translations in text form, reduced language, and targeted scaffolding (Alt+Shift+L)"
     }
   ];
 
