@@ -55,12 +55,29 @@ export const Hero = () => {
 
         {/* Hero Image - Single Focus */}
         <div className="max-w-4xl mx-auto fade-in-up delay-300">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer">
             <img 
               src={heroStudent1} 
-              alt="Happy Afghan student working confidently on Chromebook" 
-              className="w-full h-auto object-cover"
+              alt="Amira, Afghan student working confidently on Chromebook with LanguageBridge" 
+              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
             />
+            {/* Hover Overlay with Amira's Story */}
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/90 to-foreground/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-8">
+              <div className="text-white space-y-4 max-w-2xl">
+                <h3 className="text-3xl font-bold text-primary">Amira's Story</h3>
+                <p className="text-lg leading-relaxed">
+                  Amira's engagement was so low that teachers questioned her inclusion in general education classes. 
+                  She wasn't literate in her home language because of the Taliban's takeover of Afghanistan, meaning she never learned to read her own language.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Google Translate didn't work for her because it requires reading. But LanguageBridge reads aloud translated text, 
+                  which allows her to access classroom material immediately and participate in class for the first time.
+                </p>
+                <p className="text-primary font-semibold text-xl">
+                  Now she's thriving in her general education classroom.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
