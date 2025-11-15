@@ -85,33 +85,18 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Column 1 - Quick Links */}
           <div>
             <h3 className="font-bold text-lg mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/demo" className="text-white/80 hover:text-white transition-colors">Demo</Link></li>
-              <li><Link to="/pricing" className="text-white/80 hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link to="/case-studies" className="text-white/80 hover:text-white transition-colors">Case Studies</Link></li>
-              <li><Link to="/resources" className="text-white/80 hover:text-white transition-colors">Resources</Link></li>
-              <li><Link to="/contact" className="text-white/80 hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="#demo" className="text-white/80 hover:text-white transition-colors">Demo</Link></li>
+              <li><Link to="#contact" className="text-white/80 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
-          {/* Column 2 - Grant Funding */}
-          <div>
-            <h3 className="font-bold text-lg mb-4 text-white">Grant Funding</h3>
-            <ul className="space-y-2">
-              <li><Link to="/grants/title-iii" className="text-white/80 hover:text-white transition-colors">Title III Funding</Link></li>
-              <li><Link to="/grants/title-vi" className="text-white/80 hover:text-white transition-colors">Title VI Compliance</Link></li>
-              <li><Link to="/grants/idea" className="text-white/80 hover:text-white transition-colors">IDEA Part B</Link></li>
-              <li><Link to="/grants/essa" className="text-white/80 hover:text-white transition-colors">ESSA Funding</Link></li>
-              <li><Link to="/grants" className="text-white/80 hover:text-white transition-colors">All Grant Options</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 3 - Connect */}
+          {/* Column 2 - Connect */}
           <div>
             <h3 className="font-bold text-lg mb-4 text-white">Connect</h3>
             <ul className="space-y-3">
