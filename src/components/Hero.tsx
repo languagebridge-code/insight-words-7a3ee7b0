@@ -26,12 +26,15 @@ export const Hero = () => {
             alt="LanguageBridge Logo" 
             className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-            FERPA-Compliant Translation for{" "}
-            <span className="gradient-text">Every Student</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+            The Only FERPA-Compliant Translation Tool
+            <br />
+            <span className="gradient-text">Built for K-12 Schools</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Real-time translation with audio support. No data tracking. No compliance risk. Just students who can finally access their education.
+          <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light">
+            Real-time translation with audio support for 750,000+ SLIFE students nationwide.
+            <br />
+            No data tracking. No compliance risk.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button
@@ -40,7 +43,7 @@ export const Hero = () => {
               className="group"
               onClick={() => scrollToSection("#contact")}
             >
-              Request Pilot Program Info
+              Schedule Your District's Pilot
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button

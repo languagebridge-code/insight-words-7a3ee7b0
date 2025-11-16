@@ -121,8 +121,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold mb-1">Email</h3>
-                    <a href="mailto:languagebridge.contact@gmail.com" className="text-primary hover:underline">
-                      languagebridge.contact@gmail.com
+                    <a href="mailto:info@languagebridge.app" className="text-primary hover:underline">
+                      info@languagebridge.app
                     </a>
                   </div>
                 </div>

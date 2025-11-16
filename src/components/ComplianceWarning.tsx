@@ -31,9 +31,19 @@ export const ComplianceWarning = () => {
             </div>
           </div>
           <div className="bg-primary/10 rounded-xl p-6 border-2 border-primary">
-            <p className="text-lg font-semibold text-foreground">
-              LanguageBridge is the ONLY Chrome extension built specifically for K-12 compliance requirements.
+            <p className="text-lg font-semibold text-foreground mb-4">
+              LanguageBridge is the only translation tool designed specifically for preliterate SLIFE students with FERPA compliance built-in.
             </p>
+            <div className="grid md:grid-cols-2 gap-3 text-left text-sm">
+              <div className="flex items-start gap-2">
+                <span className="text-primary mt-1">✓</span>
+                <span className="text-muted-foreground">Microsoft Immersive Reader only works in Microsoft products (not Google Classroom)</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary mt-1">✓</span>
+                <span className="text-muted-foreground">Read&Write costs $150/student and doesn't include translation</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

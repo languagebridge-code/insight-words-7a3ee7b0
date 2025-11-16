@@ -1133,9 +1133,9 @@ export default function PricingPage() {
                   (216) 800-6020
                 </a>
                 <span className="text-muted-foreground">or</span>
-                <a href="mailto:languagebridge.contact@gmail.com" className="flex items-center gap-2 text-primary hover:underline">
+                <a href="mailto:sales@languagebridge.app" className="flex items-center gap-2 text-primary hover:underline">
                   <Mail className="w-4 h-4" />
-                  languagebridge.contact@gmail.com
+                  sales@languagebridge.app
                 </a>
               </div>
             </div>

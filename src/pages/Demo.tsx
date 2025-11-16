@@ -140,8 +140,8 @@ export default function Demo() {
 
               <div className="text-center text-sm text-muted-foreground">
                 <p>Prefer email? Reach us at:</p>
-                <a href="mailto:languagebridge.contact@gmail.com" className="text-primary font-semibold hover:underline">
-                  languagebridge.contact@gmail.com
+                <a href="mailto:sales@languagebridge.app" className="text-primary font-semibold hover:underline">
+                  sales@languagebridge.app
                 </a>
               </div>
             </div>
