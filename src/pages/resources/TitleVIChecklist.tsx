@@ -413,7 +413,7 @@ export default function TitleVIChecklist() {
               </div>
               <div>
                 <p className="font-bold">LanguageBridge Resources:</p>
-                <p className="text-muted-foreground">Email: languagebridge.contact@gmail.com | Phone: (216) 800-6020</p>
+                <p className="text-muted-foreground">Email: info@languagebridge.app | Phone: (216) 800-6020</p>
               </div>
             </div>
           </section>

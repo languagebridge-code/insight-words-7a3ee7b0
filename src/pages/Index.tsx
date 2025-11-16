@@ -4,7 +4,10 @@ import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { WhoWeServe } from "@/components/WhoWeServe";
 import { ComplianceWarning } from "@/components/ComplianceWarning";
 import { HowItWorks } from "@/components/HowItWorks";
-import { FAQ } from "@/components/FAQ";
+import { FounderCredibility } from "@/components/FounderCredibility";
+import { TechnicalSpecs } from "@/components/TechnicalSpecs";
+import { ImplementationSupport } from "@/components/ImplementationSupport";
+import { FAQExpanded } from "@/components/FAQExpanded";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -18,7 +21,10 @@ const Index = () => {
       <WhoWeServe />
       <ComplianceWarning />
       <HowItWorks />
-      <FAQ />
+      <FounderCredibility />
+      <TechnicalSpecs />
+      <ImplementationSupport />
+      <FAQExpanded />
       <Contact />
       <Footer />
       <ScrollToTop />

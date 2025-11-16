@@ -401,7 +401,7 @@ export default function TitleIIIApplication() {
           {/* Footer */}
           <section className="mt-12 text-center border-t border-border pt-6 text-sm text-muted-foreground">
             <p className="font-bold mb-2">Template provided by LanguageBridge</p>
-            <p>Email: languagebridge.contact@gmail.com | Phone: (216) 800-6020</p>
+            <p>Email: info@languagebridge.app | Phone: (216) 800-6020</p>
           </section>
         </div>
       </div>

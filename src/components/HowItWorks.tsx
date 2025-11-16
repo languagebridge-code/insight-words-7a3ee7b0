@@ -5,20 +5,20 @@ export const HowItWorks = () => {
     {
       icon: Download,
       number: "01",
-      title: "Install the Chrome Extension",
-      description: "Quick and easy setup - get started in under a minute"
+      title: "Simple Setup",
+      description: "IT installs via Google Admin Console in 30 minutes. Mass deployment to all student devices."
     },
     {
       icon: MousePointer,
       number: "02",
-      title: "Highlight Any Text",
-      description: "Highlight any text or Control+C any text into the toolbar"
+      title: "Immediate Access",
+      description: "Students start using same day, no training needed. Works in Google Classroom, Canvas, and any website."
     },
     {
       icon: Volume2,
       number: "03",
-      title: "Translate & Listen",
-      description: "Use the Talk to Teacher button for 1-to-1 conversations with students, teachers, and administrators. Access popup translations in text form, reduced language, and targeted scaffolding (Alt+Shift+L)"
+      title: "Zero Maintenance",
+      description: "Auto-updates, no servers, no support burden. It just works, 24/7."
     }
   ];
 
@@ -27,10 +27,10 @@ export const HowItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            How It Works
+            How It Works (For Your District)
           </h2>
           <p className="text-lg text-muted-foreground">
-            Three steps. Under a minute.
+            Simple setup. Immediate impact. Zero maintenance.
           </p>
         </div>
 

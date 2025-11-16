@@ -102,8 +102,8 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:languagebridge.contact@gmail.com" className="text-white/80 hover:text-white transition-colors">
-                  languagebridge.contact@gmail.com
+                <a href="mailto:info@languagebridge.app" className="text-white/80 hover:text-white transition-colors">
+                  info@languagebridge.app
                 </a>
               </li>
               <li className="flex items-center gap-2">

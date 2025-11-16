@@ -31,9 +31,9 @@ export const WhoWeServe = () => {
       title: "Curriculum Coordinators",
       subtitle: "Who Purchase It",
       concerns: [
-        "Under 22 cents per student per day",
-        "Qualifies for Title III funding",
-        "Setup in under 10 minutes",
+        "Title III eligible",
+        "Replaces $40K/year interpreters with 24/7 access",
+        "ROI positive in first year",
         "Pilot pricing available now"
       ],
       description: "ROI is immediate. Implementation is painless. Budget justification writes itself."

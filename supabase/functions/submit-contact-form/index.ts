@@ -74,7 +74,7 @@ const handler = async (req: Request): Promise<Response> => {
     try {
       await resend.emails.send({
         from: "LanguageBridge <onboarding@resend.dev>",
-        to: ["languagebridge.contact@gmail.com"],
+        to: ["sales@languagebridge.app"],
         subject: `New Contact Form: ${submission.name}`,
         html: `
           <h2>New Contact Form Submission</h2>

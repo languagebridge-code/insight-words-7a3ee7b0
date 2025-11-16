@@ -89,7 +89,7 @@ const handler = async (req: Request): Promise<Response> => {
     try {
       await resend.emails.send({
         from: "LanguageBridge <onboarding@resend.dev>",
-        to: ["languagebridge.contact@gmail.com"],
+        to: ["sales@languagebridge.app"],
         subject: `New Pilot Application: ${application.schoolName}`,
         html: `
           <h2>New Pilot Application Received</h2>
