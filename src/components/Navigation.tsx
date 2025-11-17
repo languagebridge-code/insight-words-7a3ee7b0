@@ -16,14 +16,22 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: "Features", href: "#demo" },
+    { label: "Features", href: "#four-tools" },
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Compliance", href: "#compliance" },
+    { label: "Demo", href: "#demo" },
+    { label: "Compliance", href: "/compliance" },
     { label: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
+    
+    // Handle external links
+    if (href.startsWith('/')) {
+      window.location.href = href;
+      return;
+    }
+    
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

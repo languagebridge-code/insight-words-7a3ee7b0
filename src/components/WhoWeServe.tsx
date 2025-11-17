@@ -19,10 +19,10 @@ export const WhoWeServe = () => {
       title: "ESL Teachers & Students",
       subtitle: "Who Use It Daily",
       concerns: [
-        "Works in Google Classroom and Canvas",
-        "Audio support for preliterate students",
-        "8 languages with authentic translations",
-        "One keyboard shortcut (Alt+Shift+L)"
+        "Four integrated tools: translation, simplification, communication, glossary",
+        "Audio support for preliterate students in 8 languages",
+        "Works in Google Classroom, Canvas, and any website",
+        "One keyboard shortcut (Alt+Shift+L) for instant access"
       ],
       description: "Teachers love how simple it is. Students finally understand their assignments."
     },

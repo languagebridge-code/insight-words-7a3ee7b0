@@ -33,7 +33,11 @@ export const TechnicalSpecs = () => {
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>No additional hardware required</span>
+                      <span>Supports translation, text simplification, two-way communication, and academic glossaries—all in one extension</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      <span>Supports translation, text simplification, two-way communication, and academic glossaries—all in one extension</span>
                     </li>
                   </ul>
                 </div>
@@ -100,7 +104,19 @@ export const TechnicalSpecs = () => {
                   <ul className="space-y-2 text-muted-foreground text-sm">
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>No student data stored on servers</span>
+                      <span>No student data stored on servers or in cloud</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      <span>Powered by Azure Cognitive Services for enterprise-grade reliability</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      <span>99.9% uptime guarantee for uninterrupted student access</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      <span>Real-time processing—translations never stored or cached</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
