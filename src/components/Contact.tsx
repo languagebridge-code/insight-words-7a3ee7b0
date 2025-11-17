@@ -19,7 +19,7 @@ export const Contact = () => {
     try {
       // TODO: Connect to Mailchimp API
       // For now, just show success message
-      toast.success("Thank you! We'll be in touch soon with pricing information.");
+      toast.success("Thank you! We'll be in touch soon with pilot information.");
       setEmail("");
       setName("");
       setRole("");
@@ -39,10 +39,10 @@ export const Contact = () => {
             <div className="bg-card border-2 border-primary/20 rounded-3xl p-8 md:p-12 shadow-xl">
               <div className="text-center mb-8">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                  Request Pricing & Pilot Info
+                  Schedule Your District's Pilot Program
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Get custom pricing for your district and learn about our pilot program
+                  Get pilot information for your district and schedule a demo
                 </p>
               </div>
 
@@ -96,12 +96,12 @@ export const Contact = () => {
                   disabled={isSubmitting}
                   className="w-full"
                 >
-                  {isSubmitting ? "Sending..." : "Request Pricing Information"}
+                  {isSubmitting ? "Sending..." : "Request Pilot Information"}
                   <Send className="ml-2 w-5 h-5" />
                 </Button>
 
                 <p className="text-sm text-center text-muted-foreground">
-                  We'll respond within 24 hours with pricing tailored to your district size
+                  We'll respond within 24 hours with pilot information tailored to your district
                 </p>
               </form>
             </div>

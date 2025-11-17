@@ -76,7 +76,7 @@ export const Navigation = () => {
               size="default"
               onClick={() => scrollToSection("#contact")}
             >
-              Get Pricing
+              Request Pilot Information
             </Button>
           </div>
 
@@ -116,7 +116,7 @@ export const Navigation = () => {
                 className="w-full"
                 onClick={() => scrollToSection("#contact")}
               >
-                Get Pricing
+                Get Pilot Info
               </Button>
             </div>
           </div>

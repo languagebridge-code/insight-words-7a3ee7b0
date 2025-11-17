@@ -31,10 +31,10 @@ export const WhoWeServe = () => {
       title: "Curriculum Coordinators",
       subtitle: "Who Purchase It",
       concerns: [
-        "Title III eligible",
-        "Replaces $40K/year interpreters with 24/7 access",
-        "ROI positive in first year",
-        "Pilot pricing available now"
+        "Title III fundable",
+        "District licensing model designed for K-12 budgets",
+        "Request pilot information to discuss pricing",
+        "ROI positive in first year"
       ],
       description: "ROI is immediate. Implementation is painless. Budget justification writes itself."
     }

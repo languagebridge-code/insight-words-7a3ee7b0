@@ -31,18 +31,35 @@ export const ComplianceWarning = () => {
             </div>
           </div>
           <div className="bg-primary/10 rounded-xl p-6 border-2 border-primary">
-            <p className="text-lg font-semibold text-foreground mb-4">
-              LanguageBridge is the only translation tool designed specifically for preliterate SLIFE students with FERPA compliance built-in.
+            <h3 className="text-2xl font-bold text-foreground mb-4">What Makes LanguageBridge Different</h3>
+            <p className="text-lg text-muted-foreground mb-4">
+              LanguageBridge is designed specifically for preliterate SLIFE students - those who cannot yet read in any language, including their home language. This is a fundamentally different audience than general translation tools.
             </p>
-            <div className="grid md:grid-cols-2 gap-3 text-left text-sm">
-              <div className="flex items-start gap-2">
-                <span className="text-primary mt-1">✓</span>
-                <span className="text-muted-foreground">Microsoft Immersive Reader only works in Microsoft products (not Google Classroom)</span>
+            
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <h4 className="font-bold text-foreground mb-2">Read&Write and other tools:</h4>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Designed for students who can read</li>
+                  <li>• Support literate multilingual learners</li>
+                  <li>• Assume basic literacy skills</li>
+                </ul>
               </div>
-              <div className="flex items-start gap-2">
-                <span className="text-primary mt-1">✓</span>
-                <span className="text-muted-foreground">Read&Write costs $150/student and doesn't include translation</span>
+              <div>
+                <h4 className="font-bold text-foreground mb-2">LanguageBridge is for:</h4>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li>• Students who cannot read in ANY language yet</li>
+                  <li>• Preliterate newcomers and refugees</li>
+                  <li>• Students with interrupted education (SLIFE)</li>
+                  <li>• Languages like Dari, Pashto, Persian</li>
+                </ul>
               </div>
+            </div>
+            
+            <div className="bg-card p-4 rounded-lg border border-border">
+              <p className="text-sm text-muted-foreground">
+                <strong>Many districts use BOTH:</strong> Read&Write for general multilingual population + LanguageBridge for their most vulnerable preliterate SLIFE students.
+              </p>
             </div>
           </div>
         </div>

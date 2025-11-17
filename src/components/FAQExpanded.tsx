@@ -32,7 +32,11 @@ export const FAQExpanded = () => {
     },
     {
       question: "How is this different from Google Translate?",
-      answer: "Three critical differences: (1) Compliance - We're FERPA/COPPA compliant with zero data tracking; Google Translate uses student data to train AI. (2) Audio Support - We read translations aloud for preliterate students; Google Translate requires reading ability. (3) Quality - We provide authentic, contextualized translations built for education; Google Translate gives literal, often confusing translations. Additionally, Microsoft Immersive Reader only works in Microsoft products (not Google Classroom), and Read&Write costs $150/student without translation features."
+      answer: "Three critical differences: (1) Compliance - We're FERPA/COPPA compliant with zero data tracking; Google Translate uses student data to train AI. (2) Audio Support - We read translations aloud for preliterate students; Google Translate requires reading ability. (3) Quality - We provide authentic, contextualized translations built for education; Google Translate gives literal, often confusing translations."
+    },
+    {
+      question: "How is this different from Read&Write or Immersive Reader?",
+      answer: "Read&Write is excellent for students who can already read - it helps literate multilingual learners succeed. LanguageBridge is specifically designed for preliterate students who need to HEAR content in their language to access it. Read&Write assumes literacy in at least one language; LanguageBridge doesn't. Microsoft Immersive Reader only works within Microsoft products (not Google Classroom), while LanguageBridge works anywhere. These tools serve different student populations - they're complementary, not competitive. Many districts use both: Read&Write for their general multilingual population and LanguageBridge for their most vulnerable preliterate SLIFE students."
     },
     {
       question: "What data is collected?",
