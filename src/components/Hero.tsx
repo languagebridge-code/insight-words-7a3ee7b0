@@ -27,14 +27,12 @@ export const Hero = () => {
             className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="gradient-text">Translation Tool Built Specifically for</span>
+            <span className="gradient-text">Help Every Student Understand—</span>
             <br />
-            Preliterate SLIFE Students
+            Even Those Who Can't Read Yet
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light">
-            Real-time translation with audio support for Students with Limited or Interrupted Formal Education (SLIFE).
-            <br />
-            Designed for students who cannot yet read in any language. FERPA-compliant with no data storage.
+            Complete language accessibility platform with real-time translation, audio support, text simplification, and teacher communication tools for preliterate Students with Limited or Interrupted Formal Education (SLIFE).
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button

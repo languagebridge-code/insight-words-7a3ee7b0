@@ -108,6 +108,12 @@ export const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <a href="mailto:compliance@languagebridge.app" className="text-white/80 hover:text-white transition-colors">
+                  compliance@languagebridge.app
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 <a href="tel:+12168006020" className="text-white/80 hover:text-white transition-colors">
                   (216) 800-6020

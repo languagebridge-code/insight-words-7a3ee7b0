@@ -19,13 +19,13 @@ export const FounderCredibility = () => {
                     <GraduationCap className="w-8 h-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">Justin Fraumeni</h3>
+                    <h3 className="text-2xl font-bold text-foreground">Justin Bernard, M.Ed.</h3>
                     <p className="text-muted-foreground">Founder & ESL Educator</p>
                   </div>
                 </div>
                 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Founded by an ESL educator with <strong className="text-foreground">15+ years of experience</strong> serving <strong className="text-foreground">500+ English Language Learners</strong>, including Afghan refugee students in Northeast Ohio.
+                  Founded by an ESL educator with <strong className="text-foreground">15+ years of experience</strong> serving <strong className="text-foreground">500+ English Language Learners</strong>, holding a Master's degree in Educational Technology (M.Ed.) from Ashland University, with international teaching experience training educators across 5 facilities in Beijing, China.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-4">
@@ -53,10 +53,10 @@ export const FounderCredibility = () => {
                 "I built LanguageBridge because I saw firsthand how students like Amira were being left behind. Google Translate doesn't work for preliterate students, and schools deserve a compliant solution that actually helps kids learn."
               </p>
               <p className="text-sm text-foreground font-semibold mt-2">
-                — Justin Fraumeni, Founder
+                — Justin Bernard, M.Ed., Founder
               </p>
-              <a href="mailto:justin@languagebridge.app" className="text-primary hover:underline text-sm mt-2 inline-block">
-                justin@languagebridge.app
+              <a href="mailto:justin.bernard@languagebridge.app" className="text-primary hover:underline text-sm mt-2 inline-block">
+                justin.bernard@languagebridge.app
               </a>
             </div>
           </div>
