@@ -27,14 +27,14 @@ export const Hero = () => {
             className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            The Only FERPA-Compliant Translation Tool
+            <span className="gradient-text">Translation Tool Built Specifically for</span>
             <br />
-            <span className="gradient-text">Built for K-12 Schools</span>
+            Preliterate SLIFE Students
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light">
-            Real-time translation with audio support for 750,000+ SLIFE students nationwide.
+            Real-time translation with audio support for Students with Limited or Interrupted Formal Education (SLIFE).
             <br />
-            No data tracking. No compliance risk.
+            Designed for students who cannot yet read in any language. FERPA-compliant with no data storage.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button
