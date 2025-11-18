@@ -12,7 +12,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "Can we try it before we purchase it?",
-      answer: "FREE access for selected Ohio schools in 2025-2026. You help us refine the product while your ELL students get powerful tools. Rolling applications, limited spots. After the pilot year, standard district licensing begins at pricing tailored to your district size and ELL population. We work with your Title III coordinator to ensure smooth budget integration."
+      answer: "FREE access for selected Ohio schools in 2025-2026. You help us refine the product while your ELL students get powerful tools. Rolling applications, limited spots. After the pilot year, we'll work with you to create a licensing arrangement that fits your district's needs and budget."
     },
     {
       question: "How long does implementation take?",
@@ -48,7 +48,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "How do we pay for it?",
-      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. We work with your finance team to ensure smooth procurement and provide budget justification letters."
+      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. Contact sales@languagebridge.app to discuss funding options and we'll provide budget justification letters tailored to your district."
     },
     {
       question: "What's included in the Chrome extension?",
