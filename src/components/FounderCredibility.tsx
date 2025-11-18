@@ -55,8 +55,8 @@ export const FounderCredibility = () => {
               <p className="text-sm text-foreground font-semibold mt-2">
                 — Justin Bernard, M.Ed., Founder
               </p>
-              <a href="mailto:justin.bernard@languagebridge.app" className="text-primary hover:underline text-sm mt-2 inline-block">
-                justin.bernard@languagebridge.app
+              <a href="mailto:justin@languagebridge.app" className="text-primary hover:underline text-sm mt-2 inline-block">
+                justin@languagebridge.app
               </a>
             </div>
           </div>
