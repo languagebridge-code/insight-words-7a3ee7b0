@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/languagebridge-logo.png";
 
 export const Navigation = () => {
@@ -16,26 +17,25 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: "Features", href: "#four-tools" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Demo", href: "#demo" },
+    { label: "Features", href: "/features" },
     { label: "Compliance", href: "/compliance" },
+    { label: "Pilot Program", href: "/pilot" },
+    { label: "About", href: "/about" },
     { label: "Contact", href: "#contact" },
   ];
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = (href: string, e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     setIsMobileMenuOpen(false);
     
-    // Handle external links
-    if (href.startsWith('/')) {
-      window.location.href = href;
-      return;
+    // Handle hash links (scroll on same page)
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
-    
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    // For page links, React Router handles navigation
   };
 
   return (
@@ -49,43 +49,47 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+          <Link
+            to="/"
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <img src={logo} alt="LanguageBridge" className="w-12 h-12" />
             <span className="font-heading font-bold text-xl hidden sm:inline">
               LanguageBridge
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="text-foreground hover:text-primary font-medium transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => 
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => scrollToSection(link.href, e)}
+                  className="text-foreground hover:text-primary font-medium transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-foreground hover:text-primary font-medium transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
             
-            <Button
-              variant="hero"
-              size="default"
-              onClick={() => scrollToSection("#contact")}
-            >
-              Request Pilot Information
-            </Button>
+            <Link to="/pilot">
+              <Button
+                variant="hero"
+                size="default"
+              >
+                Request Pilot Information
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,27 +109,36 @@ export const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden pb-6 bg-background/95 backdrop-blur-md">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
-                  className="text-foreground hover:text-primary font-medium transition-colors py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => 
+                link.href.startsWith("#") ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => scrollToSection(link.href, e)}
+                    className="text-foreground hover:text-primary font-medium transition-colors py-2"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-foreground hover:text-primary font-medium transition-colors py-2"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
               
-              <Button
-                variant="hero"
-                className="w-full"
-                onClick={() => scrollToSection("#contact")}
-              >
-                Get Pilot Info
-              </Button>
+              <Link to="/pilot" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button
+                  variant="hero"
+                  className="w-full"
+                >
+                  Get Pilot Info
+                </Button>
+              </Link>
             </div>
           </div>
         )}
