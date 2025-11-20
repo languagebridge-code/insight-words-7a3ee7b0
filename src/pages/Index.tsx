@@ -1,31 +1,41 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
-import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { WhoWeServe } from "@/components/WhoWeServe";
-import { FourTools } from "@/components/FourTools";
 import { ComplianceWarning } from "@/components/ComplianceWarning";
-import { HowItWorks } from "@/components/HowItWorks";
 import { FounderCredibility } from "@/components/FounderCredibility";
-import { TechnicalSpecs } from "@/components/TechnicalSpecs";
-import { ImplementationSupport } from "@/components/ImplementationSupport";
 import { FAQExpanded } from "@/components/FAQExpanded";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <InteractiveDemo />
       <WhoWeServe />
-      <FourTools />
-      <HowItWorks />
+      
+      {/* Feature Overview CTA */}
+      <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Four Tools That Work Together
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Real-time translation, text simplification, teacher communication, and academic glossaries—all in one Chrome extension
+          </p>
+          <Link to="/features">
+            <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
+              Explore All Features
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       <ComplianceWarning />
       <FounderCredibility />
-      <TechnicalSpecs />
-      <ImplementationSupport />
       <FAQExpanded />
       <Contact />
       <Footer />
