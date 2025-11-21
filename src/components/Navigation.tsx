@@ -21,6 +21,7 @@ export const Navigation = () => {
     { label: "Compliance", href: "/compliance" },
     { label: "Pilot Program", href: "/pilot" },
     { label: "About", href: "/about" },
+    { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "#contact" },
   ];
 

@@ -8,6 +8,7 @@ import Features from "./pages/Features";
 import Compliance from "./pages/Compliance";
 import Pilot from "./pages/Pilot";
 import About from "./pages/About";
+import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/compliance" element={<Compliance />} />
           <Route path="/pilot" element={<Pilot />} />
           <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
