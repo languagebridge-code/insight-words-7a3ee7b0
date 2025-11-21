@@ -91,8 +91,11 @@ export const Footer = () => {
             <h3 className="font-bold text-lg mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="#demo" className="text-white/80 hover:text-white transition-colors">Demo</Link></li>
-              <li><Link to="#contact" className="text-white/80 hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/features" className="text-white/80 hover:text-white transition-colors">Features</Link></li>
+              <li><Link to="/compliance" className="text-white/80 hover:text-white transition-colors">Compliance</Link></li>
+              <li><Link to="/pilot" className="text-white/80 hover:text-white transition-colors">Pilot Program</Link></li>
+              <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ</Link></li>
               <li><Link to="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
