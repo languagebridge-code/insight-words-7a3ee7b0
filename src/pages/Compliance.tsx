@@ -18,7 +18,10 @@ export default function Compliance() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Legal Compliance & Data Privacy
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-muted-foreground mb-4">
+              Help every student understand—even those who can't read yet
+            </p>
+            <p className="text-lg text-muted-foreground mb-8">
               Purpose-built for K-12 education with comprehensive federal compliance, zero data storage, and enterprise-grade security
             </p>
             <div className="flex gap-4 justify-center">
