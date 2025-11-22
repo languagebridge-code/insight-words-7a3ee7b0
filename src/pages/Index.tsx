@@ -7,6 +7,8 @@ import { FAQExpanded } from "@/components/FAQExpanded";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { TrustBadgeBar } from "@/components/TrustBadgeBar";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -15,6 +17,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
+      <TrustBadgeBar />
       <WhoWeServe />
       
       {/* Feature Overview CTA */}
@@ -40,6 +43,7 @@ const Index = () => {
       <Contact />
       <Footer />
       <ScrollToTop />
+      <StickyCtaBar />
     </div>
   );
 };

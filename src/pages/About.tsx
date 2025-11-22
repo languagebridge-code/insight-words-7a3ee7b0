@@ -18,8 +18,11 @@ export default function About() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Built by Educators, For Educators
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Every student deserves to be heard. LanguageBridge is breaking down language barriers for the most vulnerable learners across Ohio and beyond.
+            <p className="text-xl text-muted-foreground mb-4">
+              Help every student understand—even those who can't read yet
+            </p>
+            <p className="text-lg text-muted-foreground">
+              LanguageBridge is breaking down language barriers for the most vulnerable learners across Ohio and beyond
             </p>
           </div>
         </div>
