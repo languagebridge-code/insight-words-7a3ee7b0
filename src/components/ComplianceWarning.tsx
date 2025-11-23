@@ -30,7 +30,7 @@ export const ComplianceWarning = () => {
             </div>
             <div className="mt-6 pt-6 border-t border-border">
               <p className="text-muted-foreground">
-                <strong className="text-foreground">LanguageBridge is different:</strong> Purpose-built for education with FERPA/COPPA compliance, zero data storage, and four integrated tools designed specifically for preliterate SLIFE students who need to hear—not just read—content.
+                <strong className="text-foreground">LanguageBridge is different:</strong> Purpose-built for education with FERPA/COPPA compliance, zero data storage, and four integrated tools designed specifically for preliterate SLIFE students who need to hear content, not just read it.
               </p>
               <a href="/compliance" className="text-primary hover:underline font-semibold mt-3 inline-block">
                 Learn more about legal compliance requirements →
@@ -40,7 +40,7 @@ export const ComplianceWarning = () => {
           <div className="bg-primary/10 rounded-xl p-8 border-2 border-primary">
             <h3 className="text-2xl font-bold text-foreground mb-6 text-center">What Makes LanguageBridge Different</h3>
             <p className="text-lg text-muted-foreground mb-6 text-center">
-              LanguageBridge is a complete language accessibility platform designed specifically for preliterate SLIFE students—not a general translation tool adapted for education.
+              LanguageBridge is a complete language accessibility platform designed specifically for preliterate SLIFE students. Not a general translation tool adapted for education.
             </p>
             
             <div className="overflow-x-auto mb-6">
@@ -109,10 +109,10 @@ export const ComplianceWarning = () => {
             <div className="bg-card p-6 rounded-lg border border-border">
               <h4 className="font-bold text-foreground mb-3">Different Tools for Different Students:</h4>
               <p className="text-sm text-muted-foreground mb-3">
-                Read&Write is excellent for students who can already read—it helps literate multilingual learners succeed in English. LanguageBridge is specifically designed for preliterate students who need to HEAR content in their language to access it.
+                Read&Write is excellent for students who can already read. It helps literate multilingual learners succeed in English. LanguageBridge is specifically designed for preliterate students who need to HEAR content in their language to access it.
               </p>
               <p className="text-sm text-muted-foreground">
-                <strong className="text-foreground">Many districts use BOTH:</strong> Read&Write for their general multilingual population + LanguageBridge for their most vulnerable preliterate SLIFE students who cannot yet read in any language.
+                <strong className="text-foreground">Many districts use BOTH:</strong> Read&Write for their general multilingual population. LanguageBridge for their most vulnerable preliterate SLIFE students who cannot yet read in any language.
               </p>
               <a href="/compliance" className="text-primary hover:underline font-semibold text-sm mt-3 inline-block">
                 View detailed compliance information →
