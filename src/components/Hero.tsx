@@ -27,9 +27,9 @@ export const Hero = () => {
             className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="gradient-text">Learning Unlocked.</span>
+            <span className="gradient-text">Learning Unlocked</span>
             <br />
-            Even Before They Can Read.
+            with the LanguageBridge Chrome Extension
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light">
             Real-time translation with audio support for students who can't read yet. Plus text simplification, teacher communication, and academic glossaries. Built for preliterate SLIFE students who need to hear content, not just see it.
