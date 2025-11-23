@@ -41,10 +41,10 @@ export const WhoWeServe = () => {
   ];
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+        <div className="text-center mb-16 fade-in-up">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
             Built For The People Who Matter
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -56,25 +56,25 @@ export const WhoWeServe = () => {
           {audiences.map((audience, index) => (
             <div 
               key={index}
-              className={`bg-card border-2 border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all fade-in-up delay-${index + 1}00`}
+              className={`bg-card border-2 border-border rounded-2xl p-8 shadow-lg hover-scale fade-in-up delay-${index + 2}00 group`}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-lavender mb-4">
-                <audience.icon className="w-8 h-8 text-deep-purple" />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-lavender mb-6 group-hover:scale-110 transition-transform duration-300">
+                <audience.icon className="w-8 h-8 text-deep-purple transition-transform duration-300 group-hover:rotate-6" />
               </div>
               
-              <div className="text-sm font-semibold text-primary mb-1">{audience.subtitle}</div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">{audience.title}</h3>
+              <div className="text-sm font-semibold text-primary mb-2">{audience.subtitle}</div>
+              <h3 className="text-2xl font-bold mb-6 text-foreground">{audience.title}</h3>
               
-              <ul className="space-y-2 mb-4">
+              <ul className="space-y-3 mb-6">
                 {audience.concerns.map((concern, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <span className="text-primary mr-2">✓</span>
-                    <span className="text-muted-foreground text-sm">{concern}</span>
+                  <li key={idx} className="flex items-start group/item">
+                    <span className="text-primary mr-2 mt-0.5 group-hover/item:scale-125 transition-transform duration-200">✓</span>
+                    <span className="text-muted-foreground text-sm leading-relaxed">{concern}</span>
                   </li>
                 ))}
               </ul>
               
-              <p className="text-sm text-muted-foreground italic border-t border-border pt-4">
+              <p className="text-sm text-muted-foreground italic border-t border-border pt-6 leading-relaxed">
                 {audience.description}
               </p>
             </div>
