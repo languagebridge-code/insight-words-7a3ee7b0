@@ -21,16 +21,16 @@ const Index = () => {
       <WhoWeServe />
       
       {/* Feature Overview CTA */}
-      <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+      <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10 fade-in-up delay-700">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 fade-in-up delay-100">
             Four Tools That Work Together
           </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Real-time translation, text simplification, teacher communication, and academic glossaries—all in one Chrome extension
+          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed fade-in-up delay-200">
+            Real-time translation, text simplification, teacher communication, and academic glossaries. All in one Chrome extension.
           </p>
           <Link to="/features">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
+            <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 fade-in-up delay-300">
               Explore All Features
             </Button>
           </Link>
@@ -41,25 +41,25 @@ const Index = () => {
       <FounderCredibility />
       
       {/* Questions Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-24 bg-muted/30 fade-in-up">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <HelpCircle className="w-16 h-16 mx-auto mb-6 text-primary" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <HelpCircle className="w-16 h-16 mx-auto mb-8 text-primary fade-in delay-100 hover:scale-110 transition-transform duration-300" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 fade-in-up delay-200">
               Have Questions?
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Check our comprehensive FAQ page or reach out directly—we're here to help
+            <p className="text-xl text-muted-foreground mb-10 leading-relaxed fade-in-up delay-300">
+              Check our comprehensive FAQ page or reach out directly. We're here to help.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-400">
               <Link to="/faq">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="hover-lift transition-all duration-300 w-full sm:w-auto">
                   View FAQ
                 </Button>
               </Link>
               <a href="mailto:info@languagebridge.app">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                  <Mail className="w-4 h-4 mr-2" />
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 w-full sm:w-auto group">
+                  <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
                   Email Questions
                 </Button>
               </a>
