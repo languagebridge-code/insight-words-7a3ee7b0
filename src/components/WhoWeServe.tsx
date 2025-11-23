@@ -12,7 +12,7 @@ export const WhoWeServe = () => {
         "No Title VI violations",
         "District-level controls and reporting"
       ],
-      description: "Sleep better knowing your ELL program meets federal requirements without compromise."
+      description: "Your ELL program meets federal requirements. Sleep better at night."
     },
     {
       icon: Users,

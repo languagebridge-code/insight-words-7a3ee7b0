@@ -25,7 +25,7 @@ export const FounderCredibility = () => {
                 </div>
                 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Founded by an ESL educator with <strong className="text-foreground">15+ years of experience</strong> serving <strong className="text-foreground">500+ English Language Learners</strong>, holding a Master's degree in Educational Technology (M.Ed.) from Ashland University, with international teaching experience training educators across 5 facilities in Beijing, China.
+                  ESL educator with <strong className="text-foreground">15+ years of experience</strong> serving <strong className="text-foreground">500+ English Language Learners</strong>. Master's degree in Educational Technology (M.Ed.) from Ashland University. Trained educators across 5 facilities in Beijing, China.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-4">
@@ -50,10 +50,10 @@ export const FounderCredibility = () => {
             
             <div className="mt-8 pt-8 border-t border-border text-center">
               <p className="text-sm text-muted-foreground italic">
-                "I built LanguageBridge because I saw firsthand how students like Amira were being left behind. Google Translate doesn't work for preliterate students, and schools deserve a compliant solution that actually helps kids learn."
+                "I built LanguageBridge because I saw firsthand how students like Amira were being left behind. Google Translate doesn't work for preliterate students. Schools deserve a compliant solution that actually helps kids learn."
               </p>
               <p className="text-sm text-foreground font-semibold mt-2">
-                — Justin Bernard, M.Ed., Founder
+                Justin Bernard, M.Ed., Founder
               </p>
               <a href="mailto:justin@languagebridge.app" className="text-primary hover:underline text-sm mt-2 inline-block">
                 justin@languagebridge.app

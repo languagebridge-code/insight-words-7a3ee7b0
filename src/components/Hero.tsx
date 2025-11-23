@@ -27,12 +27,12 @@ export const Hero = () => {
             className="w-48 h-48 mx-auto mb-6 hover:scale-110 transition-transform duration-300"
           />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="gradient-text">Help Every Student Understand—</span>
+            <span className="gradient-text">Learning Unlocked.</span>
             <br />
-            Even Those Who Can't Read Yet
+            Even Before They Can Read.
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light">
-            Complete language accessibility platform with real-time translation, audio support, text simplification, and teacher communication tools for preliterate Students with Limited or Interrupted Formal Education (SLIFE).
+            Real-time translation with audio support for students who can't read yet. Plus text simplification, teacher communication, and academic glossaries. Built for preliterate SLIFE students who need to hear content, not just see it.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-200">
             <Button
@@ -68,11 +68,11 @@ export const Hero = () => {
                 <h3 className="text-3xl font-bold text-primary">Amira's Story</h3>
                 <p className="text-lg leading-relaxed">
                   Amira's engagement was so low that teachers questioned her inclusion in general education classes. 
-                  She wasn't literate in her home language because of the Taliban's takeover of Afghanistan, meaning she never learned to read her own language.
+                  She couldn't read in her home language because of the Taliban's takeover of Afghanistan. She never learned to read her own language.
                 </p>
                 <p className="text-lg leading-relaxed">
                   Google Translate didn't work for her because it requires reading. But LanguageBridge reads aloud translated text, 
-                  which allows her to access classroom material immediately and participate in class for the first time.
+                  so she can access classroom material immediately and participate in class for the first time.
                 </p>
                 <p className="text-primary font-semibold text-xl">
                   Now she's thriving in her general education classroom.
