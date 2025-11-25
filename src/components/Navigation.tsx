@@ -22,7 +22,6 @@ export const Navigation = () => {
     { label: "Pilot Program", href: "/pilot" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
-    { label: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string, e?: React.MouseEvent) => {
