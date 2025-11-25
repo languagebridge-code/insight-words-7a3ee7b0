@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
-import { Mail, ArrowUp, CheckCircle2, XCircle } from "lucide-react";
+import { Mail, ArrowUp, CheckCircle2, XCircle, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import { toast } from "sonner";
 
 export default function Privacy() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +22,59 @@ export default function Privacy() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!contentRef.current) return;
+
+    setIsGeneratingPdf(true);
+    toast.info("Generating PDF... This may take a moment.");
+
+    try {
+      // Get the content element
+      const element = contentRef.current;
+      
+      // Create canvas from the content
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        windowWidth: element.scrollWidth,
+        windowHeight: element.scrollHeight,
+      });
+
+      // Calculate PDF dimensions
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 297; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      // Create PDF
+      const pdf = new jsPDF("p", "mm", "a4");
+      let position = 0;
+
+      // Add image to PDF
+      const imgData = canvas.toDataURL("image/png");
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // Add new pages if content is longer than one page
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      // Save the PDF
+      pdf.save("LanguageBridge-Privacy-Policy.pdf");
+      toast.success("PDF downloaded successfully!");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      toast.error("Failed to generate PDF. Please try again.");
+    } finally {
+      setIsGeneratingPdf(false);
+    }
   };
 
   const sections = [
@@ -42,9 +100,20 @@ export default function Privacy() {
       {/* Header */}
       <header className="bg-gradient-to-br from-primary via-primary/90 to-secondary text-white py-12 sticky top-0 z-40 shadow-lg backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <Link to="/" className="text-white/90 hover:text-white mb-4 inline-block transition-colors">
-            ← Back to Home
-          </Link>
+          <div className="flex justify-between items-start mb-4">
+            <Link to="/" className="text-white/90 hover:text-white inline-block transition-colors">
+              ← Back to Home
+            </Link>
+            <Button
+              onClick={handleDownloadPDF}
+              disabled={isGeneratingPdf}
+              variant="secondary"
+              className="gap-2"
+            >
+              <Download className="w-4 h-4" />
+              {isGeneratingPdf ? "Generating..." : "Download PDF"}
+            </Button>
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy for LanguageBridge Chrome Extension</h1>
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-white/80">
             <p><strong>Effective Date:</strong> November 15, 2024</p>
@@ -54,7 +123,7 @@ export default function Privacy() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-12">
+      <div ref={contentRef} className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Key Points Card */}
           <Card className="mb-8 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
