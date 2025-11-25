@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Download, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
@@ -20,65 +20,73 @@ export default function Privacy() {
   };
 
   const sections = [
-    { id: "overview", title: "1. Overview" },
-    { id: "ferpa", title: "2. FERPA Compliance Statement" },
-    { id: "collection", title: "3. Information We Collect" },
-    { id: "usage", title: "4. How We Use Information" },
-    { id: "sharing", title: "5. Data Sharing and Third Parties" },
-    { id: "security", title: "6. Data Security" },
-    { id: "retention", title: "7. Data Retention and Deletion" },
-    { id: "rights", title: "8. Student Rights Under FERPA" },
-    { id: "coppa", title: "9. Children's Privacy (COPPA Compliance)" },
-    { id: "international", title: "10. International Data Transfers" },
-    { id: "school", title: "11. School Responsibilities" },
-    { id: "changes", title: "12. Changes to This Privacy Policy" },
-    { id: "contact", title: "13. Contact Us" },
-    { id: "legal", title: "14. Legal Compliance" },
-    { id: "transparency", title: "15. Transparency Commitments" },
+    { id: "introduction", title: "Introduction" },
+    { id: "collection", title: "1. Information We Collect" },
+    { id: "third-party", title: "2. Third-Party Services" },
+    { id: "usage", title: "3. How We Use Data" },
+    { id: "sharing", title: "4. Data Sharing and Disclosure" },
+    { id: "coppa", title: "5. Children's Privacy (COPPA)" },
+    { id: "ferpa", title: "6. FERPA Compliance" },
+    { id: "security", title: "7. Data Security" },
+    { id: "rights", title: "8. User Rights and Controls" },
+    { id: "changes", title: "9. Changes to This Policy" },
+    { id: "international", title: "10. International Users" },
+    { id: "contact", title: "11. Contact Information" },
+    { id: "compliance", title: "12. Compliance Certifications" },
+    { id: "faq", title: "13. Frequently Asked Questions" },
+    { id: "summary", title: "14. Summary" },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-foreground text-background py-8 sticky top-0 z-40 shadow-lg">
+      <header className="bg-gradient-to-br from-primary via-primary/90 to-secondary text-white py-12 sticky top-0 z-40 shadow-lg backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <Link to="/" className="text-primary hover:text-primary/80 mb-4 inline-block">
+          <Link to="/" className="text-white/90 hover:text-white mb-4 inline-block transition-colors">
             ← Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">LanguageBridge Privacy Policy</h1>
-          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-background/80">
-            <p>Effective Date: November 16, 2024</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy for LanguageBridge Chrome Extension</h1>
+          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-white/80">
+            <p><strong>Effective Date:</strong> November 15, 2024</p>
             <span className="hidden md:inline">•</span>
-            <p>Last Updated: November 16, 2024</p>
+            <p><strong>Last Updated:</strong> November 15, 2024</p>
           </div>
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          {/* Commitment Statement */}
-          <Card className="mb-8 border-primary/20">
+          {/* Key Points Card */}
+          <Card className="mb-8 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
             <CardContent className="pt-6">
-              <h2 className="text-2xl font-bold mb-4">Our Commitment to Student Privacy</h2>
-              <p className="text-muted-foreground mb-4">
-                LanguageBridge is committed to protecting the privacy and security of students, educators, and schools. This Privacy Policy explains how we collect, use, protect, and handle information in connection with our Chrome extension and related services.
+              <h2 className="text-2xl font-bold mb-6" id="introduction">Introduction</h2>
+              <p className="text-muted-foreground mb-6">
+                LanguageBridge is committed to protecting the privacy of students, teachers, and all users of our Chrome extension. This privacy policy explains what data we collect, how we use it, and your rights regarding your information.
               </p>
-              <p className="text-sm">
-                For privacy-related questions, contact us at:{" "}
-                <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline font-semibold">
-                  privacy@languagebridge.app
-                </a>
-              </p>
+              <div className="space-y-2">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>We do NOT store any student data</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>We do NOT collect personally identifiable information (PII)</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Voice recordings are processed in real-time and immediately discarded</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>We are FERPA and COPPA compliant</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>No ads, no tracking, no data sales</span>
+                </div>
+              </div>
             </CardContent>
           </Card>
-
-          {/* Download PDF Button */}
-          <div className="mb-8 flex justify-end">
-            <Button variant="outline" className="gap-2">
-              <Download className="w-4 h-4" />
-              Download PDF
-            </Button>
-          </div>
 
           {/* Table of Contents */}
           <Card className="mb-12">
@@ -89,7 +97,7 @@ export default function Privacy() {
                   <a
                     key={section.id}
                     href={`#${section.id}`}
-                    className="text-primary hover:underline py-1"
+                    className="text-primary hover:underline py-1 transition-colors"
                   >
                     {section.title}
                   </a>
@@ -98,521 +106,679 @@ export default function Privacy() {
             </CardContent>
           </Card>
 
-          {/* Main Content */}
-          <div className="prose prose-lg max-w-none space-y-12">
-            {/* Section 1 */}
-            <section id="overview">
-              <h2 className="text-3xl font-bold mb-4">1. Overview</h2>
-              <p className="mb-4">
-                LanguageBridge is a Chrome extension that provides real-time translation and text-to-speech services for K-12 students, with a specific focus on preliterate Students with Limited or Interrupted Formal Education (SLIFE). Our service is designed to comply with:
-              </p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>FERPA (Family Educational Rights and Privacy Act)</li>
-                <li>COPPA (Children's Online Privacy Protection Act)</li>
-                <li>PPRA (Protection of Pupil Rights Amendment)</li>
-                <li>State student privacy laws</li>
-              </ul>
-            </section>
+          {/* Section 1: Information We Collect */}
+          <section id="collection" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">1. Information We Collect</h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">1.1 Data We DO Collect (Stored Locally Only)</h3>
+                
+                <Card className="mb-4">
+                  <CardContent className="pt-6">
+                    <h4 className="font-bold mb-3">User Preferences (Stored in Chrome Sync Storage)</h4>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
+                      <li>Selected language preference (e.g., Dari, Pashto, Arabic)</li>
+                      <li>Reading speed settings</li>
+                      <li>Extension settings and customizations</li>
+                    </ul>
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Storage Location:</strong> Chrome browser's sync storage (controlled by Google)</p>
+                      <p><strong>Purpose:</strong> Remember your preferences across devices</p>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            {/* Section 2 */}
-            <section id="ferpa">
-              <h2 className="text-3xl font-bold mb-4">2. FERPA Compliance Statement</h2>
-              <p className="mb-4">
-                LanguageBridge is designed to be FERPA-compliant when used in educational settings:
-              </p>
-              
-              <h3 className="text-2xl font-semibold mb-3">What We DO:</h3>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span>Process translations locally in the Chrome extension whenever possible</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span>Use secure, encrypted connections for all data transmission</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span>Work as a "school official" under FERPA when contracted by schools</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span>Limit data collection to only what's necessary for service functionality</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span>Provide schools with full control over student data</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span>Sign Data Privacy Agreements (DPAs) with school districts</span>
-                </li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">What We DON'T Do:</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
-                  <span>We do NOT create student profiles</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
-                  <span>We do NOT track student browsing history</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
-                  <span>We do NOT collect personally identifiable information (PII) from students</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
-                  <span>We do NOT sell student data to third parties</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
-                  <span>We do NOT use student data for advertising or marketing</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
-                  <span>We do NOT retain translated text after processing</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* Section 3 */}
-            <section id="collection">
-              <h2 className="text-3xl font-bold mb-4">3. Information We Collect</h2>
-              
-              <h3 className="text-2xl font-semibold mb-3">A. From Students (Minimal Collection)</h3>
-              <div className="mb-4">
-                <h4 className="text-xl font-semibold mb-2">Text Selected for Translation:</h4>
-                <ul className="list-disc pl-6 space-y-1">
-                  <li>When a student selects text to translate, that text is temporarily sent to Azure Cognitive Services for translation</li>
-                  <li>This text is NOT stored by LanguageBridge</li>
-                  <li>This text is NOT associated with any student identifier</li>
-                  <li>Text is processed and immediately discarded</li>
-                </ul>
+                <Card>
+                  <CardContent className="pt-6">
+                    <h4 className="font-bold mb-3">Anonymous Usage Statistics (Stored Locally)</h4>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
+                      <li>Number of translations performed</li>
+                      <li>Extension usage timestamps</li>
+                      <li>Feature usage counts (e.g., how many times toolbar was used)</li>
+                    </ul>
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Storage Location:</strong> Local browser storage only</p>
+                      <p><strong>Purpose:</strong> Improve extension performance and features</p>
+                      <p><strong>Note:</strong> This data never leaves your device</p>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
-              <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2">No Personal Information Collected:</h4>
-                <ul className="list-disc pl-6 space-y-1">
-                  <li>We do NOT collect student names</li>
-                  <li>We do NOT collect student email addresses</li>
-                  <li>We do NOT collect student ID numbers</li>
-                  <li>We do NOT collect grades or performance data</li>
-                  <li>We do NOT collect browsing history</li>
-                </ul>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">1.2 Data We DO NOT Collect</h3>
+                <Card className="bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900">
+                  <CardContent className="pt-6">
+                    <p className="font-semibold mb-4">We explicitly <strong>DO NOT</strong> collect or store:</p>
+                    <div className="grid md:grid-cols-2 gap-2">
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Student names or PII</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Text content that you translate</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Voice recordings or audio data</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Browsing history</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Email addresses or login credentials</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>School or classroom information</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Geolocation data</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Student identifying data</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 2: Third-Party Services */}
+          <section id="third-party" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">2. Third-Party Services</h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">2.1 Microsoft Azure Cognitive Services</h3>
+                <Card>
+                  <CardContent className="pt-6 space-y-4">
+                    <p className="font-semibold">LanguageBridge uses Microsoft Azure for:</p>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li><strong>Speech-to-Text:</strong> Converting voice to text for conversations</li>
+                      <li><strong>Text-to-Speech:</strong> Reading translations aloud</li>
+                      <li><strong>Translation:</strong> Translating text between languages</li>
+                      <li><strong>Text Simplification:</strong> Simplifying academic text (Azure OpenAI)</li>
+                    </ul>
+
+                    <div className="border-l-4 border-primary pl-4 my-6">
+                      <p className="font-bold mb-2">How Azure Processes Data:</p>
+                      <ul className="space-y-2 text-sm">
+                        <li>✓ All data is processed <strong>in real-time</strong></li>
+                        <li>✓ <strong>No data retention:</strong> Audio, text, and translations are NOT stored by Azure after processing</li>
+                        <li>✓ <strong>Enterprise-grade security:</strong> Microsoft Azure is FERPA and COPPA compliant</li>
+                        <li>✓ <strong>Encryption:</strong> All data transmitted to Azure is encrypted using TLS 1.2+</li>
+                        <li>✓ <strong>Microsoft Privacy Policy:</strong> <a href="https://privacy.microsoft.com/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://privacy.microsoft.com/</a></li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <p className="font-semibold mb-2">Data Sent to Azure:</p>
+                      <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                        <li>Selected text for translation (temporary, not stored)</li>
+                        <li>Voice input for speech recognition (temporary, not stored)</li>
+                        <li>Text for text-to-speech synthesis (temporary, not stored)</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <p className="font-semibold mb-2">Data NOT Sent to Azure:</p>
+                      <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                        <li>Student names or identifying information</li>
+                        <li>Full webpage content</li>
+                        <li>Browsing history</li>
+                        <li>Any data not explicitly selected by the user</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
-              <h3 className="text-2xl font-semibold mb-3">B. From Schools/Districts (Administrative Data)</h3>
-              <p className="mb-2">When schools contract with LanguageBridge, we collect:</p>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>School/district name</li>
-                <li>Administrator contact information</li>
-                <li>Number of licenses purchased</li>
-                <li>Installation/deployment date</li>
-                <li>Aggregate usage statistics (non-identifiable)</li>
-              </ul>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">2.2 Chrome Web Store</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• Extension updates are delivered through Google Chrome Web Store</li>
+                      <li>• Google's privacy policy applies: <a href="https://policies.google.com/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
 
-              <h3 className="text-2xl font-semibold mb-3">C. Technical Data (Non-Personal)</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Browser type and version (for compatibility)</li>
-                <li>Extension version number</li>
-                <li>Language pairs being translated (aggregated, not per-student)</li>
-                <li>Error logs (contain no PII)</li>
-              </ul>
-            </section>
-
-            {/* Section 4 */}
-            <section id="usage">
-              <h2 className="text-3xl font-bold mb-4">4. How We Use Information</h2>
-              
-              <h3 className="text-2xl font-semibold mb-3">Translation Processing:</h3>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>Selected text is sent via HTTPS to Azure Cognitive Services (Microsoft) for translation</li>
-                <li>Microsoft processes the translation and returns results</li>
-                <li>No text is stored by LanguageBridge or retained by Azure beyond processing time</li>
-                <li>See Microsoft's privacy policy: <a href="https://privacy.microsoft.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://privacy.microsoft.com/</a></li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">Service Improvement:</h3>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>Aggregate usage statistics (e.g., "Dari was the most-used language this month") help us improve the service</li>
-                <li>These statistics contain NO personally identifiable information</li>
-                <li>Schools can opt out of anonymized usage reporting</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">Compliance Reporting:</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>We provide schools with usage reports for Title III compliance documentation</li>
-                <li>Reports show aggregate data only (e.g., "150 students used the tool this week")</li>
-                <li>Reports contain NO individual student identifiers</li>
-              </ul>
-            </section>
-
-            {/* Section 5 */}
-            <section id="sharing">
-              <h2 className="text-3xl font-bold mb-4">5. Data Sharing and Third Parties</h2>
-              
-              <h3 className="text-2xl font-semibold mb-3">Third-Party Services We Use:</h3>
-              <div className="mb-6">
-                <h4 className="text-xl font-semibold mb-2">Microsoft Azure Cognitive Services (Translation & Speech):</h4>
-                <ul className="list-disc pl-6 space-y-1">
-                  <li><strong>Used for:</strong> Real-time translation and text-to-speech processing</li>
-                  <li><strong>Data sent:</strong> Selected text only (no student identifiers)</li>
-                  <li><strong>Data retention:</strong> Text is not stored; processed and immediately discarded</li>
-                  <li><strong>Privacy policy:</strong> <a href="https://privacy.microsoft.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://privacy.microsoft.com/</a></li>
-                  <li><strong>FERPA compliance:</strong> Microsoft is compliant when used in educational contexts</li>
-                </ul>
+          {/* Section 3: How We Use Data */}
+          <section id="usage" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">3. How We Use Data</h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">3.1 Real-Time Processing Only</h3>
+                <Card className="bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900">
+                  <CardContent className="pt-6">
+                    <p className="font-semibold mb-4">All translation and speech processing happens <strong>in real-time:</strong></p>
+                    <ol className="space-y-3 list-decimal list-inside">
+                      <li><strong>User selects text</strong> → Sent to Azure Translator → Translated → Displayed</li>
+                      <li><strong>User speaks</strong> → Sent to Azure Speech → Transcribed → Displayed</li>
+                      <li><strong>Translation spoken</strong> → Sent to Azure Speech Synthesis → Audio played</li>
+                    </ol>
+                    <p className="mt-4 font-bold">After processing: All data is immediately discarded. Nothing is saved.</p>
+                  </CardContent>
+                </Card>
               </div>
 
-              <h3 className="text-2xl font-semibold mb-3">We Do NOT Use:</h3>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>Google Analytics or tracking pixels</li>
-                <li>Advertising networks</li>
-                <li>Data brokers</li>
-                <li>Social media integrations</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">Data Sharing Policy:</h3>
-              <p className="mb-2">We do NOT sell, rent, or share student data with third parties for:</p>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Advertising</li>
-                <li>Marketing</li>
-                <li>Behavioral targeting</li>
-                <li>Any commercial purpose</li>
-              </ul>
-
-              <p className="mb-2">We MAY share aggregated, non-identifiable data for:</p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Educational research (with school permission)</li>
-                <li>Service improvement analysis</li>
-                <li>Compliance with legal obligations</li>
-              </ul>
-            </section>
-
-            {/* Section 6 */}
-            <section id="security">
-              <h2 className="text-3xl font-bold mb-4">6. Data Security</h2>
-              
-              <h3 className="text-2xl font-semibold mb-3">Security Measures:</h3>
-              
-              <h4 className="text-xl font-semibold mb-2">Encryption:</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>All data transmitted between the extension and Azure is encrypted using HTTPS/TLS</li>
-                <li>Data is encrypted in transit and at rest on Azure servers (during processing only)</li>
-              </ul>
-
-              <h4 className="text-xl font-semibold mb-2">Access Controls:</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Only authorized LanguageBridge personnel have access to administrative systems</li>
-                <li>Multi-factor authentication required for all admin accounts</li>
-                <li>Role-based access controls limit data exposure</li>
-              </ul>
-
-              <h4 className="text-xl font-semibold mb-2">Infrastructure:</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Hosted on Microsoft Azure (SOC 2 Type II certified)</li>
-                <li>Regular security audits and vulnerability assessments</li>
-                <li>Automated security updates</li>
-              </ul>
-
-              <h4 className="text-xl font-semibold mb-2">No Data Breaches:</h4>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Because we don't store student data, there is minimal risk of data breach</li>
-                <li>In the unlikely event of a security incident, we will notify affected schools within 72 hours</li>
-              </ul>
-            </section>
-
-            {/* Section 7 */}
-            <section id="retention">
-              <h2 className="text-3xl font-bold mb-4">7. Data Retention and Deletion</h2>
-              
-              <h3 className="text-2xl font-semibold mb-3">What We DON'T Retain:</h3>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li><strong>Translated text:</strong> Immediately discarded after processing</li>
-                <li><strong>Student identifiers:</strong> Never collected</li>
-                <li><strong>Browsing history:</strong> Never tracked</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">What We DO Retain:</h3>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li><strong>Aggregated usage statistics:</strong> Retained for 2 years for compliance reporting</li>
-                <li><strong>School contract information:</strong> Retained for duration of contract + 7 years (legal requirement)</li>
-                <li><strong>Technical logs:</strong> Retained for 90 days for troubleshooting (contain no PII)</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">Data Deletion Rights:</h3>
-              <h4 className="text-xl font-semibold mb-2">For Schools:</h4>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Schools may request deletion of all associated data at any time</li>
-                <li>Upon contract termination, all school data is deleted within 30 days</li>
-                <li>Schools receive confirmation of deletion</li>
-              </ul>
-
-              <h4 className="text-xl font-semibold mb-2">For Students:</h4>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Because we don't collect or store student data, there is no student data to delete</li>
-                <li>If a school believes student data was inadvertently collected, contact <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a></li>
-              </ul>
-            </section>
-
-            {/* Section 8 */}
-            <section id="rights">
-              <h2 className="text-3xl font-bold mb-4">8. Student Rights Under FERPA</h2>
-              <p className="mb-4">
-                Schools using LanguageBridge maintain full control over student education records. Students and parents have the right to:
-              </p>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Inspect and review student education records</li>
-                <li>Request amendment of records believed to be inaccurate</li>
-                <li>Consent to disclosures of personally identifiable information (with exceptions under FERPA)</li>
-                <li>File a complaint with the U.S. Department of Education</li>
-              </ul>
-              <p>
-                LanguageBridge does not create or maintain student education records. Our service processes text for translation only and does not store educational information.
-              </p>
-            </section>
-
-            {/* Section 9 */}
-            <section id="coppa">
-              <h2 className="text-3xl font-bold mb-4">9. Children's Privacy (COPPA Compliance)</h2>
-              <p className="mb-4">
-                LanguageBridge is designed for use by students under 13 in school settings. Under COPPA:
-              </p>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Schools act as the parent's agent in providing consent for data collection</li>
-                <li>We collect minimal information necessary for service functionality</li>
-                <li>We do not condition use of the service on providing more information than necessary</li>
-                <li>We do not enable public posting or sharing of student information</li>
-              </ul>
-              <p>
-                <strong>For parents:</strong> If you have questions about your child's use of LanguageBridge, contact your school's ESL coordinator or email us at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a>.
-              </p>
-            </section>
-
-            {/* Section 10 */}
-            <section id="international">
-              <h2 className="text-3xl font-bold mb-4">10. International Data Transfers</h2>
-              <p className="mb-4">
-                LanguageBridge is based in the United States (Ohio). When students in other countries use our service:
-              </p>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Text selected for translation may be processed on Azure servers in various regions</li>
-                <li>Azure complies with international data protection frameworks</li>
-                <li>Schools outside the U.S. should review their local data protection laws</li>
-              </ul>
-              <p>
-                <strong>For EU/UK schools:</strong> We can provide additional GDPR-compliant Data Processing Agreements upon request.
-              </p>
-            </section>
-
-            {/* Section 11 */}
-            <section id="school">
-              <h2 className="text-3xl font-bold mb-4">11. School Responsibilities</h2>
-              <p className="mb-4">Schools using LanguageBridge are responsible for:</p>
-              <ul className="list-disc pl-6 space-y-1 mb-4">
-                <li>Obtaining necessary parental consents under FERPA/COPPA</li>
-                <li>Providing notice to parents about the use of LanguageBridge</li>
-                <li>Ensuring compliance with applicable state and local student privacy laws</li>
-                <li>Training students on appropriate use of the extension</li>
-                <li>Monitoring student use in accordance with school policies</li>
-              </ul>
-              <p>
-                LanguageBridge provides template parent notification letters and consent forms upon request.
-              </p>
-            </section>
-
-            {/* Section 12 */}
-            <section id="changes">
-              <h2 className="text-3xl font-bold mb-4">12. Changes to This Privacy Policy</h2>
-              <p className="mb-4">
-                We may update this Privacy Policy from time to time to reflect:
-              </p>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>Changes in our data practices</li>
-                <li>Changes in applicable laws</li>
-                <li>New features or services</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">How We Notify You:</h3>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>Schools will receive email notification at least 30 days before changes take effect</li>
-                <li>Updated policy will be posted at languagebridge.app/privacy</li>
-                <li>Effective date will be updated at the top of this document</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">Your Rights:</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Continued use of the service after changes constitute acceptance</li>
-                <li>Schools may terminate service if they disagree with updated terms</li>
-                <li>Schools will have opportunity to review changes before they take effect</li>
-              </ul>
-            </section>
-
-            {/* Section 13 */}
-            <section id="contact">
-              <h2 className="text-3xl font-bold mb-4">13. Contact Us</h2>
-              
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Privacy Questions:</h3>
-                  <p>Email: <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline font-semibold">privacy@languagebridge.app</a></p>
-                  <p>Response time: Within 2 business days</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">General Inquiries:</h3>
-                  <p>Email: <a href="mailto:info@languagebridge.app" className="text-primary hover:underline font-semibold">info@languagebridge.app</a></p>
-                  <p>Website: <a href="https://languagebridge.app" className="text-primary hover:underline">languagebridge.app</a></p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Support:</h3>
-                  <p>Email: <a href="mailto:support@languagebridge.app" className="text-primary hover:underline font-semibold">support@languagebridge.app</a></p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Mailing Address:</h3>
-                  <p>LanguageBridge</p>
-                  <p className="text-muted-foreground italic">[Business Address - To Be Added]</p>
-                  <p className="text-muted-foreground italic">[City, State ZIP]</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Data Protection Officer:</h3>
-                  <p>Justin [Last Name]</p>
-                  <p>Email: <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline font-semibold">privacy@languagebridge.app</a></p>
-                </div>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">3.2 Local Preferences</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <p className="mb-4">User settings (language, speed, etc.) are saved in Chrome's sync storage to:</p>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li>Remember your preferences</li>
+                      <li>Provide a personalized experience</li>
+                      <li>Sync settings across your Chrome browsers (if Chrome Sync is enabled)</li>
+                    </ul>
+                    <p className="mt-4 text-sm font-semibold">You control this data: You can clear it anytime through Chrome settings or by uninstalling the extension.</p>
+                  </CardContent>
+                </Card>
               </div>
-            </section>
+            </div>
+          </section>
 
-            {/* Section 14 */}
-            <section id="legal">
-              <h2 className="text-3xl font-bold mb-4">14. Legal Compliance</h2>
-              
-              <h3 className="text-2xl font-semibold mb-3">FERPA Compliance:</h3>
-              <p className="mb-6">
-                LanguageBridge acts as a "school official" with "legitimate educational interest" when contracted by schools, as defined under 34 CFR § 99.31(a)(1).
-              </p>
-
-              <h3 className="text-2xl font-semibold mb-3">Student Privacy Pledge:</h3>
-              <p className="mb-6">
-                LanguageBridge is a signatory to the Student Privacy Pledge (studentprivacypledge.org), committing to responsible stewardship of student data.
-              </p>
-
-              <h3 className="text-2xl font-semibold mb-3">State Privacy Laws:</h3>
-              <p className="mb-2">We comply with state-specific student privacy laws including:</p>
-              <ul className="list-disc pl-6 space-y-1 mb-6">
-                <li>California AB 1584 (SOPIPA)</li>
-                <li>New York Education Law § 2-d</li>
-                <li>Other applicable state laws</li>
-              </ul>
-
-              <h3 className="text-2xl font-semibold mb-3">Complaints:</h3>
-              <p className="mb-2">
-                If you believe your student privacy rights have been violated, you may file a complaint with:
-              </p>
-              <div className="pl-4">
-                <p>U.S. Department of Education</p>
-                <p>Family Policy Compliance Office</p>
-                <p>400 Maryland Avenue, SW</p>
-                <p>Washington, DC 20202-5920</p>
-                <p>Website: <a href="https://studentprivacy.ed.gov" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">studentprivacy.ed.gov</a></p>
+          {/* Section 4: Data Sharing */}
+          <section id="sharing" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">4. Data Sharing and Disclosure</h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">4.1 We Do NOT Share Data</h3>
+                <Card className="bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-900">
+                  <CardContent className="pt-6">
+                    <p className="font-bold mb-4">LanguageBridge <strong>does not share, sell, or disclose</strong> any user data to:</p>
+                    <div className="grid md:grid-cols-2 gap-2">
+                      <div>✗ Third-party advertisers</div>
+                      <div>✗ Marketing companies</div>
+                      <div>✗ Data brokers</div>
+                      <div>✗ Analytics services</div>
+                      <div>✗ Any other parties</div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-            </section>
 
-            {/* Section 15 */}
-            <section id="transparency">
-              <h2 className="text-3xl font-bold mb-4">15. Transparency Commitments</h2>
-              <p className="mb-4">LanguageBridge commits to:</p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>Transparency:</strong> Clear communication about data practices</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>Security:</strong> Industry-standard security measures</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>Accountability:</strong> Quick response to privacy concerns</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>Compliance:</strong> Adherence to all applicable privacy laws</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>Parental Rights:</strong> Support for parental access and consent</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>Minimal Collection:</strong> Collect only what's necessary</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold text-xl">✓</span>
-                  <span><strong>No Misuse:</strong> Never use student data for non-educational purposes</span>
-                </li>
-              </ul>
-            </section>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">4.2 Legal Requirements</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <p className="mb-4">We may disclose information only if required by law, such as:</p>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li>Valid court orders</li>
+                      <li>Subpoenas</li>
+                      <li>Legal processes</li>
+                    </ul>
+                    <p className="mt-4 text-sm font-semibold">However, since we <strong>do not collect or store user data</strong>, there is typically nothing to disclose.</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
 
-            {/* Appendix */}
-            <section className="border-t pt-8">
-              <h2 className="text-3xl font-bold mb-4">Appendix: Definitions</h2>
-              <dl className="space-y-3">
-                <div>
-                  <dt className="font-semibold">FERPA:</dt>
-                  <dd className="text-muted-foreground">Family Educational Rights and Privacy Act - Federal law protecting student education records</dd>
+          {/* Section 5: COPPA */}
+          <section id="coppa" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">5. Children's Privacy (COPPA Compliance)</h2>
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <p>LanguageBridge is designed for use by students, including children under 13.</p>
+                
+                <div className="border-l-4 border-primary pl-4 my-4">
+                  <p className="font-bold mb-3">COPPA Compliance:</p>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>We do <strong>not</strong> collect personal information from children</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>No registration or account required</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>No email addresses collected</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>No data stored about individual children</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Parental consent is <strong>not required</strong> because we collect no personal data</span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <dt className="font-semibold">COPPA:</dt>
-                  <dd className="text-muted-foreground">Children's Online Privacy Protection Act - Federal law regulating collection of information from children under 13</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold">PII:</dt>
-                  <dd className="text-muted-foreground">Personally Identifiable Information - Information that can identify a specific individual</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold">SLIFE:</dt>
-                  <dd className="text-muted-foreground">Students with Limited or Interrupted Formal Education</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold">DPA:</dt>
-                  <dd className="text-muted-foreground">Data Privacy Agreement - Legal agreement between schools and vendors regarding data handling</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold">Education Record:</dt>
-                  <dd className="text-muted-foreground">Records directly related to a student maintained by an educational institution</dd>
-                </div>
-              </dl>
-            </section>
 
-            {/* Final Contact Section */}
-            <section className="border-t pt-8">
-              <Card className="bg-primary/5 border-primary/20">
+                <div>
+                  <p className="font-semibold mb-2">School Use:</p>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Schools may deploy LanguageBridge without obtaining parental consent under FERPA's "school official" exception</li>
+                    <li>The extension acts as a tool for educational purposes, similar to a dictionary or calculator</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section 6: FERPA */}
+          <section id="ferpa" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">6. FERPA Compliance (Student Privacy)</h2>
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <p>LanguageBridge complies with the Family Educational Rights and Privacy Act (FERPA):</p>
+                
+                <div>
+                  <p className="font-semibold mb-2">No Education Records Created:</p>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>We do not create, store, or maintain education records</li>
+                    <li>No student performance data is collected</li>
+                    <li>No grades or assessment data is tracked</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">Legitimate Educational Interest:</p>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Translation and reading support serve a legitimate educational purpose</li>
+                    <li>Real-time processing means no records are created</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">Microsoft Azure as School Official:</p>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Microsoft Azure acts as a "school official" under FERPA</li>
+                    <li>Azure has a legitimate educational interest in providing translation services</li>
+                    <li>Azure is under direct control of the school through their enterprise agreement</li>
+                    <li>Microsoft Azure's FERPA compliance: <a href="https://docs.microsoft.com/en-us/compliance/regulatory/offering-ferpa" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/compliance/regulatory/offering-ferpa</a></li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section 7: Data Security */}
+          <section id="security" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">7. Data Security</h2>
+            
+            <div className="space-y-6">
+              <Card>
                 <CardContent className="pt-6">
-                  <h3 className="text-xl font-bold mb-4">Questions? Contact Us</h3>
-                  <p className="mb-2">
-                    <strong>General Questions:</strong>{" "}
-                    <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline font-semibold">
-                      privacy@languagebridge.app
-                    </a>
-                  </p>
-                  <p className="mb-4">
-                    <strong>Report a Privacy Concern:</strong>{" "}
-                    <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline font-semibold">
-                      privacy@languagebridge.app
-                    </a>{" "}
-                    <span className="text-muted-foreground">(2 business day response time)</span>
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    This Privacy Policy is effective as of November 16, 2024 and governs all uses of the LanguageBridge Chrome extension and related services.
-                  </p>
+                  <h3 className="text-xl font-semibold mb-3">7.1 Encryption</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li><strong>In Transit:</strong> All data sent to Azure is encrypted using TLS 1.2+ (HTTPS)</li>
+                    <li><strong>At Rest:</strong> No data is stored, so no "at rest" encryption is needed</li>
+                  </ul>
                 </CardContent>
               </Card>
-            </section>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-3">7.2 Access Controls</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Extension code runs in a sandboxed Chrome environment</li>
+                    <li>• No external servers controlled by LanguageBridge (we use Azure directly)</li>
+                    <li>• No backend database or user accounts</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-3">7.3 Security Best Practices</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Regular security audits of code</li>
+                    <li>• Minimal permissions requested from Chrome</li>
+                    <li>• Open-source code available for review</li>
+                    <li>• No third-party tracking scripts or analytics</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Section 8: User Rights */}
+          <section id="rights" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">8. User Rights and Controls</h2>
+            
+            <div className="space-y-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-4">8.1 Your Rights</h3>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div><strong>Access:</strong> View your locally stored preferences in Chrome settings</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div><strong>Delete:</strong> Clear all extension data by uninstalling or clearing Chrome data</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div><strong>Opt-out:</strong> Disable or uninstall the extension at any time</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div><strong>Export:</strong> Export settings (manual process)</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-4">8.2 How to Delete Your Data</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="font-semibold mb-2">Delete All Extension Data:</p>
+                      <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground">
+                        <li>Go to <code className="bg-muted px-1 py-0.5 rounded">chrome://extensions/</code></li>
+                        <li>Find "LanguageBridge"</li>
+                        <li>Click "Remove"</li>
+                        <li>Confirm deletion</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-2">Clear Settings Only (Keep Extension):</p>
+                      <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground">
+                        <li>Right-click extension icon</li>
+                        <li>Go to "Options"</li>
+                        <li>Click "Reset Settings" (if available)</li>
+                      </ol>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-4">8.3 Disabling Data Sync</h3>
+                  <p className="mb-3">To prevent settings from syncing across devices:</p>
+                  <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                    <li>Open Chrome Settings</li>
+                    <li>Go to "Sync and Google services"</li>
+                    <li>Turn off "Sync everything" or disable "Extensions" sync</li>
+                  </ol>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Section 9: Changes to Policy */}
+          <section id="changes" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">9. Changes to This Privacy Policy</h2>
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <p>We may update this privacy policy to reflect:</p>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                  <li>Changes in legal requirements</li>
+                  <li>New features added to the extension</li>
+                  <li>Improved privacy practices</li>
+                </ul>
+
+                <div>
+                  <p className="font-semibold mb-2">Notification of Changes:</p>
+                  <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                    <li>Updated privacy policy will be posted in the extension</li>
+                    <li>Effective date will be updated at the top</li>
+                    <li>Major changes will be announced via extension update notes</li>
+                  </ul>
+                </div>
+
+                <p className="text-sm"><strong>Your Continued Use:</strong> Continuing to use LanguageBridge after changes constitutes acceptance. If you disagree with changes, you may uninstall the extension.</p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section 10: International Users */}
+          <section id="international" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">10. International Users</h2>
+            
+            <div className="space-y-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-3">10.1 Data Location</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Azure services process data in Microsoft's East US data center</li>
+                    <li>• Data is processed in real-time and not stored</li>
+                    <li>• No cross-border data transfers occur (data is not stored)</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-4">10.2 GDPR (European Users)</h3>
+                  <p className="mb-3">For users in the European Union:</p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li><strong>Legal Basis:</strong> Legitimate interest in providing translation services</li>
+                    <li><strong>Data Controller:</strong> Individual school districts (for school deployments)</li>
+                    <li><strong>Data Processor:</strong> Microsoft Azure</li>
+                    <li><strong>Data Subject Rights:</strong> Since no data is stored, rights to access, rectify, or erase do not apply</li>
+                    <li><strong>Right to Object:</strong> You may uninstall the extension at any time</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Section 11: Contact Information */}
+          <section id="contact" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">11. Contact Information</h2>
+            
+            <div className="space-y-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-4">For Privacy Questions</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="font-semibold">General Privacy Inquiries:</p>
+                      <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        privacy@languagebridge.app
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-semibold">General Contact:</p>
+                      <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        contact@languagebridge.app
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-semibold">School/District Privacy Officers:</p>
+                      <p className="text-sm text-muted-foreground">If your school has specific privacy concerns, please contact your IT administrator or email us at contact@languagebridge.app</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold mb-4">For Support and Sales</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="font-semibold mb-1">General Support:</p>
+                      <a href="mailto:support@languagebridge.app" className="text-primary hover:underline">support@languagebridge.app</a>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-1">General Information:</p>
+                      <a href="mailto:info@languagebridge.app" className="text-primary hover:underline">info@languagebridge.app</a>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-1">Sales Inquiries:</p>
+                      <a href="mailto:sales@languagebridge.app" className="text-primary hover:underline">sales@languagebridge.app</a>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-1">Founder:</p>
+                      <a href="mailto:justin@languagebridge.app" className="text-primary hover:underline">justin@languagebridge.app</a>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Section 12: Compliance Certifications */}
+          <section id="compliance" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">12. Compliance Certifications</h2>
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <p className="font-semibold">LanguageBridge is committed to compliance with:</p>
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div><strong>FERPA</strong> (Family Educational Rights and Privacy Act)</div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div><strong>COPPA</strong> (Children's Online Privacy Protection Act)</div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div><strong>GDPR</strong> (General Data Protection Regulation) - for EU users</div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div><strong>California Student Privacy</strong> (AB 1584)</div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div><strong>Microsoft Azure Compliance</strong> (FERPA, COPPA, GDPR, SOC 2, ISO 27001)</div>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <p className="text-sm font-semibold">Third-Party Certifications:</p>
+                  <a href="https://azure.microsoft.com/en-us/overview/trusted-cloud/compliance/" className="text-primary hover:underline text-sm" target="_blank" rel="noopener noreferrer">Microsoft Azure Compliance: https://azure.microsoft.com/en-us/overview/trusted-cloud/compliance/</a>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section 13: FAQ */}
+          <section id="faq" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">13. Frequently Asked Questions</h2>
+            
+            <div className="space-y-4">
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: Can teachers see what students translate?</p>
+                  <p className="text-muted-foreground">A: No. All translations happen locally in the student's browser. Nothing is stored or transmitted to teachers.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: Are voice recordings saved?</p>
+                  <p className="text-muted-foreground">A: No. Voice is converted to text in real-time by Azure and immediately discarded. No recordings are saved.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: Can my school administrator see my usage?</p>
+                  <p className="text-muted-foreground">A: No. The extension does not report usage data to anyone. Only local, anonymous statistics are kept on your device.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: Is my translated text stored anywhere?</p>
+                  <p className="text-muted-foreground">A: No. Text is processed in real-time and discarded immediately after translation.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: What happens if I uninstall the extension?</p>
+                  <p className="text-muted-foreground">A: All locally stored settings and preferences are deleted. Since we don't have any servers or accounts, nothing remains.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: Do you use cookies or tracking?</p>
+                  <p className="text-muted-foreground">A: No. We do not use cookies, tracking pixels, or any analytics that identify you.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-bold mb-2">Q: Is the extension safe for students under 13?</p>
+                  <p className="text-muted-foreground">A: Yes. We comply with COPPA and do not collect any personal information from children.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Section 14: Summary */}
+          <section id="summary" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">14. Privacy Policy Acknowledgment & Summary</h2>
+            
+            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/30">
+              <CardContent className="pt-6 space-y-4">
+                <p className="font-semibold">By installing and using LanguageBridge, you acknowledge that you have read and understood this privacy policy.</p>
+                
+                <div className="border-t border-border pt-4 space-y-3">
+                  <div>
+                    <p className="font-bold">What we collect:</p>
+                    <p className="text-sm text-muted-foreground">Almost nothing. Just your language preference stored locally.</p>
+                  </div>
+                  
+                  <div>
+                    <p className="font-bold">What we don't collect:</p>
+                    <p className="text-sm text-muted-foreground">Everything else. No names, no text content, no voice recordings, no browsing history.</p>
+                  </div>
+                  
+                  <div>
+                    <p className="font-bold">What happens to your data:</p>
+                    <p className="text-sm text-muted-foreground">Translations are processed in real-time and immediately discarded. Nothing is saved.</p>
+                  </div>
+                  
+                  <div>
+                    <p className="font-bold">Your rights:</p>
+                    <p className="text-sm text-muted-foreground">You can delete all data by uninstalling the extension. No accounts, no servers, no databases.</p>
+                  </div>
+                </div>
+
+                <div className="border-t border-border pt-4">
+                  <p className="font-semibold text-center">For School Administrators:</p>
+                  <ul className="text-sm text-muted-foreground space-y-1 mt-2">
+                    <li>• Ensure this privacy policy aligns with your district's data privacy requirements</li>
+                    <li>• Review Microsoft Azure's privacy practices: <a href="https://privacy.microsoft.com/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://privacy.microsoft.com/</a></li>
+                    <li>• Consult your legal counsel if needed for FERPA/COPPA compliance verification</li>
+                    <li>• Contact us at <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline">contact@languagebridge.app</a> with any questions</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Final Statement */}
+          <div className="text-center py-12 border-t border-border">
+            <p className="text-2xl font-bold mb-2">LanguageBridge - Privacy-First Translation for Students</p>
+            <p className="text-muted-foreground">Made with ❤️ for English Language Learners</p>
+            <p className="text-sm mt-4">
+              For questions, contact us at{" "}
+              <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline font-semibold">
+                contact@languagebridge.app
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -620,22 +786,22 @@ export default function Privacy() {
       {/* Sticky Contact Button */}
       <a
         href="mailto:privacy@languagebridge.app"
-        className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2 font-semibold"
+        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all hover:scale-110 z-50"
+        aria-label="Email privacy team"
       >
-        <Mail className="w-5 h-5" />
-        <span className="hidden md:inline">Privacy Questions? Email Us</span>
-        <span className="md:hidden">Email Us</span>
+        <Mail className="w-6 h-6" />
       </a>
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
-        <button
+        <Button
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 z-50 bg-foreground text-background p-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105"
+          className="fixed bottom-6 left-6 rounded-full p-4 shadow-lg z-50"
+          variant="secondary"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-5 h-5" />
-        </button>
+          <ArrowUp className="w-6 h-6" />
+        </Button>
       )}
     </div>
   );
