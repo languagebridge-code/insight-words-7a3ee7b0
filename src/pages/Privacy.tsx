@@ -1,11 +1,11 @@
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Mail, ArrowUp, CheckCircle2, XCircle, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { useState, useEffect, useRef } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Privacy() {
   const [showScrollTop, setShowScrollTop] = useState(false);
