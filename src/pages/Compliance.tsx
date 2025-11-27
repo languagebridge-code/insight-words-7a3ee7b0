@@ -19,7 +19,7 @@ export default function Compliance() {
               Legal Compliance & Data Privacy
             </h1>
             <p className="text-xl text-muted-foreground mb-4">
-              Help every student understand—even those who can't read yet
+              Help every student understand, even those who can't read yet
             </p>
             <p className="text-lg text-muted-foreground mb-8">
               Purpose-built for K-12 education with comprehensive federal compliance, zero data storage, and enterprise-grade security
@@ -199,12 +199,12 @@ export default function Compliance() {
                   </p>
                   
                   <p className="mb-4">
-                    LanguageBridge directly addresses EEOA requirements by ensuring preliterate SLIFE students can access the same instructional content as their English-proficient peers—from day one, not months or years later.
+                    LanguageBridge directly addresses EEOA requirements by ensuring preliterate SLIFE students can access the same instructional content as their English-proficient peers from day one, not months or years later.
                   </p>
                   
                   <div className="p-4 bg-muted rounded-lg">
                     <p className="text-sm">
-                      <strong>For District Legal Counsel:</strong> Courts have consistently held that providing language assistance requires more than translation services alone. Districts must ensure ELL students receive comprehensible instruction and can participate meaningfully in educational programs. LanguageBridge's integrated platform—combining translation, audio, simplification, and communication tools—provides the comprehensive language support courts have deemed necessary for EEOA compliance.
+                      <strong>For District Legal Counsel:</strong> Courts have consistently held that providing language assistance requires more than translation services alone. Districts must ensure ELL students receive comprehensible instruction and can participate meaningfully in educational programs. LanguageBridge's integrated platform, combining translation, audio, simplification, and communication tools, provides the comprehensive language support courts have deemed necessary for EEOA compliance.
                     </p>
                   </div>
                 </div>
@@ -321,7 +321,7 @@ export default function Compliance() {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold text-primary">4.</span>
-                      <span>Original text and translation are immediately discarded—nothing is cached or stored</span>
+                      <span>Original text and translation are immediately discarded. Nothing is cached or stored</span>
                     </li>
                   </ol>
                   
@@ -362,7 +362,7 @@ export default function Compliance() {
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <strong>Usage Analytics:</strong> Monthly reports show aggregated translation requests by language and building—NO individual student tracking or identification.
+                      <strong>Usage Analytics:</strong> Monthly reports show aggregated translation requests by language and building with NO individual student tracking or identification.
                     </div>
                   </div>
                   
@@ -383,7 +383,7 @@ export default function Compliance() {
 
                 <div className="mt-6 p-4 bg-muted rounded-lg">
                   <p className="text-sm">
-                    <strong>Monthly Reports Include:</strong> Total translation requests by language, text simplification usage, teacher-student communication volume, and academic glossary access—all aggregated at the building or district level with zero individual student identification.
+                    <strong>Monthly Reports Include:</strong> Total translation requests by language, text simplification usage, teacher-student communication volume, and academic glossary access, all aggregated at the building or district level with zero individual student identification.
                   </p>
                 </div>
               </CardContent>
@@ -423,7 +423,7 @@ export default function Compliance() {
                       <span className="text-destructive">⚠</span> Translation History and Data Retention
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      Google Translate stores translation history for users who are logged in. For students using school Google accounts, this creates education records that must be managed under FERPA—but districts lack control over this data storage.
+                      Google Translate stores translation history for users who are logged in. For students using school Google accounts, this creates education records that must be managed under FERPA, but districts lack control over this data storage.
                     </p>
                   </div>
 
@@ -432,7 +432,7 @@ export default function Compliance() {
                       <span className="text-destructive">⚠</span> Inadequate for Preliterate Students
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      Google Translate provides text-only translation requiring students to read in both languages. Preliterate SLIFE students who cannot read in ANY language receive zero educational benefit—failing the "meaningful access" standard under Title VI and EEOA.
+                      Google Translate provides text-only translation requiring students to read in both languages. Preliterate SLIFE students who cannot read in ANY language receive zero educational benefit, failing the "meaningful access" standard under Title VI and EEOA.
                     </p>
                   </div>
 
@@ -441,7 +441,7 @@ export default function Compliance() {
                       <span className="text-destructive">⚠</span> No Educational Features or Compliance Documentation
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      Google Translate lacks text simplification, academic glossaries, teacher communication tools, and usage reporting—making it difficult for districts to document they're providing adequate language assistance as required by federal law.
+                      Google Translate lacks text simplification, academic glossaries, teacher communication tools, and usage reporting, making it difficult for districts to document they're providing adequate language assistance as required by federal law.
                     </p>
                   </div>
                 </div>
@@ -449,7 +449,7 @@ export default function Compliance() {
                 <div className="mt-6 p-4 bg-primary/10 rounded-lg">
                   <p className="font-semibold mb-2">LanguageBridge Was Built for Education:</p>
                   <ul className="space-y-1 text-sm">
-                    <li>✓ Zero data storage—no translation history, no student information retained</li>
+                    <li>✓ Zero data storage. No translation history, no student information retained</li>
                     <li>✓ FERPA/COPPA compliant by design with education-specific protections</li>
                     <li>✓ Audio support for preliterate students who cannot read in any language</li>
                     <li>✓ Comprehensive tools beyond translation (simplification, communication, glossaries)</li>

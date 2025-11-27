@@ -137,7 +137,7 @@ export const Footer = () => {
             <img src={logo} alt="LanguageBridge Logo" className="w-16 h-16 mb-4" />
             <h3 className="font-bold text-lg mb-4 text-white">Our Mission</h3>
             <p className="text-white/80 text-sm leading-relaxed">
-              Help every student understand—even those who can't read yet. LanguageBridge is the first Language Accessibility Screen Reader, breaking down barriers for preliterate English language learners.
+              Help every student understand, even those who can't read yet. LanguageBridge is the first Language Accessibility Screen Reader, breaking down barriers for preliterate English language learners.
             </p>
           </div>
         </div>

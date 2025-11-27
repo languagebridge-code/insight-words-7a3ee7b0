@@ -20,10 +20,10 @@ export default function Features() {
               Complete Language Accessibility Platform
             </h1>
             <p className="text-xl text-muted-foreground mb-4">
-              Help every student understand—even those who can't read yet
+              Help every student understand, even those who can't read yet
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Four integrated tools designed specifically for preliterate SLIFE students who need to hear—not just read—content in their language
+              Four integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
             </p>
             <div className="flex gap-4 justify-center">
               <Link to="/pilot">

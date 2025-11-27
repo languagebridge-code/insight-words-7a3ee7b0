@@ -10,7 +10,7 @@ export const FourTools = () => {
               Four Tools That Work <span className="gradient-text">Together</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              LanguageBridge isn't just translation—it's a complete language accessibility platform designed specifically for preliterate SLIFE students.
+              LanguageBridge isn't just translation. It's a complete language accessibility platform designed specifically for preliterate SLIFE students.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export const FourTools = () => {
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Two-way translation for quick check-ins, assignment clarifications, and personalized feedback—without pulling other students from class to interpret. Maintains student privacy and dignity while ensuring clear communication. Eliminates the compliance risk of using untrained student interpreters.
+                Two-way translation for quick check-ins, assignment clarifications, and personalized feedback without pulling other students from class to interpret. Maintains student privacy and dignity while ensuring clear communication. Eliminates the compliance risk of using untrained student interpreters.
               </p>
             </div>
 
@@ -78,7 +78,7 @@ export const FourTools = () => {
 
           <div className="mt-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 border-2 border-primary/20 text-center">
             <p className="text-lg text-foreground font-medium italic">
-              All four tools work seamlessly together in one Chrome extension. Students use what they need, when they need it—with one keyboard shortcut (Alt+Shift+L).
+              All four tools work seamlessly together in one Chrome extension. Students use what they need, when they need it, with one keyboard shortcut (Alt+Shift+L).
             </p>
           </div>
         </div>
