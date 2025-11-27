@@ -48,7 +48,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "How do we pay for it?",
-      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. Contact sales@languagebridge.app to discuss funding options and we'll provide budget justification letters tailored to your district."
+      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. Email us at contact@languagebridge.app to discuss funding options and we'll provide budget justification letters tailored to your district."
     },
     {
       question: "What's included in the Chrome extension?",
@@ -93,8 +93,8 @@ export const FAQExpanded = () => {
 
         <div className="text-center mt-12 fade-in-up">
           <p className="text-muted-foreground mb-4">Still have questions?</p>
-          <a href="mailto:info@languagebridge.app" className="text-primary font-semibold hover:underline">
-            Contact our team at info@languagebridge.app →
+          <a href="mailto:contact@languagebridge.app" className="text-primary font-semibold hover:underline">
+            Contact our team at contact@languagebridge.app →
           </a>
         </div>
       </div>

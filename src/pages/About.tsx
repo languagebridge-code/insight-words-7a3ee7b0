@@ -258,7 +258,7 @@ export default function About() {
                 Apply for 2025-2026 Pilot
               </Button>
             </Link>
-            <a href="mailto:info@languagebridge.app">
+            <a href="mailto:contact@languagebridge.app">
               <Button size="lg" variant="outline">
                 Get in Touch
               </Button>

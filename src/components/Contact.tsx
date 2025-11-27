@@ -116,8 +116,8 @@ export const Contact = () => {
             <div className="space-y-4 mb-6">
               <div className="flex items-center justify-center gap-3 text-white text-lg">
                 <Mail className="w-5 h-5" />
-                <a href="mailto:info@languagebridge.app" className="hover:underline font-medium">
-                  info@languagebridge.app
+                <a href="mailto:contact@languagebridge.app" className="hover:underline font-medium">
+                  contact@languagebridge.app
                 </a>
               </div>
               
