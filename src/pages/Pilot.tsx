@@ -101,24 +101,6 @@ export default function Pilot() {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Maria Rodriguez",
-      role: "ESL Teacher, Columbus",
-      quote: "The pilot convinced our principal immediately. Within one week, we saw Carlos participating in class for the first time all year."
-    },
-    {
-      name: "Dr. Sarah Kim",
-      role: "Assistant Superintendent",
-      quote: "Starting with a pilot gave us real data to present to the school board. The 30 days turned into a district-wide adoption."
-    },
-    {
-      name: "James Turner",
-      role: "Technology Director",
-      quote: "Setup was incredibly simple - 30 minutes from receiving the instructions to having it live on our Chromebooks."
-    }
-  ];
-
   const faqs = [
     {
       q: "What happens after 30 days?",
@@ -367,29 +349,6 @@ export default function Pilot() {
                   <div className="flex-1">
                     <h3 className="text-lg font-bold mb-1">{item.title}</h3>
                     <p className="text-sm text-primary font-semibold">{item.duration}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              What Educators Say About Their Pilot
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-card rounded-xl p-6 border border-border">
-                  <p className="text-muted-foreground italic mb-4">"{testimonial.quote}"</p>
-                  <div>
-                    <p className="font-bold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
               ))}
