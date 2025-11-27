@@ -312,9 +312,9 @@ export default function Pilot() {
                     <Label htmlFor="grantInterest" className="text-base font-semibold cursor-pointer">
                       I'm interested in grant funding after the pilot
                     </Label>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      We'll send you grant templates and guidance during your pilot
-                    </p>
+                     <p className="text-sm text-muted-foreground mt-1">
+                       We'll send you grant templates and guidance during your pilot
+                     </p>
                   </div>
                 </div>
 

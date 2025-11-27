@@ -33,7 +33,7 @@ export const TechnicalSpecs = () => {
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Supports translation, text simplification, two-way communication, and academic glossaries—all in one extension</span>
+                      <span>Supports translation, text simplification, two-way communication, and academic glossaries, all in one extension</span>
                     </li>
                   </ul>
                 </div>
@@ -112,7 +112,7 @@ export const TechnicalSpecs = () => {
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Real-time processing—translations never stored or cached</span>
+                      <span>Real-time processing with translations never stored or cached</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>

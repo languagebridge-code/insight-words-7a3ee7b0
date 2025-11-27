@@ -19,7 +19,7 @@ export default function About() {
               Built by Educators, For Educators
             </h1>
             <p className="text-xl text-muted-foreground mb-4">
-              Help every student understand—even those who can't read yet
+              Help every student understand, even those who can't read yet
             </p>
             <p className="text-lg text-muted-foreground">
               LanguageBridge is breaking down language barriers for the most vulnerable learners across Ohio and beyond
@@ -40,7 +40,7 @@ export default function About() {
                   <Target className="w-12 h-12 text-primary mb-4" />
                   <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
                   <p className="text-muted-foreground">
-                    To ensure every preliterate SLIFE student can access grade-level education from day one—not months or years later. We're building the tools that help the most vulnerable English Language Learners succeed.
+                    To ensure every preliterate SLIFE student can access grade-level education from day one, not months or years later. We're building the tools that help the most vulnerable English Language Learners succeed.
                   </p>
                 </CardContent>
               </Card>
@@ -69,11 +69,11 @@ export default function About() {
             
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                In classrooms across America, preliterate Students with Limited or Interrupted Formal Education (SLIFE) sit silently—not because they lack curiosity or intelligence, but because they cannot access the content being taught.
+                In classrooms across America, preliterate Students with Limited or Interrupted Formal Education (SLIFE) sit silently, not because they lack curiosity or intelligence, but because they cannot access the content being taught.
               </p>
               
               <p>
-                These students—often refugees and newcomers who have experienced trauma and disrupted schooling—face a unique challenge: <strong className="text-foreground">they cannot read in any language yet</strong>, including their home language.
+                These students, often refugees and newcomers who have experienced trauma and disrupted schooling, face a unique challenge: <strong className="text-foreground">they cannot read in any language yet</strong>, including their home language.
               </p>
               
               <p>
@@ -89,7 +89,7 @@ export default function About() {
               </p>
               
               <p>
-                By combining real-time translation with audio playback, text simplification, teacher communication, and academic vocabulary support, LanguageBridge gives preliterate SLIFE students immediate access to grade-level content—on day one, not months later.
+                By combining real-time translation with audio playback, text simplification, teacher communication, and academic vocabulary support, LanguageBridge gives preliterate SLIFE students immediate access to grade-level content on day one, not months later.
               </p>
             </div>
 
@@ -99,7 +99,7 @@ export default function About() {
                 <strong className="text-foreground">"I built LanguageBridge because I saw students like Amira being left behind every single day. I knew there had to be a better way."</strong>
               </p>
               <p className="text-center text-muted-foreground mt-2">
-                — Justin Bernard, M.Ed., Founder
+                Justin Bernard, M.Ed., Founder
               </p>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function About() {
             <Card>
               <CardContent className="pt-6">
                 <p className="text-lg text-muted-foreground mb-4">
-                  LanguageBridge was founded in Northeast Ohio, where communities have welcomed thousands of refugee students in recent years—including significant populations of Afghan refugees following the 2021 withdrawal.
+                  LanguageBridge was founded in Northeast Ohio, where communities have welcomed thousands of refugee students in recent years, including significant populations of Afghan refugees following the 2021 withdrawal.
                 </p>
                 
                 <p className="text-lg text-muted-foreground mb-4">
@@ -153,7 +153,7 @@ export default function About() {
                   <GraduationCap className="w-12 h-12 text-primary mx-auto mb-4" />
                   <h3 className="text-xl font-bold mb-3">Education First</h3>
                   <p className="text-muted-foreground">
-                    Every decision is guided by what helps students learn. Not what's easy to build or profitable to sell—what actually works in classrooms.
+                    Every decision is guided by what helps students learn. Not what's easy to build or profitable to sell. What actually works in classrooms.
                   </p>
                 </CardContent>
               </Card>
