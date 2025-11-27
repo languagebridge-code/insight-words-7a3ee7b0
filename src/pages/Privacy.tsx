@@ -679,23 +679,15 @@ export default function Privacy() {
 
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-4">For Support and Sales</h3>
+                  <h3 className="text-xl font-semibold mb-4">For Support and General Information</h3>
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
                     <div>
-                      <p className="font-semibold mb-1">General Support:</p>
+                      <p className="font-semibold mb-1">Technical Support:</p>
                       <a href="mailto:support@languagebridge.app" className="text-primary hover:underline">support@languagebridge.app</a>
                     </div>
                     <div>
-                      <p className="font-semibold mb-1">General Information:</p>
-                      <a href="mailto:info@languagebridge.app" className="text-primary hover:underline">info@languagebridge.app</a>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">Sales Inquiries:</p>
-                      <a href="mailto:sales@languagebridge.app" className="text-primary hover:underline">sales@languagebridge.app</a>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">Founder:</p>
-                      <a href="mailto:justin@languagebridge.app" className="text-primary hover:underline">justin@languagebridge.app</a>
+                      <p className="font-semibold mb-1">General Inquiries:</p>
+                      <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline">contact@languagebridge.app</a>
                     </div>
                   </div>
                 </CardContent>

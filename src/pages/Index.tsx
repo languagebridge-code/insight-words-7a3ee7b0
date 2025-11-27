@@ -57,7 +57,7 @@ const Index = () => {
                   View FAQ
                 </Button>
               </Link>
-              <a href="mailto:info@languagebridge.app">
+              <a href="mailto:contact@languagebridge.app">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 w-full sm:w-auto group">
                   <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
                   Email Questions

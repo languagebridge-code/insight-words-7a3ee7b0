@@ -57,7 +57,7 @@ const FAQ = () => {
     },
     {
       question: "How do we pay for it?",
-      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. Contact sales@languagebridge.app to discuss funding options and we'll provide budget justification letters tailored to your district."
+      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. Email us at contact@languagebridge.app to discuss funding options and we'll provide budget justification letters tailored to your district."
     },
     {
       question: "Can we try it before we purchase it?",
@@ -148,10 +148,10 @@ const FAQ = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="mailto:info@languagebridge.app"
+                href="mailto:contact@languagebridge.app"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
-                Email: info@languagebridge.app
+                Email: contact@languagebridge.app
               </a>
               <a 
                 href="tel:+12168006020"

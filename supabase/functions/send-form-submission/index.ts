@@ -93,11 +93,11 @@ const handler = async (req: Request): Promise<Response> => {
       await addToMailchimp(body.email, firstName, lastName);
     }
 
-    console.log("Sending email to sales@languagebridge.app");
+    console.log("Sending email to contact@languagebridge.app");
 
     const emailResponse = await resend.emails.send({
       from: "LanguageBridge <onboarding@resend.dev>",
-      to: ["sales@languagebridge.app"],
+      to: ["contact@languagebridge.app"],
       subject: subject,
       html: emailHtml,
     });

@@ -684,8 +684,8 @@ export default function TermsOfService() {
                   </div>
                   <div>
                     <p className="font-semibold mb-2">School District Contracts:</p>
-                    <a href="mailto:sales@languagebridge.app" className="text-primary hover:underline">
-                      sales@languagebridge.app
+                    <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline">
+                      contact@languagebridge.app
                     </a>
                   </div>
                   <div>
