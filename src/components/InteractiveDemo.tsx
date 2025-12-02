@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Mic, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
+import { Play, BookMarked, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
 import languageBridgeIcon from '@/assets/languagebridge-icon.png';
 import { TalkToTeacherPanel } from './TalkToTeacherModal';
 
@@ -83,7 +83,7 @@ export const InteractiveDemo = () => {
                   className="p-2 hover:bg-white/20 rounded-lg transition-all"
                   title="Voice input"
                 >
-                  <Mic className="w-5 h-5" />
+                  <BookMarked className="w-5 h-5" />
                 </button>
               </div>
 
