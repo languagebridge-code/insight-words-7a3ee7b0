@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Play, Mic, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
 import languageBridgeIcon from '@/assets/languagebridge-icon.png';
+import { TalkToTeacherModal } from './TalkToTeacherModal';
 
 export const InteractiveDemo = () => {
+  const [showTalkToTeacher, setShowTalkToTeacher] = useState(false);
+  
   const storyText = `Dennis and Mack sat in the car and looked at the deserted parking lot. "Dennis!" Mack shouted from the passenger seat. Dennis! Mack looked crazy. Dennis ran from the parking lot toward the gas pump. "I'm coming, Mack!" he yelled to his friend and went into the store. Mack was behind the counter. When Dennis came in, Mack pointed to the back of the store.`;
 
   return (
@@ -80,7 +83,10 @@ export const InteractiveDemo = () => {
               </div>
 
               {/* Talk with Teacher Button */}
-              <button className="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 flex-shrink-0">
+              <button 
+                onClick={() => setShowTalkToTeacher(true)}
+                className="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 flex-shrink-0"
+              >
                 <MessageSquare className="w-4 h-4" />
                 <span className="hidden sm:inline">Talk with Teacher</span>
               </button>
@@ -118,6 +124,12 @@ export const InteractiveDemo = () => {
           </p>
         </div>
       </div>
+
+      {/* Talk to Teacher Modal */}
+      <TalkToTeacherModal 
+        open={showTalkToTeacher} 
+        onOpenChange={setShowTalkToTeacher}
+      />
     </section>
   );
 };
