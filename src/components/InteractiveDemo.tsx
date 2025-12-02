@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Languages, Volume2 } from 'lucide-react';
+import { Play, Mic, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
 import languageBridgeIcon from '@/assets/languagebridge-icon.png';
 
 export const InteractiveDemo = () => {
@@ -49,23 +49,63 @@ export const InteractiveDemo = () => {
             </div>
           </div>
 
-          {/* LanguageBridge Toolbar */}
-          <div className="bg-gradient-to-r from-purple-600 to-orange-500 text-white p-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <img src={languageBridgeIcon} alt="LanguageBridge" className="w-6 h-6" />
-                <span className="font-bold">LanguageBridge</span>
+          {/* LanguageBridge Toolbar - Matches Real Product */}
+          <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white px-4 py-3">
+            <div className="flex items-center gap-3">
+              {/* Logo */}
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <img src={languageBridgeIcon} alt="LanguageBridge" className="w-8 h-8" />
+                <span className="font-semibold text-sm hidden sm:inline">LanguageBridge</span>
               </div>
 
-              <div className="flex items-center space-x-2">
-                <button className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-all">
-                  <Play className="w-4 h-4" />
+              {/* Text Input */}
+              <div className="flex-1 bg-white/10 rounded-lg px-4 py-2 text-sm text-white/90 backdrop-blur-sm border border-white/20 min-w-0">
+                Tap to speak text to translate
+              </div>
+
+              {/* Control Buttons */}
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <button 
+                  className="p-2 hover:bg-white/20 rounded-lg transition-all"
+                  title="Play audio"
+                >
+                  <Play className="w-5 h-5 fill-white" />
                 </button>
-                <button className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-all">
-                  <Languages className="w-4 h-4" />
+                <button 
+                  className="p-2 hover:bg-white/20 rounded-lg transition-all"
+                  title="Voice input"
+                >
+                  <Mic className="w-5 h-5" />
                 </button>
-                <button className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-all">
-                  <Volume2 className="w-4 h-4" />
+              </div>
+
+              {/* Talk with Teacher Button */}
+              <button className="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 flex-shrink-0">
+                <MessageSquare className="w-4 h-4" />
+                <span className="hidden sm:inline">Talk with Teacher</span>
+              </button>
+
+              {/* Language Selector */}
+              <div className="bg-white/20 px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-sm border border-white/30 flex-shrink-0">
+                <span className="hidden sm:inline">دری </span>Dari
+              </div>
+
+              {/* Status */}
+              <div className="text-xs text-white/90 flex items-center gap-2 flex-shrink-0 hidden lg:flex">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span>Active</span>
+              </div>
+
+              {/* Utility Buttons */}
+              <div className="flex items-center gap-1 flex-shrink-0 hidden md:flex">
+                <button className="p-2 hover:bg-white/20 rounded-lg transition-all" title="Settings">
+                  <Settings className="w-4 h-4" />
+                </button>
+                <button className="p-2 hover:bg-white/20 rounded-lg transition-all" title="Help">
+                  <HelpCircle className="w-4 h-4" />
+                </button>
+                <button className="p-2 hover:bg-white/20 rounded-lg transition-all" title="Minimize">
+                  <Minimize2 className="w-4 h-4" />
                 </button>
               </div>
             </div>
