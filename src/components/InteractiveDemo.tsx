@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Play, BookMarked, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
 import languageBridgeIcon from '@/assets/languagebridge-icon.png';
 import { TalkToTeacherPanel } from './TalkToTeacherModal';
+import { VocabularyPanel } from './VocabularyPanel';
 
 export const InteractiveDemo = () => {
   const [showTalkToTeacher, setShowTalkToTeacher] = useState(false);
+  const [showVocabulary, setShowVocabulary] = useState(false);
   
   const storyText = `Dennis and Mack sat in the car and looked at the deserted parking lot. "Dennis!" Mack shouted from the passenger seat. Dennis! Mack looked crazy. Dennis ran from the parking lot toward the gas pump. "I'm coming, Mack!" he yelled to his friend and went into the store. Mack was behind the counter. When Dennis came in, Mack pointed to the back of the store.`;
 
@@ -24,6 +26,11 @@ export const InteractiveDemo = () => {
           {/* Talk to Teacher Panel */}
           {showTalkToTeacher && (
             <TalkToTeacherPanel onClose={() => setShowTalkToTeacher(false)} />
+          )}
+
+          {/* Vocabulary Panel */}
+          {showVocabulary && (
+            <VocabularyPanel onClose={() => setShowVocabulary(false)} />
           )}
           
           {/* Google Classroom Header Mock */}
@@ -80,8 +87,11 @@ export const InteractiveDemo = () => {
                   <Play className="w-5 h-5 fill-white" />
                 </button>
                 <button 
-                  className="p-2 hover:bg-white/20 rounded-lg transition-all"
-                  title="Voice input"
+                  onClick={() => setShowVocabulary(!showVocabulary)}
+                  className={`p-2 rounded-lg transition-all ${
+                    showVocabulary ? 'bg-white/30' : 'hover:bg-white/20'
+                  }`}
+                  title="Academic Vocabulary"
                 >
                   <BookMarked className="w-5 h-5" />
                 </button>
