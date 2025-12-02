@@ -716,6 +716,19 @@ export default function TermsOfService() {
               </p>
             </CardContent>
           </Card>
+
+          {/* Copyright Notice */}
+          <div className="text-center py-8 border-t border-border mt-8">
+            <p className="text-sm text-muted-foreground">
+              © 2025 LanguageBridge. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              LanguageBridge is a registered trademark of LanguageBridge.
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Unauthorized use, reproduction, or distribution of this content is prohibited.
+            </p>
+          </div>
         </div>
       </div>
 
