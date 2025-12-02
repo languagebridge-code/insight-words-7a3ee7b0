@@ -78,21 +78,22 @@ export default function Privacy() {
   };
 
   const sections = [
-    { id: "introduction", title: "Introduction" },
-    { id: "collection", title: "1. Information We Collect" },
-    { id: "third-party", title: "2. Third-Party Services" },
-    { id: "usage", title: "3. How We Use Data" },
-    { id: "sharing", title: "4. Data Sharing and Disclosure" },
-    { id: "coppa", title: "5. Children's Privacy (COPPA)" },
-    { id: "ferpa", title: "6. FERPA Compliance" },
-    { id: "security", title: "7. Data Security" },
-    { id: "rights", title: "8. User Rights and Controls" },
-    { id: "changes", title: "9. Changes to This Policy" },
-    { id: "international", title: "10. International Users" },
-    { id: "contact", title: "11. Contact Information" },
-    { id: "compliance", title: "12. Compliance Certifications" },
-    { id: "faq", title: "13. Frequently Asked Questions" },
-    { id: "summary", title: "14. Summary" },
+    { id: "commitment", title: "Our Commitment" },
+    { id: "collection", title: "What We Collect" },
+    { id: "how-it-works", title: "How It Works" },
+    { id: "dont-do", title: "What We Don't Do" },
+    { id: "third-party", title: "Third-Party Services" },
+    { id: "security", title: "Data Security" },
+    { id: "retention", title: "Data Retention" },
+    { id: "ferpa", title: "Student Rights (FERPA)" },
+    { id: "coppa", title: "Children's Privacy (COPPA)" },
+    { id: "schools", title: "For Schools" },
+    { id: "international", title: "International Use" },
+    { id: "changes", title: "Changes to This Policy" },
+    { id: "transparency", title: "Transparency Commitments" },
+    { id: "legal", title: "Legal Compliance" },
+    { id: "contact", title: "Contact Us" },
+    { id: "summary", title: "Plain English Summary" },
   ];
 
   return (
@@ -114,11 +115,11 @@ export default function Privacy() {
               {isGeneratingPdf ? "Generating..." : "Download PDF"}
             </Button>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy for LanguageBridge Chrome Extension</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy</h1>
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-white/80">
-            <p><strong>Effective Date:</strong> November 15, 2024</p>
+            <p><strong>Effective Date:</strong> December 1, 2025</p>
             <span className="hidden md:inline">•</span>
-            <p><strong>Last Updated:</strong> November 15, 2024</p>
+            <p><strong>Contact:</strong> privacy@languagebridge.app</p>
           </div>
         </div>
       </header>
@@ -128,32 +129,10 @@ export default function Privacy() {
           {/* Key Points Card */}
           <Card className="mb-8 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
             <CardContent className="pt-6">
-              <h2 className="text-2xl font-bold mb-6" id="introduction">Introduction</h2>
+              <h2 className="text-2xl font-bold mb-6" id="commitment">Our Commitment</h2>
               <p className="text-muted-foreground mb-6">
-                LanguageBridge is committed to protecting the privacy of students, teachers, and all users of our Chrome extension. This privacy policy explains what data we collect, how we use it, and your rights regarding your information.
+                LanguageBridge helps students learn. We don't sell data, track browsing, or create profiles. This policy explains exactly what we do and don't do with information.
               </p>
-              <div className="space-y-2">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>We do NOT store any student data</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>We do NOT collect personally identifiable information (PII)</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Voice recordings are processed in real-time and immediately discarded</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>We are FERPA and COPPA compliant</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>No ads, no tracking, no data sales</span>
-                </div>
-              </div>
             </CardContent>
           </Card>
 
@@ -175,63 +154,49 @@ export default function Privacy() {
             </CardContent>
           </Card>
 
-          {/* Section 1: Information We Collect */}
+          {/* Section: What We Collect */}
           <section id="collection" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">1. Information We Collect</h2>
+            <h2 className="text-3xl font-bold mb-6">What We Collect</h2>
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-semibold mb-4">1.1 Data We DO Collect (Stored Locally Only)</h3>
+                <h3 className="text-2xl font-semibold mb-4">From Students: Almost Nothing</h3>
                 
                 <Card className="mb-4">
                   <CardContent className="pt-6">
-                    <h4 className="font-bold mb-3">User Preferences (Stored in Chrome Sync Storage)</h4>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-                      <li>Selected language preference (e.g., Dari, Pashto, Arabic)</li>
-                      <li>Reading speed settings</li>
-                      <li>Extension settings and customizations</li>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li>
+                        <strong>Text for translation:</strong> When you select text, we send it to Microsoft Azure for translation. We don't store it.
+                      </li>
+                      <li>
+                        <strong>Language preference:</strong> We remember which language you chose (stored in your browser).
+                      </li>
+                      <li>
+                        <strong>Usage stats:</strong> Anonymous counts like "150 translations today" (no names, no personal info).
+                      </li>
                     </ul>
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Storage Location:</strong> Chrome browser's sync storage (controlled by Google)</p>
-                      <p><strong>Purpose:</strong> Remember your preferences across devices</p>
-                    </div>
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900 mb-4">
                   <CardContent className="pt-6">
-                    <h4 className="font-bold mb-3">Anonymous Usage Statistics (Stored Locally)</h4>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-                      <li>Number of translations performed</li>
-                      <li>Extension usage timestamps</li>
-                      <li>Feature usage counts (e.g., how many times toolbar was used)</li>
-                    </ul>
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Storage Location:</strong> Local browser storage only</p>
-                      <p><strong>Purpose:</strong> Improve extension performance and features</p>
-                      <p><strong>Note:</strong> This data never leaves your device</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">1.2 Data We DO NOT Collect</h3>
-                <Card className="bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900">
-                  <CardContent className="pt-6">
-                    <p className="font-semibold mb-4">We explicitly <strong>DO NOT</strong> collect or store:</p>
+                    <p className="font-semibold mb-4">We do NOT collect:</p>
                     <div className="grid md:grid-cols-2 gap-2">
                       <div className="flex items-start gap-2">
                         <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>Student names or PII</span>
+                        <span>Names</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>Text content that you translate</span>
+                        <span>Email addresses</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>Voice recordings or audio data</span>
+                        <span>Student IDs</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <span>Grades</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
@@ -239,84 +204,37 @@ export default function Privacy() {
                       </div>
                       <div className="flex items-start gap-2">
                         <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>Email addresses or login credentials</span>
+                        <span>Personal information of any kind</span>
                       </div>
-                      <div className="flex items-start gap-2">
-                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>School or classroom information</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>Geolocation data</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span>Student identifying data</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 2: Third-Party Services */}
-          <section id="third-party" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">2. Third-Party Services</h2>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">2.1 Microsoft Azure Cognitive Services</h3>
-                <Card>
-                  <CardContent className="pt-6 space-y-4">
-                    <p className="font-semibold">LanguageBridge uses Microsoft Azure for:</p>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li><strong>Speech-to-Text:</strong> Converting voice to text for conversations</li>
-                      <li><strong>Text-to-Speech:</strong> Reading translations aloud</li>
-                      <li><strong>Translation:</strong> Translating text between languages</li>
-                      <li><strong>Text Simplification:</strong> Simplifying academic text (Azure OpenAI)</li>
-                    </ul>
-
-                    <div className="border-l-4 border-primary pl-4 my-6">
-                      <p className="font-bold mb-2">How Azure Processes Data:</p>
-                      <ul className="space-y-2 text-sm">
-                        <li>✓ All data is processed <strong>in real-time</strong></li>
-                        <li>✓ <strong>No data retention:</strong> Audio, text, and translations are NOT stored by Azure after processing</li>
-                        <li>✓ <strong>Enterprise-grade security:</strong> Microsoft Azure is FERPA and COPPA compliant</li>
-                        <li>✓ <strong>Encryption:</strong> All data transmitted to Azure is encrypted using TLS 1.2+</li>
-                        <li>✓ <strong>Microsoft Privacy Policy:</strong> <a href="https://privacy.microsoft.com/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://privacy.microsoft.com/</a></li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <p className="font-semibold mb-2">Data Sent to Azure:</p>
-                      <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                        <li>Selected text for translation (temporary, not stored)</li>
-                        <li>Voice input for speech recognition (temporary, not stored)</li>
-                        <li>Text for text-to-speech synthesis (temporary, not stored)</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <p className="font-semibold mb-2">Data NOT Sent to Azure:</p>
-                      <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                        <li>Student names or identifying information</li>
-                        <li>Full webpage content</li>
-                        <li>Browsing history</li>
-                        <li>Any data not explicitly selected by the user</li>
-                      </ul>
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold mb-4">2.2 Chrome Web Store</h3>
+                <h3 className="text-2xl font-semibold mb-4">From Schools</h3>
                 <Card>
                   <CardContent className="pt-6">
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• Extension updates are delivered through Google Chrome Web Store</li>
-                      <li>• Google's privacy policy applies: <a href="https://policies.google.com/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a></li>
+                    <p className="mb-4">When schools purchase LanguageBridge:</p>
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li>School/district name</li>
+                      <li>Administrator contact info</li>
+                      <li>Number of licenses</li>
+                      <li>Aggregate usage data (not linked to individual students)</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Technical Stuff</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li>Browser type (for compatibility)</li>
+                      <li>Extension version</li>
+                      <li>Error logs (no personal info)</li>
+                      <li>Language pairs used (aggregated across all users)</li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -324,41 +242,190 @@ export default function Privacy() {
             </div>
           </section>
 
-          {/* Section 3: How We Use Data */}
-          <section id="usage" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">3. How We Use Data</h2>
+          {/* Section: How It Works */}
+          <section id="how-it-works" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">How It Works</h2>
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-semibold mb-4">3.1 Real-Time Processing Only</h3>
+                <h3 className="text-2xl font-semibold mb-4">Translation Process</h3>
                 <Card className="bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900">
                   <CardContent className="pt-6">
-                    <p className="font-semibold mb-4">All translation and speech processing happens <strong>in real-time:</strong></p>
-                    <ol className="space-y-3 list-decimal list-inside">
-                      <li><strong>User selects text</strong> → Sent to Azure Translator → Translated → Displayed</li>
-                      <li><strong>User speaks</strong> → Sent to Azure Speech → Transcribed → Displayed</li>
-                      <li><strong>Translation spoken</strong> → Sent to Azure Speech Synthesis → Audio played</li>
+                    <ol className="space-y-2 list-decimal list-inside mb-4">
+                      <li>You select text</li>
+                      <li>Text goes to Microsoft Azure via encrypted HTTPS</li>
+                      <li>Azure translates it and sends it back</li>
+                      <li>Azure immediately discards the text</li>
+                      <li>You hear/see the translation</li>
                     </ol>
-                    <p className="mt-4 font-bold">After processing: All data is immediately discarded. Nothing is saved.</p>
+                    <p className="font-bold">The text is never stored. Not by us, not by Microsoft.</p>
                   </CardContent>
                 </Card>
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold mb-4">3.2 Local Preferences</h3>
+                <h3 className="text-2xl font-semibold mb-4">Google Docs & Clipboard</h3>
+                <Card>
+                  <CardContent className="pt-6 space-y-4">
+                    <div>
+                      <p className="font-semibold mb-2">Why we need clipboard permission:</p>
+                      <p className="text-muted-foreground">Google Docs blocks normal text selection. When you copy text in Google Docs, we read it from your clipboard to translate it.</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-2">What we do NOT do:</p>
+                      <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                        <li>Monitor your clipboard continuously</li>
+                        <li>Read clipboard data outside Google Docs contexts</li>
+                        <li>Store anything you copy</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Text-to-Speech</h3>
                 <Card>
                   <CardContent className="pt-6">
-                    <p className="mb-4">User settings (language, speed, etc.) are saved in Chrome's sync storage to:</p>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li>Remember your preferences</li>
-                      <li>Provide a personalized experience</li>
-                      <li>Sync settings across your Chrome browsers (if Chrome Sync is enabled)</li>
-                    </ul>
-                    <p className="mt-4 text-sm font-semibold">You control this data: You can clear it anytime through Chrome settings or by uninstalling the extension.</p>
+                    <p className="text-muted-foreground">Same as translation - text is sent to Azure Speech Services, processed, and immediately discarded. We don't keep audio files.</p>
                   </CardContent>
                 </Card>
               </div>
             </div>
+          </section>
+
+          {/* Section: What We Don't Do */}
+          <section id="dont-do" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">What We Don't Do</h2>
+            
+            <Card className="bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900">
+              <CardContent className="pt-6">
+                <p className="font-semibold mb-4">We NEVER:</p>
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Sell student data</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Use data for advertising</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Track browsing history</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Create student profiles</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Share data with advertisers</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Store translated text</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <span>Link usage to individual students</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section: Third-Party Services */}
+          <section id="third-party" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Third-Party Services</h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Microsoft Azure (Translation & Speech)</h3>
+                <Card>
+                  <CardContent className="pt-6 space-y-4">
+                    <div>
+                      <p className="font-semibold mb-2">Used for:</p>
+                      <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                        <li>Translation and text-to-speech</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-2">What they get:</p>
+                      <p className="text-muted-foreground">Selected text only (no student names/IDs)</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-2">Storage:</p>
+                      <p className="text-muted-foreground">None - text is processed and immediately deleted</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold mb-2">Privacy:</p>
+                      <a href="https://privacy.microsoft.com/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Microsoft Privacy Policy</a>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">We don't use:</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                      <li>Google Analytics</li>
+                      <li>Ad networks</li>
+                      <li>Social media trackers</li>
+                      <li>Data brokers</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Section: Data Security */}
+          <section id="security" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Data Security</h2>
+            
+            <Card>
+              <CardContent className="pt-6">
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>All data encrypted in transit (HTTPS/TLS)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Hosted on Microsoft Azure (SOC 2 certified)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Multi-factor authentication for admin access</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Regular security audits</span>
+                  </li>
+                </ul>
+                <p className="mt-6 font-bold">No data breaches: Because we don't store student data, there's nothing to breach.</p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section: Data Retention */}
+          <section id="retention" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Data Retention</h2>
+            
+            <Card>
+              <CardContent className="pt-6">
+                <ul className="space-y-3 text-muted-foreground">
+                  <li><strong>Translated text:</strong> 0 seconds (not stored)</li>
+                  <li><strong>Student info:</strong> 0 seconds (not collected)</li>
+                  <li><strong>Usage stats:</strong> 2 years (anonymous aggregates only)</li>
+                  <li><strong>School contracts:</strong> Contract duration + 7 years (legal requirement)</li>
+                  <li><strong>Error logs:</strong> 90 days (no personal info)</li>
+                </ul>
+              </CardContent>
+            </Card>
           </section>
 
           {/* Section 4: Data Sharing */}
@@ -588,259 +655,192 @@ export default function Privacy() {
             </div>
           </section>
 
-          {/* Section 9: Changes to Policy */}
-          <section id="changes" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">9. Changes to This Privacy Policy</h2>
-            <Card>
-              <CardContent className="pt-6 space-y-4">
-                <p>We may update this privacy policy to reflect:</p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                  <li>Changes in legal requirements</li>
-                  <li>New features added to the extension</li>
-                  <li>Improved privacy practices</li>
-                </ul>
-
-                <div>
-                  <p className="font-semibold mb-2">Notification of Changes:</p>
-                  <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                    <li>Updated privacy policy will be posted in the extension</li>
-                    <li>Effective date will be updated at the top</li>
-                    <li>Major changes will be announced via extension update notes</li>
-                  </ul>
-                </div>
-
-                <p className="text-sm"><strong>Your Continued Use:</strong> Continuing to use LanguageBridge after changes constitutes acceptance. If you disagree with changes, you may uninstall the extension.</p>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Section 10: International Users */}
+          {/* Section: International Use */}
           <section id="international" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">10. International Users</h2>
+            <h2 className="text-3xl font-bold mb-6">International Use</h2>
             
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">10.1 Data Location</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Azure services process data in Microsoft's East US data center</li>
-                    <li>• Data is processed in real-time and not stored</li>
-                    <li>• No cross-border data transfers occur (data is not stored)</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-4">10.2 GDPR (European Users)</h3>
-                  <p className="mb-3">For users in the European Union:</p>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li><strong>Legal Basis:</strong> Legitimate interest in providing translation services</li>
-                    <li><strong>Data Controller:</strong> Individual school districts (for school deployments)</li>
-                    <li><strong>Data Processor:</strong> Microsoft Azure</li>
-                    <li><strong>Data Subject Rights:</strong> Since no data is stored, rights to access, rectify, or erase do not apply</li>
-                    <li><strong>Right to Object:</strong> You may uninstall the extension at any time</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* Section 11: Contact Information */}
-          <section id="contact" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">11. Contact Information</h2>
-            
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-4">For Privacy Questions</h3>
-                  <div className="space-y-3">
-                    <div>
-                      <p className="font-semibold">General Privacy Inquiries:</p>
-                      <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
-                        <Mail className="w-4 h-4" />
-                        privacy@languagebridge.app
-                      </a>
-                    </div>
-                    <div>
-                      <p className="font-semibold">General Contact:</p>
-                      <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
-                        <Mail className="w-4 h-4" />
-                        contact@languagebridge.app
-                      </a>
-                    </div>
-                    <div>
-                      <p className="font-semibold">School/District Privacy Officers:</p>
-                      <p className="text-sm text-muted-foreground">If your school has specific privacy concerns, please contact your IT administrator or email us at contact@languagebridge.app</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-4">For Support and General Information</h3>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <p className="font-semibold mb-1">Technical Support:</p>
-                      <a href="mailto:support@languagebridge.app" className="text-primary hover:underline">support@languagebridge.app</a>
-                    </div>
-                    <div>
-                      <p className="font-semibold mb-1">General Inquiries:</p>
-                      <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline">contact@languagebridge.app</a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* Section 12: Compliance Certifications */}
-          <section id="compliance" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">12. Compliance Certifications</h2>
             <Card>
               <CardContent className="pt-6 space-y-4">
-                <p className="font-semibold">LanguageBridge is committed to compliance with:</p>
-                <div className="grid md:grid-cols-2 gap-3">
+                <p className="text-muted-foreground">LanguageBridge is based in the United States. Azure may process translations on servers worldwide. Schools outside the U.S. should review local data protection laws.</p>
+                
+                <p className="text-sm"><strong>EU/UK schools:</strong> GDPR-compliant Data Processing Agreements available on request.</p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section: Changes to Policy */}
+          <section id="changes" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Changes to This Policy</h2>
+            
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-muted-foreground">We'll notify schools 30 days before changes. Updated policy posted at languagebridge.app/privacy.</p>
+                
+                <p className="text-muted-foreground">Continued use = acceptance. Schools can cancel if they disagree with changes.</p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section: Transparency Commitments */}
+          <section id="transparency" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Transparency Commitments</h2>
+            
+            <Card>
+              <CardContent className="pt-6">
+                <p className="font-semibold mb-4">We commit to:</p>
+                <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <div><strong>FERPA</strong> (Family Educational Rights and Privacy Act)</div>
+                    <span>Clear communication about data practices</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <div><strong>COPPA</strong> (Children's Online Privacy Protection Act)</div>
+                    <span>Industry-standard security</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <div><strong>GDPR</strong> (General Data Protection Regulation) - for EU users</div>
+                    <span>Quick response to privacy concerns (2 business days)</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <div><strong>California Student Privacy</strong> (AB 1584)</div>
+                    <span>Compliance with all privacy laws</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <div><strong>Microsoft Azure Compliance</strong> (FERPA, COPPA, GDPR, SOC 2, ISO 27001)</div>
+                    <span>Minimal data collection</span>
                   </div>
-                </div>
-                <div className="mt-4">
-                  <p className="text-sm font-semibold">Third-Party Certifications:</p>
-                  <a href="https://azure.microsoft.com/en-us/overview/trusted-cloud/compliance/" className="text-primary hover:underline text-sm" target="_blank" rel="noopener noreferrer">Microsoft Azure Compliance: https://azure.microsoft.com/en-us/overview/trusted-cloud/compliance/</a>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Never misusing student data</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </section>
 
-          {/* Section 13: FAQ */}
-          <section id="faq" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">13. Frequently Asked Questions</h2>
+          {/* Section: Legal Compliance */}
+          <section id="legal" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Legal Compliance</h2>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: Can teachers see what students translate?</p>
-                  <p className="text-muted-foreground">A: No. All translations happen locally in the student's browser. Nothing is stored or transmitted to teachers.</p>
+                  <p className="font-semibold mb-2">FERPA:</p>
+                  <p className="text-muted-foreground text-sm">We act as "school official" with "legitimate educational interest" (34 CFR § 99.31(a)(1))</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: Are voice recordings saved?</p>
-                  <p className="text-muted-foreground">A: No. Voice is converted to text in real-time by Azure and immediately discarded. No recordings are saved.</p>
+                  <p className="font-semibold mb-2">Student Privacy Pledge:</p>
+                  <p className="text-muted-foreground text-sm">We're signatories to the Student Privacy Pledge (studentprivacypledge.org)</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: Can my school administrator see my usage?</p>
-                  <p className="text-muted-foreground">A: No. The extension does not report usage data to anyone. Only local, anonymous statistics are kept on your device.</p>
+                  <p className="font-semibold mb-2">State Laws:</p>
+                  <p className="text-muted-foreground mb-2 text-sm">We comply with:</p>
+                  <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
+                    <li>California AB 1584 (SOPIPA)</li>
+                    <li>New York Education Law § 2-d</li>
+                    <li>Other applicable state laws</li>
+                  </ul>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: Is my translated text stored anywhere?</p>
-                  <p className="text-muted-foreground">A: No. Text is processed in real-time and discarded immediately after translation.</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: What happens if I uninstall the extension?</p>
-                  <p className="text-muted-foreground">A: All locally stored settings and preferences are deleted. Since we don't have any servers or accounts, nothing remains.</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: Do you use cookies or tracking?</p>
-                  <p className="text-muted-foreground">A: No. We do not use cookies, tracking pixels, or any analytics that identify you.</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="font-bold mb-2">Q: Is the extension safe for students under 13?</p>
-                  <p className="text-muted-foreground">A: Yes. We comply with COPPA and do not collect any personal information from children.</p>
+                  <p className="font-semibold mb-2">File a complaint:</p>
+                  <div className="text-sm text-muted-foreground space-y-1">
+                    <p>U.S. Department of Education</p>
+                    <p>Family Policy Compliance Office</p>
+                    <p>400 Maryland Avenue, SW</p>
+                    <p>Washington, DC 20202-5920</p>
+                    <p className="mt-2">Website: studentprivacy.ed.gov</p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </section>
 
-          {/* Section 14: Summary */}
+          {/* Section: Contact Us */}
+          <section id="contact" className="mb-12">
+            <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
+            
+            <Card>
+              <CardContent className="pt-6 space-y-4">
+                <div>
+                  <p className="font-semibold mb-1">Privacy Questions:</p>
+                  <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    privacy@languagebridge.app (2 business day response)
+                  </a>
+                </div>
+                <div>
+                  <p className="font-semibold mb-1">General:</p>
+                  <a href="mailto:info@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    info@languagebridge.app
+                  </a>
+                </div>
+                <div>
+                  <p className="font-semibold mb-1">Support:</p>
+                  <a href="mailto:support@languagebridge.app" className="text-primary hover:underline flex items-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    support@languagebridge.app
+                  </a>
+                </div>
+                <div className="pt-4 border-t border-border">
+                  <p className="font-semibold mb-2">Data Protection Officer:</p>
+                  <p className="text-muted-foreground">Justin Bernard</p>
+                  <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">Mailing Address:</p>
+                  <div className="text-muted-foreground text-sm space-y-1">
+                    <p>LanguageBridge</p>
+                    <p>856 Eastlawn Dr</p>
+                    <p>Cleveland, OH 44112</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Section: Plain English Summary */}
           <section id="summary" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">14. Privacy Policy Acknowledgment & Summary</h2>
+            <h2 className="text-3xl font-bold mb-6">Plain English Summary</h2>
             
             <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/30">
               <CardContent className="pt-6 space-y-4">
-                <p className="font-semibold">By installing and using LanguageBridge, you acknowledge that you have read and understood this privacy policy.</p>
+                <p className="font-semibold text-lg">What happens when I use LanguageBridge:</p>
                 
-                <div className="border-t border-border pt-4 space-y-3">
-                  <div>
-                    <p className="font-bold">What we collect:</p>
-                    <p className="text-sm text-muted-foreground">Almost nothing. Just your language preference stored locally.</p>
-                  </div>
-                  
-                  <div>
-                    <p className="font-bold">What we don't collect:</p>
-                    <p className="text-sm text-muted-foreground">Everything else. No names, no text content, no voice recordings, no browsing history.</p>
-                  </div>
-                  
-                  <div>
-                    <p className="font-bold">What happens to your data:</p>
-                    <p className="text-sm text-muted-foreground">Translations are processed in real-time and immediately discarded. Nothing is saved.</p>
-                  </div>
-                  
-                  <div>
-                    <p className="font-bold">Your rights:</p>
-                    <p className="text-sm text-muted-foreground">You can delete all data by uninstalling the extension. No accounts, no servers, no databases.</p>
-                  </div>
-                </div>
+                <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+                  <li>You highlight text</li>
+                  <li>It gets translated by Microsoft</li>
+                  <li>You hear/see the translation</li>
+                  <li>Everything is deleted</li>
+                </ol>
 
                 <div className="border-t border-border pt-4">
-                  <p className="font-semibold text-center">For School Administrators:</p>
-                  <ul className="text-sm text-muted-foreground space-y-1 mt-2">
-                    <li>• Ensure this privacy policy aligns with your district's data privacy requirements</li>
-                    <li>• Review Microsoft Azure's privacy practices: <a href="https://privacy.microsoft.com/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://privacy.microsoft.com/</a></li>
-                    <li>• Consult your legal counsel if needed for FERPA/COPPA compliance verification</li>
-                    <li>• Contact us at <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline">contact@languagebridge.app</a> with any questions</li>
+                  <p className="font-semibold mb-2">We don't:</p>
+                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                    <li>Know who you are</li>
+                    <li>Save what you translate</li>
+                    <li>Track where you go online</li>
+                    <li>Sell any information</li>
                   </ul>
                 </div>
+
+                <p className="text-sm pt-4 border-t border-border"><strong>Questions?</strong> Email privacy@languagebridge.app</p>
               </CardContent>
             </Card>
-          </section>
 
-          {/* Final Statement */}
-          <div className="text-center py-12 border-t border-border">
-            <p className="text-2xl font-bold mb-2">LanguageBridge - Privacy-First Translation for Students</p>
-            <p className="text-muted-foreground">Made with ❤️ for English Language Learners</p>
-            <p className="text-sm mt-4">
-              For questions, contact us at{" "}
-              <a href="mailto:contact@languagebridge.app" className="text-primary hover:underline font-semibold">
-                contact@languagebridge.app
-              </a>
-            </p>
-          </div>
+            <div className="mt-6 text-center text-sm text-muted-foreground italic">
+              This policy covers the LanguageBridge Chrome extension and all related services.
+            </div>
+          </section>
         </div>
       </div>
 
