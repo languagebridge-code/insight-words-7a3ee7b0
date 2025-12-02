@@ -149,7 +149,7 @@ export const Footer = () => {
             </p>
           </div>
           <div className="text-center text-white/60 text-sm">
-            <p>© 2025 LanguageBridge. All rights reserved. Pioneering language accessibility from Ohio to the nation.</p>
+            <p>© 2025 LanguageBridge, LLC. All rights reserved. Pioneering language accessibility from Ohio to the nation.</p>
           </div>
         </div>
       </div>

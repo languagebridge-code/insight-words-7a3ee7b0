@@ -799,7 +799,7 @@ export default function Privacy() {
                 <div>
                   <p className="font-semibold mb-2">Mailing Address:</p>
                   <div className="text-muted-foreground text-sm space-y-1">
-                    <p>LanguageBridge</p>
+                    <p>LanguageBridge, LLC</p>
                     <p>856 Eastlawn Dr</p>
                     <p>Cleveland, OH 44112</p>
                   </div>
@@ -845,10 +845,7 @@ export default function Privacy() {
           {/* Copyright Notice */}
           <div className="text-center py-8 border-t border-border mt-12">
             <p className="text-sm text-muted-foreground">
-              © 2025 LanguageBridge. All rights reserved.
-            </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              LanguageBridge is a registered trademark of LanguageBridge.
+              © 2025 LanguageBridge, LLC. All rights reserved.
             </p>
           </div>
         </div>
