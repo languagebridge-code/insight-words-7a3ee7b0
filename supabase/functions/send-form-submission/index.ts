@@ -64,16 +64,17 @@ const handler = async (req: Request): Promise<Response> => {
       subject = "New Ohio Pilot Application";
       emailHtml = `
         <h2>New Ohio Pilot Application</h2>
-        <p><strong>School Name:</strong> ${body.schoolName}</p>
-        <p><strong>District:</strong> ${body.district}</p>
-        <p><strong>Contact Name:</strong> ${body.contactName}</p>
-        <p><strong>Role:</strong> ${body.role}</p>
+        <p><strong>Contact Name:</strong> ${body.name}</p>
         <p><strong>Email:</strong> ${body.email}</p>
-        <p><strong>Phone:</strong> ${body.phone}</p>
+        <p><strong>Phone:</strong> ${body.phone || "Not provided"}</p>
+        <p><strong>School/District:</strong> ${body.school}</p>
+        <p><strong>Role:</strong> ${body.role}</p>
         <p><strong>Number of ELL Students:</strong> ${body.studentCount}</p>
-        <p><strong>Grade Levels:</strong> ${body.grades}</p>
-        <p><strong>Message:</strong></p>
-        <p>${body.message}</p>
+        <p><strong>Primary Languages:</strong> ${body.languages}</p>
+        <p><strong>How They Heard About Us:</strong> ${body.hearAbout || "Not specified"}</p>
+        <p><strong>Grant Interest:</strong> ${body.grantInterest ? "Yes" : "No"}</p>
+        <p><strong>Additional Info:</strong></p>
+        <p>${body.additionalInfo || "None provided"}</p>
       `;
     } else if (type === "general") {
       subject = "New General Interest Form Submission";
