@@ -97,7 +97,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending email to contact@languagebridge.app");
 
     const emailResponse = await resend.emails.send({
-      from: "LanguageBridge <onboarding@resend.dev>",
+      from: "LanguageBridge <noreply@languagebridge.app>",
       to: ["contact@languagebridge.app"],
       subject: subject,
       html: emailHtml,
