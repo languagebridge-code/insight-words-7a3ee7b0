@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Mic, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
 import languageBridgeIcon from '@/assets/languagebridge-icon.png';
-import { TalkToTeacherModal } from './TalkToTeacherModal';
+import { TalkToTeacherPanel } from './TalkToTeacherModal';
 
 export const InteractiveDemo = () => {
   const [showTalkToTeacher, setShowTalkToTeacher] = useState(false);
@@ -20,7 +20,12 @@ export const InteractiveDemo = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden fade-in-up delay-100">
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden fade-in-up delay-100 relative">
+          {/* Talk to Teacher Panel */}
+          {showTalkToTeacher && (
+            <TalkToTeacherPanel onClose={() => setShowTalkToTeacher(false)} />
+          )}
+          
           {/* Google Classroom Header Mock */}
           <div className="bg-blue-600 text-white p-4">
             <div className="text-sm opacity-90">classroom.google.com/c/assignment-123</div>
@@ -124,12 +129,6 @@ export const InteractiveDemo = () => {
           </p>
         </div>
       </div>
-
-      {/* Talk to Teacher Modal */}
-      <TalkToTeacherModal 
-        open={showTalkToTeacher} 
-        onOpenChange={setShowTalkToTeacher}
-      />
     </section>
   );
 };
