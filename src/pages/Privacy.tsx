@@ -841,6 +841,16 @@ export default function Privacy() {
               This policy covers the LanguageBridge Chrome extension and all related services.
             </div>
           </section>
+
+          {/* Copyright Notice */}
+          <div className="text-center py-8 border-t border-border mt-12">
+            <p className="text-sm text-muted-foreground">
+              © 2025 LanguageBridge. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              LanguageBridge is a registered trademark of LanguageBridge.
+            </p>
+          </div>
         </div>
       </div>
 
