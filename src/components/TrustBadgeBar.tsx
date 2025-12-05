@@ -1,4 +1,4 @@
-import { Shield, DollarSign, Lock, Award } from "lucide-react";
+import { Shield, DollarSign, Lock } from "lucide-react";
 
 export const TrustBadgeBar = () => {
   const badges = [
@@ -16,18 +16,13 @@ export const TrustBadgeBar = () => {
       icon: Lock,
       text: "Azure Security",
       description: "Enterprise-grade protection"
-    },
-    {
-      icon: Award,
-      text: "Built by Educators",
-      description: "Designed for real classrooms"
     }
   ];
 
   return (
     <div className="bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 border-y border-border/50 fade-in-up delay-600">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-3 gap-8">
           {badges.map((badge, index) => (
             <div
               key={index}
