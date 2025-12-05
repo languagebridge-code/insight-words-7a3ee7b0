@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { WhoWeServe } from "@/components/WhoWeServe";
-import { ComplianceWarning } from "@/components/ComplianceWarning";
 import { FounderCredibility } from "@/components/FounderCredibility";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -10,7 +9,7 @@ import { TrustBadgeBar } from "@/components/TrustBadgeBar";
 import { StickyCtaBar } from "@/components/StickyCtaBar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { HelpCircle, Mail } from "lucide-react";
+import { HelpCircle, Mail, Sparkles } from "lucide-react";
 
 const Index = () => {
   return (
@@ -20,14 +19,15 @@ const Index = () => {
       <TrustBadgeBar />
       <WhoWeServe />
       
-      {/* Feature Overview CTA */}
+      {/* Feature Invitation */}
       <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10 fade-in-up delay-700">
         <div className="container mx-auto px-4 text-center">
+          <Sparkles className="w-12 h-12 mx-auto mb-6 text-primary fade-in delay-100" />
           <h2 className="text-3xl md:text-4xl font-bold mb-6 fade-in-up delay-100">
-            Four Tools That Work Together
+            Discover What LanguageBridge Can Do
           </h2>
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed fade-in-up delay-200">
-            Real-time translation, text simplification, teacher communication, and academic glossaries. All in one Chrome extension.
+            Real-time translation, text simplification, teacher communication, and academic glossaries. See how our four tools work together to support your students.
           </p>
           <Link to="/features">
             <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 fade-in-up delay-300">
@@ -37,7 +37,6 @@ const Index = () => {
         </div>
       </section>
 
-      <ComplianceWarning />
       <FounderCredibility />
       
       {/* Questions Section */}
