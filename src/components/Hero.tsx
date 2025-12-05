@@ -32,7 +32,8 @@ export const Hero = () => {
             <span className="fade-in-up delay-200 inline-block">with LanguageBridge</span>
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light max-w-4xl mx-auto leading-relaxed fade-in-up delay-300">
-            Audio-first translation for students who can't read yet. Real-time support with text simplification, teacher communication, and academic glossaries. Built for preliterate SLIFE students who need to hear content, not just see it.
+            <span className="inline-block bg-gradient-to-r from-primary to-accent text-primary-foreground px-3 py-1 rounded-full font-medium text-lg md:text-xl mr-2">Audio-first</span>
+            translation for students who can't read yet. Real-time support with text simplification, teacher communication, and academic glossaries. Built for preliterate SLIFE students who need to hear content, not just see it.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-400">
             <Button
