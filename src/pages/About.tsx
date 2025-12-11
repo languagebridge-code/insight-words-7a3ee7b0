@@ -22,7 +22,7 @@ export default function About() {
               Help every student understand, even those who can't read yet
             </p>
             <p className="text-lg text-muted-foreground">
-              LanguageBridge is breaking down language barriers for the most vulnerable learners across Ohio and beyond
+              LanguageBridge™ is breaking down language barriers for the most vulnerable learners across Ohio and beyond
             </p>
           </div>
         </div>

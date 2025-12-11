@@ -55,7 +55,7 @@ export const Navigation = () => {
           >
             <img src={logo} alt="LanguageBridge" className="w-12 h-12" />
             <span className="font-heading font-bold text-xl hidden sm:inline">
-              LanguageBridge
+              LanguageBridge™
             </span>
           </Link>
 
