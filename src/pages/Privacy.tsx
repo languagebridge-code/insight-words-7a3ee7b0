@@ -131,7 +131,7 @@ export default function Privacy() {
             <CardContent className="pt-6">
               <h2 className="text-2xl font-bold mb-6" id="commitment">Our Commitment</h2>
               <p className="text-muted-foreground mb-6">
-                LanguageBridge helps students learn. We don't sell data, track browsing, or create profiles. This policy explains exactly what we do and don't do with information.
+                LanguageBridge™ helps students learn. We don't sell data, track browsing, or create profiles. This policy explains exactly what we do and don't do with information.
               </p>
             </CardContent>
           </Card>

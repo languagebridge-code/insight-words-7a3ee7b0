@@ -17,7 +17,7 @@ export default function Features() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Complete Language Accessibility Platform
+              LanguageBridge™: Complete Language Accessibility Platform
             </h1>
             <p className="text-xl text-muted-foreground mb-4">
               Help every student understand, even those who can't read yet

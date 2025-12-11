@@ -29,7 +29,7 @@ export const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight fade-in-up delay-100">
             <span className="gradient-text">Learning Unlocked</span>
             <br />
-            <span className="fade-in-up delay-200 inline-block">with LanguageBridge</span>
+            <span className="fade-in-up delay-200 inline-block">with LanguageBridge™</span>
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-muted-foreground font-light max-w-4xl mx-auto leading-relaxed fade-in-up delay-300">
             Audio-first translation for students who can't read yet. Real-time support with text simplification, teacher communication, and academic glossaries. Built for preliterate SLIFE students who need to hear content, not just see it.

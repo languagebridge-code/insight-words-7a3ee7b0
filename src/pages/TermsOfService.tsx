@@ -63,7 +63,7 @@ export default function TermsOfService() {
               <div className="flex items-start gap-4 mb-4">
                 <Scale className="w-8 h-8 text-primary flex-shrink-0" />
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">Welcome to LanguageBridge</h2>
+                  <h2 className="text-2xl font-bold mb-2">Welcome to LanguageBridge™</h2>
                   <p className="text-muted-foreground">
                     Please read these Terms of Service carefully before using the LanguageBridge Chrome Extension. 
                     By installing, accessing, or using LanguageBridge, you agree to be bound by these terms.
