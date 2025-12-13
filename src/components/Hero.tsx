@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react";
 import logo from "@/assets/languagebridge-logo.png";
 import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
+import heroStudentMaya from "@/assets/hero-student-maya.jpg";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -64,7 +66,16 @@ export const Hero = () => {
 
         {/* Hero Image Carousel */}
         <div className="max-w-4xl mx-auto fade-in-up delay-500">
-          <Carousel className="w-full" opts={{ loop: true }}>
+          <Carousel 
+            className="w-full" 
+            opts={{ loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 5000,
+                stopOnInteraction: true,
+              }),
+            ]}
+          >
             <CarouselContent>
               {/* Amira's Story */}
               <CarouselItem>
@@ -114,6 +125,33 @@ export const Hero = () => {
                       </p>
                       <p className="text-primary font-semibold text-xl">
                         Now he's participating actively and building confidence daily.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+
+              {/* Maya's Story */}
+              <CarouselItem>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+                  <img 
+                    src={heroStudentMaya} 
+                    alt="Maya, African American student using LanguageBridge for read aloud support" 
+                    className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/90 to-foreground/70 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center p-8">
+                    <div className="text-white space-y-4 max-w-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                      <h3 className="text-3xl font-bold text-primary">Maya's Story</h3>
+                      <p className="text-lg leading-relaxed">
+                        Maya noticed her friend Amira using LanguageBridge and asked if she could try it too. 
+                        Even though English is her first language, the read-aloud feature helps her process complex texts.
+                      </p>
+                      <p className="text-lg leading-relaxed">
+                        The text simplification and vocabulary scaffolds have made dense academic content more accessible, 
+                        helping her build confidence in subjects she once struggled with.
+                      </p>
+                      <p className="text-primary font-semibold text-xl">
+                        LanguageBridge isn't just for English learners—it's for every student who learns differently.
                       </p>
                     </div>
                   </div>
