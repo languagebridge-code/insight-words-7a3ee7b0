@@ -2,7 +2,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import logo from "@/assets/languagebridge-logo.png";
 import heroStudent1 from "@/assets/hero-student-1.jpg";
-import heroStudent2 from "@/assets/hero-student-2.jpg";
+import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -55,32 +62,68 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Hero Image - Single Focus */}
+        {/* Hero Image Carousel */}
         <div className="max-w-4xl mx-auto fade-in-up delay-500">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer hover-scale">
-            <img 
-              src={heroStudent1} 
-              alt="Amira, Afghan student working confidently on Chromebook with LanguageBridge" 
-              className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
-            />
-            {/* Hover Overlay with Amira's Story */}
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/90 to-foreground/70 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center p-8">
-              <div className="text-white space-y-4 max-w-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                <h3 className="text-3xl font-bold text-primary">Amira's Story</h3>
-                <p className="text-lg leading-relaxed">
-                  Amira's engagement was so low that teachers questioned her inclusion in general education classes. 
-                  She couldn't read in her home language because of the Taliban's takeover of Afghanistan. She never learned to read her own language.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Google Translate didn't work for her because it requires reading. But LanguageBridge reads aloud translated text, 
-                  so she can access classroom material immediately and participate in class for the first time.
-                </p>
-                <p className="text-primary font-semibold text-xl">
-                  Now she's thriving in her general education classroom.
-                </p>
-              </div>
-            </div>
-          </div>
+          <Carousel className="w-full" opts={{ loop: true }}>
+            <CarouselContent>
+              {/* Amira's Story */}
+              <CarouselItem>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+                  <img 
+                    src={heroStudent1} 
+                    alt="Amira, Afghan student working confidently on Chromebook with LanguageBridge" 
+                    className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/90 to-foreground/70 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center p-8">
+                    <div className="text-white space-y-4 max-w-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                      <h3 className="text-3xl font-bold text-primary">Amira's Story</h3>
+                      <p className="text-lg leading-relaxed">
+                        Amira's engagement was so low that teachers questioned her inclusion in general education classes. 
+                        She couldn't read in her home language because of the Taliban's takeover of Afghanistan.
+                      </p>
+                      <p className="text-lg leading-relaxed">
+                        Google Translate didn't work for her because it requires reading. But LanguageBridge reads aloud translated text, 
+                        so she can access classroom material immediately.
+                      </p>
+                      <p className="text-primary font-semibold text-xl">
+                        Now she's thriving in her general education classroom.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+
+              {/* Carlos's Story */}
+              <CarouselItem>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+                  <img 
+                    src={heroStudentCarlos} 
+                    alt="Carlos, Afro Latino student engaged with learning using LanguageBridge" 
+                    className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/90 to-foreground/70 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center p-8">
+                    <div className="text-white space-y-4 max-w-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                      <h3 className="text-3xl font-bold text-primary">Carlos's Story</h3>
+                      <p className="text-lg leading-relaxed">
+                        Carlos arrived from Venezuela with interrupted schooling. His teachers struggled to communicate assignments 
+                        and check his understanding without a Spanish interpreter available.
+                      </p>
+                      <p className="text-lg leading-relaxed">
+                        With LanguageBridge's teacher communication tool, his teachers can now send translated messages 
+                        and Carlos can respond in Spanish, creating real two-way dialogue.
+                      </p>
+                      <p className="text-primary font-semibold text-xl">
+                        Now he's participating actively and building confidence daily.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="left-4 bg-background/80 hover:bg-background" />
+            <CarouselNext className="right-4 bg-background/80 hover:bg-background" />
+          </Carousel>
+          <p className="text-center text-muted-foreground mt-4 text-sm">Hover over image to read their story • Swipe or use arrows to see more</p>
         </div>
       </div>
     </section>
