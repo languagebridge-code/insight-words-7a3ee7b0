@@ -73,6 +73,7 @@ export const Hero = () => {
               Autoplay({
                 delay: 5000,
                 stopOnInteraction: true,
+                stopOnMouseEnter: true,
               }),
             ]}
           >
