@@ -24,6 +24,7 @@ import {
   Building2,
   School,
 } from "lucide-react";
+import languageBridgeLogo from "@/assets/languagebridge-logo.png";
 
 interface DashboardLayoutProps {
   user: User;
@@ -56,10 +57,11 @@ const DashboardLayout = ({ user, children }: DashboardLayoutProps) => {
         <Sidebar className="border-r border-border/50">
           <SidebarHeader className="p-4 border-b border-border/50">
             <Link to="/" className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="font-semibold text-foreground">LanguageBridge™</span>
+              <img
+                src={languageBridgeLogo}
+                alt="LanguageBridge"
+                className="h-8 w-auto"
+              />
             </Link>
           </SidebarHeader>
 
