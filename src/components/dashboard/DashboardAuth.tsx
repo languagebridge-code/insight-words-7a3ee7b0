@@ -7,8 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-import { GraduationCap, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { z } from "zod";
+import languageBridgeLogo from "@/assets/languagebridge-logo.png";
 
 const emailSchema = z.string().email("Please enter a valid email address");
 const passwordSchema = z.string().min(6, "Password must be at least 6 characters");
@@ -124,8 +125,12 @@ const DashboardAuth = () => {
 
         <Card className="border-border/50 shadow-xl">
           <CardHeader className="text-center pb-2">
-            <div className="mx-auto mb-4 h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center">
-              <GraduationCap className="h-7 w-7 text-primary" />
+            <div className="mx-auto mb-4">
+              <img
+                src={languageBridgeLogo}
+                alt="LanguageBridge"
+                className="h-12 w-auto"
+              />
             </div>
             <CardTitle className="text-2xl font-bold">Teacher Dashboard</CardTitle>
             <CardDescription>
