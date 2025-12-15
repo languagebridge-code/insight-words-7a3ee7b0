@@ -65,6 +65,53 @@ export type Database = {
         }
         Relationships: []
       }
+      district_admins: {
+        Row: {
+          created_at: string
+          district_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          district_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          district_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "district_admins_district_id_fkey"
+            columns: ["district_id"]
+            isOneToOne: false
+            referencedRelation: "districts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      districts: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       newsletter_subscriptions: {
         Row: {
           created_at: string | null
@@ -131,6 +178,126 @@ export type Database = {
         }
         Relationships: []
       }
+      schools: {
+        Row: {
+          building_code: string | null
+          created_at: string
+          district_id: string
+          id: string
+          name: string
+        }
+        Insert: {
+          building_code?: string | null
+          created_at?: string
+          district_id: string
+          id?: string
+          name: string
+        }
+        Update: {
+          building_code?: string | null
+          created_at?: string
+          district_id?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "schools_district_id_fkey"
+            columns: ["district_id"]
+            isOneToOne: false
+            referencedRelation: "districts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teachers: {
+        Row: {
+          created_at: string
+          email: string
+          grade_level: string | null
+          id: string
+          name: string
+          school_id: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          grade_level?: string | null
+          id?: string
+          name: string
+          school_id: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          grade_level?: string | null
+          id?: string
+          name?: string
+          school_id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teachers_school_id_fkey"
+            columns: ["school_id"]
+            isOneToOne: false
+            referencedRelation: "schools"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      usage_analytics: {
+        Row: {
+          created_at: string
+          id: string
+          languages_used: Json | null
+          session_date: string
+          simplification_count: number | null
+          student_sessions: number | null
+          talk_to_teacher_uses: number | null
+          teacher_id: string
+          total_session_minutes: number | null
+          translation_count: number | null
+          vocabulary_lookups: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          languages_used?: Json | null
+          session_date?: string
+          simplification_count?: number | null
+          student_sessions?: number | null
+          talk_to_teacher_uses?: number | null
+          teacher_id: string
+          total_session_minutes?: number | null
+          translation_count?: number | null
+          vocabulary_lookups?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          languages_used?: Json | null
+          session_date?: string
+          simplification_count?: number | null
+          student_sessions?: number | null
+          talk_to_teacher_uses?: number | null
+          teacher_id?: string
+          total_session_minutes?: number | null
+          translation_count?: number | null
+          vocabulary_lookups?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "usage_analytics_teacher_id_fkey"
+            columns: ["teacher_id"]
+            isOneToOne: false
+            referencedRelation: "teachers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string | null
@@ -157,6 +324,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_teacher_district: { Args: { _user_id: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -164,9 +332,13 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_district_admin: {
+        Args: { _district_id: string; _user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      app_role: "admin" | "moderator" | "user" | "district_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -294,7 +466,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user"],
+      app_role: ["admin", "moderator", "user", "district_admin"],
     },
   },
 } as const
