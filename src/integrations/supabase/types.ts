@@ -351,7 +351,6 @@ export type Database = {
           id: string
           languages_used: Json | null
           session_date: string
-          simplification_count: number | null
           student_sessions: number | null
           talk_to_teacher_uses: number | null
           teacher_id: string
@@ -364,7 +363,6 @@ export type Database = {
           id?: string
           languages_used?: Json | null
           session_date?: string
-          simplification_count?: number | null
           student_sessions?: number | null
           talk_to_teacher_uses?: number | null
           teacher_id: string
@@ -377,7 +375,6 @@ export type Database = {
           id?: string
           languages_used?: Json | null
           session_date?: string
-          simplification_count?: number | null
           student_sessions?: number | null
           talk_to_teacher_uses?: number | null
           teacher_id?: string

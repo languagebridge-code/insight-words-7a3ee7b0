@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { FourTools } from "@/components/FourTools";
+import { ThreeTools } from "@/components/ThreeTools";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalSpecs } from "@/components/TechnicalSpecs";
 import { InteractiveDemo } from "@/components/InteractiveDemo";
@@ -23,7 +23,7 @@ export default function Features() {
               Help every student understand, even those who can't read yet
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Four integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
+              Three integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
             </p>
             <div className="flex gap-4 justify-center">
               <Link to="/pilot">
@@ -41,7 +41,7 @@ export default function Features() {
         </div>
       </section>
 
-      <FourTools />
+      <ThreeTools />
       <InteractiveDemo />
       <HowItWorks />
       <TechnicalSpecs />
