@@ -71,6 +71,3 @@ export const ThreeTools = () => {
     </section>
   );
 };
-
-// Keep backward compatibility
-export const FourTools = ThreeTools;
