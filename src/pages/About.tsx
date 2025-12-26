@@ -89,7 +89,7 @@ export default function About() {
               </p>
               
               <p>
-                By combining real-time translation with audio playback, text simplification, teacher communication, and academic vocabulary support, LanguageBridge gives preliterate SLIFE students immediate access to grade-level content on day one, not months later.
+                By combining real-time translation with audio playback, teacher communication tools, and tiered academic vocabulary support, LanguageBridge gives preliterate SLIFE students immediate access to grade-level content on day one, not months later.
               </p>
             </div>
 
