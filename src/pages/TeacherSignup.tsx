@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,9 +7,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Copy, CheckCircle, ArrowRight } from "lucide-react";
+import { Copy, CheckCircle, ArrowRight, LogIn } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { User } from "@supabase/supabase-js";
 
 interface SetupCode {
   schoolId: string;
@@ -20,18 +21,52 @@ interface SetupCode {
 
 const TeacherSignup = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [setupCode, setSetupCode] = useState<SetupCode | null>(null);
   const [copied, setCopied] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  
+  // Get prefill data from navigation state (from auth page)
+  const prefill = (location.state as any)?.prefill;
   
   const [formData, setFormData] = useState({
-    schoolName: "",
-    teacherName: "",
-    teacherEmail: "",
+    schoolName: prefill?.school || "",
+    teacherName: prefill?.name || "",
+    teacherEmail: prefill?.email || "",
     classroomName: "",
     deploymentType: "trial",
   });
+
+  // Check for authenticated user
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user?.email && !formData.teacherEmail) {
+        setFormData(prev => ({
+          ...prev,
+          teacherEmail: session.user.email || prev.teacherEmail,
+          teacherName: session.user.user_metadata?.full_name || prev.teacherName,
+          schoolName: session.user.user_metadata?.school_name || prev.schoolName,
+        }));
+      }
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user?.email && !formData.teacherEmail) {
+        setFormData(prev => ({
+          ...prev,
+          teacherEmail: session.user.email || prev.teacherEmail,
+          teacherName: session.user.user_metadata?.full_name || prev.teacherName,
+          schoolName: session.user.user_metadata?.school_name || prev.schoolName,
+        }));
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const generateCode = (prefix: string) => {
     return `${prefix}_${Math.random().toString(36).substring(2, 10)}`;
@@ -42,7 +77,25 @@ const TeacherSignup = () => {
     setIsLoading(true);
 
     try {
-      // Check if email already exists
+      // Check if teacher profile already exists for this user
+      if (user) {
+        const { data: existingTeacher } = await supabase
+          .from('teachers')
+          .select('id')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (existingTeacher) {
+          toast({
+            title: "Profile already exists",
+            description: "You already have a teacher profile. Redirecting to dashboard...",
+          });
+          navigate('/teacher-dashboard');
+          return;
+        }
+      }
+
+      // Check if email already exists (for non-authenticated users)
       const { data: existingTeacher } = await supabase
         .from('teachers')
         .select('id')
@@ -102,7 +155,7 @@ const TeacherSignup = () => {
       const teacherCode = generateCode('teacher');
       const classroomCode = generateCode('classroom');
 
-      // Create teacher record
+      // Create teacher record (link to user if authenticated)
       const { data: newTeacher, error: teacherError } = await supabase
         .from('teachers')
         .insert({
@@ -110,6 +163,7 @@ const TeacherSignup = () => {
           email: formData.teacherEmail,
           school_id: schoolId,
           teacher_code: teacherCode,
+          user_id: user?.id || null,
         })
         .select('id')
         .single();
