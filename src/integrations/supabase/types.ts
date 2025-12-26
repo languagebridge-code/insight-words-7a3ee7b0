@@ -14,6 +14,59 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_daily: {
+        Row: {
+          classroom_id: string
+          created_at: string
+          hourly_usage: Json | null
+          id: string
+          language_pairs: Json | null
+          session_date: string
+          tier1_count: number | null
+          tier2_count: number | null
+          tier3_count: number | null
+          total_characters: number | null
+          translation_count: number | null
+          updated_at: string
+        }
+        Insert: {
+          classroom_id: string
+          created_at?: string
+          hourly_usage?: Json | null
+          id?: string
+          language_pairs?: Json | null
+          session_date?: string
+          tier1_count?: number | null
+          tier2_count?: number | null
+          tier3_count?: number | null
+          total_characters?: number | null
+          translation_count?: number | null
+          updated_at?: string
+        }
+        Update: {
+          classroom_id?: string
+          created_at?: string
+          hourly_usage?: Json | null
+          id?: string
+          language_pairs?: Json | null
+          session_date?: string
+          tier1_count?: number | null
+          tier2_count?: number | null
+          tier3_count?: number | null
+          total_characters?: number | null
+          translation_count?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_daily_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       app_config: {
         Row: {
           created_at: string | null
@@ -34,6 +87,47 @@ export type Database = {
           value?: string | null
         }
         Relationships: []
+      }
+      classrooms: {
+        Row: {
+          classroom_code: string
+          created_at: string
+          deployment_type: string
+          id: string
+          name: string
+          teacher_id: string
+          trial_end_date: string | null
+          trial_start_date: string | null
+        }
+        Insert: {
+          classroom_code: string
+          created_at?: string
+          deployment_type?: string
+          id?: string
+          name: string
+          teacher_id: string
+          trial_end_date?: string | null
+          trial_start_date?: string | null
+        }
+        Update: {
+          classroom_code?: string
+          created_at?: string
+          deployment_type?: string
+          id?: string
+          name?: string
+          teacher_id?: string
+          trial_end_date?: string | null
+          trial_start_date?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "classrooms_teacher_id_fkey"
+            columns: ["teacher_id"]
+            isOneToOne: false
+            referencedRelation: "teachers"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       contact_submissions: {
         Row: {
@@ -218,6 +312,7 @@ export type Database = {
           id: string
           name: string
           school_id: string
+          teacher_code: string | null
           user_id: string | null
         }
         Insert: {
@@ -227,6 +322,7 @@ export type Database = {
           id?: string
           name: string
           school_id: string
+          teacher_code?: string | null
           user_id?: string | null
         }
         Update: {
@@ -236,6 +332,7 @@ export type Database = {
           id?: string
           name?: string
           school_id?: string
+          teacher_code?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -335,6 +432,18 @@ export type Database = {
       is_district_admin: {
         Args: { _district_id: string; _user_id: string }
         Returns: boolean
+      }
+      upsert_analytics_daily: {
+        Args: {
+          p_characters?: number
+          p_classroom_id: string
+          p_hour?: number
+          p_lang_pair?: string
+          p_session_date: string
+          p_tier?: number
+          p_translation_count?: number
+        }
+        Returns: string
       }
     }
     Enums: {
