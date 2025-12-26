@@ -27,7 +27,7 @@ const Index = () => {
             Discover What LanguageBridge Can Do
           </h2>
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed fade-in-up delay-200">
-            Real-time translation, text simplification, teacher communication, and academic glossaries. See how our four tools work together to support your students.
+            Audio translation, tiered language glossary, and teacher communication. See how our three tools work together to support your students.
           </p>
           <Link to="/features">
             <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 fade-in-up delay-300">

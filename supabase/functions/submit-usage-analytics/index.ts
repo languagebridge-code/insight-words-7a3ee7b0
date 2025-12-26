@@ -8,7 +8,7 @@ const corsHeaders = {
 
 interface UsageEvent {
   teacher_email: string;
-  event_type: 'translation' | 'simplification' | 'vocabulary_lookup' | 'talk_to_teacher' | 'session_start' | 'session_end';
+  event_type: 'translation' | 'vocabulary_lookup' | 'talk_to_teacher' | 'session_start' | 'session_end';
   language?: string;
   session_minutes?: number;
 }
@@ -88,9 +88,6 @@ serve(async (req: Request) => {
         case 'translation':
           updateData.translation_count = (existing.translation_count || 0) + 1;
           break;
-        case 'simplification':
-          updateData.simplification_count = (existing.simplification_count || 0) + 1;
-          break;
         case 'vocabulary_lookup':
           updateData.vocabulary_lookups = (existing.vocabulary_lookups || 0) + 1;
           break;
@@ -135,7 +132,6 @@ serve(async (req: Request) => {
         teacher_id: teacher.id,
         session_date: today,
         translation_count: event.event_type === 'translation' ? 1 : 0,
-        simplification_count: event.event_type === 'simplification' ? 1 : 0,
         vocabulary_lookups: event.event_type === 'vocabulary_lookup' ? 1 : 0,
         talk_to_teacher_uses: event.event_type === 'talk_to_teacher' ? 1 : 0,
         student_sessions: event.event_type === 'session_start' ? 1 : 0,

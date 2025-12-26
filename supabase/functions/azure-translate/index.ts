@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-school-id, x-classroom-id, x-teacher-id, x-simplification-tier',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-school-id, x-classroom-id, x-teacher-id',
 };
 
 serve(async (req) => {
@@ -29,7 +29,6 @@ serve(async (req) => {
     // Extract context from headers
     const classroomCode = req.headers.get('x-classroom-id') || '';
     const teacherCode = req.headers.get('x-teacher-id') || '';
-    const tier = parseInt(req.headers.get('x-simplification-tier') || '2');
 
     // Parse request body
     const body = await req.json();
@@ -42,7 +41,7 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Translation request: ${sourceLanguage || 'auto'} → ${targetLanguage}, tier: ${tier}`);
+    console.log(`Translation request: ${sourceLanguage || 'auto'} → ${targetLanguage}`);
 
     // Call Azure Translator API
     const azureUrl = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0${sourceLanguage ? `&from=${sourceLanguage}` : ''}&to=${targetLanguage}`;
@@ -96,7 +95,6 @@ serve(async (req) => {
             p_session_date: sessionDate,
             p_translation_count: 1,
             p_characters: text.length,
-            p_tier: tier,
             p_lang_pair: langPair,
             p_hour: hour,
           });

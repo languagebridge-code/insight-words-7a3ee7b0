@@ -181,7 +181,7 @@ export const Hero = () => {
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Maya's Discovery</h3>
                         <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-3">
-                          Not just for ELLs—Maya uses read-aloud and text simplification to access complex academic content.
+                          Not just for ELLs—Maya uses read-aloud and audio translation to access complex academic content.
                         </p>
                       </div>
                     </div>
