@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import TeacherSignup from "./pages/TeacherSignup";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import TeacherAuth from "./pages/TeacherAuth";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/teacher-signup" element={<TeacherSignup />} />
           <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
           <Route path="/teacher-auth" element={<TeacherAuth />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
