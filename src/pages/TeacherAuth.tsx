@@ -5,11 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Mail, Lock, User, School, Chrome, ArrowLeft } from "lucide-react";
+import { Mail, Lock, User, School, Chrome, ArrowLeft, CheckCircle } from "lucide-react";
 
 const TeacherAuth = () => {
   const navigate = useNavigate();
@@ -19,10 +20,13 @@ const TeacherAuth = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
   const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [showVerificationMessage, setShowVerificationMessage] = useState(false);
+  const [verificationEmail, setVerificationEmail] = useState("");
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   // Signup form state
   const [signupEmail, setSignupEmail] = useState("");
@@ -34,6 +38,12 @@ const TeacherAuth = () => {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
+        // Check if email is confirmed
+        if (!session.user.email_confirmed_at) {
+          setVerificationEmail(session.user.email || "");
+          setShowVerificationMessage(true);
+          return;
+        }
         // Check if teacher profile exists, if not redirect to complete profile
         checkTeacherProfile(session.user.id);
       }
@@ -41,6 +51,11 @@ const TeacherAuth = () => {
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
+        if (!session.user.email_confirmed_at) {
+          setVerificationEmail(session.user.email || "");
+          setShowVerificationMessage(true);
+          return;
+        }
         checkTeacherProfile(session.user.id);
       }
     });
@@ -75,6 +90,23 @@ const TeacherAuth = () => {
 
       if (error) throw error;
 
+      // Check if email is verified
+      if (data.user && !data.user.email_confirmed_at) {
+        setVerificationEmail(loginEmail);
+        setShowVerificationMessage(true);
+        setIsLoading(false);
+        return;
+      }
+
+      // Handle remember me - extend session if checked
+      if (rememberMe) {
+        // The session will persist in localStorage by default
+        // For extended sessions, we just keep the default behavior
+        localStorage.setItem('rememberMe', 'true');
+      } else {
+        localStorage.removeItem('rememberMe');
+      }
+
       toast({
         title: "Login successful!",
         description: "Redirecting to your dashboard...",
@@ -97,7 +129,7 @@ const TeacherAuth = () => {
     setIsLoading(true);
 
     try {
-      const redirectUrl = `${window.location.origin}/teacher-dashboard`;
+      const redirectUrl = `${window.location.origin}/teacher-auth`;
 
       const { data, error } = await supabase.auth.signUp({
         email: signupEmail,
@@ -114,19 +146,12 @@ const TeacherAuth = () => {
       if (error) throw error;
 
       if (data.user) {
+        // Show verification message
+        setVerificationEmail(signupEmail);
+        setShowVerificationMessage(true);
         toast({
           title: "Account created!",
-          description: "Please complete your teacher profile.",
-        });
-        // Navigate to signup to complete profile
-        navigate('/teacher-signup', { 
-          state: { 
-            prefill: { 
-              name: signupName, 
-              email: signupEmail, 
-              school: signupSchool 
-            } 
-          } 
+          description: "Please check your email to verify your account.",
         });
       }
 
@@ -139,6 +164,34 @@ const TeacherAuth = () => {
       toast({
         title: "Signup failed",
         description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleResendVerification = async () => {
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email: verificationEmail,
+        options: {
+          emailRedirectTo: `${window.location.origin}/teacher-auth`,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Verification email sent!",
+        description: "Please check your inbox.",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Failed to resend",
+        description: error.message || "Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -195,6 +248,62 @@ const TeacherAuth = () => {
       setIsLoading(false);
     }
   };
+
+  // Email verification pending view
+  if (showVerificationMessage) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="container mx-auto px-4 py-12 max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              Verify Your Email
+            </h1>
+            <p className="text-muted-foreground">
+              We need to verify your email address before you can continue
+            </p>
+          </div>
+
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-center py-4">
+                <CheckCircle className="h-16 w-16 mx-auto text-primary mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Check your inbox</h3>
+                <p className="text-muted-foreground mb-4">
+                  We've sent a verification link to <strong>{verificationEmail}</strong>
+                </p>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Click the link in the email to verify your account and access your dashboard.
+                </p>
+                <div className="space-y-3">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={handleResendVerification}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Sending..." : "Resend verification email"}
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full"
+                    onClick={() => {
+                      setShowVerificationMessage(false);
+                      setVerificationEmail("");
+                      supabase.auth.signOut();
+                    }}
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" /> Back to login
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   // Forgot password view
   if (showForgotPassword) {
@@ -338,6 +447,19 @@ const TeacherAuth = () => {
                         required
                       />
                     </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="remember-me" 
+                      checked={rememberMe}
+                      onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                    />
+                    <Label 
+                      htmlFor="remember-me" 
+                      className="text-sm font-normal cursor-pointer"
+                    >
+                      Remember me
+                    </Label>
                   </div>
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading ? "Signing in..." : "Sign In"}
