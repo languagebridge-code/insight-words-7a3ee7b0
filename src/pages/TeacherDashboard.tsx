@@ -65,6 +65,9 @@ const TeacherDashboard = () => {
       
       if (!session?.user) {
         navigate('/teacher-auth');
+      } else if (!session.user.email_confirmed_at) {
+        // Email not verified, redirect to auth page
+        navigate('/teacher-auth');
       } else {
         // Defer data fetching to avoid deadlock
         setTimeout(() => {
@@ -78,6 +81,9 @@ const TeacherDashboard = () => {
       setUser(session?.user ?? null);
       
       if (!session?.user) {
+        navigate('/teacher-auth');
+      } else if (!session.user.email_confirmed_at) {
+        // Email not verified, redirect to auth page
         navigate('/teacher-auth');
       } else {
         loadTeacherData(session.user.id);
