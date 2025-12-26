@@ -33,7 +33,7 @@ export const TechnicalSpecs = () => {
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Supports translation, text simplification, two-way communication, and academic glossaries, all in one extension</span>
+                      <span>Supports audio translation, tiered language glossary, and teacher communication, all in one extension</span>
                     </li>
                   </ul>
                 </div>

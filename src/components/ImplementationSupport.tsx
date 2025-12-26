@@ -51,7 +51,7 @@ export const ImplementationSupport = () => {
                 <div>
                   <h3 className="font-bold text-lg mb-2 text-foreground">Monthly Usage Reports</h3>
                   <p className="text-muted-foreground text-sm">
-                    Detailed analytics for Title III compliance documentation. Track translation requests, text simplification usage, teacher-student communications, and vocabulary development across all four tools.
+                    Detailed analytics for Title III compliance documentation. Track translation requests, teacher-student communications, and vocabulary development across all three tools.
                   </p>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export const ImplementationSupport = () => {
                 </div>
                 <span className="text-muted-foreground hidden md:inline">→</span>
                 <div className="bg-card px-6 py-3 rounded-lg border border-border">
-                  <strong className="text-primary">Week 3:</strong> Students independently accessing grade-level content with translation, simplification, and communication tools
+                  <strong className="text-primary">Week 3:</strong> Students independently accessing grade-level content with translation and communication tools
                 </div>
               </div>
             </div>

@@ -21,7 +21,7 @@ export const ComplianceWarning = () => {
               </div>
               <div className="bg-secondary/50 p-4 rounded-lg">
                 <h3 className="font-bold text-foreground mb-2">No Educational Features</h3>
-                <p className="text-sm text-muted-foreground">Missing text simplification, academic glossaries, and teacher communication tools that students actually need to learn.</p>
+                <p className="text-sm text-muted-foreground">Missing academic glossaries and teacher communication tools that students actually need to learn.</p>
               </div>
               <div className="bg-secondary/50 p-4 rounded-lg">
                 <h3 className="font-bold text-foreground mb-2">Ongoing Liability Questions</h3>
@@ -30,7 +30,7 @@ export const ComplianceWarning = () => {
             </div>
             <div className="mt-6 pt-6 border-t border-border">
               <p className="text-muted-foreground">
-                <strong className="text-foreground">LanguageBridge is different:</strong> Purpose-built for education with FERPA/COPPA compliance, zero data storage, and four integrated tools designed specifically for preliterate SLIFE students who need to hear content, not just read it.
+                <strong className="text-foreground">LanguageBridge is different:</strong> Purpose-built for education with FERPA/COPPA compliance, zero data storage, and three integrated tools designed specifically for preliterate SLIFE students who need to hear content, not just read it.
               </p>
               <a href="/compliance" className="text-primary hover:underline font-semibold mt-3 inline-block">
                 Learn more about legal compliance requirements →
@@ -67,7 +67,7 @@ export const ComplianceWarning = () => {
                     <td className="p-3 text-center text-destructive">✗ (Requires Reading)</td>
                   </tr>
                   <tr className="border-b border-border">
-                    <td className="p-3 text-muted-foreground">Text Simplification</td>
+                    <td className="p-3 text-muted-foreground">Tiered Language Glossary</td>
                     <td className="p-3 text-center text-primary">✓</td>
                     <td className="p-3 text-center text-destructive">✗</td>
                     <td className="p-3 text-center text-destructive">✗</td>
@@ -79,7 +79,7 @@ export const ComplianceWarning = () => {
                     <td className="p-3 text-center text-destructive">✗</td>
                   </tr>
                   <tr className="border-b border-border">
-                    <td className="p-3 text-muted-foreground">Academic Vocabulary Glossary</td>
+                    <td className="p-3 text-muted-foreground">Academic Vocabulary</td>
                     <td className="p-3 text-center text-primary">✓</td>
                     <td className="p-3 text-center text-destructive">✗</td>
                     <td className="p-3 text-center text-destructive">✗</td>

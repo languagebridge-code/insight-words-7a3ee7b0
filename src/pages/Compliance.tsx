@@ -185,7 +185,7 @@ export default function Compliance() {
                     <ul className="space-y-2 text-sm">
                       <li>✓ Provides immediate, meaningful access to grade-level content for preliterate students</li>
                       <li>✓ Includes audio support specifically designed for Students with Limited or Interrupted Formal Education (SLIFE)</li>
-                      <li>✓ Offers text simplification, teacher communication, and academic vocabulary tools beyond basic translation</li>
+                      <li>✓ Offers teacher communication and academic vocabulary tools beyond basic translation</li>
                       <li>✓ Generates usage reports that document language access provision for compliance reviews</li>
                       <li>✓ Reduces reliance on student interpreters, protecting student privacy and dignity</li>
                     </ul>
@@ -204,7 +204,7 @@ export default function Compliance() {
                   
                   <div className="p-4 bg-muted rounded-lg">
                     <p className="text-sm">
-                      <strong>For District Legal Counsel:</strong> Courts have consistently held that providing language assistance requires more than translation services alone. Districts must ensure ELL students receive comprehensible instruction and can participate meaningfully in educational programs. LanguageBridge's integrated platform, combining translation, audio, simplification, and communication tools, provides the comprehensive language support courts have deemed necessary for EEOA compliance.
+                      <strong>For District Legal Counsel:</strong> Courts have consistently held that providing language assistance requires more than translation services alone. Districts must ensure ELL students receive comprehensible instruction and can participate meaningfully in educational programs. LanguageBridge's integrated platform, combining translation, audio, and communication tools, provides the comprehensive language support courts have deemed necessary for EEOA compliance.
                     </p>
                   </div>
                 </div>
@@ -383,7 +383,7 @@ export default function Compliance() {
 
                 <div className="mt-6 p-4 bg-muted rounded-lg">
                   <p className="text-sm">
-                    <strong>Monthly Reports Include:</strong> Total translation requests by language, text simplification usage, teacher-student communication volume, and academic glossary access, all aggregated at the building or district level with zero individual student identification.
+                    <strong>Monthly Reports Include:</strong> Total translation requests by language, teacher-student communication volume, and academic glossary access, all aggregated at the building or district level with zero individual student identification.
                   </p>
                 </div>
               </CardContent>
@@ -441,7 +441,7 @@ export default function Compliance() {
                       <span className="text-destructive">⚠</span> No Educational Features or Compliance Documentation
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      Google Translate lacks text simplification, academic glossaries, teacher communication tools, and usage reporting, making it difficult for districts to document they're providing adequate language assistance as required by federal law.
+                      Google Translate lacks academic glossaries, teacher communication tools, and usage reporting, making it difficult for districts to document they're providing adequate language assistance as required by federal law.
                     </p>
                   </div>
                 </div>
@@ -452,7 +452,7 @@ export default function Compliance() {
                     <li>✓ Zero data storage. No translation history, no student information retained</li>
                     <li>✓ FERPA/COPPA compliant by design with education-specific protections</li>
                     <li>✓ Audio support for preliterate students who cannot read in any language</li>
-                    <li>✓ Comprehensive tools beyond translation (simplification, communication, glossaries)</li>
+                    <li>✓ Comprehensive tools beyond translation (communication, glossaries)</li>
                     <li>✓ Usage reporting for Title III compliance documentation</li>
                     <li>✓ District control through existing Chromebook management infrastructure</li>
                   </ul>
