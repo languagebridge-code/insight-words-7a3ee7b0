@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
-import { Users, FileText, Globe, TrendingUp, LogOut, Calendar, Loader2 } from "lucide-react";
+import { Users, FileText, Globe, TrendingUp, LogOut, Calendar, Loader2, Download, Radio } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { User, Session } from "@supabase/supabase-js";
@@ -56,6 +56,8 @@ const TeacherDashboard = () => {
   const [selectedClassroom, setSelectedClassroom] = useState<string>("");
   const [dateRange, setDateRange] = useState("7");
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
+  const [isRealtimeConnected, setIsRealtimeConnected] = useState(false);
+  const [rawAnalyticsData, setRawAnalyticsData] = useState<any[]>([]);
 
   // Check authentication on mount
   useEffect(() => {
@@ -149,6 +151,40 @@ const TeacherDashboard = () => {
     }
   }, [selectedClassroom, dateRange, user]);
 
+  // Realtime subscription for live updates
+  useEffect(() => {
+    if (!selectedClassroom) return;
+
+    const channel = supabase
+      .channel('analytics-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'analytics_daily',
+          filter: `classroom_id=eq.${selectedClassroom}`,
+        },
+        (payload) => {
+          console.log('Realtime update received:', payload);
+          // Refetch analytics when data changes
+          fetchAnalytics();
+          toast({
+            title: "📊 Live Update",
+            description: "New translation activity detected!",
+          });
+        }
+      )
+      .subscribe((status) => {
+        setIsRealtimeConnected(status === 'SUBSCRIBED');
+        console.log('Realtime subscription status:', status);
+      });
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [selectedClassroom]);
+
   const fetchAnalytics = async () => {
     if (!selectedClassroom) return;
     
@@ -167,6 +203,9 @@ const TeacherDashboard = () => {
         .order('session_date', { ascending: true });
 
       if (error) throw error;
+
+      // Store raw data for CSV export
+      setRawAnalyticsData(data || []);
 
       // Aggregate analytics
       let totalTranslations = 0;
@@ -222,6 +261,63 @@ const TeacherDashboard = () => {
     }
   };
 
+  const exportToCSV = () => {
+    if (rawAnalyticsData.length === 0) {
+      toast({
+        title: "No data to export",
+        description: "There's no analytics data available for the selected period.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Build CSV content
+    const headers = [
+      'Date',
+      'Translations',
+      'Total Characters',
+      'Tier 1 Count',
+      'Tier 2 Count',
+      'Tier 3 Count',
+      'Language Pairs',
+      'Peak Hours'
+    ];
+
+    const rows = rawAnalyticsData.map(row => [
+      row.session_date,
+      row.translation_count || 0,
+      row.total_characters || 0,
+      row.tier1_count || 0,
+      row.tier2_count || 0,
+      row.tier3_count || 0,
+      JSON.stringify(row.language_pairs || {}),
+      JSON.stringify(row.hourly_usage || {})
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => 
+        typeof cell === 'string' && cell.includes(',') ? `"${cell}"` : cell
+      ).join(','))
+    ].join('\n');
+
+    // Download file
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `languagebridge-analytics-${selectedClassroomInfo?.name || 'classroom'}-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast({
+      title: "Export complete!",
+      description: "Your analytics data has been downloaded.",
+    });
+  };
+
   const formatLanguagePair = (pair: string) => {
     const [from, to] = pair.split('-');
     return `${LANGUAGE_NAMES[from] || from} → ${LANGUAGE_NAMES[to] || to}`;
@@ -266,7 +362,14 @@ const TeacherDashboard = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">LanguageBridge Dashboard</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-3xl font-bold text-foreground">LanguageBridge Dashboard</h1>
+              {isRealtimeConnected && (
+                <Badge variant="outline" className="flex items-center gap-1 text-green-600 border-green-600">
+                  <Radio className="h-3 w-3 animate-pulse" /> Live
+                </Badge>
+              )}
+            </div>
             <div className="flex flex-wrap gap-2 mt-2 text-muted-foreground">
               <span className="flex items-center gap-1">
                 <Users className="h-4 w-4" /> {teacherName}
@@ -284,7 +387,7 @@ const TeacherDashboard = () => {
               )}
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Select value={selectedClassroom} onValueChange={setSelectedClassroom}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Select classroom" />
@@ -307,6 +410,9 @@ const TeacherDashboard = () => {
                 <SelectItem value="90">Last 90 Days</SelectItem>
               </SelectContent>
             </Select>
+            <Button variant="outline" onClick={exportToCSV} disabled={rawAnalyticsData.length === 0}>
+              <Download className="h-4 w-4 mr-2" /> Export CSV
+            </Button>
             <Button variant="outline" onClick={handleLogout}>
               <LogOut className="h-4 w-4" />
             </Button>
