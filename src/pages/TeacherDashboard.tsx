@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from "recharts";
-import { Users, FileText, Clock, Globe, TrendingUp, LogOut, Calendar } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
+import { Users, FileText, Globe, TrendingUp, LogOut, Calendar, Loader2 } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { User, Session } from "@supabase/supabase-js";
 
 interface AnalyticsData {
   totalTranslations: number;
@@ -45,10 +45,11 @@ const LANGUAGE_NAMES: Record<string, string> = {
 };
 
 const TeacherDashboard = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [email, setEmail] = useState("");
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [teacherName, setTeacherName] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [classrooms, setClassrooms] = useState<ClassroomInfo[]>([]);
@@ -56,28 +57,52 @@ const TeacherDashboard = () => {
   const [dateRange, setDateRange] = useState("7");
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  // Check authentication on mount
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      
+      if (!session?.user) {
+        navigate('/teacher-auth');
+      } else {
+        // Defer data fetching to avoid deadlock
+        setTimeout(() => {
+          loadTeacherData(session.user.id);
+        }, 0);
+      }
+    });
 
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      
+      if (!session?.user) {
+        navigate('/teacher-auth');
+      } else {
+        loadTeacherData(session.user.id);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  const loadTeacherData = async (userId: string) => {
+    setIsLoading(true);
     try {
-      // Find teacher by email
+      // Find teacher by user_id
       const { data: teacher, error } = await supabase
         .from('teachers')
         .select(`
           id, name, email,
           schools (name, district_id)
         `)
-        .eq('email', email)
+        .eq('user_id', userId)
         .maybeSingle();
 
       if (error || !teacher) {
-        toast({
-          title: "Teacher not found",
-          description: "No account found with this email. Please register first.",
-          variant: "destructive",
-        });
-        setIsLoading(false);
+        // No teacher profile yet, redirect to signup
+        navigate('/teacher-signup');
         return;
       }
 
@@ -95,17 +120,10 @@ const TeacherDashboard = () => {
       if (classroomData && classroomData.length > 0) {
         setSelectedClassroom(classroomData[0].id);
       }
-      setIsAuthenticated(true);
-      
-      toast({
-        title: "Welcome back!",
-        description: `Logged in as ${teacher.name}`,
-      });
-
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Load teacher data error:', error);
       toast({
-        title: "Login failed",
+        title: "Failed to load data",
         description: "Please try again later.",
         variant: "destructive",
       });
@@ -114,11 +132,16 @@ const TeacherDashboard = () => {
     }
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/teacher-auth');
+  };
+
   useEffect(() => {
-    if (selectedClassroom && isAuthenticated) {
+    if (selectedClassroom && user) {
       fetchAnalytics();
     }
-  }, [selectedClassroom, dateRange, isAuthenticated]);
+  }, [selectedClassroom, dateRange, user]);
 
   const fetchAnalytics = async () => {
     if (!selectedClassroom) return;
@@ -220,45 +243,11 @@ const TeacherDashboard = () => {
 
   const selectedClassroomInfo = classrooms.find(c => c.id === selectedClassroom);
 
-  if (!isAuthenticated) {
+  // Show loading while checking auth
+  if (isLoading && !user) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <main className="container mx-auto px-4 py-12 max-w-md">
-          <Card>
-            <CardHeader>
-              <CardTitle>Teacher Login</CardTitle>
-              <CardDescription>
-                Enter your email to access your dashboard
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="jane.smith@school.edu"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Logging in..." : "Login"}
-                </Button>
-              </form>
-              <p className="text-sm text-muted-foreground mt-4 text-center">
-                Don't have an account?{" "}
-                <a href="/teacher-signup" className="text-primary hover:underline">
-                  Register here
-                </a>
-              </p>
-            </CardContent>
-          </Card>
-        </main>
-        <Footer />
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -312,7 +301,7 @@ const TeacherDashboard = () => {
                 <SelectItem value="90">Last 90 Days</SelectItem>
               </SelectContent>
             </Select>
-            <Button variant="outline" onClick={() => setIsAuthenticated(false)}>
+            <Button variant="outline" onClick={handleLogout}>
               <LogOut className="h-4 w-4" />
             </Button>
           </div>
