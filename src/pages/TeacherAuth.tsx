@@ -45,7 +45,7 @@ const TeacherAuth = () => {
           return;
         }
         // Check if teacher profile exists, if not redirect to complete profile
-        checkTeacherProfile(session.user.id);
+        checkTeacherProfile(session.user.id, session.user.email);
       }
     });
 
@@ -56,14 +56,15 @@ const TeacherAuth = () => {
           setShowVerificationMessage(true);
           return;
         }
-        checkTeacherProfile(session.user.id);
+        checkTeacherProfile(session.user.id, session.user.email);
       }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  const checkTeacherProfile = async (userId: string) => {
+  const checkTeacherProfile = async (userId: string, email: string | undefined) => {
+    // First check if there's a teacher with this user_id
     const { data: teacher } = await supabase
       .from('teachers')
       .select('id')
@@ -72,10 +73,34 @@ const TeacherAuth = () => {
 
     if (teacher) {
       navigate('/teacher-dashboard');
-    } else {
-      // Teacher needs to complete their profile
-      navigate('/teacher-signup');
+      return;
     }
+
+    // Check if there's an unlinked teacher with this email and link them
+    if (email) {
+      const { data: unlinkedTeacher } = await supabase
+        .from('teachers')
+        .select('id')
+        .eq('email', email)
+        .is('user_id', null)
+        .maybeSingle();
+
+      if (unlinkedTeacher) {
+        // Link this auth user to the existing teacher record
+        const { error } = await supabase
+          .from('teachers')
+          .update({ user_id: userId })
+          .eq('id', unlinkedTeacher.id);
+
+        if (!error) {
+          navigate('/teacher-dashboard');
+          return;
+        }
+      }
+    }
+
+    // Teacher needs to complete their profile
+    navigate('/teacher-signup');
   };
 
   const handleLogin = async (e: React.FormEvent) => {
