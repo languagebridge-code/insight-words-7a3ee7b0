@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.azure-translate]
 verify_jwt = false
+
+[functions.submit-extension-event]
+verify_jwt = false
