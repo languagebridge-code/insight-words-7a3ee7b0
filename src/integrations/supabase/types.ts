@@ -67,6 +67,53 @@ export type Database = {
           },
         ]
       }
+      analytics_events: {
+        Row: {
+          classroom_id: string | null
+          created_at: string
+          event_name: string
+          extension_version: string | null
+          id: number
+          properties: Json | null
+          session_id: string
+          teacher_email: string | null
+          timestamp: string
+          user_id: string
+        }
+        Insert: {
+          classroom_id?: string | null
+          created_at?: string
+          event_name: string
+          extension_version?: string | null
+          id?: number
+          properties?: Json | null
+          session_id: string
+          teacher_email?: string | null
+          timestamp?: string
+          user_id: string
+        }
+        Update: {
+          classroom_id?: string | null
+          created_at?: string
+          event_name?: string
+          extension_version?: string | null
+          id?: number
+          properties?: Json | null
+          session_id?: string
+          teacher_email?: string | null
+          timestamp?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_events_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       app_config: {
         Row: {
           created_at: string | null
@@ -93,6 +140,7 @@ export type Database = {
           classroom_code: string
           created_at: string
           deployment_type: string
+          extension_code: string | null
           id: string
           name: string
           teacher_id: string
@@ -103,6 +151,7 @@ export type Database = {
           classroom_code: string
           created_at?: string
           deployment_type?: string
+          extension_code?: string | null
           id?: string
           name: string
           teacher_id: string
@@ -113,6 +162,7 @@ export type Database = {
           classroom_code?: string
           created_at?: string
           deployment_type?: string
+          extension_code?: string | null
           id?: string
           name?: string
           teacher_id?: string
@@ -418,6 +468,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      generate_classroom_code: { Args: never; Returns: string }
       get_teacher_district: { Args: { _user_id: string }; Returns: string }
       has_role: {
         Args: {
