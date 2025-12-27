@@ -5,13 +5,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
-import { Users, FileText, Globe, TrendingUp, LogOut, Calendar, Loader2, Download, Radio } from "lucide-react";
+import { Users, FileText, Globe, TrendingUp, LogOut, Calendar, Loader2, Download, Radio, Chrome } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { User, Session } from "@supabase/supabase-js";
+import ExtensionCodeCard from "@/components/dashboard/ExtensionCodeCard";
+import ExtensionAnalyticsTab from "@/components/dashboard/ExtensionAnalyticsTab";
 
 interface AnalyticsData {
   totalTranslations: number;
@@ -28,6 +31,7 @@ interface ClassroomInfo {
   classroom_code: string;
   deployment_type: string;
   trial_end_date: string | null;
+  extension_code: string | null;
 }
 
 const TIER_COLORS = ['#8b5cf6', '#a855f7', '#c084fc'];
@@ -114,10 +118,10 @@ const TeacherDashboard = () => {
         return;
       }
 
-      // Get classrooms for this teacher
+      // Get classrooms for this teacher (including extension_code)
       const { data: classroomData, error: classroomError } = await supabase
         .from('classrooms')
-        .select('id, name, classroom_code, deployment_type, trial_end_date')
+        .select('id, name, classroom_code, deployment_type, trial_end_date, extension_code')
         .eq('teacher_id', teacher.id);
 
       if (classroomError) throw classroomError;
@@ -419,209 +423,256 @@ const TeacherDashboard = () => {
           </div>
         </div>
 
-        {isLoading ? (
-          <div className="text-center py-12">Loading analytics...</div>
-        ) : !analytics || analytics.totalTranslations === 0 ? (
-          <Card className="py-12">
-            <CardContent className="text-center">
-              <Globe className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-              <h3 className="text-xl font-semibold mb-2">No Data Yet</h3>
-              <p className="text-muted-foreground max-w-md mx-auto">
-                Your classroom hasn't recorded any translations yet. Make sure the Chrome extension is configured with your classroom code.
-              </p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="space-y-6">
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardDescription>Total Translations</CardDescription>
-                  <CardTitle className="text-3xl">{analytics.totalTranslations.toLocaleString()}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <FileText className="h-4 w-4 mr-1" />
-                    In selected period
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardDescription>Avg Text Length</CardDescription>
-                  <CardTitle className="text-3xl">{analytics.avgCharacters} chars</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <TrendingUp className="h-4 w-4 mr-1" />
-                    Per translation
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardDescription>Active Students*</CardDescription>
-                  <CardTitle className="text-3xl">~{Math.ceil(analytics.totalTranslations / 50)}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Users className="h-4 w-4 mr-1" />
-                    *Estimated from usage
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Charts Row 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Tier Distribution */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    📊 Tier Usage Distribution
-                  </CardTitle>
-                  <CardDescription>
-                    Which reading levels are students selecting
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {getTierData().map((tier, index) => (
-                      <div key={tier.name}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span>{tier.name}</span>
-                          <span className="font-medium">{tier.percentage}% ({tier.value})</span>
-                        </div>
-                        <Progress 
-                          value={parseFloat(tier.percentage as string)} 
-                          className="h-3"
-                          style={{ '--progress-background': TIER_COLORS[index] } as any}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 p-3 bg-muted rounded-lg text-sm">
-                    💡 <strong>Insight:</strong> {
-                      analytics.tierDistribution.tier2 > analytics.tierDistribution.tier1 + analytics.tierDistribution.tier3
-                        ? "Most students prefer academic-level content. Consider providing more challenging materials."
-                        : analytics.tierDistribution.tier1 > analytics.tierDistribution.tier2
-                          ? "Many students are using basic tier. They may need additional scaffolding."
-                          : "Students are exploring various reading levels. Great for differentiated learning!"
-                    }
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Language Pairs */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    🌍 Language Pairs Used
-                  </CardTitle>
-                  <CardDescription>
-                    Translation directions used by students
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {Object.entries(analytics.languagePairs)
-                      .sort(([, a], [, b]) => b - a)
-                      .slice(0, 5)
-                      .map(([pair, count]) => {
-                        const total = Object.values(analytics.languagePairs).reduce((a, b) => a + b, 0);
-                        const percentage = ((count / total) * 100).toFixed(0);
-                        return (
-                          <div key={pair}>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span>{formatLanguagePair(pair)}</span>
-                              <span className="font-medium">{count} ({percentage}%)</span>
-                            </div>
-                            <Progress value={parseFloat(percentage)} className="h-2" />
-                          </div>
-                        );
-                      })}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Charts Row 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Peak Usage Hours */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    ⏰ Peak Usage Times
-                  </CardTitle>
-                  <CardDescription>
-                    When students need help most
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ResponsiveContainer width="100%" height={250}>
-                    <BarChart data={getHourlyData()}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="hour" />
-                      <YAxis />
-                      <Tooltip />
-                      <Bar dataKey="count" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                  <div className="mt-4 p-3 bg-muted rounded-lg text-sm">
-                    💡 <strong>Tip:</strong> Schedule extra support during peak hours!
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Daily Trend */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    📈 Daily Usage Trend
-                  </CardTitle>
-                  <CardDescription>
-                    Translation activity over time
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ResponsiveContainer width="100%" height={250}>
-                    <LineChart data={analytics.dailyUsage}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis 
-                        dataKey="date" 
-                        tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                      />
-                      <YAxis />
-                      <Tooltip 
-                        labelFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="count" 
-                        stroke="hsl(var(--primary))" 
-                        strokeWidth={2}
-                        dot={{ fill: 'hsl(var(--primary))' }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Privacy Notice */}
-            <Card className="bg-muted/50">
-              <CardContent className="py-4">
-                <p className="text-sm text-muted-foreground text-center">
-                  🔒 <strong>Privacy First:</strong> All data is aggregated at the classroom level. 
-                  No individual student information is collected or stored (COPPA/FERPA compliant).
-                </p>
-              </CardContent>
-            </Card>
+        {/* Extension Code Card - Always visible */}
+        {selectedClassroomInfo && (
+          <div className="mb-6">
+            <ExtensionCodeCard
+              classroomId={selectedClassroom}
+              extensionCode={selectedClassroomInfo.extension_code}
+              onCodeRegenerated={(newCode) => {
+                setClassrooms(prev => prev.map(c => 
+                  c.id === selectedClassroom ? { ...c, extension_code: newCode } : c
+                ));
+              }}
+            />
           </div>
         )}
+
+        {/* Tabs for Analytics Views */}
+        <Tabs defaultValue="classroom" className="space-y-6">
+          <TabsList className="grid w-full max-w-md grid-cols-2">
+            <TabsTrigger value="classroom" className="flex items-center gap-2">
+              <TrendingUp className="h-4 w-4" />
+              Classroom Analytics
+            </TabsTrigger>
+            <TabsTrigger value="extension" className="flex items-center gap-2">
+              <Chrome className="h-4 w-4" />
+              Extension Analytics
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Classroom Analytics Tab */}
+          <TabsContent value="classroom">
+            {isLoading ? (
+              <div className="text-center py-12">Loading analytics...</div>
+            ) : !analytics || analytics.totalTranslations === 0 ? (
+              <Card className="py-12">
+                <CardContent className="text-center">
+                  <Globe className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">No Data Yet</h3>
+                  <p className="text-muted-foreground max-w-md mx-auto">
+                    Your classroom hasn't recorded any translations yet. Make sure the Chrome extension is configured with your classroom code.
+                  </p>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="space-y-6">
+                {/* Stats Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardDescription>Total Translations</CardDescription>
+                      <CardTitle className="text-3xl">{analytics.totalTranslations.toLocaleString()}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <FileText className="h-4 w-4 mr-1" />
+                        In selected period
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardDescription>Avg Text Length</CardDescription>
+                      <CardTitle className="text-3xl">{analytics.avgCharacters} chars</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <TrendingUp className="h-4 w-4 mr-1" />
+                        Per translation
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardDescription>Active Students*</CardDescription>
+                      <CardTitle className="text-3xl">~{Math.ceil(analytics.totalTranslations / 50)}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Users className="h-4 w-4 mr-1" />
+                        *Estimated from usage
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Charts Row 1 */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Tier Distribution */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        📊 Tier Usage Distribution
+                      </CardTitle>
+                      <CardDescription>
+                        Which reading levels are students selecting
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {getTierData().map((tier, index) => (
+                          <div key={tier.name}>
+                            <div className="flex justify-between text-sm mb-1">
+                              <span>{tier.name}</span>
+                              <span className="font-medium">{tier.percentage}% ({tier.value})</span>
+                            </div>
+                            <Progress 
+                              value={parseFloat(tier.percentage as string)} 
+                              className="h-3"
+                              style={{ '--progress-background': TIER_COLORS[index] } as any}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4 p-3 bg-muted rounded-lg text-sm">
+                        💡 <strong>Insight:</strong> {
+                          analytics.tierDistribution.tier2 > analytics.tierDistribution.tier1 + analytics.tierDistribution.tier3
+                            ? "Most students prefer academic-level content. Consider providing more challenging materials."
+                            : analytics.tierDistribution.tier1 > analytics.tierDistribution.tier2
+                              ? "Many students are using basic tier. They may need additional scaffolding."
+                              : "Students are exploring various reading levels. Great for differentiated learning!"
+                        }
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Language Pairs */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        🌍 Language Pairs Used
+                      </CardTitle>
+                      <CardDescription>
+                        Translation directions used by students
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {Object.entries(analytics.languagePairs)
+                          .sort(([, a], [, b]) => b - a)
+                          .slice(0, 5)
+                          .map(([pair, count]) => {
+                            const total = Object.values(analytics.languagePairs).reduce((a, b) => a + b, 0);
+                            const percentage = ((count / total) * 100).toFixed(0);
+                            return (
+                              <div key={pair}>
+                                <div className="flex justify-between text-sm mb-1">
+                                  <span>{formatLanguagePair(pair)}</span>
+                                  <span className="font-medium">{count} ({percentage}%)</span>
+                                </div>
+                                <Progress value={parseFloat(percentage)} className="h-2" />
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Charts Row 2 */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Peak Usage Hours */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        ⏰ Peak Usage Times
+                      </CardTitle>
+                      <CardDescription>
+                        When students need help most
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ResponsiveContainer width="100%" height={250}>
+                        <BarChart data={getHourlyData()}>
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="hour" />
+                          <YAxis />
+                          <Tooltip />
+                          <Bar dataKey="count" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                      <div className="mt-4 p-3 bg-muted rounded-lg text-sm">
+                        💡 <strong>Tip:</strong> Schedule extra support during peak hours!
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Daily Trend */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        📈 Daily Usage Trend
+                      </CardTitle>
+                      <CardDescription>
+                        Translation activity over time
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ResponsiveContainer width="100%" height={250}>
+                        <LineChart data={analytics.dailyUsage}>
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis 
+                            dataKey="date" 
+                            tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                          />
+                          <YAxis />
+                          <Tooltip 
+                            labelFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+                          />
+                          <Line 
+                            type="monotone" 
+                            dataKey="count" 
+                            stroke="hsl(var(--primary))" 
+                            strokeWidth={2}
+                            dot={{ fill: 'hsl(var(--primary))' }}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Privacy Notice */}
+                <Card className="bg-muted/50">
+                  <CardContent className="py-4">
+                    <p className="text-sm text-muted-foreground text-center">
+                      🔒 <strong>Privacy First:</strong> All data is aggregated at the classroom level. 
+                      No individual student information is collected or stored (COPPA/FERPA compliant).
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+          </TabsContent>
+
+          {/* Extension Analytics Tab */}
+          <TabsContent value="extension">
+            {selectedClassroom ? (
+              <ExtensionAnalyticsTab classroomId={selectedClassroom} />
+            ) : (
+              <Card className="py-12">
+                <CardContent className="text-center">
+                  <Chrome className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">Select a Classroom</h3>
+                  <p className="text-muted-foreground">Choose a classroom to view extension analytics.</p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+        </Tabs>
       </main>
 
       <Footer />
