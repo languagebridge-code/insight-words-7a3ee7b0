@@ -13,23 +13,6 @@ export default function Demo() {
     "Technical requirements review"
   ];
 
-  const testimonials = [
-    {
-      name: "Dr. Sarah Kim",
-      role: "Assistant Superintendent",
-      quote: "The demo sold itself. Seeing the real-time translation in action made it immediately clear how this would help our ELL students."
-    },
-    {
-      name: "Marcus Johnson",
-      role: "Technology Director",
-      quote: "I appreciated that the demo focused on implementation logistics. They answered all my technical questions and showed exactly how it would integrate with our Chromebooks."
-    },
-    {
-      name: "Maria Lopez",
-      role: "ESL Coordinator",
-      quote: "After the 15-minute demo, I knew this was what we'd been searching for. We started our pilot the same week."
-    }
-  ];
 
   return (
     <div className="min-h-screen">
@@ -149,30 +132,6 @@ export default function Demo() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">
-              What Educators Say About Our Demos
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, i) => (
-                <div key={i} className="bg-card rounded-xl p-6 border border-border">
-                  <p className="text-muted-foreground italic mb-4">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="border-t border-border pt-4">
-                    <p className="font-bold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ */}
       <section className="py-16 bg-secondary/30">

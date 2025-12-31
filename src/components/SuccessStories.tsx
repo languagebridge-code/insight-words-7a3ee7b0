@@ -34,7 +34,7 @@ export const SuccessStories = () => {
             Hear from educators using LanguageBridge to transform learning for ELL students
           </p>
           <p className="text-sm text-muted-foreground mt-4 italic">
-            Stories from our Ohio Pilot schools coming in Fall 2025
+            Stories from our Ohio Pilot schools coming in January 2026
           </p>
         </div>
 
