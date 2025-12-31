@@ -149,24 +149,8 @@ export default function Grants() {
     }
   ];
 
-  const successStories = [
-    {
-      name: "Sarah Martinez",
-      title: "Parma City Schools",
-      quote: "We used Title III funds to cover the entire cost of LanguageBridge. The application took me less than 3 hours to customize using their templates, and we were approved in just 14 days. Now our ELL students have instant translation support.",
-      grant: "Title III",
-      amount: "$5,100",
-      timeline: "14 days"
-    },
-    {
-      name: "Dr. James Chen",
-      title: "Urban District",
-      quote: "Our district was cited for Title VI violations and facing potential legal action. LanguageBridge helped us secure a Title VI compliance grant that not only funded the tool but also protected us from costly investigations.",
-      grant: "Title VI Compliance",
-      amount: "$35,000",
-      timeline: "60 days"
-    }
-  ];
+  // Success stories will be added after pilot program launches in January 2026
+  const successStories: any[] = [];
 
   const faqs = [
     {
@@ -213,14 +197,10 @@ export default function Grants() {
             </p>
             
             {/* Stats */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-card rounded-xl p-6 border border-border">
-                <p className="text-4xl font-bold text-primary mb-2">87%</p>
-                <p className="text-muted-foreground">of our schools use grant funding</p>
-              </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
               <div className="bg-card rounded-xl p-6 border border-border">
                 <p className="text-4xl font-bold text-primary mb-2">$3,500</p>
-                <p className="text-muted-foreground">avg. annual cost per school</p>
+                <p className="text-muted-foreground">estimated annual cost per school</p>
               </div>
               <div className="bg-card rounded-xl p-6 border border-border">
                 <p className="text-4xl font-bold text-primary mb-2">30-60 days</p>
@@ -412,34 +392,11 @@ export default function Grants() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            ✅ Schools That Funded LanguageBridge with Grants
+            ✅ Success Stories Coming January 2026
           </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {successStories.map((story, index) => (
-              <div key={index} className="bg-card rounded-2xl p-8 shadow-lg border border-border">
-                <div className="mb-4">
-                  <p className="text-lg font-bold">{story.name}</p>
-                  <p className="text-sm text-muted-foreground">{story.title}</p>
-                </div>
-                <p className="text-muted-foreground mb-6 italic">"{story.quote}"</p>
-                <div className="flex flex-wrap gap-4 text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Grant Used:</span>
-                    <span className="ml-2 font-semibold">{story.grant}</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Amount:</span>
-                    <span className="ml-2 font-semibold text-primary">{story.amount}</span>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Timeline:</span>
-                    <span className="ml-2 font-semibold">{story.timeline}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+            We're launching our Ohio pilot program in January 2026. Success stories from schools that fund LanguageBridge through grants will be shared here.
+          </p>
         </div>
       </section>
 
