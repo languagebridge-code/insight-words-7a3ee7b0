@@ -100,11 +100,6 @@ export const Hero = () => {
                 Watch Demo
               </Button>
             </div>
-
-            {/* Social Proof Micro */}
-            <p className="text-sm text-muted-foreground mt-8 fade-in-up delay-500">
-              <span className="font-semibold text-foreground">500+</span> students supported across <span className="font-semibold text-foreground">12 Ohio districts</span>
-            </p>
           </div>
 
           {/* Right Column - Image Carousel */}
