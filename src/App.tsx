@@ -32,6 +32,7 @@ import ROICalculator from "./pages/ROICalculator";
 import GetStarted from "./pages/GetStarted";
 import TitleVIChecklist from "./pages/resources/TitleVIChecklist";
 import TitleIIIApplication from "./pages/resources/TitleIIIApplication";
+import Support from "./pages/Support";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/resources/title-vi-checklist" element={<TitleVIChecklist />} />
           <Route path="/resources/title-iii-application" element={<TitleIIIApplication />} />
+          <Route path="/support" element={<Support />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
