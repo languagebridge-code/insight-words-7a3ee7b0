@@ -22,6 +22,7 @@ export const Navigation = () => {
     { label: "Pilot Program", href: "/pilot" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
+    { label: "Support", href: "/support" },
     { label: "Teacher Dashboard", href: "/dashboard" },
   ];
 
