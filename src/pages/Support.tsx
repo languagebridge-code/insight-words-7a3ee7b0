@@ -549,10 +549,10 @@ const Support = () => {
                   Mon-Fri, 8am-5pm EST
                 </p>
                 <a
-                  href="tel:+14198063080"
+                  href="tel:+12168006020"
                   className="text-primary font-medium hover:underline"
                 >
-                  (419) 806-3080
+                  (216) 800-6020
                 </a>
               </CardContent>
             </Card>
