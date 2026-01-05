@@ -154,7 +154,7 @@ export default function Contact() {
               {/* Location */}
               <div className="bg-card rounded-xl p-6 border border-border">
                 <h3 className="font-bold mb-2">Location</h3>
-                <p className="text-muted-foreground mb-1">Highland Heights, Ohio</p>
+                <p className="text-muted-foreground mb-1">Northeast Ohio</p>
                 <p className="text-sm text-muted-foreground">Serving Ohio schools (expanding nationwide)</p>
               </div>
             </div>
