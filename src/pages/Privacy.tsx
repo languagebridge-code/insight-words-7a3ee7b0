@@ -797,11 +797,10 @@ export default function Privacy() {
                   <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a>
                 </div>
                 <div>
-                  <p className="font-semibold mb-2">Mailing Address:</p>
+                  <p className="font-semibold mb-2">Company:</p>
                   <div className="text-muted-foreground text-sm space-y-1">
                     <p>LanguageBridge, LLC</p>
-                    <p>856 Eastlawn Dr</p>
-                    <p>Cleveland, OH 44112</p>
+                    <p>Northeast Ohio</p>
                   </div>
                 </div>
               </CardContent>
