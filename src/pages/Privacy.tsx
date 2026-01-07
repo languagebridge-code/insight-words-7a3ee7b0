@@ -730,21 +730,69 @@ export default function Privacy() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
                 <CardContent className="pt-6">
-                  <p className="font-semibold mb-2">Student Privacy Pledge:</p>
-                  <p className="text-muted-foreground text-sm">We're signatories to the Student Privacy Pledge (studentprivacypledge.org)</p>
+                  <p className="font-semibold mb-3 text-lg">LanguageBridge Student Data Privacy Pledge</p>
+                  <p className="text-muted-foreground text-sm mb-4">We make the following commitments to schools, students, and families:</p>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will NOT sell student personal information</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will NOT use student data for targeted advertising</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will NOT create student profiles for non-educational purposes</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will collect only the minimum data necessary to provide the service</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will maintain comprehensive security standards to protect student data</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will be transparent about our data collection and use practices</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will delete student data upon request or when no longer needed</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">We will not change our privacy practices without advance notice</span>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-semibold mb-2">State Laws:</p>
-                  <p className="text-muted-foreground mb-2 text-sm">We comply with:</p>
+                  <p className="font-semibold mb-2">Ohio Law Compliance:</p>
+                  <p className="text-muted-foreground mb-2 text-sm">As an Ohio-based company, we comply with:</p>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
+                    <li><strong>Ohio Revised Code § 3319.321</strong> - Student Data Privacy</li>
+                    <li><strong>Ohio Revised Code § 3301.0714</strong> - Data Security Requirements</li>
+                    <li><strong>Ohio Administrative Code 3301-14</strong> - Data Governance</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <p className="font-semibold mb-2">Federal & Other State Laws:</p>
+                  <p className="text-muted-foreground mb-2 text-sm">We also comply with:</p>
+                  <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
+                    <li>FERPA (Family Educational Rights and Privacy Act)</li>
+                    <li>COPPA (Children's Online Privacy Protection Act)</li>
                     <li>California AB 1584 (SOPIPA)</li>
                     <li>New York Education Law § 2-d</li>
-                    <li>Other applicable state laws</li>
+                    <li>Other applicable state student privacy laws</li>
                   </ul>
                 </CardContent>
               </Card>
