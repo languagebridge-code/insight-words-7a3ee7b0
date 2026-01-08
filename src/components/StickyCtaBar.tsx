@@ -8,7 +8,7 @@ export const StickyCtaBar = () => {
   // Status message configuration - update this for different announcements
   const statusMessage = {
     type: "update" as "maintenance" | "update" | "info",
-    message: "✓ Chrome Extension is now live! Install from the Chrome Web Store to get started.",
+    message: "✓ Chrome Extension is now live!",
   };
 
   if (isDismissed) return null;
