@@ -198,7 +198,7 @@ const Support = () => {
     },
     {
       question: "How many languages does LanguageBridge support?",
-      answer: "LanguageBridge supports over 100 languages including Spanish, Arabic, Vietnamese, Chinese (Simplified and Traditional), Somali, Swahili, and many more. We're constantly adding new languages based on user requests.",
+      answer: "LanguageBridge currently supports 9 languages: Somali, Urdu, Ukrainian, Persian, Dari, Pashto, Arabic, Spanish, and English—with more coming soon. We're constantly adding new languages based on district needs and refugee resettlement patterns.",
     },
     {
       question: "Can students use LanguageBridge on their personal devices?",
