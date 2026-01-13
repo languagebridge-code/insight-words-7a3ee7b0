@@ -153,9 +153,10 @@ export default function Contact() {
 
               {/* Location */}
               <div className="bg-card rounded-xl p-6 border border-border">
-                <h3 className="font-bold mb-2">Location</h3>
-                <p className="text-muted-foreground mb-1">Northeast Ohio</p>
-                <p className="text-sm text-muted-foreground">Serving Ohio schools (expanding nationwide)</p>
+                <h3 className="font-bold mb-2">Office</h3>
+                <p className="text-muted-foreground mb-1">25000 Euclid Ave, Suite 108</p>
+                <p className="text-muted-foreground mb-1">Euclid, OH 44117</p>
+                <p className="text-sm text-muted-foreground mt-2">Serving Ohio schools (expanding nationwide)</p>
               </div>
             </div>
 

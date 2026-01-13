@@ -137,9 +137,13 @@ export const Footer = () => {
           <div>
             <img src={logo} alt="LanguageBridge Logo" className="w-16 h-16 mb-4" />
             <h3 className="font-bold text-lg mb-4 text-white">Our Mission</h3>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/80 text-sm leading-relaxed mb-4">
               Help every student understand, even those who can't read yet. LanguageBridge is the first Language Accessibility Screen Reader, breaking down barriers for preliterate English language learners.
             </p>
+            <div className="text-white/60 text-sm">
+              <p>25000 Euclid Ave, Suite 108</p>
+              <p>Euclid, OH 44117</p>
+            </div>
           </div>
         </div>
 
