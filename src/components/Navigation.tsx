@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/languagebridge-logo.png";
+import logo from "@/assets/languagebridge-logo.svg";
 
 interface NavDropdownProps {
   label: string;

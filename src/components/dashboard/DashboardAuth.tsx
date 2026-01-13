@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { z } from "zod";
-import languageBridgeLogo from "@/assets/languagebridge-logo.png";
+import languageBridgeLogo from "@/assets/languagebridge-logo.svg";
 
 const emailSchema = z.string().email("Please enter a valid email address");
 const passwordSchema = z.string().min(6, "Password must be at least 6 characters");

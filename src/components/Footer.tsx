@@ -2,7 +2,7 @@ import { Mail, Phone, Twitter, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import logo from "@/assets/languagebridge-logo.png";
+import logo from "@/assets/languagebridge-logo.svg";
 import { useState } from "react";
 
 export const Footer = () => {

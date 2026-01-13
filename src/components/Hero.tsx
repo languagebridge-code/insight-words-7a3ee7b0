@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2, Sparkles } from "lucide-react";
-import logo from "@/assets/languagebridge-logo.png";
+import logo from "@/assets/languagebridge-logo.svg";
 import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
 import heroStudentMaya from "@/assets/hero-student-maya.jpg";
