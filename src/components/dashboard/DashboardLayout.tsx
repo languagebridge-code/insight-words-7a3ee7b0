@@ -24,7 +24,7 @@ import {
   Building2,
   School,
 } from "lucide-react";
-import languageBridgeLogo from "@/assets/languagebridge-logo.png";
+import languageBridgeLogo from "@/assets/languagebridge-logo.svg";
 
 interface DashboardLayoutProps {
   user: User;
