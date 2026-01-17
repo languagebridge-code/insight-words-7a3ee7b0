@@ -1,11 +1,9 @@
 // Mock data for dashboard demo mode
 
 export const mockFeatureUsage = [
-  { name: "Smart Translation", value: 8432 },
-  { name: "Text Simplification", value: 5621 },
-  { name: "Vocabulary Glossary", value: 3847 },
-  { name: "Talk to Teacher", value: 1256 },
-  { name: "Read Aloud", value: 4892 },
+  { name: "Audio Translation", value: 8432 },
+  { name: "Tiered Language Glossary", value: 5621 },
+  { name: "Talk to Teacher", value: 3847 },
 ];
 
 export const mockLanguageDistribution = [
@@ -35,21 +33,21 @@ export const mockProgressData = [
 export const mockAnalyticsData = [
   {
     type: "translation",
-    description: "Student translated science vocabulary passage",
+    description: "Student translated science vocabulary passage with audio playback",
     language: "Arabic",
     time: "2 minutes ago",
     grade: "Grade 5",
   },
   {
-    type: "simplification",
-    description: "Complex history text simplified for comprehension",
+    type: "glossary",
+    description: "Accessed tiered vocabulary for math academic terms",
     language: "Spanish",
     time: "5 minutes ago",
     grade: "Grade 7",
   },
   {
-    type: "vocabulary",
-    description: "15 math terms added to personal glossary",
+    type: "glossary",
+    description: "15 math terms reviewed in tiered language glossary",
     language: "Dari",
     time: "12 minutes ago",
     grade: "Grade 4",
@@ -63,15 +61,15 @@ export const mockAnalyticsData = [
   },
   {
     type: "translation",
-    description: "Reading comprehension passage translated",
-    language: "Mandarin",
+    description: "Reading comprehension passage translated with audio",
+    language: "Pashto",
     time: "25 minutes ago",
     grade: "Grade 8",
   },
   {
-    type: "simplification",
-    description: "State test practice passage simplified",
-    language: "Vietnamese",
+    type: "talk_to_teacher",
+    description: "Two-way communication for assignment feedback",
+    language: "Ukrainian",
     time: "32 minutes ago",
     grade: "Grade 3",
   },

@@ -1,7 +1,7 @@
 {
   "name": "LanguageBridge",
   "short_name": "LanguageBridge",
-  "description": "Audio-first translation for preliterate students. Real-time support with text simplification, teacher communication, and academic glossaries.",
+  "description": "Audio-first translation for preliterate students. Three integrated tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher communication.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
