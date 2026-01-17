@@ -2,8 +2,49 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { CheckCircle, GraduationCap, Server, Shield } from "lucide-react";
+import { useEffect } from "react";
 
 const FAQ = () => {
+  // Generate FAQ structured data for SEO
+  const allFAQs = [
+    { question: "Do teachers need training?", answer: "We provide a 3-hour professional development session that covers best practices and effective classroom integration. However, the tool is intuitive enough that teachers can start using it immediately. Students need zero training." },
+    { question: "What's included in the Chrome extension?", answer: "Everything. One simple Chrome extension includes all three tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher. Students access everything with one keyboard shortcut (Alt+Shift+L) or by highlighting text." },
+    { question: "What languages are supported?", answer: "Currently 9 languages with authentic translations: Somali, Urdu, Ukrainian, Persian, Dari, Pashto, Arabic, Spanish, and English—with more coming soon." },
+    { question: "How is this different from Read&Write or Immersive Reader?", answer: "LanguageBridge is specifically designed for preliterate students who need to HEAR content in their language. Read&Write assumes literacy; LanguageBridge doesn't. Microsoft Immersive Reader only works within Microsoft products." },
+    { question: "What do we need technically?", answer: "Just Chrome 90+ or any Chromebook with internet access. IT installs via Google Admin Console in 30 minutes. No extra software, no servers, no configuration needed." },
+    { question: "How long does implementation take?", answer: "Complete implementation takes 3 weeks: Week 1 - IT installs via Google Admin Console (30 minutes), Week 2 - Teacher professional development (3 hours), Week 3 - Students independently accessing content." },
+    { question: "What data is collected?", answer: "None. Zero. We do not store, track, or collect any student data. Translations happen in real-time and are never saved. FERPA and COPPA compliant by design." },
+    { question: "Is this Title III fundable?", answer: "Yes, 100%. LanguageBridge qualifies under Title III as an instructional tool for English Language Learners. It also qualifies under special education budgets, assistive technology budgets, and general instructional materials." },
+    { question: "Can we try it before we purchase it?", answer: "FREE access for selected Ohio schools in 2025-2026. You help us refine the product while your ELL students get powerful tools. Rolling applications, limited spots." }
+  ];
+
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": allFAQs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'faq-schema';
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.getElementById('faq-schema');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
   const teacherFAQs = [
     {
       question: "Do teachers need training?",
