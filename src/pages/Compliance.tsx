@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Lock, FileCheck, Users, Database, AlertTriangle, CheckCircle2, Download, Mail } from "lucide-react";
+import { Shield, Lock, FileCheck, Users, Database, AlertTriangle, CheckCircle2, Download, Mail, Scale, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Compliance() {
@@ -141,6 +141,125 @@ export default function Compliance() {
                       <strong>School-Authorized Use:</strong> LanguageBridge operates under school authorization for educational purposes, with districts maintaining full control over student access.
                     </div>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Ohio SB 29 Compliance */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-primary/30">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <Scale className="w-8 h-8 text-primary" />
+                  <CardTitle className="text-3xl">Ohio Senate Bill 29 (SB 29) Compliance</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="bg-primary/10 p-4 rounded-lg">
+                  <p className="text-lg font-semibold text-primary mb-2">✓ 100% Compliant with Ohio SB 29</p>
+                  <p className="text-muted-foreground">
+                    Ohio SB 29 establishes student data privacy requirements for K-12 school districts and technology providers. LanguageBridge exceeds all SB 29 requirements through our privacy-first architecture.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">SB 29 Compliance Summary</h3>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    <div className="flex items-start gap-3 p-3 bg-background rounded-lg border border-border">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong className="text-sm">No Data Selling/Sharing</strong>
+                        <p className="text-xs text-muted-foreground">Zero data selling; no third-party commercial sharing</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-background rounded-lg border border-border">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong className="text-sm">No Location Tracking</strong>
+                        <p className="text-xs text-muted-foreground">Extension never requests location permissions</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-background rounded-lg border border-border">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong className="text-sm">No Keystroke Logging</strong>
+                        <p className="text-xs text-muted-foreground">No monitoring of typing activity</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-background rounded-lg border border-border">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong className="text-sm">No Browsing History</strong>
+                        <p className="text-xs text-muted-foreground">Extension does not track browsing activity</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-background rounded-lg border border-border">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong className="text-sm">No Passive Monitoring</strong>
+                        <p className="text-xs text-muted-foreground">Audio features are student-initiated only</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-background rounded-lg border border-border">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong className="text-sm">72-Hour Breach Notification</strong>
+                        <p className="text-xs text-muted-foreground">Written protocol with 24/7 emergency contact</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">Prohibited Activities We Never Perform</h3>
+                  <p className="text-muted-foreground mb-4">
+                    SB 29 prohibits certain monitoring activities. LanguageBridge does NOT engage in any of these:
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-2">
+                    <div className="flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                      <span className="text-sm">Location tracking</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                      <span className="text-sm">Keystroke recording</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                      <span className="text-sm">Camera/microphone activation</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                      <span className="text-sm">Browsing history collection</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                      <span className="text-sm">Passive activity monitoring</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                      <span className="text-sm">Behavioral profiling</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-muted rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <strong>For Ohio School Districts:</strong> We provide a complete SB 29 compliance guide package including contract addendum templates, parent notification letter templates, and detailed technical audit documentation. Contact <a href="mailto:info@languagebridge.app" className="text-primary hover:underline">info@languagebridge.app</a> to request your copy.
+                  </p>
+                </div>
+
+                <div className="text-center pt-4">
+                  <Link to="/privacy#sb29">
+                    <Button variant="outline">
+                      View Full SB 29 Compliance Details →
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
