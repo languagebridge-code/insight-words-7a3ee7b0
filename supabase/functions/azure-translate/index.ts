@@ -59,9 +59,9 @@ serve(async (req) => {
     if (!azureResponse.ok) {
       const errorText = await azureResponse.text();
       console.error('Azure API error:', azureResponse.status, errorText);
-      return new Response(
-        JSON.stringify({ error: 'Translation service error', details: errorText }),
-        { status: azureResponse.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    return new Response(
+        JSON.stringify({ error: 'Translation service temporarily unavailable. Please try again.' }),
+        { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -126,7 +126,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Translation function error:', error);
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }),
+      JSON.stringify({ error: 'An unexpected error occurred. Please try again.' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
