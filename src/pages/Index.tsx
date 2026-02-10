@@ -5,7 +5,7 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { TrustBadgeBar } from "@/components/TrustBadgeBar";
-import { StickyCtaBar } from "@/components/StickyCtaBar";
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { HelpCircle, Mail, Sparkles } from "lucide-react";
@@ -67,7 +67,7 @@ const Index = () => {
       <Contact />
       <Footer />
       <ScrollToTop />
-      <StickyCtaBar />
+      
     </div>
   );
 };

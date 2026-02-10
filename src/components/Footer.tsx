@@ -126,8 +126,14 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Twitter className="w-4 h-4" />
-                <a href="https://twitter.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                <a href="https://x.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
                   @_languagebridge
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Twitter className="w-4 h-4 text-primary" />
+                <a href="https://x.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                  Status & Updates →
                 </a>
               </li>
             </ul>
