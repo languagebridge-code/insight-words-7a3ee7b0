@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Download, Check, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function ESSA() {
   return (
     <div className="min-h-screen">
+      <PageMeta title="ESSA Evidence-Based Funding" description="Qualify LanguageBridge under ESSA as an evidence-based intervention. Research backing, scalability plans, and grant application templates." />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">

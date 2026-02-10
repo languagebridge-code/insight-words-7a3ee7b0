@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Hero } from "@/components/Hero";
 import { WhoWeServe } from "@/components/WhoWeServe";
 import { Contact } from "@/components/Contact";
@@ -13,6 +14,10 @@ import { HelpCircle, Mail, Sparkles } from "lucide-react";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <PageMeta
+        title="LanguageBridge - The First Language Accessibility Screen Reader for ESL Students"
+        description="Audio-first language accessibility for preliterate ESL students. Audio Translation, Tiered Language Glossary, and Talk to Teacher tools for K-12 classrooms."
+      />
       <Navigation />
       <Hero />
       <TrustBadgeBar />

@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 import { FounderCredibility } from "@/components/FounderCredibility";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,10 @@ import { Target, Heart, Users, Lightbulb, MapPin, GraduationCap } from "lucide-r
 export default function About() {
   return (
     <div className="min-h-screen">
+      <PageMeta
+        title="About Us - Our Mission to Support ELL Students"
+        description="Learn about LanguageBridge's mission to break language barriers for preliterate ESL students with audio-first accessibility tools built for K-12 classrooms."
+      />
       <Navigation />
       
       {/* Hero Section */}

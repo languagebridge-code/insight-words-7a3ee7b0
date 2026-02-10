@@ -3,6 +3,7 @@ import { Download, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function ROICalculator() {
@@ -30,6 +31,7 @@ export default function ROICalculator() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="ROI Calculator - See Your School's Savings" description="Calculate how much your school can save with LanguageBridge. Compare interpreter costs, reduce misdiagnoses, and see per-student daily cost." />
       <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">

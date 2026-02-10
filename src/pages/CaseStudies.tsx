@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function CaseStudies() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Case Studies - ELL Student Success Stories" description="See how LanguageBridge helps English language learners succeed in the classroom. Real stories from Ohio pilot schools and measurable outcomes." />
       <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">

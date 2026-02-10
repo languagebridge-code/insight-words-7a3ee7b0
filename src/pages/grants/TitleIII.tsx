@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Download, Calculator, Check, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -11,6 +12,7 @@ export default function TitleIII() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Title III Funding for ELL Tools" description="Use Title III funds to bring LanguageBridge to your school. Budget calculator, application templates, and compliance documentation included." />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">

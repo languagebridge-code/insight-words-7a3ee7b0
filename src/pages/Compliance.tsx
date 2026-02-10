@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import { Link } from "react-router-dom";
 export default function Compliance() {
   return (
     <div className="min-h-screen">
+      <PageMeta title="Compliance - FERPA, COPPA & Title VI" description="LanguageBridge meets FERPA, COPPA, and Title VI requirements. Zero student data collection, no PII storage, and full compliance documentation for districts." />
       <Navigation />
       
       {/* Hero Section */}

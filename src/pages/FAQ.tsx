@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { CheckCircle, GraduationCap, Server, Shield } from "lucide-react";
@@ -142,6 +143,7 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="FAQ - Common Questions About LanguageBridge" description="Answers to common questions about LanguageBridge: pricing, compliance, implementation, training, and how it helps ELL students succeed." />
       <Navigation />
       
       {/* Hero Section */}

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Download, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function IDEA() {
   return (
     <div className="min-h-screen">
+      <PageMeta title="IDEA Part B Funding for Language Access" description="Fund LanguageBridge through IDEA Part B for SLIFE students with IEPs. Assistive technology justification and budget templates included." />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">

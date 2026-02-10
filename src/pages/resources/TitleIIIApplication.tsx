@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Link } from "react-router-dom";
 import { Printer } from "lucide-react";
 
@@ -9,6 +10,7 @@ export default function TitleIIIApplication() {
 
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta title="Title III Application Template" description="Ready-to-use Title III grant application template for LanguageBridge. Pre-filled budget justification and program narrative for ELL tools." />
       {/* Header */}
       <div className="print:hidden sticky top-0 z-50 bg-background border-b border-border">
         <div className="container mx-auto px-4 py-4">

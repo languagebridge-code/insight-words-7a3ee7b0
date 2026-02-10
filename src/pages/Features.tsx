@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 import { ThreeTools } from "@/components/ThreeTools";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -10,6 +11,7 @@ import { Link } from "react-router-dom";
 export default function Features() {
   return (
     <div className="min-h-screen">
+      <PageMeta title="Features - Audio Translation, Glossary & Talk to Teacher" description="Explore LanguageBridge's three core tools: Audio Translation for preliterate students, Tiered Language Glossary, and Talk to Teacher communication bridge." />
       <Navigation />
       
       {/* Hero Section */}

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -130,6 +131,7 @@ export default function Pilot() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Free Pilot Program for Ohio Schools" description="Apply for LanguageBridge's free pilot program. 30-day full access for up to 50 students with implementation support and usage analytics." />
       <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">

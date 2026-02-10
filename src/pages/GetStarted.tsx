@@ -3,6 +3,7 @@ import { ArrowRight, Rocket, Calendar, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function GetStarted() {
@@ -25,6 +26,7 @@ export default function GetStarted() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Get Started with LanguageBridge" description="Three ways to bring LanguageBridge to your school: free pilot, scheduled demo, or grant-funded purchase. Get started in as little as 48 hours." />
       <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">

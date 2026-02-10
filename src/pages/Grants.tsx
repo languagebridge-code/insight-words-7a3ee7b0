@@ -4,6 +4,7 @@ import { ArrowRight, Download, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function Grants() {
@@ -181,6 +182,7 @@ export default function Grants() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Grant Funding Guide for ELL Tools" description="Fund LanguageBridge with Title III, Title VI, IDEA, or ESSA grants. Free templates, budget justification letters, and step-by-step application guides." />
       <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
