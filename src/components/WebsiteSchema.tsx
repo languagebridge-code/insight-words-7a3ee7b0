@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export const WebsiteSchema = () => {
   useEffect(() => {
-    const baseUrl = "https://insight-words.lovable.app";
+    const baseUrl = "https://www.languagebridge.app";
 
     const websiteSchema = {
       "@context": "https://schema.org",
