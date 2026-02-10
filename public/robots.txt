@@ -2,9 +2,17 @@
 
 User-agent: Googlebot
 Allow: /
+Disallow: /teacher-auth
+Disallow: /teacher-dashboard
+Disallow: /dashboard
+Disallow: /reset-password
 
 User-agent: Bingbot
 Allow: /
+Disallow: /teacher-auth
+Disallow: /teacher-dashboard
+Disallow: /dashboard
+Disallow: /reset-password
 
 User-agent: Twitterbot
 Allow: /
@@ -14,12 +22,10 @@ Allow: /
 
 User-agent: *
 Allow: /
-
-# Sitemap location
-Sitemap: https://www.languagebridge.app/sitemap.xml
-
-# Disallow admin/auth pages from indexing
 Disallow: /teacher-auth
 Disallow: /teacher-dashboard
 Disallow: /dashboard
 Disallow: /reset-password
+
+# Sitemap location
+Sitemap: https://www.languagebridge.app/sitemap.xml

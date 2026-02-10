@@ -34,6 +34,7 @@ const routeNames: Record<string, string> = {
   "/grants/idea": "IDEA",
   "/resources/title-iii-application": "Title III Application",
   "/resources/title-vi-checklist": "Title VI Checklist",
+  "/status": "Status & Updates",
 };
 
 export const BreadcrumbSchema = () => {
@@ -50,7 +51,7 @@ export const BreadcrumbSchema = () => {
       breadcrumbs.push({ name, path: currentPath });
     });
 
-    const baseUrl = "https://insight-words.lovable.app";
+    const baseUrl = "https://www.languagebridge.app";
 
     const breadcrumbSchema = {
       "@context": "https://schema.org",
