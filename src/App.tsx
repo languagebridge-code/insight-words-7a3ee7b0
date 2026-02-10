@@ -35,6 +35,7 @@ import GetStarted from "./pages/GetStarted";
 import TitleVIChecklist from "./pages/resources/TitleVIChecklist";
 import TitleIIIApplication from "./pages/resources/TitleIIIApplication";
 import Support from "./pages/Support";
+import Status from "./pages/Status";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => (
           <Route path="/resources/title-vi-checklist" element={<TitleVIChecklist />} />
           <Route path="/resources/title-iii-application" element={<TitleIIIApplication />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/status" element={<Status />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
