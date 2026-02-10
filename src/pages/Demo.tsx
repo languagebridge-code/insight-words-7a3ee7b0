@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play, Check } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function Demo() {
@@ -16,6 +17,7 @@ export default function Demo() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Request a Demo" description="Schedule a live walkthrough of LanguageBridge. See Audio Translation, Tiered Glossary, and Talk to Teacher in action for your school or district." />
       <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">

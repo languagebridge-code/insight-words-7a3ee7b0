@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
@@ -247,6 +248,7 @@ const Support = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta title="Support - Help Center & Troubleshooting" description="Get help with LanguageBridge. Troubleshooting guides, FAQs, and direct support for teachers and IT administrators." />
       <Navigation />
 
       {/* Hero Section */}

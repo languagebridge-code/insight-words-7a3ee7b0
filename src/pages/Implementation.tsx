@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Download, CheckCircle, Clock, Users, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function Implementation() {
@@ -110,6 +111,7 @@ export default function Implementation() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Implementation Guide - Deploy in Days" description="Get LanguageBridge running in your school in days, not months. Step-by-step implementation timeline with IT setup, teacher training, and ongoing support." />
       <Navigation />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">

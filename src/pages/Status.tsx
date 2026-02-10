@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { useEffect } from "react";
@@ -17,6 +18,7 @@ const Status = () => {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Status & Updates" description="Real-time status updates, release notes, and announcements for LanguageBridge. Follow @_languagebridge on X for the latest." />
       <Navigation />
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4 max-w-3xl">

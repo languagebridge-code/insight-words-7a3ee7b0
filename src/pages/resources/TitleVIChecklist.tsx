@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Link } from "react-router-dom";
 import { Printer, Download } from "lucide-react";
 
@@ -9,6 +10,7 @@ export default function TitleVIChecklist() {
 
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta title="Title VI Compliance Checklist" description="Printable Title VI language access compliance checklist for schools. Verify your district meets federal civil rights requirements for ELL students." />
       {/* Header - Hidden when printing */}
       <div className="print:hidden sticky top-0 z-50 bg-background border-b border-border">
         <div className="container mx-auto px-4 py-4">

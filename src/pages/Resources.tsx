@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Download, FileText, Video, Shield, Code } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
+import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
 
 export default function Resources() {
@@ -145,6 +146,7 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen">
+      <PageMeta title="Resources - Templates, Guides & Downloads" description="Download grant templates, compliance checklists, implementation guides, and training materials for deploying LanguageBridge in your school." />
       <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">

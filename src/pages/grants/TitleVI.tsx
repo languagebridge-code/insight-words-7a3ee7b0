@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { Download, AlertCircle, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function TitleVI() {
   return (
     <div className="min-h-screen">
+      <PageMeta title="Title VI Compliance & Funding" description="Address Title VI language access requirements with LanguageBridge. Compliance gap analysis, solution documentation, and ROI comparison." />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4">
