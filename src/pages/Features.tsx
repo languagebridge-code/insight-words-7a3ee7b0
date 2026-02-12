@@ -7,8 +7,39 @@ import { TechnicalSpecs } from "@/components/TechnicalSpecs";
 import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Features() {
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "LanguageBridge Chrome Extension",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Chrome OS, Windows, macOS",
+      "description": "Three integrated tools: Audio Translation for preliterate students, Tiered Language Glossary for academic vocabulary, and Talk to Teacher for classroom communication.",
+      "url": "https://www.languagebridge.app/features",
+      "featureList": [
+        "Audio Translation with 9+ language support",
+        "Tiered Language Glossary (Tier 1, 2, 3 vocabulary)",
+        "Talk to Teacher real-time communication",
+        "Alt+Shift+L keyboard shortcut activation",
+        "Works on any webpage in Chrome",
+        "30-minute Google Admin Console deployment"
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "features-schema";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById("features-schema")?.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <PageMeta title="Features - Audio Translation, Glossary & Talk to Teacher" description="Explore LanguageBridge's three core tools: Audio Translation for preliterate students, Tiered Language Glossary, and Talk to Teacher communication bridge." />

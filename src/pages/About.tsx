@@ -6,8 +6,54 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Target, Heart, Users, Lightbulb, MapPin, GraduationCap } from "lucide-react";
+import { useEffect } from "react";
 
 export default function About() {
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LanguageBridge",
+      "url": "https://www.languagebridge.app",
+      "logo": "https://www.languagebridge.app/favicon.png",
+      "description": "Audio-first language accessibility tools for preliterate ESL/SLIFE students in K-12 classrooms.",
+      "founder": {
+        "@type": "Person",
+        "name": "Justin Bernard",
+        "jobTitle": "Founder",
+        "honorificSuffix": "M.Ed."
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "25000 Euclid Ave, Suite 108",
+        "addressLocality": "Euclid",
+        "addressRegion": "OH",
+        "postalCode": "44117",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-216-800-6020",
+        "email": "contact@languagebridge.app",
+        "contactType": "customer service",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://x.com/_languagebridge"
+      ]
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "organization-schema";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById("organization-schema")?.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <PageMeta
