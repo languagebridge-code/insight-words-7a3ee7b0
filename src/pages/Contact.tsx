@@ -9,6 +9,7 @@ import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Mail, Phone, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
@@ -24,6 +25,46 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export default function Contact() {
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact LanguageBridge",
+      "url": "https://www.languagebridge.app/contact",
+      "description": "Get in touch with the LanguageBridge team for demos, pilot programs, or support.",
+      "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "LanguageBridge",
+        "telephone": "+1-216-800-6020",
+        "email": "contact@languagebridge.app",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "25000 Euclid Ave, Suite 108",
+          "addressLocality": "Euclid",
+          "addressRegion": "OH",
+          "postalCode": "44117",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      }
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "contact-schema";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById("contact-schema")?.remove();
+    };
+  }, []);
+
   const {
     register,
     handleSubmit,

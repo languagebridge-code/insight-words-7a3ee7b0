@@ -10,8 +10,56 @@ import { TrustBadgeBar } from "@/components/TrustBadgeBar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { HelpCircle, Mail, Sparkles } from "lucide-react";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "LanguageBridge",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Chrome OS, Windows, macOS",
+      "description": "Audio-first language accessibility Chrome extension for preliterate ESL/SLIFE students. Includes Audio Translation, Tiered Language Glossary, and Talk to Teacher tools.",
+      "url": "https://www.languagebridge.app",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free for Ohio pilot schools 2025-2026",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "Real-time audio translation in 9+ languages",
+        "Tiered academic language glossary",
+        "Talk to Teacher communication bridge",
+        "FERPA & COPPA compliant",
+        "Zero student data collection",
+        "Google Admin Console deployment"
+      ],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "K-12 ESL/SLIFE students"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "LanguageBridge",
+        "url": "https://www.languagebridge.app"
+      }
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "software-app-schema";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.getElementById("software-app-schema")?.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <PageMeta
