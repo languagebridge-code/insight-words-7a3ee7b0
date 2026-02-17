@@ -1,12 +1,43 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-school-id, x-classroom-id, x-teacher-id',
-};
+// Allowed origins: your domain + Chrome extension
+const ALLOWED_ORIGINS = [
+  'https://insight-words.lovable.app',
+  'https://languagebridge.app',
+  'https://www.languagebridge.app',
+];
+
+function getCorsHeaders(req: Request) {
+  const origin = req.headers.get('Origin') || '';
+  // Allow Chrome extensions and known origins
+  const isAllowed = ALLOWED_ORIGINS.includes(origin) || origin.startsWith('chrome-extension://');
+  return {
+    'Access-Control-Allow-Origin': isAllowed ? origin : ALLOWED_ORIGINS[0],
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-school-id, x-classroom-id, x-teacher-id',
+    'Vary': 'Origin',
+  };
+}
+
+// Simple in-memory rate limiter (per function instance)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 60; // requests per window
+const RATE_WINDOW_MS = 60_000; // 1 minute
+
+function isRateLimited(key: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(key);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(key, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT;
+}
 
 serve(async (req) => {
+  const corsHeaders = getCorsHeaders(req);
+
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -21,7 +52,7 @@ serve(async (req) => {
     if (!AZURE_TRANSLATOR_KEY) {
       console.error('AZURE_TRANSLATOR_KEY not configured');
       return new Response(
-        JSON.stringify({ error: 'Azure Translator API key not configured' }),
+        JSON.stringify({ error: 'Translation service unavailable.' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -29,6 +60,22 @@ serve(async (req) => {
     // Extract context from headers
     const classroomCode = req.headers.get('x-classroom-id') || '';
     const teacherCode = req.headers.get('x-teacher-id') || '';
+
+    // Require a valid classroom code for all requests
+    if (!classroomCode) {
+      return new Response(
+        JSON.stringify({ error: 'Classroom code is required.' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Rate limit by classroom code
+    if (isRateLimited(classroomCode)) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again shortly.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     // Parse request body
     const body = await req.json();
@@ -59,7 +106,7 @@ serve(async (req) => {
     if (!azureResponse.ok) {
       const errorText = await azureResponse.text();
       console.error('Azure API error:', azureResponse.status, errorText);
-    return new Response(
+      return new Response(
         JSON.stringify({ error: 'Translation service temporarily unavailable. Please try again.' }),
         { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
