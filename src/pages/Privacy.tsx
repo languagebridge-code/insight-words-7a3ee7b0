@@ -1113,7 +1113,7 @@ export default function Privacy() {
           {/* Copyright Notice */}
           <div className="text-center py-8 border-t border-border mt-12">
             <p className="text-sm text-muted-foreground">
-              © 2025 LanguageBridge, LLC. All rights reserved.
+              © 2026 LanguageBridge, LLC. All rights reserved.
             </p>
           </div>
         </div>
