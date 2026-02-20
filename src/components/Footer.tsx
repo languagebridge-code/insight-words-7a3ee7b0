@@ -153,7 +153,7 @@ export const Footer = () => {
             </p>
           </div>
           <div className="text-center text-white/60 text-sm">
-            <p>© 2025 LanguageBridge, LLC. All content, including text, images, and software, is protected by copyright law.</p>
+            <p>© 2026 LanguageBridge, LLC. All content, including text, images, and software, is protected by copyright law.</p>
           </div>
         </div>
       </div>
