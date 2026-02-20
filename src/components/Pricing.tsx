@@ -87,9 +87,8 @@ export const Pricing = () => {
     
     // Save email to newsletter subscriptions and notify admin
     try {
-      await supabase.from("newsletter_subscriptions").upsert(
-        { email, subscribed: true },
-        { onConflict: "email" }
+      await supabase.from("newsletter_subscriptions").insert(
+        { email, subscribed: true }
       );
       await supabase.functions.invoke("send-form-submission", {
         body: { type: "free-signup", email },
