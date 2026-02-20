@@ -76,10 +76,6 @@ export const Pricing = () => {
 
 
   const handleCheckout = async () => {
-    if (!user) {
-      toast({ title: "Please sign in first", description: "You need an account to subscribe.", variant: "destructive" });
-      return;
-    }
     setCheckoutLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
