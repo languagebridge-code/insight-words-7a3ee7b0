@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useState, useEffect, useCallback } from "react";
-import { Input } from "./ui/input";
+
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -18,9 +18,6 @@ const PLANS = {
 };
 
 export const Pricing = () => {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
   const [user, setUser] = useState<any>(null);
@@ -77,30 +74,6 @@ export const Pricing = () => {
     }
   }, [toast, checkSubscription]);
 
-  const handleFreeTier = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes("@")) {
-      toast({ title: "Please enter a valid email address", variant: "destructive" });
-      return;
-    }
-    setLoading(true);
-    
-    // Save email to newsletter subscriptions and notify admin
-    try {
-      await supabase.from("newsletter_subscriptions").insert(
-        { email, subscribed: true }
-      );
-      await supabase.functions.invoke("send-form-submission", {
-        body: { type: "free-signup", email },
-      });
-    } catch {
-      // best-effort
-    }
-
-    setSubmitted(true);
-    setLoading(false);
-    toast({ title: "Success!", description: "Your download link is ready." });
-  };
 
   const handleCheckout = async () => {
     if (!user) {
@@ -189,29 +162,11 @@ export const Pricing = () => {
                 </li>
               </ul>
 
-              {!submitted ? (
-                <form onSubmit={handleFreeTier} className="space-y-3">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? "Processing..." : "Get Free Access"}
-                  </Button>
-                </form>
-              ) : (
-                <div className="text-center space-y-3">
-                  <p className="text-sm text-primary font-semibold">✅ Thank you!</p>
-                  <Button asChild className="w-full">
-                    <a href={CHROME_EXTENSION_URL} target="_blank" rel="noopener noreferrer">
-                      Download Extension
-                    </a>
-                  </Button>
-                </div>
-              )}
+              <Button asChild className="w-full">
+                <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
+                  Get Free Access
+                </a>
+              </Button>
             </CardContent>
           </Card>
 
