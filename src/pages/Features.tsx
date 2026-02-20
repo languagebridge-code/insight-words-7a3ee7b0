@@ -4,10 +4,10 @@ import { Footer } from "@/components/Footer";
 import { ThreeTools } from "@/components/ThreeTools";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalSpecs } from "@/components/TechnicalSpecs";
-import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import extensionScreenshot from "@/assets/languagebridge-screenshot.jpg";
 
 export default function Features() {
   useEffect(() => {
@@ -70,12 +70,20 @@ export default function Features() {
                 </Button>
               </Link>
             </div>
+
+            {/* Product Screenshot */}
+            <div className="mt-12 max-w-5xl mx-auto">
+              <img 
+                src={extensionScreenshot} 
+                alt="LanguageBridge Chrome extension showing audio-first translation, 3-tiered glossary, and Talk to Teacher features" 
+                className="w-full rounded-2xl shadow-2xl border border-border"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       <ThreeTools />
-      <InteractiveDemo />
       <HowItWorks />
       <TechnicalSpecs />
       
