@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Contact = () => {
   const [email, setEmail] = useState("");
@@ -17,8 +18,16 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // TODO: Connect to Mailchimp API
-      // For now, just show success message
+      const { data, error } = await supabase.functions.invoke("submit-contact-form", {
+        body: {
+          name: name.trim(),
+          email: email.trim(),
+          message: `Role: ${role || "Not specified"}. Requesting pilot information.`,
+        },
+      });
+
+      if (error) throw error;
+
       toast.success("Thank you! We'll be in touch soon with pilot information.");
       setEmail("");
       setName("");
