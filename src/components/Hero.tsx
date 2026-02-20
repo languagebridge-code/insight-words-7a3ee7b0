@@ -68,7 +68,7 @@ export const Hero = () => {
             
             {/* Subheadline */}
             <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8 fade-in-up delay-200">
-              The audio-first Chrome extension that helps preliterate English learners access classroom content—instantly.
+              The audio-first Chrome extension that helps preliterate English learners access classroom content, instantly.
             </p>
 
             {/* Benefits List */}
@@ -132,7 +132,7 @@ export const Hero = () => {
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Amira's Journey</h3>
                         <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Amira is an Afghan refugee who can't read Dari—her own language. Google Translate doesn't even support Dari audio. LanguageBridge reads her classroom content aloud in Dari so she can finally participate.
+                          Amira is an Afghan refugee who can't read Dari, her own language. Google Translate doesn't even support Dari audio. LanguageBridge reads her classroom content aloud in Dari so she can finally participate.
                         </p>
                       </div>
                     </div>
@@ -156,7 +156,7 @@ export const Hero = () => {
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Carlos's Progress</h3>
                         <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Carlos arrived from Venezuela mid-year speaking no English. With Talk to Teacher, he communicates directly with his teacher in Spanish—asking questions, sharing concerns, and building trust without an interpreter.
+                          Carlos arrived from Venezuela mid-year speaking no English. With Talk to Teacher, he communicates directly with his teacher in Spanish. He asks questions, shares concerns, and builds trust without an interpreter.
                         </p>
                       </div>
                     </div>
@@ -179,7 +179,7 @@ export const Hero = () => {
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Sophia's Breakthrough</h3>
                         <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Sophia moved from Colombia and constantly translates two languages in her head—it made her feel "not smart." The Tiered Language Glossary shows her Spanish-English cognates side by side, proving she already knows more English than she thinks.
+                          Sophia moved from Colombia and constantly translates two languages in her head. It made her feel "not smart." The Tiered Language Glossary shows her Spanish-English cognates side by side, proving she already knows more English than she thinks.
                         </p>
                       </div>
                     </div>
