@@ -6,8 +6,14 @@ verify_jwt = false
 [functions.submit-usage-analytics]
 verify_jwt = false
 
-[functions.azure-translate]
+[functions.submit-extension-event]
 verify_jwt = false
 
-[functions.submit-extension-event]
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.check-subscription]
+verify_jwt = false
+
+[functions.customer-portal]
 verify_jwt = false

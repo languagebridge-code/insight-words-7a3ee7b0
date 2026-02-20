@@ -1,18 +1,81 @@
-import { Check, Mail, Clock, Building2 } from "lucide-react";
+import { Check, Mail, Clock, Building2, Loader2, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Input } from "./ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const CHROME_EXTENSION_URL = "https://chromewebstore.google.com/detail/gonbfeeaeheeahmfilbeijcakfboadgp?utm_source=item-share-cb";
+
+// Stripe product/price mapping
+const PLANS = {
+  individual: {
+    price_id: "price_1T2tN7HyT7mdxqsHvuTu28Vk",
+    product_id: "prod_U0vDUHW3cpbMGe",
+  },
+};
 
 export const Pricing = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [subscription, setSubscription] = useState<{
+    subscribed: boolean;
+    product_id: string | null;
+    subscription_end: string | null;
+  } | null>(null);
   const { toast } = useToast();
+
+  const checkSubscription = useCallback(async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke("check-subscription");
+      if (error) throw error;
+      setSubscription(data);
+    } catch {
+      // Not subscribed or not logged in
+      setSubscription(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+      if (user) {
+        checkSubscription();
+      }
+    };
+    getUser();
+
+    const { data: { subscription: authSub } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkSubscription();
+      } else {
+        setSubscription(null);
+      }
+    });
+
+    return () => authSub.unsubscribe();
+  }, [checkSubscription]);
+
+  // Check for checkout success in URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("checkout") === "success") {
+      toast({ title: "Subscription activated! 🎉", description: "Thank you for subscribing to LanguageBridge." });
+      checkSubscription();
+      // Clean URL
+      window.history.replaceState({}, "", window.location.pathname);
+    } else if (params.get("checkout") === "cancelled") {
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, [toast, checkSubscription]);
 
   const handleFreeTier = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,12 +84,49 @@ export const Pricing = () => {
       return;
     }
     setLoading(true);
-    // Simulate submission — in future this will save to backend
     await new Promise((r) => setTimeout(r, 800));
     setSubmitted(true);
     setLoading(false);
     toast({ title: "Success! Your download link is ready." });
   };
+
+  const handleCheckout = async () => {
+    if (!user) {
+      toast({ title: "Please sign in first", description: "You need an account to subscribe.", variant: "destructive" });
+      return;
+    }
+    setCheckoutLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: { priceId: PLANS.individual.price_id },
+      });
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, "_blank");
+      }
+    } catch (err: any) {
+      toast({ title: "Checkout failed", description: err.message || "Please try again.", variant: "destructive" });
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("customer-portal");
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, "_blank");
+      }
+    } catch (err: any) {
+      toast({ title: "Unable to open billing portal", description: err.message || "Please try again.", variant: "destructive" });
+    } finally {
+      setPortalLoading(false);
+    }
+  };
+
+  const isIndividualSubscribed = subscription?.subscribed && subscription?.product_id === PLANS.individual.product_id;
 
   return (
     <section id="pricing" className="py-16 bg-background">
@@ -104,10 +204,16 @@ export const Pricing = () => {
           </Card>
 
           {/* INDIVIDUAL TIER */}
-          <Card className="border-2 border-primary shadow-lg shadow-primary/10 hover-scale fade-in-up relative" style={{ animationDelay: "0.1s" }}>
-            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white">
-              Coming Soon
-            </Badge>
+          <Card className={`border-2 shadow-lg hover-scale fade-in-up relative ${
+            isIndividualSubscribed
+              ? "border-accent shadow-accent/10"
+              : "border-primary shadow-primary/10"
+          }`} style={{ animationDelay: "0.1s" }}>
+            {isIndividualSubscribed ? (
+              <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground">
+                Your Plan
+              </Badge>
+            ) : null}
             <CardHeader className="text-center">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                 <Clock className="w-6 h-6 text-primary" />
@@ -141,11 +247,40 @@ export const Pricing = () => {
                   <span>Renewable monthly subscription</span>
                 </li>
               </ul>
+
+              {isIndividualSubscribed && subscription?.subscription_end && (
+                <p className="text-xs text-muted-foreground text-center mb-3">
+                  Renews {new Date(subscription.subscription_end).toLocaleDateString()}
+                </p>
+              )}
             </CardContent>
             <CardFooter>
-              <Button className="w-full" variant="outline" disabled>
-                Coming Soon
-              </Button>
+              {isIndividualSubscribed ? (
+                <Button
+                  className="w-full"
+                  variant="outline"
+                  onClick={handleManageSubscription}
+                  disabled={portalLoading}
+                >
+                  {portalLoading ? (
+                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Loading...</>
+                  ) : (
+                    <><Settings className="w-4 h-4 mr-2" /> Manage Subscription</>
+                  )}
+                </Button>
+              ) : (
+                <Button
+                  className="w-full"
+                  onClick={handleCheckout}
+                  disabled={checkoutLoading}
+                >
+                  {checkoutLoading ? (
+                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Loading...</>
+                  ) : (
+                    "Subscribe — $9.99/mo"
+                  )}
+                </Button>
+              )}
             </CardFooter>
           </Card>
 
