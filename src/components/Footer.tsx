@@ -140,8 +140,7 @@ export const Footer = () => {
               Help every student understand, even those who can't read yet. LanguageBridge is the first Language Accessibility Screen Reader, breaking down barriers for preliterate English language learners.
             </p>
             <div className="text-white/60 text-sm">
-              <p>25000 Euclid Ave, Suite 108</p>
-              <p>Euclid, OH 44117</p>
+              <p>Northeast Ohio</p>
             </div>
           </div>
         </div>
