@@ -12,7 +12,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "Can we try it before we purchase it?",
-      answer: "FREE access for selected Ohio schools in 2025-2026. You help us refine the product while your ELL students get powerful tools. Rolling applications, limited spots. After the pilot year, we'll work with you to create a licensing arrangement that fits your district's needs and budget."
+      answer: "Yes! Contact us at contact@languagebridge.app to discuss a trial for your district. We'll work with you to find a licensing arrangement that fits your needs and budget."
     },
     {
       question: "How long does implementation take?",

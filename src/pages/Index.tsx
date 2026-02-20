@@ -26,7 +26,7 @@ const Index = () => {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "Free for Ohio pilot schools 2025-2026",
+        "description": "Contact us for district licensing",
         "availability": "https://schema.org/InStock"
       },
       "featureList": [

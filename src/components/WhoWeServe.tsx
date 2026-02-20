@@ -33,7 +33,7 @@ export const WhoWeServe = () => {
       concerns: [
         "Title III fundable",
         "District licensing model designed for K-12 budgets",
-        "Contact us to discuss pilot program details",
+        "Contact us for district licensing details",
         "ROI positive in first year"
       ],
       description: "ROI is immediate. Implementation is painless. Budget justification writes itself."

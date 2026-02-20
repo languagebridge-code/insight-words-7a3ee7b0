@@ -16,7 +16,7 @@ export const MeasurableImpactCarlos = () => {
         </div>
         <div>
           <h3 className="text-2xl font-bold">📈 EXPECTED OUTCOMES</h3>
-          <p className="text-sm text-muted-foreground italic">Results from pilot launching January 2026</p>
+          <p className="text-sm text-muted-foreground italic">Expected results based on early school deployments</p>
         </div>
       </div>
       
