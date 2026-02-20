@@ -7,19 +7,19 @@ export const SuccessStories = () => {
       quote: "LanguageBridge transformed how our ELL students engage with content. We saw immediate improvements in participation and confidence.",
       author: "Coming Soon",
       role: "ELL Coordinator",
-      school: "Ohio Pilot School",
+      school: "Ohio School District",
     },
     {
       quote: "For the first time, our preliterate students can access grade-level content independently. The impact has been remarkable.",
       author: "Coming Soon",
       role: "Elementary Principal",
-      school: "Ohio Pilot School",
+      school: "Ohio School District",
     },
     {
       quote: "Our teachers love the dashboard features. Being able to see what vocabulary students are translating helps us target our instruction.",
       author: "Coming Soon",
       role: "ESL Teacher",
-      school: "Ohio Pilot School",
+      school: "Ohio School District",
     },
   ];
 
@@ -34,7 +34,7 @@ export const SuccessStories = () => {
             Hear from educators using LanguageBridge to transform learning for ELL students
           </p>
           <p className="text-sm text-muted-foreground mt-4 italic">
-            Stories from our Ohio Pilot schools coming in January 2026
+            Stories from Ohio schools coming soon
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export const SuccessStories = () => {
           <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 max-w-2xl mx-auto">
             <p className="text-lg font-semibold mb-2">Want to be featured?</p>
             <p className="text-muted-foreground">
-              Ohio Pilot schools will be among the first to share their success stories. Apply today to join this pioneering group.
+              Partner schools will be among the first to share their success stories. Contact us to learn more.
             </p>
           </div>
         </div>

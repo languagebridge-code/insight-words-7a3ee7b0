@@ -160,7 +160,7 @@ export default function Demo() {
                   a: "No problem. Just click the reschedule link in your confirmation email or contact us directly."
                 },
                 {
-                  q: "Can I start a pilot right after the demo?",
+                  q: "Can I get started right after the demo?",
                   a: "Absolutely! If you're ready to move forward, we can have you set up within 48 hours."
                 }
               ].map((faq, i) => (

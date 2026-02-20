@@ -178,7 +178,7 @@ export default function About() {
                 </p>
                 
                 <p className="text-lg text-muted-foreground mb-4">
-                  We're piloting with local school districts for the 2025-2026 school year, working directly with ESL teachers, compliance officers, and IT departments to refine our platform for real-world classroom needs.
+                  We're working with local school districts for the 2025-2026 school year, partnering directly with ESL teachers, compliance officers, and IT departments to refine our platform for real-world classroom needs.
                 </p>
                 
                 <p className="text-lg text-muted-foreground">
@@ -249,9 +249,9 @@ export default function About() {
                       <span className="text-primary font-bold">1</span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-2">2025-2026: Ohio Pilot Program</h3>
+                      <h3 className="text-xl font-bold mb-2">2025-2026: Ohio School Launch</h3>
                       <p className="text-muted-foreground">
-                        Working with selected Ohio school districts to refine the platform with real classroom feedback. Free access in exchange for helping us improve.
+                        Working with Ohio school districts to refine the platform with real classroom feedback.
                       </p>
                     </div>
                   </div>

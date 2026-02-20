@@ -10,7 +10,7 @@ const routeNames: Record<string, string> = {
   "/": "Home",
   "/features": "Features",
   "/compliance": "Compliance",
-  "/pilot": "Pilot Program",
+  
   "/about": "About",
   "/faq": "FAQ",
   "/privacy": "Privacy Policy",
