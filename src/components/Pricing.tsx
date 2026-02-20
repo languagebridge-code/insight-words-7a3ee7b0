@@ -20,8 +20,6 @@ const PLANS = {
 export const Pricing = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [demoCode, setDemoCode] = useState("");
-  const [demoUnlocked, setDemoUnlocked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
@@ -86,29 +84,23 @@ export const Pricing = () => {
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitted(true);
-    setLoading(false);
-    toast({ title: "Success!", description: "Enter the demo code to unlock your download." });
     
-    // Save email to newsletter subscriptions
+    // Save email to newsletter subscriptions and notify admin
     try {
       await supabase.from("newsletter_subscriptions").upsert(
         { email, subscribed: true },
         { onConflict: "email" }
       );
+      await supabase.functions.invoke("send-form-submission", {
+        body: { type: "free-signup", email },
+      });
     } catch {
-      // silent fail - email collection is best-effort
+      // best-effort
     }
-  };
 
-  const handleDemoCode = () => {
-    if (demoCode === "DEMO2026") {
-      setDemoUnlocked(true);
-      toast({ title: "🎉 Download unlocked!" });
-    } else {
-      toast({ title: "Invalid code", description: "Please check the code and try again.", variant: "destructive" });
-    }
+    setSubmitted(true);
+    setLoading(false);
+    toast({ title: "Success!", description: "Your download link is ready." });
   };
 
   const handleCheckout = async () => {
@@ -211,24 +203,9 @@ export const Pricing = () => {
                     {loading ? "Processing..." : "Get Free Access"}
                   </Button>
                 </form>
-              ) : !demoUnlocked ? (
-                <div className="space-y-3">
-                  <p className="text-sm text-primary font-semibold">✅ Check your email!</p>
-                  <p className="text-xs text-muted-foreground">Enter the demo code to unlock your download link.</p>
-                  <Input
-                    type="text"
-                    placeholder="Enter demo code"
-                    value={demoCode}
-                    onChange={(e) => setDemoCode(e.target.value.toUpperCase())}
-                    className="text-center font-mono tracking-widest"
-                  />
-                  <Button className="w-full" onClick={handleDemoCode}>
-                    Unlock Download
-                  </Button>
-                </div>
               ) : (
                 <div className="text-center space-y-3">
-                  <p className="text-sm text-primary font-semibold">🎉 Code accepted!</p>
+                  <p className="text-sm text-primary font-semibold">✅ Thank you!</p>
                   <Button asChild className="w-full">
                     <a href={CHROME_EXTENSION_URL} target="_blank" rel="noopener noreferrer">
                       Download Extension

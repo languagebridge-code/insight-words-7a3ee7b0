@@ -92,13 +92,22 @@ const handler = async (req: Request): Promise<Response> => {
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ") || "";
       await addToMailchimp(body.email, firstName, lastName);
+    } else if (type === "free-signup") {
+      subject = "New Free Tier Signup";
+      emailHtml = `
+        <h2>New Free Tier Signup</h2>
+        <p>A new user has signed up for the free tier and downloaded the extension.</p>
+        <p><strong>Email:</strong> ${body.email}</p>
+        <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+      `;
     }
 
-    console.log("Sending email to contact@languagebridge.app");
+    const recipientEmail = type === "free-signup" ? "admin@languagebridge.app" : "contact@languagebridge.app";
+    console.log(`Sending email to ${recipientEmail}`);
 
     const emailResponse = await resend.emails.send({
       from: "LanguageBridge <noreply@languagebridge.app>",
-      to: ["contact@languagebridge.app"],
+      to: [recipientEmail],
       subject: subject,
       html: emailHtml,
     });
