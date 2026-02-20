@@ -17,6 +17,9 @@ async function getZohoAccessToken(): Promise<string> {
     throw new Error("Zoho credentials not configured");
   }
 
+  console.log("Using refresh token (first 20 chars):", refreshToken?.substring(0, 20));
+  console.log("Client ID (first 10 chars):", clientId?.substring(0, 10));
+  
   const response = await fetch(ZOHO_TOKEN_URL, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
