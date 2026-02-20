@@ -3,56 +3,56 @@ import { CheckCircle } from "lucide-react";
 export const FAQExpanded = () => {
   const faqs = [
     {
-      question: "Why isn't Google Translate compliant for schools?",
-      answer: "School districts have federal obligations under Title VI of the Civil Rights Act and the Equal Educational Opportunities Act to provide language assistance that is educationally sound, effectively implemented, and produces results. Google Translate presents several compliance challenges: No Educational Framework: Machine translation provides literal translations without educational context. There's no curriculum integration, no qualified staff trained in its educational use, and no way to document that it's helping students overcome language barriers. Inadequate for Preliterate Students: Students who can't read in ANY language cannot benefit from text-only translation. Google Translate requires literacy and doesn't provide the audio support preliterate SLIFE students need. Data Privacy Concerns: Google Translate is a commercial service without FERPA-specific data protection agreements for schools. Student data may be used for AI training. Missing Educational Tools: Translation alone doesn't build language skills. Students need academic vocabulary development and teacher communication tools that support both language acquisition and content learning. LanguageBridge addresses these gaps with purpose-built tools, FERPA compliance, and documentation that helps districts demonstrate they're meeting federal requirements."
+      question: "What is LanguageBridge?",
+      answer: "LanguageBridge is a Chrome extension and the first language accessibility screen reader built for preliterate ESL students. It's a toolbar that follows students on every window they open. No tab-switching required. It answers the question many teachers have: what do I do with this student that doesn't know English?"
     },
     {
-      question: "Why isn't 'good enough' actually good enough?",
-      answer: "Educational equity requires tools purpose-built for education. Here's why LanguageBridge makes a difference: Academic Progress: Students need access to grade-level content immediately, not simplified curriculum that puts them years behind. Audio support means preliterate students can engage with the same material as their peers. Student Dignity: Pulling other students from class to translate is common but problematic. It violates privacy, disrupts learning for multiple students, and places inappropriate responsibility on children. Teacher-student communication tools solve this professionally. Systematic Language Development: Random vocabulary lookup isn't language acquisition. Academic glossaries build content-specific vocabulary systematically, so students learn English while learning math, science, and social studies. Compliance and Safety: Schools need documented language access that meets federal requirements. FERPA-compliant tools with usage reporting provide the documentation Title III coordinators need. Every day without proper tools is a day students fall further behind. LanguageBridge ensures preliterate SLIFE students can access education from day one, not months or years later."
+      question: "Why can't schools just use Google Translate?",
+      answer: "Google Translate doesn't support Dari audio. Translator paraprofessionals cost hourly rates. Live phone translators charge per minute. So schools do what thousands of districts do: they use another student to translate. That student becomes a privacy risk, not out of carelessness, but because there are no better options. LanguageBridge is FERPA/COPPA compliant, reads translations aloud, and gives students control of their own learning from day one."
     },
     {
-      question: "Can we try it before we purchase it?",
-      answer: "Yes! Contact us at contact@languagebridge.app to discuss a trial for your district. We'll work with you to find a licensing arrangement that fits your needs and budget."
+      question: "Can we try it before we purchase?",
+      answer: "Yes. LanguageBridge is live on the Chrome Web Store. Contact us at contact@languagebridge.app to set up a free 30-day trial for your school or district."
     },
     {
       question: "How long does implementation take?",
-      answer: "Complete implementation takes 3 weeks: Week 1 - IT installs via Google Admin Console (30 minutes), Week 2 - Teacher professional development (3 hours), Week 3 - Students independently accessing grade-level content with translation and communication tools. No complex setup, no servers to configure, no ongoing maintenance required."
+      answer: "Complete implementation takes 3 weeks: Week 1, IT installs via Google Admin Console (30 minutes). Week 2, teacher professional development (3 hours). Week 3, students independently accessing grade-level content. No complex setup, no servers to configure, no ongoing maintenance required."
     },
     {
       question: "Do teachers need training?",
-      answer: "We provide a 3-hour professional development session that covers best practices and effective classroom integration. However, the tool is intuitive enough that teachers can start using it immediately. Students need zero training. It just works when they highlight text or use keyboard shortcuts."
+      answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We offer a 3-hour professional development session, but the tool is intuitive enough to start using immediately. Students need zero training. They just highlight text and hit play."
     },
     {
       question: "Is this Title III fundable?",
-      answer: "Yes, 100%. LanguageBridge qualifies under Title III as an instructional tool for English Language Learners. It also qualifies under special education budgets (for SLIFE students with IEPs), assistive technology budgets, and general instructional materials. We provide budget justification letters and compliance documentation to make the funding process straightforward."
+      answer: "Yes. Districts receive $900 million annually in Title III funding. The money exists. LanguageBridge qualifies under Title III, special education budgets (for SLIFE students with IEPs), assistive technology budgets, and general instructional materials. We provide budget justification letters to make the funding process straightforward."
     },
     {
       question: "What languages are supported?",
-      answer: "Currently 8 languages with authentic translations: Spanish, Arabic, Dari, Pashto, Somali, French, Portuguese, and Mandarin. We prioritize languages based on refugee resettlement patterns and district requests. Audio support is available for all languages to support preliterate students."
+      answer: "Currently 9 languages with more coming. We prioritize languages based on refugee resettlement patterns and district requests. Audio support is available for all languages to support preliterate students."
     },
     {
       question: "How is this different from Google Translate?",
-      answer: "Three critical differences: (1) Compliance - We're FERPA/COPPA compliant with zero data tracking; Google Translate uses student data to train AI. (2) Audio Support - We read translations aloud for preliterate students; Google Translate requires reading ability. (3) Educational Tools - We provide teacher communication and academic glossaries; Google Translate only translates."
+      answer: "Three critical differences: (1) Compliance: We're FERPA/COPPA compliant with zero data tracking. Google Translate uses student data to train AI. (2) Audio Support: We read translations aloud for preliterate students. Google Translate requires reading ability. (3) Educational Tools: We provide teacher communication and academic glossaries. Google Translate only translates."
     },
     {
       question: "How is this different from Read&Write or Immersive Reader?",
-      answer: "Read&Write is excellent for students who can already read - it helps literate multilingual learners succeed. LanguageBridge is specifically designed for preliterate students who need to HEAR content in their language to access it. Read&Write assumes literacy in at least one language; LanguageBridge doesn't. Microsoft Immersive Reader only works within Microsoft products (not Google Classroom), while LanguageBridge works anywhere. These tools serve different student populations - they're complementary, not competitive. Many districts use both: Read&Write for their general multilingual population and LanguageBridge for their most vulnerable preliterate SLIFE students."
+      answer: "Read&Write is excellent for students who can already read. LanguageBridge is specifically designed for preliterate students who need to HEAR content in their language. Read&Write assumes literacy in at least one language; LanguageBridge doesn't. Microsoft Immersive Reader only works within Microsoft products (not Google Classroom), while LanguageBridge works anywhere. Many districts use both."
     },
     {
       question: "What data is collected?",
-      answer: "None. Zero. We do not store, track, or collect any student data. Translations happen in real-time and are never saved. We don't track what students translate, when they use the tool, or any personally identifiable information. This is by design to ensure FERPA and COPPA compliance. Your IT department can verify this through our technical documentation."
+      answer: "None. Zero. We do not store, track, or collect any student data. Translations happen in real-time and are never saved. We don't track what students translate, when they use the tool, or any personally identifiable information. This is by design to ensure FERPA and COPPA compliance."
     },
     {
       question: "What do we need technically?",
-      answer: "Just Chrome 90+ or any Chromebook with internet access. IT installs via Google Admin Console in 30 minutes. No extra software, no servers, no configuration needed. Works on standard school networks with content filters. Requires HTTPS access to Azure Cognitive Services (standard SSL, no firewall changes)."
-    },
-    {
-      question: "How do we pay for it?",
-      answer: "LanguageBridge qualifies under Title III, special ed, assistive tech, or general instructional budgets. Email us at contact@languagebridge.app to discuss funding options and we'll provide budget justification letters tailored to your district."
+      answer: "Just Chrome 90+ or any Chromebook with internet access. IT installs via Google Admin Console in 30 minutes. No extra software, no servers, no configuration needed. Works on standard school networks with content filters."
     },
     {
       question: "What's included in the Chrome extension?",
-      answer: "Everything. One simple Chrome extension includes all three tools: real-time translation with audio, teacher-student communication, and tiered academic vocabulary glossaries. Students access everything with one keyboard shortcut (Alt+Shift+L) or by highlighting text. No separate logins, no multiple platforms, no confusion. It just works."
+      answer: "Everything. One toolbar includes all three tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher. Students highlight text, hit play, and a second later they hear it in their native language. It works on Google Docs, PDFs, and Google Classroom. No separate logins, no multiple platforms. It just works."
+    },
+    {
+      question: "How much does it cost?",
+      answer: "Free 30-day trial, $9.99 monthly for individual access, and custom district licensing packages. Email us at contact@languagebridge.app to discuss options."
     }
   ];
 
