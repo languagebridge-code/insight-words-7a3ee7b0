@@ -22,7 +22,7 @@ export const StickyCtaBar = () => {
               >
                 Cleveland Leadership Center Accelerate
               </a>{" "}
-              — Feb 26th!
+              on Feb 26th!
             </p>
 
             <button

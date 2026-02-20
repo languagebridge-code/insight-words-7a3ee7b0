@@ -247,7 +247,7 @@ export const Pricing = () => {
                   {checkoutLoading ? (
                     <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Loading...</>
                   ) : (
-                    "Subscribe — $9.99/mo"
+                    "Subscribe for $9.99/mo"
                   )}
                 </Button>
               )}
