@@ -158,13 +158,13 @@ export const Navigation = () => {
               Dashboard
             </Link>
             
-            <Link to="/pilot">
+            <Link to="/pricing">
               <Button
                 variant="hero"
                 size="default"
                 className="relative overflow-hidden group"
               >
-                <span className="relative z-10">Request Pilot Info</span>
+                <span className="relative z-10">Download Today</span>
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </Button>
@@ -265,9 +265,9 @@ export const Navigation = () => {
               
               {/* CTA Button */}
               <div className="px-2 pt-4">
-                <Link to="/pilot">
+                <Link to="/pricing">
                   <Button variant="hero" className="w-full">
-                    Request Pilot Info
+                    Download Today
                   </Button>
                 </Link>
               </div>
