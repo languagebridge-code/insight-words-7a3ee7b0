@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/languagebridge-logo.svg";
 import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
@@ -83,12 +84,14 @@ export const Hero = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in-up delay-400">
               <Button
+                asChild
                 size="xl"
                 className="group gradient-primary text-primary-foreground shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 text-lg px-8 py-6"
-                onClick={() => scrollToSection("#contact")}
               >
-                Start Your Free Pilot
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <Link to="/pricing">
+                  Download Today
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
               </Button>
               <Button
                 variant="outline"

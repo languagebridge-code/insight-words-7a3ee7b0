@@ -32,9 +32,9 @@ export default function Compliance() {
                   Contact Compliance Team
                 </Button>
               </a>
-              <Link to="/pilot">
+              <Link to="/pricing">
                 <Button size="lg" variant="outline">
-                  Request Pilot
+                  Download Today
                 </Button>
               </Link>
             </div>
