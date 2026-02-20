@@ -78,13 +78,15 @@ export const Hero = () => {
                 </Link>
               </Button>
               <Button
+                asChild
                 variant="outline"
                 size="xl"
                 className="group border-2 hover:bg-muted/50 transition-all duration-300 text-lg px-8 py-6"
-                onClick={() => scrollToSection("#demo")}
               >
-                <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                Watch Demo
+                <a href="https://www.cleveleads.org/clc-events/accelerate/event-night-hub/" target="_blank" rel="noopener noreferrer">
+                  <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  Watch Our Pitch
+                </a>
               </Button>
             </div>
 
