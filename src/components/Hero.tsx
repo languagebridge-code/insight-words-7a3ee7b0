@@ -47,7 +47,7 @@ export const Hero = () => {
             {/* Launch Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8 fade-in-up">
               <Sparkles className="w-4 h-4" />
-              <span>Now Piloting in Ohio Schools</span>
+              <span>Live in Ohio Schools</span>
             </div>
 
             {/* Logo - smaller on desktop, prominent on mobile */}

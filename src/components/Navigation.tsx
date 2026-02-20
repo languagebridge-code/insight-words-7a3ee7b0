@@ -147,14 +147,6 @@ export const Navigation = () => {
               About
             </Link>
             
-            <Link
-              to="/dashboard"
-              className={`nav-link text-foreground py-2 ${
-                location.pathname === '/dashboard' ? 'text-primary' : ''
-              }`}
-            >
-              Dashboard
-            </Link>
             
             <Link to="/pricing">
               <Button
@@ -252,14 +244,6 @@ export const Navigation = () => {
                 About
               </Link>
               
-              <Link
-                to="/dashboard"
-                className={`px-4 py-3 rounded-lg transition-colors ${
-                  location.pathname === '/dashboard' ? 'bg-muted text-primary' : 'hover:bg-muted'
-                }`}
-              >
-                Dashboard
-              </Link>
               
               {/* CTA Button */}
               <div className="px-2 pt-4">
