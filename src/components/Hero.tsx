@@ -131,8 +131,8 @@ export const Hero = () => {
                       <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Amira's Journey</h3>
-                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-3">
-                          From unable to participate to thriving in general education. LanguageBridge reads translated text aloud for students who can't read yet.
+                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
+                          Amira is an Afghan refugee who can't read Dari—her own language. Google Translate doesn't even support Dari audio. LanguageBridge reads her classroom content aloud in Dari so she can finally participate.
                         </p>
                       </div>
                     </div>
@@ -148,15 +148,15 @@ export const Hero = () => {
                   <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer aspect-[4/3]">
                     <img 
                       src={heroStudentCarlos} 
-                      alt="Carlos, Afro Latino student engaged with learning using LanguageBridge" 
+                      alt="Carlos, Venezuelan student using Talk to Teacher in LanguageBridge" 
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6 lg:p-8">
                       <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Carlos's Progress</h3>
-                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-3">
-                          Two-way teacher communication broke down barriers. Now Carlos participates actively and builds confidence daily.
+                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
+                          Carlos arrived from Venezuela mid-year speaking no English. With Talk to Teacher, he communicates directly with his teacher in Spanish—asking questions, sharing concerns, and building trust without an interpreter.
                         </p>
                       </div>
                     </div>
@@ -178,8 +178,8 @@ export const Hero = () => {
                       <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Sophia's Breakthrough</h3>
-                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-3">
-                          Using the Tiered Language Glossary, Sophia builds English vocabulary through Spanish-English cognates—turning words she already knows into a scaffold for academic success.
+                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
+                          Sophia moved from Colombia and constantly translates two languages in her head—it made her feel "not smart." The Tiered Language Glossary shows her Spanish-English cognates side by side, proving she already knows more English than she thinks.
                         </p>
                       </div>
                     </div>
