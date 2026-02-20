@@ -65,10 +65,13 @@ export const Pricing = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("checkout") === "success") {
-      toast({ title: "Subscription activated! 🎉", description: "Thank you for subscribing to LanguageBridge." });
+      toast({ title: "Subscription activated! 🎉", description: "Opening the Chrome extension download now…" });
       checkSubscription();
-      // Clean URL
       window.history.replaceState({}, "", window.location.pathname);
+      // Auto-open Chrome Web Store download link
+      setTimeout(() => {
+        window.open(CHROME_EXTENSION_URL, "_blank");
+      }, 1500);
     } else if (params.get("checkout") === "cancelled") {
       window.history.replaceState({}, "", window.location.pathname);
     }
