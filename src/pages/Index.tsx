@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Hero } from "@/components/Hero";
 import { WhoWeServe } from "@/components/WhoWeServe";
-import { Contact } from "@/components/Contact";
+
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { TrustBadgeBar } from "@/components/TrustBadgeBar";
@@ -117,7 +117,7 @@ const Index = () => {
         </div>
       </section>
 
-      <Contact />
+      
       <Footer />
       <ScrollToTop />
       
