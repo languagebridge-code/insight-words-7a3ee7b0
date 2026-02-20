@@ -65,7 +65,11 @@ export const Pricing = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("checkout") === "success") {
-      toast({ title: "Subscription activated! 🎉", description: "Opening the Chrome extension download now…" });
+      toast({
+        title: "Subscription activated! 🎉",
+        description: "Opening the Chrome extension download… If blocked, email support@languagebridge.app for your link.",
+        duration: 10000,
+      });
       checkSubscription();
       window.history.replaceState({}, "", window.location.pathname);
       // Auto-open Chrome Web Store download link
