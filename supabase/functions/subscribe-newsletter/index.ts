@@ -9,8 +9,11 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface NewsletterSubscription {
-  email: string;
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -19,14 +22,22 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    const body = await req.json();
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+
+    if (!email || email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return new Response(
+        JSON.stringify({ error: "A valid email address is required." }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    console.log("Received newsletter subscription request");
+
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? ""
     );
-
-    const { email }: NewsletterSubscription = await req.json();
-    
-    console.log("Received newsletter subscription:", email);
 
     // Insert into database (will fail if email already exists due to UNIQUE constraint)
     const { data, error } = await supabaseClient
@@ -83,7 +94,7 @@ const handler = async (req: Request): Promise<Response> => {
         from: "LanguageBridge <onboarding@resend.dev>",
         to: ["info@languagebridge.app"],
         subject: "New Newsletter Subscriber",
-        html: `<p>New newsletter subscription: <strong>${email}</strong></p>`,
+        html: `<p>New newsletter subscription: <strong>${escapeHtml(email)}</strong></p>`,
       });
     } catch (emailError) {
       console.error("Error sending admin notification:", emailError);
