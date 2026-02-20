@@ -304,9 +304,9 @@ export default function About() {
             Help us ensure every preliterate SLIFE student has access to education from day one
           </p>
           <div className="flex gap-4 justify-center">
-            <Link to="/pilot">
+            <Link to="/pricing">
               <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                Apply for 2025-2026 Pilot
+                Download Today
               </Button>
             </Link>
             <a href="mailto:contact@languagebridge.app">

@@ -59,9 +59,9 @@ export default function Features() {
               Three integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
             </p>
             <div className="flex gap-4 justify-center">
-              <Link to="/pilot">
+              <Link to="/pricing">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                  Request Pilot Program
+                  Download Today
                 </Button>
               </Link>
               <Link to="/compliance">
@@ -86,11 +86,11 @@ export default function Features() {
             Ready to See It in Action?
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join Ohio schools participating in the 2025-2026 pilot program
+            Start using LanguageBridge in your classroom today
           </p>
-          <Link to="/pilot">
+          <Link to="/pricing">
             <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-              Apply for Pilot Program
+              Get Started
             </Button>
           </Link>
         </div>

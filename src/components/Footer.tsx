@@ -92,11 +92,10 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/features" className="text-white/80 hover:text-white transition-colors">Features</Link></li>
+              <li><Link to="/pricing" className="text-white/80 hover:text-white transition-colors">Pricing</Link></li>
               <li><Link to="/compliance" className="text-white/80 hover:text-white transition-colors">Compliance</Link></li>
-              <li><Link to="/pilot" className="text-white/80 hover:text-white transition-colors">Pilot Program</Link></li>
               <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link></li>
               <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link to="/support" className="text-white/80 hover:text-white transition-colors">Support</Link></li>
               <li><Link to="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-white/80 hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
@@ -129,12 +128,6 @@ export const Footer = () => {
                 <a href="https://x.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
                   @_languagebridge
                 </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Twitter className="w-4 h-4 text-primary" />
-                <Link to="/status" className="text-white/80 hover:text-white transition-colors">
-                  Status & Updates →
-                </Link>
               </li>
             </ul>
           </div>
