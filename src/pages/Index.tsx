@@ -68,6 +68,20 @@ const Index = () => {
       />
       <Navigation />
       <Hero />
+      
+      {/* Product Screenshot */}
+      <section id="demo" className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto fade-in-up">
+            <img 
+              src={extensionScreenshot} 
+              alt="LanguageBridge Chrome extension showing audio-first translation, 3-tiered glossary, and Talk to Teacher features" 
+              className="w-full rounded-2xl shadow-2xl border border-border"
+            />
+          </div>
+        </div>
+      </section>
+
       <TrustBadgeBar />
       <WhoWeServe />
       
