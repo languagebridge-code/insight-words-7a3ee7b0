@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/languagebridge-logo.svg";
 import heroStudent1 from "@/assets/hero-student-1.jpg";
@@ -44,17 +44,11 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Content */}
           <div className="text-center lg:text-left">
-            {/* Launch Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8 fade-in-up">
-              <Sparkles className="w-4 h-4" />
-              <span>Live in Ohio Schools</span>
-            </div>
-
-            {/* Logo - smaller on desktop, prominent on mobile */}
+            {/* Logo */}
             <img 
               src={logo} 
               alt="LanguageBridge Logo" 
-              className="w-24 h-24 lg:w-28 lg:h-28 mx-auto lg:mx-0 mb-6 fade-in-down hover:scale-105 transition-all duration-500 drop-shadow-xl"
+              className="w-32 h-32 lg:w-40 lg:h-40 mx-auto lg:mx-0 mb-8 fade-in-down hover:scale-105 transition-all duration-500 drop-shadow-xl"
             />
             
             {/* Headline */}
@@ -70,19 +64,9 @@ export const Hero = () => {
             <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8 fade-in-up delay-200">
               The audio-first Chrome extension that helps preliterate English learners access classroom content, instantly.
             </p>
-
-            {/* Benefits List */}
-            <ul className="space-y-3 mb-10 fade-in-up delay-300">
-              {benefits.map((benefit, index) => (
-                <li key={index} className="flex items-center gap-3 text-foreground/80 justify-center lg:justify-start">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-base sm:text-lg">{benefit}</span>
-                </li>
-              ))}
-            </ul>
             
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in-up delay-400">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10 fade-in-up delay-300">
               <Button
                 asChild
                 size="xl"
@@ -103,6 +87,16 @@ export const Hero = () => {
                 Watch Demo
               </Button>
             </div>
+
+            {/* Benefits List */}
+            <ul className="space-y-3 fade-in-up delay-400">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="flex items-center gap-3 text-foreground/80 justify-center lg:justify-start">
+                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-base sm:text-lg">{benefit}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right Column - Image Carousel */}
