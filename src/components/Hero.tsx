@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/languagebridge-logo.svg";
 import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
-import heroStudentMaya from "@/assets/hero-student-maya.jpg";
+import heroStudentSophia from "@/assets/hero-student-sophia.jpg";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -166,25 +166,25 @@ export const Hero = () => {
                   </div>
                 </CarouselItem>
 
-                {/* Maya's Story */}
+                {/* Sophia's Story */}
                 <CarouselItem>
                   <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer aspect-[4/3]">
                     <img 
-                      src={heroStudentMaya} 
-                      alt="Maya, African American student using LanguageBridge for read aloud support" 
+                      src={heroStudentSophia} 
+                      alt="Sophia, Colombian student using LanguageBridge glossary for cognate-based vocabulary building" 
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6 lg:p-8">
                       <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
-                        <h3 className="text-2xl lg:text-3xl font-bold">Maya's Discovery</h3>
+                        <h3 className="text-2xl lg:text-3xl font-bold">Sophia's Breakthrough</h3>
                         <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-3">
-                          Not just for ELLs—Maya uses read-aloud and audio translation to access complex academic content.
+                          Using the Tiered Language Glossary, Sophia builds English vocabulary through Spanish-English cognates—turning words she already knows into a scaffold for academic success.
                         </p>
                       </div>
                     </div>
                     <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/80 to-transparent p-4 lg:p-6 group-hover:opacity-0 transition-opacity duration-500">
-                      <p className="text-white font-medium text-lg">Hover to read Maya's story →</p>
+                      <p className="text-white font-medium text-lg">Hover to read Sophia's story →</p>
                     </div>
                   </div>
                 </CarouselItem>
