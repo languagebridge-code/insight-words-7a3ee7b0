@@ -1,87 +1,34 @@
-import { Mail, Phone, Twitter, Send } from "lucide-react";
+import { Mail, Phone, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import logo from "@/assets/languagebridge-logo.svg";
-import { useState } from "react";
 
 export const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "submitting" | "success">("idle");
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    
-    setNewsletterStatus("submitting");
-    
-    try {
-      const { supabase } = await import("@/integrations/supabase/client");
-      
-      const { error } = await supabase.functions.invoke("subscribe-newsletter", {
-        body: { email },
-      });
-
-      if (error) throw error;
-
-      setNewsletterStatus("success");
-      setEmail("");
-      
-      // Reset status after 3 seconds
-      setTimeout(() => setNewsletterStatus("idle"), 3000);
-    } catch (error: any) {
-      console.error("Newsletter subscription error:", error);
-      setNewsletterStatus("idle");
-      alert(error.message === "This email is already subscribed" 
-        ? "This email is already subscribed!" 
-        : "Failed to subscribe. Please try again.");
-    }
-  };
-
   return (
     <footer className="bg-foreground text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
-        {/* Newsletter CTA Section */}
+        {/* Get in Touch Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl p-8 md:p-12 text-center border border-white/10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Stay Updated on <span className="gradient-text">Language Access</span>
+              <span className="gradient-text">Get in Touch</span>
             </h2>
             <p className="text-white/80 mb-6 text-lg">
-              Get grant templates, compliance updates, and ELL best practices delivered monthly
+              Have questions about LanguageBridge? We'd love to hear from you.
             </p>
-            <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
-              <div className="flex gap-2">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/50"
-                  disabled={newsletterStatus !== "idle"}
-                />
-                <Button 
-                  type="submit" 
-                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
-                  disabled={newsletterStatus !== "idle"}
-                >
-                  {newsletterStatus === "submitting" ? (
-                    "Sending..."
-                  ) : newsletterStatus === "success" ? (
-                    "Subscribed!"
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 mr-2" />
-                      Subscribe
-                    </>
-                  )}
-                </Button>
-              </div>
-              {newsletterStatus === "success" && (
-                <p className="text-sm text-primary mt-2">Thanks for subscribing!</p>
-              )}
-            </form>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a href="mailto:contact@languagebridge.app" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
+                <Mail className="w-5 h-5" />
+                contact@languagebridge.app
+              </a>
+              <a href="tel:+12168006020" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
+                <Phone className="w-5 h-5" />
+                (216) 800-6020
+              </a>
+              <a href="https://x.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
+                <Twitter className="w-5 h-5" />
+                @_languagebridge
+              </a>
+            </div>
           </div>
         </div>
 
