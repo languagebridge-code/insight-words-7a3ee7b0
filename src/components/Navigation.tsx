@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/languagebridge-logo.svg";
+import logo from "@/assets/languagebridge-logo-2.svg";
 
 interface NavDropdownProps {
   label: string;
@@ -113,20 +113,13 @@ export const Navigation = () => {
           {/* Enhanced Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
           >
-            <div className="relative">
-              <img 
-                src={logo} 
-                alt="LanguageBridge" 
-                className="w-12 h-12 logo-glow transition-transform duration-300 group-hover:scale-105" 
-              />
-              {/* Ambient glow behind logo */}
-              <div className="absolute inset-0 -z-10 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300 bg-gradient-to-br from-primary/40 to-accent/40 rounded-full scale-150" />
-            </div>
-            <span className="font-heading font-bold text-xl hidden sm:inline logo-text">
-              LanguageBridge™
-            </span>
+            <img 
+              src={logo} 
+              alt="LanguageBridge™" 
+              className="h-14 w-auto transition-transform duration-300 group-hover:scale-105" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
