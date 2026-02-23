@@ -175,7 +175,7 @@ export const Hero = () => {
                         <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
                         <h3 className="text-2xl lg:text-3xl font-bold">Sophia's Breakthrough</h3>
                         <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Sophia moved from Colombia and constantly translates two languages in her head. It made her feel "not smart." The Tiered Language Glossary shows her Spanish-English cognates side by side, proving she already knows more English than she thinks.
+                          Sophia moved from Colombia and constantly translates two languages in her head. It made her feel "not smart." With LanguageBridge, she highlights any text and the glossary generates word-to-word translations side by side. She controls what she learns, and now she can show everyone how smart she really is.
                         </p>
                       </div>
                     </div>
