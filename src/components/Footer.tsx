@@ -1,6 +1,6 @@
 import { Mail, Phone, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/languagebridge-logo-2.svg";
+import logo from "@/assets/languagebridge-logo.svg";
 
 export const Footer = () => {
   return (
@@ -81,7 +81,7 @@ export const Footer = () => {
 
           {/* Column 4 - Our Mission */}
           <div>
-            <img src={logo} alt="LanguageBridge™ Logo" className="h-14 w-auto mb-4" />
+            <img src={logo} alt="LanguageBridge Logo" className="w-16 h-16 mb-4" />
             <h3 className="font-bold text-lg mb-4 text-white">Our Mission</h3>
             <p className="text-white/80 text-sm leading-relaxed mb-4">
               Help every student understand, even those who can't read yet. LanguageBridge is the first Language Accessibility Screen Reader, breaking down barriers for preliterate English language learners.
