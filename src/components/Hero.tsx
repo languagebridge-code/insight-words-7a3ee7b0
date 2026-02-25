@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/languagebridge-logo-2.svg";
+
 import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
 import heroStudentSophia from "@/assets/hero-student-sophia.jpg";
@@ -45,11 +45,6 @@ export const Hero = () => {
           {/* Left Column - Content */}
           <div className="text-center lg:text-left">
             {/* Logo */}
-            <img 
-              src={logo} 
-              alt="LanguageBridge Logo" 
-              className="w-32 h-32 lg:w-40 lg:h-40 mx-auto lg:mx-0 mb-8 fade-in-down hover:scale-105 transition-all duration-500 drop-shadow-xl"
-            />
             
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-[1.05] tracking-tight fade-in-up delay-100">
