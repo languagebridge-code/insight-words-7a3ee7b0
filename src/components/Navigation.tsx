@@ -73,7 +73,6 @@ export const Navigation = () => {
   const productLinks = [
     { label: "Features", href: "/features", description: "Explore all capabilities" },
     { label: "Pricing", href: "/pricing", description: "Plans & pricing" },
-    { label: "Demo", href: "/demo", description: "See it in action" },
   ];
 
   const resourceLinks = [
