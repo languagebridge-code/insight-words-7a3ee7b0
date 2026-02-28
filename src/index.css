@@ -19,41 +19,41 @@ All colors MUST be HSL.
     --popover-foreground: 192 10% 19%;
 
     /* Brand Gradient Colors (10% of design) */
-    --primary: 345 60% 32%; /* Maroon base */
+    --primary: 310 47% 31%; /* Plum purple from logo #742a69 */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 345 55% 42%; /* Lighter maroon for glow */
+    --primary-glow: 310 42% 42%; /* Lighter plum for glow */
     
-    --accent: 40 76% 50%; /* Gold from gradient */
+    --accent: 32 95% 58%; /* Orange from logo gradient #f37030 */
     --accent-foreground: 0 0% 100%;
 
     /* Supporting Colors */
-    --secondary: 40 30% 97%; /* Warm light background */
-    --secondary-foreground: 192 10% 19%;
+    --secondary: 35 40% 97%; /* Warm light background */
+    --secondary-foreground: 200 30% 23%;
 
-    --muted: 40 20% 96%;
-    --muted-foreground: 200 6% 41%; /* Medium gray */
+    --muted: 35 20% 96%;
+    --muted-foreground: 200 15% 41%;
 
-    --lavender: 345 30% 92%; /* Soft rose */
-    --peach: 40 60% 92%; /* Warm gold tint */
-    --deep-purple: 345 55% 30%; /* Deep maroon for links */
-    --burnt-orange: 40 76% 45%; /* Gold accents */
+    --lavender: 310 25% 93%; /* Soft plum tint */
+    --peach: 40 70% 92%; /* Warm gold tint */
+    --deep-purple: 310 47% 28%; /* Deep plum for links */
+    --burnt-orange: 40 100% 67%; /* Gold from logo #ffc755 */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 345 55% 30%;
+    --ring: 310 47% 31%;
 
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(345 60% 32%), hsl(40 76% 50%));
-    --gradient-glow: linear-gradient(135deg, hsl(345 55% 42% / 0.3), hsl(40 76% 60% / 0.3));
+    --gradient-primary: linear-gradient(135deg, hsl(310 47% 31%), hsl(32 95% 58%));
+    --gradient-glow: linear-gradient(135deg, hsl(310 42% 42% / 0.3), hsl(40 100% 67% / 0.3));
     
     /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(345 60% 32% / 0.3);
-    --shadow-glow: 0 0 40px hsl(345 55% 42% / 0.4);
+    --shadow-elegant: 0 10px 30px -10px hsl(310 47% 31% / 0.3);
+    --shadow-glow: 0 0 40px hsl(310 42% 42% / 0.4);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -75,24 +75,24 @@ All colors MUST be HSL.
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 345 60% 40%;
+    --primary: 310 42% 40%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 345 55% 50%;
-    --accent: 40 76% 55%;
+    --primary-glow: 310 38% 50%;
+    --accent: 32 90% 55%;
     --accent-foreground: 0 0% 100%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --lavender: 345 30% 20%;
+    --lavender: 310 25% 20%;
     --peach: 40 60% 20%;
-    --deep-purple: 345 55% 55%;
-    --burnt-orange: 40 76% 55%;
+    --deep-purple: 310 42% 55%;
+    --burnt-orange: 40 100% 60%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 345 55% 55%;
+    --ring: 310 42% 45%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -149,11 +149,11 @@ All colors MUST be HSL.
 @layer utilities {
   /* Gradient utilities */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(345 60% 32%), hsl(40 76% 50%));
+    background: linear-gradient(135deg, hsl(310 47% 31%), hsl(32 95% 58%));
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, hsl(345 60% 36%), hsl(40 76% 45%));
+    background: linear-gradient(135deg, hsl(310 47% 34%), hsl(32 95% 52%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -165,7 +165,7 @@ All colors MUST be HSL.
 
   /* Glow effects */
   .glow-primary {
-    box-shadow: 0 0 40px hsl(345 55% 42% / 0.4), 0 0 20px hsl(40 76% 60% / 0.3);
+    box-shadow: 0 0 40px hsl(310 42% 42% / 0.4), 0 0 20px hsl(40 100% 67% / 0.3);
     animation: pulse-glow 3s ease-in-out infinite;
   }
 
@@ -174,9 +174,9 @@ All colors MUST be HSL.
     position: absolute;
     width: 2px;
     height: 2px;
-    background: linear-gradient(135deg, hsl(345 55% 50%), hsl(40 76% 60%));
+    background: linear-gradient(135deg, hsl(310 47% 40%), hsl(32 95% 58%));
     border-radius: 50%;
-    box-shadow: 0 0 10px 2px hsl(345 55% 50% / 0.8);
+    box-shadow: 0 0 10px 2px hsl(310 47% 40% / 0.8);
     animation: shoot 3s ease-out infinite;
   }
 
@@ -217,7 +217,7 @@ All colors MUST be HSL.
 
   .hover-scale:hover {
     transform: scale(1.03) translateY(-4px);
-    box-shadow: 0 20px 40px -15px hsl(345 60% 32% / 0.3);
+    box-shadow: 0 20px 40px -15px hsl(310 47% 31% / 0.3);
   }
 
   .hover-lift {
@@ -226,7 +226,7 @@ All colors MUST be HSL.
 
   .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px -8px hsl(345 60% 32% / 0.25);
+    box-shadow: 0 8px 20px -8px hsl(310 47% 31% / 0.25);
   }
 
   /* Fade in animations */
@@ -299,7 +299,7 @@ All colors MUST be HSL.
     height: 2px;
     bottom: -4px;
     left: 0;
-    background: linear-gradient(135deg, hsl(345 60% 36%), hsl(40 76% 50%));
+    background: linear-gradient(135deg, hsl(310 47% 34%), hsl(32 95% 58%));
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -312,22 +312,22 @@ All colors MUST be HSL.
   }
 
   .nav-link:hover {
-    color: hsl(345 60% 36%);
+    color: hsl(310 47% 34%);
   }
 
   /* Logo glow effect */
   .logo-glow {
-    filter: drop-shadow(0 0 8px hsl(345 55% 42% / 0.4)) drop-shadow(0 0 16px hsl(40 76% 50% / 0.3));
+    filter: drop-shadow(0 0 8px hsl(310 42% 42% / 0.4)) drop-shadow(0 0 16px hsl(32 95% 58% / 0.3));
     transition: filter 0.3s ease;
   }
 
   .logo-glow:hover {
-    filter: drop-shadow(0 0 12px hsl(345 55% 42% / 0.6)) drop-shadow(0 0 24px hsl(40 76% 50% / 0.5));
+    filter: drop-shadow(0 0 12px hsl(310 42% 42% / 0.6)) drop-shadow(0 0 24px hsl(32 95% 58% / 0.5));
   }
 
   /* Gradient text for logo */
   .logo-text {
-    background: linear-gradient(135deg, hsl(345 60% 32%), hsl(40 76% 50%));
+    background: linear-gradient(135deg, hsl(310 47% 31%), hsl(32 95% 58%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -349,10 +349,10 @@ All colors MUST be HSL.
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 30px hsl(345 55% 42% / 0.3), 0 0 15px hsl(40 76% 60% / 0.2);
+    box-shadow: 0 0 30px hsl(310 42% 42% / 0.3), 0 0 15px hsl(40 100% 67% / 0.2);
   }
   50% {
-    box-shadow: 0 0 50px hsl(345 55% 42% / 0.5), 0 0 25px hsl(40 76% 60% / 0.4);
+    box-shadow: 0 0 50px hsl(310 42% 42% / 0.5), 0 0 25px hsl(40 100% 67% / 0.4);
   }
 }
 
