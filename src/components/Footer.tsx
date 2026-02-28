@@ -1,6 +1,6 @@
 import { Mail, Phone, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/languagebridge-logo.svg";
+import logo from "@/assets/languagebridge-logo-new.svg";
 
 export const Footer = () => {
   return (
