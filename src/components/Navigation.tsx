@@ -78,6 +78,7 @@ export const Navigation = () => {
   const resourceLinks = [
     { label: "FAQ", href: "/faq", description: "Common questions" },
     { label: "Compliance", href: "/compliance", description: "FERPA, Title III & more" },
+    { label: "Media", href: "/media", description: "Press & articles" },
   ];
 
   const scrollToSection = (href: string, e?: React.MouseEvent) => {

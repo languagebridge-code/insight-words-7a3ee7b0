@@ -43,6 +43,7 @@ export const Footer = () => {
               <li><Link to="/compliance" className="text-white/80 hover:text-white transition-colors">Compliance</Link></li>
               <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link></li>
               <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link to="/media" className="text-white/80 hover:text-white transition-colors">Media</Link></li>
               <li><Link to="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-white/80 hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
