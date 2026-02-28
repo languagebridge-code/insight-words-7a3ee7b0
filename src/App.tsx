@@ -18,7 +18,7 @@ import TeacherDashboard from "./pages/TeacherDashboard";
 import TeacherAuth from "./pages/TeacherAuth";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
-
+import Media from "./pages/Media";
 import PricingPage from "./pages/PricingPage";
 
 const queryClient = new QueryClient();
@@ -46,6 +46,7 @@ const App = () => (
           <Route path="/reset-password" element={<ResetPassword />} />
           
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/media" element={<Media />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
