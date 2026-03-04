@@ -19,7 +19,8 @@ export default defineConfig(({ mode }) => ({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "android-chrome-192x192.png", "android-chrome-512x512.png"],
       workbox: {
-        navigateFallbackDenylist: [/^\/~oauth/, /^\/api\//],
+        navigateFallback: "/index.html",
+        navigateFallbackDenylist: [/^\/~oauth/, /^\/api\//, /\.(js|css|png|svg|ico|jpg|woff2)$/],
         globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg,woff2}"],
         runtimeCaching: [
           {
