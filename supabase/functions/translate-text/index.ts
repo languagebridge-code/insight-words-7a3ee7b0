@@ -6,6 +6,19 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Map internal codes → Azure Translator codes
+const TRANSLATOR_CODE: Record<string, string> = {
+  prs: "prs",
+  fa: "fa",
+  ps: "ps",
+  ar: "ar",
+  ur: "ur",
+  so: "so",
+  uk: "uk",
+  es: "es",
+  en: "en",
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -16,59 +29,43 @@ serve(async (req) => {
 
     if (!text || !sourceLanguage || !targetLanguage) {
       return new Response(
-        JSON.stringify({ success: false, error: "Missing required fields: text, sourceLanguage, targetLanguage" }),
+        JSON.stringify({ success: false, error: "Missing text, sourceLanguage, or targetLanguage" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    const TRANSLATOR_KEY = Deno.env.get("AZURE_TRANSLATOR_KEY");
+    const TRANSLATOR_REGION = Deno.env.get("AZURE_TRANSLATOR_REGION");
+    if (!TRANSLATOR_KEY || !TRANSLATOR_REGION) {
+      throw new Error("Azure Translator credentials not configured");
     }
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const from = TRANSLATOR_CODE[sourceLanguage] || sourceLanguage;
+    const to = TRANSLATOR_CODE[targetLanguage] || targetLanguage;
+
+    const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=${from}&to=${to}`;
+
+    const response = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        "Ocp-Apim-Subscription-Key": TRANSLATOR_KEY,
+        "Ocp-Apim-Subscription-Region": TRANSLATOR_REGION,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash-lite",
-        messages: [
-          {
-            role: "system",
-            content: `You are a professional translator. Translate the user's text from ${sourceLanguage} to ${targetLanguage}. Return ONLY the translated text — no explanations, no quotation marks, no extra formatting. Preserve the tone and meaning as accurately as possible. This is for a school setting where a teacher and student are communicating.`,
-          },
-          { role: "user", content: text },
-        ],
-      }),
+      body: JSON.stringify([{ Text: text }]),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("[translate-text] AI gateway error:", response.status, errText);
-
-      if (response.status === 429) {
-        return new Response(
-          JSON.stringify({ success: false, error: "Rate limited — please wait a moment and try again." }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-        );
-      }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ success: false, error: "AI usage limit reached." }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-        );
-      }
-
+      console.error("[translate-text] Azure error:", response.status, errText);
       return new Response(
-        JSON.stringify({ success: false, error: "Translation service error" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        JSON.stringify({ success: false, error: "Translation failed. Please try again." }),
+        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
     const data = await response.json();
-    const translatedText = data.choices?.[0]?.message?.content?.trim();
+    const translatedText = data?.[0]?.translations?.[0]?.text || "";
 
     if (!translatedText) {
       return new Response(
@@ -77,16 +74,21 @@ serve(async (req) => {
       );
     }
 
-    console.log(`[translate-text] ${sourceLanguage} → ${targetLanguage}: "${text.substring(0, 40)}…" → "${translatedText.substring(0, 40)}…"`);
+    console.log(`[translate-text] ${from} → ${to}: "${text.substring(0, 40)}…" → "${translatedText.substring(0, 40)}…"`);
 
     return new Response(
-      JSON.stringify({ success: true, translatedText, sourceLanguage, targetLanguage }),
+      JSON.stringify({
+        success: true,
+        translatedText,
+        sourceLanguage: from,
+        targetLanguage: to,
+      }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   } catch (e) {
     console.error("[translate-text] Error:", e);
     return new Response(
-      JSON.stringify({ success: false, error: e instanceof Error ? e.message : "Unknown error" }),
+      JSON.stringify({ success: false, error: "Translation service unavailable." }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
