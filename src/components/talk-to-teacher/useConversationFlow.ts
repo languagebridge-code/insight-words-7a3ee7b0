@@ -6,6 +6,15 @@ import { isRateLimited, incrementUsage, getRemainingCount } from './rateLimiter'
 import { SpeakerState, SUPPORTED_LANGUAGES } from './types';
 import { toast } from 'sonner';
 
+// Shared AudioContext — unlocked on first user tap to bypass autoplay policy
+let sharedAudioCtx: AudioContext | null = null;
+function getAudioContext(): AudioContext {
+  if (!sharedAudioCtx || sharedAudioCtx.state === 'closed') {
+    sharedAudioCtx = new AudioContext();
+  }
+  return sharedAudioCtx;
+}
+
 interface ConversationDeps {
   settings: { studentLanguage: string; teacherLanguage: string; autoPlay: boolean; showTranscript: boolean };
   setStudentState: (s: SpeakerState) => void;
@@ -32,13 +41,33 @@ export function useConversationFlow(deps: ConversationDeps) {
 
   const playAudio = useCallback(async (audioBase64?: string): Promise<void> => {
     if (!audioBase64) return;
-    return new Promise((resolve) => {
-      const audio = new Audio();
-      audio.onended = () => resolve();
-      audio.onerror = () => resolve(); // Non-critical
-      audio.src = `data:audio/mp3;base64,${audioBase64}`;
-      audio.play().catch(() => resolve());
-    });
+    try {
+      const ctx = getAudioContext();
+      if (ctx.state === 'suspended') await ctx.resume();
+
+      const binaryStr = atob(audioBase64);
+      const bytes = new Uint8Array(binaryStr.length);
+      for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
+
+      const audioBuffer = await ctx.decodeAudioData(bytes.buffer);
+      const source = ctx.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(ctx.destination);
+
+      return new Promise<void>((resolve) => {
+        source.onended = () => resolve();
+        source.start(0);
+      });
+    } catch (err) {
+      console.warn('[TTT] AudioContext playback failed, trying Audio element fallback', err);
+      // Fallback to Audio element
+      return new Promise((resolve) => {
+        const audio = new Audio(`data:audio/mpeg;base64,${audioBase64}`);
+        audio.onended = () => resolve();
+        audio.onerror = () => resolve();
+        audio.play().catch(() => resolve());
+      });
+    }
   }, []);
 
   const processRecording = useCallback(async (
@@ -117,6 +146,10 @@ export function useConversationFlow(deps: ConversationDeps) {
       toast.error("⏳ You've reached your daily limit (50 translations). Try again tomorrow.");
       return;
     }
+
+    // Unlock AudioContext during user gesture (critical for autoplay policy)
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') ctx.resume();
 
     const speakerLang = role === 'student' ? deps.settings.studentLanguage : deps.settings.teacherLanguage;
     const setSpeakerState = role === 'student' ? deps.setStudentState : deps.setTeacherState;
