@@ -42,10 +42,10 @@ export function TalkToTeacherApp() {
     <div className="min-h-screen bg-[#0f172a] text-white font-sans flex flex-col">
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-white/10 md:px-6">
-        <div className="flex items-center gap-2.5">
+        <a href="https://www.languagebridge.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5">
           <img src={logoSvg} alt="LanguageBridge" className="w-7 h-7 rounded-md" />
           <h1 className="text-lg font-bold tracking-tight">Talk to Teacher</h1>
-        </div>
+        </a>
         <button
           onClick={() => setSettingsOpen(true)}
           className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
