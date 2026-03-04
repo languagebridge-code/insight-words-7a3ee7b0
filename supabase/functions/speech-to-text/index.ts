@@ -55,7 +55,7 @@ serve(async (req) => {
       method: "POST",
       headers: {
         "Ocp-Apim-Subscription-Key": SPEECH_KEY,
-        "Content-Type": "audio/webm; codecs=opus",
+        "Content-Type": "audio/wav",
         "Accept": "application/json",
       },
       body: bytes.buffer,
