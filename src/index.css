@@ -422,3 +422,9 @@ All colors MUST be HSL.
     transform: translateX(0);
   }
 }
+
+/* Talk to Teacher waveform animation */
+@keyframes ttt-wave {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}

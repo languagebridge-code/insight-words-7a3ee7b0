@@ -20,6 +20,7 @@ import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import Media from "./pages/Media";
 import PricingPage from "./pages/PricingPage";
+import TalkToTeacher from "./pages/TalkToTeacher";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/media" element={<Media />} />
+          <Route path="/teacher" element={<TalkToTeacher />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
