@@ -110,35 +110,41 @@ export function listenForSpeech(
  * Speak text using the browser's SpeechSynthesis API.
  * Resolves when speaking is done.
  */
-export function speakText(text: string, languageCode: string, rate = 0.9): Promise<void> {
+export function speakText(text: string, languageCode: string, rate = 0.9): Promise<{ spoke: boolean }> {
   return new Promise((resolve) => {
     if (!window.speechSynthesis) {
       console.warn('[TTT] SpeechSynthesis not supported');
-      resolve();
+      resolve({ spoke: false });
       return;
     }
 
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = getBcp47(languageCode);
-    utterance.rate = rate;
-
     // Try to find a matching voice
     const voices = window.speechSynthesis.getVoices();
     const bcp47 = getBcp47(languageCode);
     const match = voices.find(v => v.lang.startsWith(bcp47.split('-')[0]));
-    if (match) utterance.voice = match;
 
-    utterance.onend = () => resolve();
-    utterance.onerror = () => resolve(); // Non-critical — still resolve
+    if (!match) {
+      console.warn(`[TTT] No browser voice available for ${bcp47}`);
+      resolve({ spoke: false });
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = bcp47;
+    utterance.rate = rate;
+    utterance.voice = match;
+
+    utterance.onend = () => resolve({ spoke: true });
+    utterance.onerror = () => resolve({ spoke: false });
 
     window.speechSynthesis.speak(utterance);
 
     // Safety timeout — some browsers hang
     setTimeout(() => {
-      resolve();
+      resolve({ spoke: true });
     }, 30_000);
   });
 }
