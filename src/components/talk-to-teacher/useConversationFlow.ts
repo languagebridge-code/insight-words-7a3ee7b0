@@ -106,6 +106,7 @@ export function useConversationFlow(deps: ConversationDeps) {
       incrementUsage();
 
       // 4. Text-to-speech (if autoPlay)
+      let cachedAudioBase64: string | undefined;
       if (deps.settings.autoPlay) {
         setTargetState('speaking');
         setSpeakerState('idle');
@@ -113,9 +114,9 @@ export function useConversationFlow(deps: ConversationDeps) {
           const tts = await textToSpeech(translation.translatedText, targetLang);
           if (tts.success) {
             if (tts.useBrowserFallback) {
-              // Language not supported by Azure TTS — use browser
               await speakText(translation.translatedText, targetLang);
             } else if (tts.audioBase64) {
+              cachedAudioBase64 = tts.audioBase64;
               await playAudio(tts.audioBase64);
             }
           }
@@ -124,13 +125,15 @@ export function useConversationFlow(deps: ConversationDeps) {
         }
       }
 
-      // 5. Add to history
+      // 5. Add to history (with cached audio for replay)
       deps.addHistoryEntry({
         role,
         language: langName,
         languageCode: speakerLang,
         originalText: transcription.text,
         translatedText: translation.translatedText,
+        translatedLanguageCode: targetLang,
+        audioBase64: cachedAudioBase64,
         timestamp: new Date(),
       });
 
