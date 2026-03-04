@@ -6,6 +6,7 @@ import { HistoryPanel } from './HistoryPanel';
 import { StopButton } from './StopButton';
 import { useTTTStore } from './useTTTStore';
 import { useConversationFlow } from './useConversationFlow';
+import { InstallPrompt } from './InstallPrompt';
 import logoSvg from '@/assets/languagebridge-icon.png';
 import { toast } from 'sonner';
 
@@ -125,6 +126,7 @@ export function TalkToTeacherApp() {
         onClear={store.clearHistory}
         onClose={() => setHistoryOpen(false)}
       />
+      <InstallPrompt />
     </div>
   );
 }
