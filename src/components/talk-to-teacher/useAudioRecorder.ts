@@ -23,32 +23,30 @@ function encodeWav(samples: Float32Array, sampleRate: number): ArrayBuffer {
   view.setUint32(4, 36 + numSamples * 2, true);
   writeString(8, 'WAVE');
   writeString(12, 'fmt ');
-  view.setUint32(16, 16, true);           // chunk size
-  view.setUint16(20, 1, true);            // PCM
-  view.setUint16(22, 1, true);            // mono
-  view.setUint32(24, sampleRate, true);   // sample rate
-  view.setUint32(28, sampleRate * 2, true); // byte rate
-  view.setUint16(32, 2, true);            // block align
-  view.setUint16(34, 16, true);           // bits per sample
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true); // PCM
+  view.setUint16(22, 1, true); // mono
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true); // bits
   writeString(36, 'data');
   view.setUint32(40, numSamples * 2, true);
 
   for (let i = 0; i < numSamples; i++) {
     const s = Math.max(-1, Math.min(1, samples[i]));
-    view.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    view.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
   }
 
   return buffer;
 }
 
-/**
- * Downsample from sourceSR → targetSR using simple linear interpolation.
- */
 function downsample(buffer: Float32Array, sourceSR: number, targetSR: number): Float32Array {
   if (sourceSR === targetSR) return buffer;
   const ratio = sourceSR / targetSR;
   const newLength = Math.round(buffer.length / ratio);
   const result = new Float32Array(newLength);
+
   for (let i = 0; i < newLength; i++) {
     const idx = i * ratio;
     const low = Math.floor(idx);
@@ -56,7 +54,19 @@ function downsample(buffer: Float32Array, sourceSR: number, targetSR: number): F
     const frac = idx - low;
     result[i] = buffer[low] * (1 - frac) + buffer[high] * frac;
   }
+
   return result;
+}
+
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  const bytes = new Uint8Array(buffer);
+  let binary = '';
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    const chunk = bytes.subarray(i, i + chunkSize);
+    binary += String.fromCharCode(...chunk);
+  }
+  return btoa(binary);
 }
 
 export function useAudioRecorder(): UseAudioRecorderReturn {
@@ -64,7 +74,6 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
   const [error, setError] = useState<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
-  const streamRef = useRef<MediaStream | null>(null);
   const resolveRef = useRef<((result: { base64: string; mimeType: string }) => void) | null>(null);
 
   const startRecording = useCallback(async () => {
@@ -77,13 +86,15 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
           echoCancellation: true,
           noiseSuppression: true,
           autoGainControl: true,
+          channelCount: 1,
+          sampleRate: 16000,
         },
       });
 
-      streamRef.current = stream;
-
-      // Use whatever mimeType the browser supports for capture
-      const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+      // Prefer ogg/opus first (very stable for Azure), then webm/opus.
+      const mimeType = MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')
+        ? 'audio/ogg;codecs=opus'
+        : MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
         ? 'audio/webm;codecs=opus'
         : MediaRecorder.isTypeSupported('audio/webm')
         ? 'audio/webm'
@@ -96,31 +107,40 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
       };
 
       recorder.onstop = async () => {
-        stream.getTracks().forEach(t => t.stop());
+        stream.getTracks().forEach((t) => t.stop());
         const blob = new Blob(chunksRef.current, { type: mimeType });
 
         try {
-          // Decode browser audio → resample to 16 kHz mono → WAV
-          const arrayBuffer = await blob.arrayBuffer();
-          const audioCtx = new OfflineAudioContext(1, 1, 16000);
-          const decoded = await audioCtx.decodeAudioData(arrayBuffer);
-          const channelData = decoded.getChannelData(0);
-          const resampled = downsample(channelData, decoded.sampleRate, 16000);
-          const wavBuffer = encodeWav(resampled, 16000);
+          if (blob.size < 512) throw new Error('Recorded audio is too small');
 
-          // Convert WAV ArrayBuffer → base64
-          const bytes = new Uint8Array(wavBuffer);
-          let binary = '';
-          for (let i = 0; i < bytes.length; i++) {
-            binary += String.fromCharCode(bytes[i]);
-          }
-          const base64 = btoa(binary);
+          const arrayBuffer = await blob.arrayBuffer();
+          const AudioContextClass =
+            window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+
+          if (!AudioContextClass) throw new Error('AudioContext unavailable for WAV conversion');
+
+          const decodeCtx = new AudioContextClass();
+          const decoded = await decodeCtx.decodeAudioData(arrayBuffer.slice(0));
+          await decodeCtx.close();
+
+          const mono = decoded.numberOfChannels > 1
+            ? (() => {
+                const left = decoded.getChannelData(0);
+                const right = decoded.getChannelData(1);
+                const mixed = new Float32Array(decoded.length);
+                for (let i = 0; i < decoded.length; i++) mixed[i] = (left[i] + right[i]) * 0.5;
+                return mixed;
+              })()
+            : decoded.getChannelData(0);
+
+          const resampled = downsample(mono, decoded.sampleRate, 16000);
+          const wavBuffer = encodeWav(resampled, 16000);
+          const base64 = arrayBufferToBase64(wavBuffer);
 
           resolveRef.current?.({ base64, mimeType: 'audio/wav' });
           resolveRef.current = null;
         } catch (convErr) {
-          console.warn('[AudioRecorder] WAV conversion failed, sending raw audio', convErr);
-          // Fallback: send raw audio
+          console.warn('[AudioRecorder] WAV conversion failed, using raw audio fallback', convErr);
           const reader = new FileReader();
           reader.onloadend = () => {
             const result = reader.result as string;
@@ -151,6 +171,9 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
     return new Promise((resolve) => {
       resolveRef.current = resolve;
       if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+        if (mediaRecorderRef.current.state === 'recording') {
+          mediaRecorderRef.current.requestData();
+        }
         mediaRecorderRef.current.stop();
       }
       setIsRecording(false);
@@ -159,3 +182,4 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
 
   return { isRecording, startRecording, stopRecording, error };
 }
+
