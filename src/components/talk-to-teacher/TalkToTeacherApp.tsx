@@ -69,7 +69,7 @@ export function TalkToTeacherApp() {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-4 max-w-[500px] mx-auto w-full">
-        <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-3 flex-1">
           <SpeakerZone
             role="student"
             state={store.studentState}

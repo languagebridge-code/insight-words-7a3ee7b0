@@ -35,7 +35,7 @@ export function SpeakerZone({ role, state, languageCode, text, disabled, onTap, 
       onClick={onTap}
       disabled={disabled || state === 'disabled'}
       className={cn(
-        'w-full rounded-2xl p-5 transition-all duration-300 text-center flex flex-col items-center gap-2',
+        'w-full rounded-2xl p-6 transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 min-h-[200px] flex-1',
         'focus:outline-none focus:ring-2 focus:ring-white/40',
         'active:scale-[0.98]',
         'bg-white/10 backdrop-blur-sm border border-white/20',
