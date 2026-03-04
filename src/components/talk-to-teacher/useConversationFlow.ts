@@ -1,6 +1,6 @@
 import { useRef, useCallback } from 'react';
-import { useAudioRecorder } from './useAudioRecorder';
-import { speechRecognition, translate, textToSpeech } from './apiClient';
+import { translate } from './apiClient';
+import { listenForSpeech, speakText, isSpeechRecognitionSupported } from './browserSpeech';
 import { isRateLimited, incrementUsage, getRemainingCount } from './rateLimiter';
 import { SpeakerState, SUPPORTED_LANGUAGES } from './types';
 import { toast } from 'sonner';
@@ -16,51 +16,24 @@ interface ConversationDeps {
 }
 
 export function useConversationFlow(deps: ConversationDeps) {
-  const recorder = useAudioRecorder();
   const sessionIdRef = useRef(crypto.randomUUID());
-  const autoStopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const abortRef = useRef<(() => void) | null>(null);
 
   const resetStates = useCallback(() => {
     deps.setStudentState('idle');
     deps.setTeacherState('idle');
     deps.setActiveZone(null);
-    if (autoStopTimerRef.current) {
-      clearTimeout(autoStopTimerRef.current);
-      autoStopTimerRef.current = null;
-    }
+    abortRef.current = null;
   }, [deps]);
 
-  const playAudioFromResponse = useCallback(async (audioUrl?: string, audioBase64?: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      let src: string;
-      if (audioBase64) {
-        // Prefer base64 — more reliable on mobile
-        src = `data:audio/mp3;base64,${audioBase64}`;
-      } else if (audioUrl) {
-        src = audioUrl;
-      } else {
-        resolve();
-        return;
-      }
-      const audio = new Audio();
-      audio.onended = () => resolve();
-      audio.onerror = (e) => {
-        console.error('[TTT] Audio playback error:', e);
-        // Don't reject — TTS failure is non-critical
-        resolve();
-      };
-      // Set src after attaching handlers
-      audio.src = src;
-      audio.play().catch((err) => {
-        console.error('[TTT] Audio play() rejected:', err);
-        // Non-critical — resolve instead of reject
-        resolve();
-      });
-    });
-  }, []);
-
   const handleTap = useCallback(async (role: 'student' | 'teacher') => {
-    // Check rate limit first
+    // Check browser support
+    if (!isSpeechRecognitionSupported()) {
+      toast.error('Speech recognition requires Chrome or Edge browser.');
+      return;
+    }
+
+    // Check rate limit
     if (isRateLimited()) {
       toast.error("⏳ You've reached your daily limit (50 translations). Try again tomorrow.");
       return;
@@ -81,140 +54,76 @@ export function useConversationFlow(deps: ConversationDeps) {
     setTargetText('');
 
     try {
-      // 1. Record audio
-      await recorder.startRecording();
+      // 1. Listen via browser Speech Recognition
+      const { promise, abort } = listenForSpeech(speakerLang);
+      abortRef.current = abort;
 
-      // Auto-stop after 30 seconds
-      autoStopTimerRef.current = setTimeout(async () => {
-        if (recorder.isRecording) {
-          await processRecording(role, speakerLang, targetLang, setSpeakerState, setTargetState, setSpeakerText, setTargetText, speakerLangInfo?.name || speakerLang);
-        }
-      }, 30000);
-    } catch {
-      resetStates();
-    }
-  }, [deps, recorder, resetStates]);
+      const transcript = await promise;
+      abortRef.current = null;
+      setSpeakerText(transcript);
 
-  const processRecording = useCallback(async (
-    role: 'student' | 'teacher',
-    speakerLang: string,
-    targetLang: string,
-    setSpeakerState: (s: SpeakerState) => void,
-    setTargetState: (s: SpeakerState) => void,
-    setSpeakerText: (t: string) => void,
-    setTargetText: (t: string) => void,
-    langName: string,
-  ) => {
-    try {
-      // 2. Stop recording → get base64
-      const audioBase64 = await recorder.stopRecording();
-
-      // 3. Transcribe
-      setSpeakerState('transcribing');
-      const transcription = await speechRecognition(audioBase64, speakerLang, sessionIdRef.current);
-      if (!transcription.success || !transcription.text) {
-        toast.error('🔊 Could not hear you clearly. Please speak louder.');
-        resetStates();
-        return;
-      }
-      setSpeakerText(transcription.text);
-
-      // 4. Translate
+      // 2. Translate via Lovable Cloud
       setSpeakerState('translating');
-      const translation = await translate(transcription.text, speakerLang, targetLang, sessionIdRef.current);
-      if (!translation.success) {
+      const sourceName = speakerLangInfo?.name || speakerLang;
+      const targetName = SUPPORTED_LANGUAGES.find(l => l.code === targetLang)?.name || targetLang;
+
+      const result = await translate(transcript, sourceName, targetName);
+      if (!result.success) {
         toast.error('⚠️ Translation failed. Please try again.');
         resetStates();
         return;
       }
-      setTargetText(translation.translatedText);
+      setTargetText(result.translatedText);
       incrementUsage();
 
-      // 5. Text-to-speech (if autoPlay)
+      // 3. Speak translation via browser TTS (if autoPlay)
       if (deps.settings.autoPlay) {
         setTargetState('speaking');
         setSpeakerState('idle');
         try {
-          const tts = await textToSpeech(translation.translatedText, targetLang);
-          if (tts.success) {
-            await playAudioFromResponse(tts.audioUrl, tts.audioBase64);
-          }
+          await speakText(result.translatedText, targetLang);
         } catch {
-          // Non-critical — translation still worked
+          // Non-critical
         }
       }
 
-      // 6. Add to history
+      // 4. Add to history
       deps.addHistoryEntry({
         role,
-        language: langName,
+        language: sourceName,
         languageCode: speakerLang,
-        originalText: transcription.text,
-        translatedText: translation.translatedText,
+        originalText: transcript,
+        translatedText: result.translatedText,
         timestamp: new Date(),
       });
 
       resetStates();
     } catch (err: any) {
+      if (err.message === '__aborted__') {
+        resetStates();
+        return;
+      }
       toast.error(err.message || '❌ Something went wrong. Please try again.');
       resetStates();
     }
-  }, [recorder, deps, resetStates, playAudioFromResponse]);
+  }, [deps, resetStates]);
 
-  const handleStop = useCallback(async () => {
-    if (autoStopTimerRef.current) {
-      clearTimeout(autoStopTimerRef.current);
-      autoStopTimerRef.current = null;
+  const handleStop = useCallback(async (_activeZone: 'student' | 'teacher' | null) => {
+    // Abort ongoing speech recognition
+    if (abortRef.current) {
+      abortRef.current();
+      abortRef.current = null;
     }
-
-    if (!recorder.isRecording) {
-      resetStates();
-      return;
-    }
-
-    // Determine which role is active from current state
-    const speakerLang = deps.settings.studentLanguage;
-    const targetLang = deps.settings.teacherLanguage;
-
-    // We need to figure out who was recording — check activeZone from parent
-    // This is called from TalkToTeacherApp which knows the activeZone
-  }, [recorder, resetStates, deps]);
+    // Cancel any ongoing TTS
+    window.speechSynthesis?.cancel();
+    resetStates();
+  }, [resetStates]);
 
   return {
     handleTap,
-    handleStop: async (activeZone: 'student' | 'teacher' | null) => {
-      if (autoStopTimerRef.current) {
-        clearTimeout(autoStopTimerRef.current);
-        autoStopTimerRef.current = null;
-      }
-
-      if (!recorder.isRecording) {
-        resetStates();
-        return;
-      }
-
-      if (!activeZone) {
-        resetStates();
-        return;
-      }
-
-      const speakerLang = activeZone === 'student' ? deps.settings.studentLanguage : deps.settings.teacherLanguage;
-      const targetLang = activeZone === 'student' ? deps.settings.teacherLanguage : deps.settings.studentLanguage;
-      const setSpeakerState = activeZone === 'student' ? deps.setStudentState : deps.setTeacherState;
-      const setTargetState = activeZone === 'student' ? deps.setTeacherState : deps.setStudentState;
-      const setSpeakerText = activeZone === 'student' ? deps.setStudentText : deps.setTeacherText;
-      const setTargetText = activeZone === 'student' ? deps.setTeacherText : deps.setStudentText;
-      const speakerLangInfo = SUPPORTED_LANGUAGES.find(l => l.code === speakerLang);
-
-      await processRecording(
-        activeZone, speakerLang, targetLang,
-        setSpeakerState, setTargetState,
-        setSpeakerText, setTargetText,
-        speakerLangInfo?.name || speakerLang
-      );
-    },
-    recorderError: recorder.error,
-    isRecording: recorder.isRecording,
+    handleStop,
+    recorderError: null as string | null,
+    isRecording: false,
     remainingTranslations: getRemainingCount(),
   };
 }
