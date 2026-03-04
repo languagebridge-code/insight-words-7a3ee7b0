@@ -20,7 +20,14 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
     chunksRef.current = [];
 
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+          sampleRate: 16000,
+        },
+      });
 
       // Prefer webm/opus, fallback to whatever is available
       const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
