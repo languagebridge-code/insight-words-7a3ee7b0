@@ -33,18 +33,29 @@ export function useConversationFlow(deps: ConversationDeps) {
   const playAudioFromResponse = useCallback(async (audioUrl?: string, audioBase64?: string): Promise<void> => {
     return new Promise((resolve, reject) => {
       let src: string;
-      if (audioUrl) {
-        src = audioUrl;
-      } else if (audioBase64) {
+      if (audioBase64) {
+        // Prefer base64 — more reliable on mobile
         src = `data:audio/mp3;base64,${audioBase64}`;
+      } else if (audioUrl) {
+        src = audioUrl;
       } else {
         resolve();
         return;
       }
-      const audio = new Audio(src);
+      const audio = new Audio();
       audio.onended = () => resolve();
-      audio.onerror = () => reject(new Error('Audio playback failed'));
-      audio.play().catch(reject);
+      audio.onerror = (e) => {
+        console.error('[TTT] Audio playback error:', e);
+        // Don't reject — TTS failure is non-critical
+        resolve();
+      };
+      // Set src after attaching handlers
+      audio.src = src;
+      audio.play().catch((err) => {
+        console.error('[TTT] Audio play() rejected:', err);
+        // Non-critical — resolve instead of reject
+        resolve();
+      });
     });
   }, []);
 
