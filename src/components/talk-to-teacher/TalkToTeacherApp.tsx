@@ -8,6 +8,7 @@ import { useTTTStore } from './useTTTStore';
 import { useConversationFlow } from './useConversationFlow';
 import { InstallPrompt } from './InstallPrompt';
 import { toast } from 'sonner';
+import logo from '@/assets/languagebridge-logo-light.svg';
 
 export function TalkToTeacherApp() {
   const store = useTTTStore();
@@ -55,9 +56,7 @@ export function TalkToTeacherApp() {
     }}>
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-3">
-        <button className="w-9 h-9 flex items-center justify-center text-white/70">
-          <GripVertical className="w-5 h-5" />
-        </button>
+        <img src={logo} alt="LanguageBridge" className="h-7" />
         <h1 className="text-lg font-bold text-white tracking-tight">Talk to Teacher</h1>
         <a
           href="https://www.languagebridge.app"
