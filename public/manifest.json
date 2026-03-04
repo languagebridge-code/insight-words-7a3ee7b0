@@ -1,11 +1,12 @@
 {
-  "name": "LanguageBridge",
-  "short_name": "LanguageBridge",
-  "description": "Audio-first translation for preliterate students. Three integrated tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher communication.",
-  "start_url": "/",
+  "name": "Talk to Teacher",
+  "short_name": "TalkToTeacher",
+  "description": "Real-time audio translation between teachers and students. Part of the LanguageBridge suite.",
+  "start_url": "/teacher",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#7c3aed",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "orientation": "portrait-primary",
   "icons": [
     {
