@@ -31,9 +31,10 @@ interface TextToSpeechResponse {
 export async function speechRecognition(
   audioBase64: string,
   language: string,
+  mimeType?: string,
 ): Promise<SpeechToTextResponse> {
   const { data, error } = await supabase.functions.invoke('speech-to-text', {
-    body: { audio: audioBase64, language },
+    body: { audio: audioBase64, language, mimeType },
   });
 
   if (error) {

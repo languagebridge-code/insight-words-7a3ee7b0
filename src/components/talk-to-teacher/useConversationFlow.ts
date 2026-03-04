@@ -82,11 +82,11 @@ export function useConversationFlow(deps: ConversationDeps) {
   ) => {
     try {
       // 1. Stop recording → get base64
-      const audioBase64 = await recorder.stopRecording();
+      const { base64: audioBase64, mimeType } = await recorder.stopRecording();
 
       // 2. Transcribe via Azure Speech-to-Text
       setSpeakerState('transcribing');
-      const transcription = await speechRecognition(audioBase64, speakerLang);
+      const transcription = await speechRecognition(audioBase64, speakerLang, mimeType);
       if (!transcription.success || !transcription.text) {
         toast.error('🔊 Could not hear you clearly. Please speak louder.');
         resetStates();

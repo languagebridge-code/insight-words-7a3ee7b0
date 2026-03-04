@@ -25,7 +25,7 @@ serve(async (req) => {
   }
 
   try {
-    const { audio, language } = await req.json();
+    const { audio, language, mimeType } = await req.json();
 
     if (!audio || !language) {
       return new Response(
@@ -49,13 +49,28 @@ serve(async (req) => {
       bytes[i] = binaryStr.charCodeAt(i);
     }
 
+    // Map browser mimeType to Azure-compatible content type
+    // Azure STT supports: audio/wav, audio/ogg;codecs=opus, audio/webm;codecs=opus
+    let contentType = "audio/wav"; // default fallback
+    if (mimeType?.includes("webm") && mimeType?.includes("opus")) {
+      contentType = "audio/webm;codecs=opus";
+    } else if (mimeType?.includes("ogg")) {
+      contentType = "audio/ogg;codecs=opus";
+    } else if (mimeType?.includes("webm")) {
+      contentType = "audio/webm";
+    } else if (mimeType?.includes("mp4")) {
+      contentType = "audio/mp4";
+    }
+
+    console.log(`[speech-to-text] Using content-type: ${contentType} (from: ${mimeType})`);
+
     const url = `https://${SPEECH_REGION}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${locale}&format=detailed`;
 
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Ocp-Apim-Subscription-Key": SPEECH_KEY,
-        "Content-Type": "audio/wav",
+        "Content-Type": contentType,
         "Accept": "application/json",
       },
       body: bytes.buffer,
