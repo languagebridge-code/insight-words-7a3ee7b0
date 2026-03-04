@@ -65,15 +65,19 @@ export function SpeakerZone({ role, state, languageCode, text, disabled, onTap, 
       </p>
 
       {state === 'listening' ? (
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={(e) => { e.stopPropagation(); onStop?.(); }}
-          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); onStop?.(); } }}
-          className="w-14 h-14 rounded-full flex items-center justify-center mt-2 bg-red-500 ring-4 ring-red-400/30 cursor-pointer hover:bg-red-600 transition-all duration-300 animate-scale-in"
-          aria-label="Stop recording"
-        >
-          <Square className="w-6 h-6 text-white fill-white animate-fade-in" />
+        <div className="relative w-14 h-14 mt-2">
+          <span className="absolute inset-0 rounded-full bg-red-500/30 animate-ping" />
+          <span className="absolute inset-[-6px] rounded-full border-2 border-red-400/40 animate-pulse" />
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={(e) => { e.stopPropagation(); onStop?.(); }}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); onStop?.(); } }}
+            className="relative w-14 h-14 rounded-full flex items-center justify-center bg-red-500 cursor-pointer hover:bg-red-600 transition-all duration-300 animate-scale-in"
+            aria-label="Stop recording"
+          >
+            <Square className="w-6 h-6 text-white fill-white animate-fade-in" />
+          </div>
         </div>
       ) : (
         <div className={cn(

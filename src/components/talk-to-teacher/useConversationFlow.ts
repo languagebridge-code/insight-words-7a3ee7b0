@@ -114,7 +114,11 @@ export function useConversationFlow(deps: ConversationDeps) {
           const tts = await textToSpeech(translation.translatedText, targetLang);
           if (tts.success) {
             if (tts.useBrowserFallback) {
-              await speakText(translation.translatedText, targetLang);
+              const { spoke } = await speakText(translation.translatedText, targetLang);
+              if (!spoke) {
+                const langInfo = SUPPORTED_LANGUAGES.find(l => l.code === targetLang);
+                toast.info(`🔇 Audio not available for ${langInfo?.name || targetLang}. Translation shown as text.`);
+              }
             } else if (tts.audioBase64) {
               cachedAudioBase64 = tts.audioBase64;
               await playAudio(tts.audioBase64);
