@@ -10,15 +10,17 @@ const corsHeaders = {
 const TTS_VOICES: Record<string, { locale: string; voice: string }> = {
   prs: { locale: "fa-IR", voice: "fa-IR-DilaraNeural" }, // Dari → Persian voice
   fa: { locale: "fa-IR", voice: "fa-IR-DilaraNeural" },
+  ps: { locale: "ps-AF", voice: "ps-AF-LatifaNeural" },  // Pashto
   ar: { locale: "ar-SA", voice: "ar-SA-HamedNeural" },
   ur: { locale: "ur-PK", voice: "ur-PK-AsadNeural" },
+  so: { locale: "so-SO", voice: "so-SO-UbaxNeural" },    // Somali
   uk: { locale: "uk-UA", voice: "uk-UA-OstapNeural" },
   es: { locale: "es-US", voice: "es-US-AlonsoNeural" },
   en: { locale: "en-US", voice: "en-US-JennyNeural" },
 };
 
 // Languages without Azure TTS support — client will use browser SpeechSynthesis
-const UNSUPPORTED_TTS = new Set(["ps", "so"]);
+const UNSUPPORTED_TTS = new Set<string>([]);
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
