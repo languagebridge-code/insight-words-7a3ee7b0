@@ -1,5 +1,4 @@
-const API_BASE = 'https://api.languagebridge.app';
-const TRIAL_KEY = 'trial_march2026';
+import { supabase } from '@/integrations/supabase/client';
 
 interface SpeechRecognitionResponse {
   success: boolean;
@@ -30,23 +29,23 @@ interface TextToSpeechResponse {
   message?: string;
 }
 
-const headers = {
-  'Authorization': `Bearer ${TRIAL_KEY}`,
-  'Content-Type': 'application/json',
-};
+type ProxyEndpoint = 'speechRecognition' | 'translate' | 'textToSpeech';
 
-async function handleResponse<T>(res: Response): Promise<T> {
-  if (res.status === 401) {
-    throw new Error('Trial expired. Please refresh the page to get the latest key.');
+async function invokeProxy<T>(endpoint: ProxyEndpoint, payload: Record<string, unknown>): Promise<T> {
+  const { data, error } = await supabase.functions.invoke('talk-to-teacher-proxy', {
+    body: { endpoint, payload },
+  });
+
+  if (error) {
+    console.error(`[TTT] Proxy invoke failed for ${endpoint}:`, error);
+    throw new Error('Load failed: could not reach translation service. Please try again.');
   }
-  if (res.status === 429) {
-    throw new Error("You've reached your daily limit (50 translations). Try again tomorrow.");
+
+  if (!data) {
+    throw new Error('Load failed: empty response from translation service.');
   }
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error(body.message || body.error || `Server error (${res.status})`);
-  }
-  return res.json();
+
+  return data as T;
 }
 
 export async function speechRecognition(
@@ -54,12 +53,11 @@ export async function speechRecognition(
   language: string,
   sessionId: string
 ): Promise<SpeechRecognitionResponse> {
-  const res = await fetch(`${API_BASE}/api/speechRecognition`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({ audio: audioBase64, language, sessionId }),
+  return invokeProxy<SpeechRecognitionResponse>('speechRecognition', {
+    audio: audioBase64,
+    language,
+    sessionId,
   });
-  return handleResponse<SpeechRecognitionResponse>(res);
 }
 
 export async function translate(
@@ -68,12 +66,12 @@ export async function translate(
   targetLanguage: string,
   sessionId: string
 ): Promise<TranslateResponse> {
-  const res = await fetch(`${API_BASE}/api/translate`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({ text, sourceLanguage, targetLanguage, sessionId }),
+  return invokeProxy<TranslateResponse>('translate', {
+    text,
+    sourceLanguage,
+    targetLanguage,
+    sessionId,
   });
-  return handleResponse<TranslateResponse>(res);
 }
 
 export async function textToSpeech(
@@ -82,10 +80,10 @@ export async function textToSpeech(
   voice: 'standard' | 'neural' = 'standard',
   rate: number = 1.0
 ): Promise<TextToSpeechResponse> {
-  const res = await fetch(`${API_BASE}/api/textToSpeech`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({ text, language, voice, rate }),
+  return invokeProxy<TextToSpeechResponse>('textToSpeech', {
+    text,
+    language,
+    voice,
+    rate,
   });
-  return handleResponse<TextToSpeechResponse>(res);
 }
