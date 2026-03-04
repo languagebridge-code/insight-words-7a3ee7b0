@@ -14,6 +14,8 @@ export interface HistoryEntry {
   languageCode: string;
   originalText: string;
   translatedText: string;
+  translatedLanguageCode: string;
+  audioBase64?: string;
   timestamp: Date;
 }
 

@@ -1,6 +1,7 @@
-import { X, Trash2 } from 'lucide-react';
+import { X, Trash2, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { HistoryEntry, RTL_LANGUAGES, SUPPORTED_LANGUAGES } from './types';
+import { useState, useCallback } from 'react';
 
 interface HistoryPanelProps {
   open: boolean;
@@ -14,12 +15,26 @@ function formatTime(date: Date) {
 }
 
 export function HistoryPanel({ open, entries, onClear, onClose }: HistoryPanelProps) {
+  const [playingId, setPlayingId] = useState<string | null>(null);
+
+  const playAudio = useCallback(async (entry: HistoryEntry) => {
+    if (!entry.audioBase64 || playingId === entry.id) return;
+    setPlayingId(entry.id);
+    try {
+      const audio = new Audio(`data:audio/mpeg;base64,${entry.audioBase64}`);
+      audio.onended = () => setPlayingId(null);
+      audio.onerror = () => setPlayingId(null);
+      await audio.play();
+    } catch {
+      setPlayingId(null);
+    }
+  }, [playingId]);
+
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-slate-900 border border-white/20 rounded-2xl w-full max-w-md shadow-2xl flex flex-col max-h-[80vh]">
-        {/* Header */}
         <div className="flex items-center justify-between p-6 pb-4 border-b border-white/10">
           <h2 className="text-lg font-bold text-white">Conversation History</h2>
           <button
@@ -31,7 +46,6 @@ export function HistoryPanel({ open, entries, onClear, onClose }: HistoryPanelPr
           </button>
         </div>
 
-        {/* Entries */}
         <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-4">
           {entries.length === 0 ? (
             <p className="text-sm text-white/40 text-center py-8">
@@ -68,9 +82,25 @@ export function HistoryPanel({ open, entries, onClear, onClose }: HistoryPanelPr
                     {entry.originalText}
                   </p>
                   {entry.translatedText && (
-                    <p className="text-xs text-white/50 mt-1 italic">
-                      → {entry.translatedText}
-                    </p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-xs text-white/50 italic flex-1">
+                        → {entry.translatedText}
+                      </p>
+                      {entry.audioBase64 && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); playAudio(entry); }}
+                          className={cn(
+                            'w-7 h-7 rounded-full flex items-center justify-center transition-colors shrink-0',
+                            playingId === entry.id
+                              ? 'bg-white/30 text-white'
+                              : 'bg-white/10 text-white/50 hover:bg-white/20 hover:text-white/80'
+                          )}
+                          aria-label="Replay translation audio"
+                        >
+                          <Volume2 className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
                   )}
                 </div>
               );
@@ -78,7 +108,6 @@ export function HistoryPanel({ open, entries, onClear, onClose }: HistoryPanelPr
           )}
         </div>
 
-        {/* Footer */}
         {entries.length > 0 && (
           <div className="p-4 pt-2 border-t border-white/10">
             <button
