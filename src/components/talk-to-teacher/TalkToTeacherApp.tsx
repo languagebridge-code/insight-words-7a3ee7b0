@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Settings, History } from 'lucide-react';
+import { Settings, History, Trash2, X, GripVertical } from 'lucide-react';
 import { SpeakerZone } from './SpeakerZone';
 import { SettingsPanel } from './SettingsPanel';
 import { HistoryPanel } from './HistoryPanel';
@@ -7,7 +7,6 @@ import { StopButton } from './StopButton';
 import { useTTTStore } from './useTTTStore';
 import { useConversationFlow } from './useConversationFlow';
 import { InstallPrompt } from './InstallPrompt';
-import logoSvg from '@/assets/languagebridge-icon.png';
 import { toast } from 'sonner';
 
 export function TalkToTeacherApp() {
@@ -43,34 +42,35 @@ export function TalkToTeacherApp() {
     flow.handleStop(store.activeZone);
   };
 
-  // Show recorder errors via toast
-  if (flow.recorderError) {
+  // Show recorder errors via toast — only once per error
+  const [lastError, setLastError] = useState<string | null>(null);
+  if (flow.recorderError && flow.recorderError !== lastError) {
+    setLastError(flow.recorderError);
     toast.error(flow.recorderError);
   }
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white font-sans flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{
+      background: 'linear-gradient(180deg, #6B2D5B 0%, #8B3A6B 25%, #C46A5A 55%, #E89040 80%, #F5A623 100%)',
+    }}>
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-white/10 md:px-6">
-        <a href="https://www.languagebridge.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5">
-          <img src={logoSvg} alt="LanguageBridge" className="w-7 h-7 rounded-md" />
-          <h1 className="text-lg font-bold tracking-tight">Talk to Teacher</h1>
+      <header className="flex items-center justify-between px-4 py-3">
+        <button className="w-9 h-9 flex items-center justify-center text-white/70">
+          <GripVertical className="w-5 h-5" />
+        </button>
+        <h1 className="text-lg font-bold text-white tracking-tight">Talk to Teacher</h1>
+        <a
+          href="https://www.languagebridge.app"
+          className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white/80 hover:bg-white/30 transition-colors"
+          aria-label="Close"
+        >
+          <X className="w-4 h-4" />
         </a>
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-white/40">{flow.remainingTranslations} left today</span>
-          <button
-            onClick={() => setSettingsOpen(true)}
-            className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-            aria-label="Open settings"
-          >
-            <Settings className="w-4 h-4 text-white/70" />
-          </button>
-        </div>
       </header>
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 py-6 md:px-6 max-w-[800px] mx-auto w-full">
-        <div className="w-full grid gap-3 md:grid-cols-2">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 py-4 max-w-[500px] mx-auto w-full">
+        <div className="w-full flex flex-col gap-3">
           <SpeakerZone
             role="student"
             state={store.studentState}
@@ -96,20 +96,27 @@ export function TalkToTeacherApp() {
       </main>
 
       {/* Bottom bar */}
-      <nav className="flex items-center justify-center gap-6 px-4 py-3 border-t border-white/10">
+      <nav className="flex items-center justify-center gap-4 px-4 py-4">
         <button
           onClick={() => setHistoryOpen(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.07] hover:bg-white/[0.12] transition-colors text-sm text-white/70"
+          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
+          aria-label="History"
         >
-          <History className="w-4 h-4" />
-          History
+          <History className="w-6 h-6 text-white/80" />
         </button>
         <button
           onClick={() => setSettingsOpen(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.07] hover:bg-white/[0.12] transition-colors text-sm text-white/70"
+          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
+          aria-label="Settings"
         >
-          <Settings className="w-4 h-4" />
-          Settings
+          <Settings className="w-6 h-6 text-white/80" />
+        </button>
+        <button
+          onClick={() => { store.clearHistory(); toast.success('History cleared'); }}
+          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
+          aria-label="Clear history"
+        >
+          <Trash2 className="w-6 h-6 text-white/80" />
         </button>
       </nav>
 

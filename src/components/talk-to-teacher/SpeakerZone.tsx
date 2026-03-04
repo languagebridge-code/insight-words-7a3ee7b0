@@ -12,19 +12,19 @@ interface SpeakerZoneProps {
   onTap: () => void;
 }
 
-const STATE_CONFIG: Record<SpeakerState, { bg: string; label: string }> = {
-  idle: { bg: 'bg-white/[0.07]', label: 'Tap to speak' },
-  listening: { bg: 'bg-blue-500/30', label: 'Listening...' },
-  transcribing: { bg: 'bg-yellow-500/30', label: 'Transcribing...' },
-  translating: { bg: 'bg-orange-500/30', label: 'Translating...' },
-  speaking: { bg: 'bg-green-500/30', label: 'Playing audio...' },
-  disabled: { bg: 'bg-white/[0.04]', label: '' },
+const STATE_LABELS: Record<SpeakerState, string> = {
+  idle: 'Tap to speak',
+  listening: 'Listening...',
+  transcribing: 'Transcribing...',
+  translating: 'Translating...',
+  speaking: 'Playing audio...',
+  disabled: '',
 };
 
 export function SpeakerZone({ role, state, languageCode, text, disabled, onTap }: SpeakerZoneProps) {
   const lang = SUPPORTED_LANGUAGES.find(l => l.code === languageCode);
   const isRTL = RTL_LANGUAGES.includes(languageCode);
-  const config = STATE_CONFIG[state];
+  const label = STATE_LABELS[state];
   const emoji = role === 'student' ? '👨‍🎓' : '👩‍🏫';
   const roleLabel = role === 'student' ? 'Student' : 'Teacher';
   const isActive = state === 'listening' || state === 'speaking';
@@ -34,55 +34,44 @@ export function SpeakerZone({ role, state, languageCode, text, disabled, onTap }
       onClick={onTap}
       disabled={disabled || state === 'disabled'}
       className={cn(
-        'w-full rounded-2xl border border-white/20 p-4 transition-all duration-300 text-left',
+        'w-full rounded-2xl p-5 transition-all duration-300 text-center flex flex-col items-center gap-2',
         'focus:outline-none focus:ring-2 focus:ring-white/40',
-        'hover:border-white/30 active:scale-[0.98]',
-        config.bg,
+        'active:scale-[0.98]',
+        'bg-white/10 backdrop-blur-sm border border-white/20',
+        state === 'listening' && 'bg-white/25 border-white/40',
+        state === 'speaking' && 'bg-white/20 border-white/35',
         disabled && 'opacity-40 cursor-not-allowed',
       )}
-      aria-label={`${roleLabel} speaker zone. ${config.label}`}
+      aria-label={`${roleLabel} speaker zone. ${label}`}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <span className="text-lg">{emoji}</span>
-          <div>
-            <p className="text-[13px] font-bold text-white">{roleLabel}</p>
-            <p className="text-xs text-white/60">
-              {lang ? `${lang.name} (${lang.nativeName})` : languageCode}
-            </p>
-          </div>
-        </div>
-        {isActive && <AudioWaveform active className="mr-1" />}
+      {/* Role header */}
+      <div className="flex items-center gap-2">
+        <span className="text-2xl">{emoji}</span>
+        <span className="text-xl font-bold text-white">{roleLabel}</span>
+        {isActive && <AudioWaveform active className="ml-1" />}
       </div>
+
+      {/* Status text */}
+      <p className="text-sm text-white/70 italic">{text || label}</p>
+
+      {/* Language */}
+      <p className="text-sm text-white/80 font-medium">
+        {lang ? lang.name : languageCode}
+      </p>
 
       {/* Mic icon */}
-      <div className="flex justify-center py-4">
-        <div className={cn(
-          'w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300',
-          state === 'listening' ? 'bg-blue-500/40 ring-4 ring-blue-400/30 animate-pulse' :
-          state === 'speaking' ? 'bg-green-500/40 ring-4 ring-green-400/30' :
-          'bg-white/10'
-        )}>
-          <Mic className={cn(
-            'w-7 h-7 transition-colors',
-            state === 'listening' ? 'text-blue-300' :
-            state === 'speaking' ? 'text-green-300' :
-            'text-white/50'
-          )} />
-        </div>
-      </div>
-
-      {/* Status / Text */}
-      <div
-        className={cn('min-h-[40px] text-center', isRTL && 'text-right')}
-        dir={isRTL ? 'rtl' : 'ltr'}
-      >
-        {text ? (
-          <p className="text-sm text-white/90 leading-relaxed">{text}</p>
-        ) : (
-          <p className="text-sm text-white/40 italic">{config.label}</p>
-        )}
+      <div className={cn(
+        'w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 mt-2',
+        state === 'listening' ? 'bg-white/30 ring-4 ring-white/20 animate-pulse' :
+        state === 'speaking' ? 'bg-white/25 ring-4 ring-white/15' :
+        'bg-white/15'
+      )}>
+        <Mic className={cn(
+          'w-7 h-7 transition-colors',
+          state === 'listening' ? 'text-white' :
+          state === 'speaking' ? 'text-white/90' :
+          'text-white/60'
+        )} />
       </div>
     </button>
   );
