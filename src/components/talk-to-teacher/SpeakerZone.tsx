@@ -2,7 +2,6 @@ import { Mic, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SpeakerState, SUPPORTED_LANGUAGES, RTL_LANGUAGES } from './types';
 import { AudioWaveform } from './AudioWaveform';
-import { useState, useEffect } from 'react';
 
 interface SpeakerZoneProps {
   role: 'student' | 'teacher';
@@ -16,58 +15,11 @@ interface SpeakerZoneProps {
 const STATE_LABELS: Record<SpeakerState, string> = {
   idle: 'Tap to speak',
   listening: 'Listening...',
-  transcribing: 'Transcribing...',
+  transcribing: 'Processing...',
   translating: 'Translating...',
   speaking: 'Playing audio...',
   disabled: '',
 };
-
-const PIPELINE_STEPS = ['transcribing', 'translating', 'speaking'] as const;
-
-function ProcessingIndicator({ state }: { state: SpeakerState }) {
-  const [elapsed, setElapsed] = useState(0);
-
-  useEffect(() => {
-    setElapsed(0);
-    const interval = setInterval(() => setElapsed(e => e + 0.1), 100);
-    return () => clearInterval(interval);
-  }, [state]);
-
-  const currentIdx = PIPELINE_STEPS.indexOf(state as any);
-  if (currentIdx === -1) return null;
-
-  return (
-    <div className="w-full mt-2 space-y-2">
-      <div className="flex items-center justify-center gap-3">
-        {PIPELINE_STEPS.map((step, i) => (
-          <div key={step} className="flex items-center gap-2">
-            <div className={cn(
-              'w-2.5 h-2.5 rounded-full transition-all duration-300',
-              i < currentIdx ? 'bg-green-400' :
-              i === currentIdx ? 'bg-white animate-pulse' :
-              'bg-white/20'
-            )} />
-            <span className={cn(
-              'text-[10px] font-medium transition-colors',
-              i < currentIdx ? 'text-green-400' :
-              i === currentIdx ? 'text-white' :
-              'text-white/30'
-            )}>
-              {step === 'transcribing' ? 'STT' : step === 'translating' ? 'Translate' : 'TTS'}
-            </span>
-            {i < PIPELINE_STEPS.length - 1 && (
-              <div className={cn(
-                'w-4 h-0.5 rounded transition-colors',
-                i < currentIdx ? 'bg-green-400/50' : 'bg-white/10'
-              )} />
-            )}
-          </div>
-        ))}
-      </div>
-      <p className="text-[10px] text-white/40 text-center tabular-nums">{elapsed.toFixed(1)}s</p>
-    </div>
-  );
-}
 
 export function SpeakerZone({ role, state, languageCode, text, disabled, onTap }: SpeakerZoneProps) {
   const lang = SUPPORTED_LANGUAGES.find(l => l.code === languageCode);
@@ -106,8 +58,6 @@ export function SpeakerZone({ role, state, languageCode, text, disabled, onTap }
         {isProcessing && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
         {text || label}
       </p>
-
-      <ProcessingIndicator state={state} />
 
       <p className="text-sm text-white/80 font-medium">
         {lang ? lang.name : languageCode}
