@@ -1,4 +1,4 @@
-import { Mic, Loader2 } from 'lucide-react';
+import { Mic, Square, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SpeakerState, SUPPORTED_LANGUAGES, RTL_LANGUAGES } from './types';
 import { AudioWaveform } from './AudioWaveform';
@@ -10,6 +10,7 @@ interface SpeakerZoneProps {
   text: string;
   disabled: boolean;
   onTap: () => void;
+  onStop?: () => void;
 }
 
 const STATE_LABELS: Record<SpeakerState, string> = {
@@ -21,7 +22,7 @@ const STATE_LABELS: Record<SpeakerState, string> = {
   disabled: '',
 };
 
-export function SpeakerZone({ role, state, languageCode, text, disabled, onTap }: SpeakerZoneProps) {
+export function SpeakerZone({ role, state, languageCode, text, disabled, onTap, onStop }: SpeakerZoneProps) {
   const lang = SUPPORTED_LANGUAGES.find(l => l.code === languageCode);
   const label = STATE_LABELS[state];
   const emoji = role === 'student' ? '👨‍🎓' : '👩‍🏫';
@@ -63,24 +64,34 @@ export function SpeakerZone({ role, state, languageCode, text, disabled, onTap }
         {lang ? lang.name : languageCode}
       </p>
 
-      <div className={cn(
-        'w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 mt-2',
-        state === 'listening' ? 'bg-white/30 ring-4 ring-white/20 animate-pulse' :
-        state === 'speaking' ? 'bg-white/25 ring-4 ring-white/15' :
-        isProcessing ? 'bg-white/20 ring-2 ring-white/10' :
-        'bg-white/15'
-      )}>
-        {isProcessing ? (
-          <Loader2 className="w-7 h-7 text-white/80 animate-spin" />
-        ) : (
-          <Mic className={cn(
-            'w-7 h-7 transition-colors',
-            state === 'listening' ? 'text-white' :
-            state === 'speaking' ? 'text-white/90' :
-            'text-white/60'
-          )} />
-        )}
-      </div>
+      {state === 'listening' ? (
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={(e) => { e.stopPropagation(); onStop?.(); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); onStop?.(); } }}
+          className="w-14 h-14 rounded-full flex items-center justify-center mt-2 bg-red-500 ring-4 ring-red-400/30 animate-pulse cursor-pointer hover:bg-red-600 transition-colors"
+          aria-label="Stop recording"
+        >
+          <Square className="w-6 h-6 text-white fill-white" />
+        </div>
+      ) : (
+        <div className={cn(
+          'w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 mt-2',
+          state === 'speaking' ? 'bg-white/25 ring-4 ring-white/15' :
+          isProcessing ? 'bg-white/20 ring-2 ring-white/10' :
+          'bg-white/15'
+        )}>
+          {isProcessing ? (
+            <Loader2 className="w-7 h-7 text-white/80 animate-spin" />
+          ) : (
+            <Mic className={cn(
+              'w-7 h-7 transition-colors',
+              state === 'speaking' ? 'text-white/90' : 'text-white/60'
+            )} />
+          )}
+        </div>
+      )}
     </button>
   );
 }

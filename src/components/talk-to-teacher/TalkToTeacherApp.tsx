@@ -77,6 +77,7 @@ export function TalkToTeacherApp() {
             text={store.settings.showTranscript ? store.studentText : ''}
             disabled={store.activeZone === 'teacher'}
             onTap={handleStudentTap}
+            onStop={handleStop}
           />
           <SpeakerZone
             role="teacher"
@@ -85,12 +86,8 @@ export function TalkToTeacherApp() {
             text={store.settings.showTranscript ? store.teacherText : ''}
             disabled={store.activeZone === 'student'}
             onTap={handleTeacherTap}
+            onStop={handleStop}
           />
-        </div>
-
-        {/* Stop Button */}
-        <div className="mt-6">
-          <StopButton visible={isListening} onStop={handleStop} />
         </div>
       </main>
 
