@@ -50,11 +50,18 @@ serve(async (req) => {
     }
 
     const voiceInfo = TTS_VOICES[language];
-    const speakRate = rate && rate !== 1.0 ? ` rate="${((rate - 1) * 100).toFixed(0)}%"` : "";
+
+    // Build SSML — omit prosody rate when it's default (1.0)
+    const rateNum = typeof rate === 'number' ? rate : 1.0;
+    const hasCustomRate = Math.abs(rateNum - 1.0) > 0.01;
+    const prosodyOpen = hasCustomRate
+      ? `<prosody rate="${((rateNum - 1) * 100).toFixed(0)}%">`
+      : '';
+    const prosodyClose = hasCustomRate ? '</prosody>' : '';
 
     const ssml = `<speak version='1.0' xml:lang='${voiceInfo.locale}'>
   <voice name='${voiceInfo.voice}'>
-    <prosody${speakRate}>${escapeXml(text)}</prosody>
+    ${prosodyOpen}${escapeXml(text)}${prosodyClose}
   </voice>
 </speak>`;
 
@@ -72,7 +79,7 @@ serve(async (req) => {
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("[text-to-speech] Azure error:", response.status, errText);
+      console.error("[text-to-speech] Azure error:", response.status, errText, "SSML:", ssml);
       return new Response(
         JSON.stringify({ success: false, error: "Text-to-speech failed." }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
