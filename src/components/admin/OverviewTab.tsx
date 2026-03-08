@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchAdminStats, fetchFlags } from "./adminApi";
+import { fetchAdminStats, fetchFlags, fetchTttUsage } from "./adminApi";
 import type { AdminStats, FlagsResponse } from "./types";
+import type { TttUsage } from "./adminApi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
