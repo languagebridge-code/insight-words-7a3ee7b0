@@ -19,6 +19,7 @@ interface OverviewTabProps {
 const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [flags, setFlags] = useState<FlagsResponse | null>(null);
+  const [tttUsage, setTttUsage] = useState<TttUsage | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -26,16 +27,17 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
     setLoading(true);
     setError("");
     try {
-      const [statsResult, flagsResult] = await Promise.allSettled([fetchAdminStats(), fetchFlags()]);
+      const [statsResult, flagsResult, tttResult] = await Promise.allSettled([
+        fetchAdminStats(), fetchFlags(), fetchTttUsage(),
+      ]);
       if (statsResult.status === "fulfilled") {
         setStats(statsResult.value);
       } else {
         if (statsResult.reason?.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
         setError("Failed to load stats.");
       }
-      if (flagsResult.status === "fulfilled") {
-        setFlags(flagsResult.value);
-      }
+      if (flagsResult.status === "fulfilled") setFlags(flagsResult.value);
+      if (tttResult.status === "fulfilled") setTttUsage(tttResult.value);
     } catch (e: any) {
       if (e.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
       setError("Failed to load data.");
