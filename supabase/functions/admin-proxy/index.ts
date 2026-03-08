@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -14,8 +15,50 @@ serve(async (req) => {
   }
 
   try {
-    const { endpoint, params, apiKey } = await req.json();
+    const body = await req.json();
+    const { endpoint, params, apiKey } = body;
 
+    // Special endpoint: get TTT usage from local DB
+    if (endpoint === "/ttt-usage") {
+      const url = Deno.env.get("SUPABASE_URL");
+      const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      if (!url || !serviceKey) {
+        return new Response(JSON.stringify({ error: "Not configured" }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const supabase = createClient(url, serviceKey);
+      const { data, error } = await supabase
+        .from("ttt_usage_log")
+        .select("service, characters, success, created_at")
+        .order("created_at", { ascending: false })
+        .limit(500);
+
+      if (error) {
+        console.error("TTT usage query error:", error);
+        return new Response(JSON.stringify({ error: "Query failed" }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      // Aggregate
+      const totals = { stt: 0, translate: 0, tts: 0, characters: 0, requests: 0 };
+      for (const row of data || []) {
+        totals.requests++;
+        totals.characters += row.characters || 0;
+        if (row.service === "stt") totals.stt++;
+        else if (row.service === "translate") totals.translate++;
+        else if (row.service === "tts") totals.tts++;
+      }
+
+      return new Response(JSON.stringify({ totals, recentActivity: data }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Netlify proxy endpoints
     const allowedEndpoints = [
       "/.netlify/functions/admin-stats",
       "/.netlify/functions/get-flags",
@@ -27,7 +70,6 @@ serve(async (req) => {
       });
     }
 
-    // Use provided key or fall back to server secret
     const key = apiKey || Deno.env.get("NETLIFY_ADMIN_API_KEY");
     if (!key) {
       return new Response(JSON.stringify({ error: "No API key" }), {

@@ -75,3 +75,13 @@ export async function fetchFlags(status?: string, limit = 100): Promise<FlagsRes
   if (status && status !== "all") params.status = status;
   return smartFetch<FlagsResponse>("/.netlify/functions/get-flags", params);
 }
+
+export interface TttUsage {
+  totals: { stt: number; translate: number; tts: number; characters: number; requests: number };
+  recentActivity: Array<{ service: string; characters: number; success: boolean; created_at: string }>;
+}
+
+export async function fetchTttUsage(): Promise<TttUsage> {
+  // Always goes through proxy (local DB query)
+  return proxyFetch<TttUsage>("/ttt-usage", {});
+}

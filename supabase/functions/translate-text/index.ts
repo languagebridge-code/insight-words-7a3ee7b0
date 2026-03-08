@@ -19,6 +19,31 @@ const TRANSLATOR_CODE: Record<string, string> = {
   en: "en",
 };
 
+function logUsage(service: string, chars: number, success: boolean, lang?: string, srcLang?: string, tgtLang?: string) {
+  try {
+    const url = Deno.env.get("SUPABASE_URL");
+    const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!url || !key) return;
+    fetch(`${url}/rest/v1/ttt_usage_log`, {
+      method: "POST",
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({
+        service,
+        characters: chars,
+        language: lang || null,
+        source_language: srcLang || null,
+        target_language: tgtLang || null,
+        success,
+      }),
+    }).catch(() => {});
+  } catch {}
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -58,6 +83,7 @@ serve(async (req) => {
     if (!response.ok) {
       const errText = await response.text();
       console.error("[translate-text] Azure error:", response.status, errText);
+      logUsage("translate", text.length, false, null, from, to);
       return new Response(
         JSON.stringify({ success: false, error: "Translation failed. Please try again." }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
@@ -68,12 +94,14 @@ serve(async (req) => {
     const translatedText = data?.[0]?.translations?.[0]?.text || "";
 
     if (!translatedText) {
+      logUsage("translate", text.length, false, null, from, to);
       return new Response(
         JSON.stringify({ success: false, error: "No translation returned" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
+    logUsage("translate", text.length, true, null, from, to);
     console.log(`[translate-text] ${from} → ${to}: "${text.substring(0, 40)}…" → "${translatedText.substring(0, 40)}…"`);
 
     return new Response(

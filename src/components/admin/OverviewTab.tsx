@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchAdminStats, fetchFlags } from "./adminApi";
+import { fetchAdminStats, fetchFlags, fetchTttUsage } from "./adminApi";
 import type { AdminStats, FlagsResponse } from "./types";
+import type { TttUsage } from "./adminApi";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,6 +19,7 @@ interface OverviewTabProps {
 const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [flags, setFlags] = useState<FlagsResponse | null>(null);
+  const [tttUsage, setTttUsage] = useState<TttUsage | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -25,16 +27,17 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
     setLoading(true);
     setError("");
     try {
-      const [statsResult, flagsResult] = await Promise.allSettled([fetchAdminStats(), fetchFlags()]);
+      const [statsResult, flagsResult, tttResult] = await Promise.allSettled([
+        fetchAdminStats(), fetchFlags(), fetchTttUsage(),
+      ]);
       if (statsResult.status === "fulfilled") {
         setStats(statsResult.value);
       } else {
         if (statsResult.reason?.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
         setError("Failed to load stats.");
       }
-      if (flagsResult.status === "fulfilled") {
-        setFlags(flagsResult.value);
-      }
+      if (flagsResult.status === "fulfilled") setFlags(flagsResult.value);
+      if (tttResult.status === "fulfilled") setTttUsage(tttResult.value);
     } catch (e: any) {
       if (e.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
       setError("Failed to load data.");
@@ -111,11 +114,24 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
         <StatCard icon={Clock} label="Last Updated" value={formatDistanceToNow(new Date(stats.totals.lastUpdated), { addSuffix: true })} />
       </div>
 
-      {/* Service Breakdown */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <ServiceCard label="Translations" icon="🌍" value={stats.services.translations} />
-        <ServiceCard label="Text-to-Speech" icon="🔊" value={stats.services.tts} />
-        <ServiceCard label="Speech-to-Text" icon="🎤" value={stats.services.stt} />
+      {/* Service Breakdown — Extension */}
+      <div>
+        <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#742a69" }}>Extension (Chrome)</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <ServiceCard label="Translations" icon="🌍" value={stats.services.translations} />
+          <ServiceCard label="Text-to-Speech" icon="🔊" value={stats.services.tts} />
+          <ServiceCard label="Speech-to-Text" icon="🎤" value={stats.services.stt} />
+        </div>
+      </div>
+
+      {/* Service Breakdown — Talk to Teacher */}
+      <div>
+        <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#f37030" }}>Talk to Teacher (Web)</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <ServiceCard label="Translations" icon="🌍" value={tttUsage?.totals.translate ?? 0} />
+          <ServiceCard label="Text-to-Speech" icon="🔊" value={tttUsage?.totals.tts ?? 0} />
+          <ServiceCard label="Speech-to-Text" icon="🎤" value={tttUsage?.totals.stt ?? 0} />
+        </div>
       </div>
 
       {/* Flags Summary */}
