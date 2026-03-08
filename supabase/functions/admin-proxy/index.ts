@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -15,49 +14,40 @@ serve(async (req) => {
   }
 
   try {
-    // Verify auth
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    const body = await req.json();
+    const dashPassword = Deno.env.get("ADMIN_DASHBOARD_PASSWORD");
+
+    if (!dashPassword) {
+      return new Response(JSON.stringify({ error: "Not configured" }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Auth check action
+    if (body.action === "auth") {
+      if (body.password === dashPassword) {
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      return new Response(JSON.stringify({ error: "Invalid password" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Verify password on every data request
+    if (body.password !== dashPassword) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-      global: { headers: { Authorization: authHeader } },
-    });
-
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-
-    if (userError || !user) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Check admin role
-    const { data: isAdmin } = await supabase.rpc("has_role", {
-      _user_id: user.id,
-      _role: "admin",
-    });
-
-    if (!isAdmin) {
-      return new Response(JSON.stringify({ error: "Forbidden" }), {
-        status: 403,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Parse request
-    const { endpoint, params } = await req.json();
-
+    // Validate endpoint
+    const { endpoint, params } = body;
     const allowedEndpoints = ["/api/admin-stats", "/api/get-flags"];
     if (!allowedEndpoints.includes(endpoint)) {
       return new Response(JSON.stringify({ error: "Invalid endpoint" }), {
@@ -70,7 +60,7 @@ serve(async (req) => {
     const apiKey = Deno.env.get("NETLIFY_ADMIN_API_KEY");
     if (!apiKey) {
       return new Response(
-        JSON.stringify({ error: "Admin API key not configured" }),
+        JSON.stringify({ error: "API key not configured" }),
         {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },

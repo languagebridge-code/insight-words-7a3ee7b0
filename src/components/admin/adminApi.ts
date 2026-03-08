@@ -1,31 +1,33 @@
-import { supabase } from "@/integrations/supabase/client";
-
 const PROXY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-proxy`;
 
-async function getAuthHeaders(): Promise<Record<string, string>> {
-  const { data } = await supabase.auth.getSession();
-  const token = data.session?.access_token;
-  if (!token) throw new Error("NOT_AUTHENTICATED");
-  return {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-  };
+function getPassword(): string | null {
+  return sessionStorage.getItem("lb_admin");
+}
+
+export function clearAuth() {
+  sessionStorage.removeItem("lb_admin");
+}
+
+export function hasAuth(): boolean {
+  return !!getPassword();
 }
 
 async function proxyFetch<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
-  const headers = await getAuthHeaders();
+  const password = getPassword();
+  if (!password) throw new Error("NOT_AUTHENTICATED");
+
   const res = await fetch(PROXY_URL, {
     method: "POST",
-    headers,
-    body: JSON.stringify({ endpoint, params }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ endpoint, params, password }),
   });
 
   if (res.status === 401 || res.status === 403) {
+    clearAuth();
     throw new Error("NOT_AUTHENTICATED");
   }
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`API error: ${res.status} - ${text}`);
+    throw new Error(`API error: ${res.status}`);
   }
   return res.json();
 }

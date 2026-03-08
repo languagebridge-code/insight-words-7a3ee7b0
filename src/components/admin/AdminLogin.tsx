@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Lock, Mail } from "lucide-react";
+import { Lock } from "lucide-react";
 import lbIcon from "@/assets/languagebridge-icon-256.png";
 
 interface AdminLoginProps {
@@ -11,46 +10,37 @@ interface AdminLoginProps {
 }
 
 const AdminLogin = ({ onAuthenticated }: AdminLoginProps) => {
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !password.trim()) return;
+    if (!password.trim()) return;
 
     setLoading(true);
     setError("");
 
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password: password.trim(),
+      const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-proxy`;
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "auth",
+          password: password.trim(),
+        }),
       });
 
-      if (authError) {
-        setError("Invalid email or password.");
-        setLoading(false);
-        return;
+      if (res.ok) {
+        sessionStorage.setItem("lb_admin", password.trim());
+        onAuthenticated();
+      } else {
+        setError("Invalid password. Please try again.");
       }
-
-      // Check admin role
-      const { data: roleData } = await supabase.rpc("has_role", {
-        _user_id: data.user.id,
-        _role: "admin",
-      });
-
-      if (!roleData) {
-        await supabase.auth.signOut();
-        setError("Access denied. Admin privileges required.");
-        setLoading(false);
-        return;
-      }
-
-      onAuthenticated();
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError("Network error. Please try again.");
+    } finally {
       setLoading(false);
     }
   };
@@ -70,29 +60,16 @@ const AdminLogin = ({ onAuthenticated }: AdminLoginProps) => {
         <CardContent className="px-8 pb-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium" style={{ color: "#4a1a45" }}>Email</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: "#742a69" }} />
-                <Input
-                  type="email"
-                  placeholder="admin@languagebridge.app"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
-                  autoFocus
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium" style={{ color: "#4a1a45" }}>Password</label>
+              <label className="text-sm font-medium" style={{ color: "#4a1a45" }}>Admin Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: "#742a69" }} />
                 <Input
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="Enter admin password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10"
+                  autoFocus
                 />
               </div>
             </div>
@@ -101,11 +78,11 @@ const AdminLogin = ({ onAuthenticated }: AdminLoginProps) => {
             )}
             <Button
               type="submit"
-              disabled={loading || !email.trim() || !password.trim()}
+              disabled={loading || !password.trim()}
               className="w-full text-white"
               style={{ background: "#742a69" }}
             >
-              {loading ? "Signing in…" : "Access Dashboard"}
+              {loading ? "Verifying…" : "Access Dashboard"}
             </Button>
           </form>
         </CardContent>
