@@ -100,7 +100,7 @@ export const Footer = () => {
             </p>
           </div>
           <div className="text-center text-white/60 text-sm">
-            <p>© 2026 LanguageBridge, LLC. All content, including text, images, and software, is protected by copyright law.</p>
+            <p>© 2026 <Link to="/admin" className="hover:text-white/80 transition-colors">LanguageBridge, LLC</Link>. All content, including text, images, and software, is protected by copyright law.</p>
           </div>
         </div>
       </div>
