@@ -6,21 +6,37 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// Map internal codes → Azure TTS voice name + locale
 const TTS_VOICES: Record<string, { locale: string; voice: string }> = {
-  prs: { locale: "fa-IR", voice: "fa-IR-DilaraNeural" }, // Dari → Persian voice
+  prs: { locale: "fa-IR", voice: "fa-IR-DilaraNeural" },
   fa: { locale: "fa-IR", voice: "fa-IR-DilaraNeural" },
-  ps: { locale: "ps-AF", voice: "ps-AF-LatifaNeural" },  // Pashto
+  ps: { locale: "ps-AF", voice: "ps-AF-LatifaNeural" },
   ar: { locale: "ar-SA", voice: "ar-SA-HamedNeural" },
   ur: { locale: "ur-PK", voice: "ur-PK-AsadNeural" },
-  so: { locale: "so-SO", voice: "so-SO-UbaxNeural" },    // Somali
+  so: { locale: "so-SO", voice: "so-SO-UbaxNeural" },
   uk: { locale: "uk-UA", voice: "uk-UA-OstapNeural" },
   es: { locale: "es-US", voice: "es-US-AlonsoNeural" },
   en: { locale: "en-US", voice: "en-US-JennyNeural" },
 };
 
-// Languages without Azure TTS support — client will use browser SpeechSynthesis
 const UNSUPPORTED_TTS = new Set<string>([]);
+
+function logUsage(service: string, chars: number, success: boolean, lang?: string) {
+  try {
+    const url = Deno.env.get("SUPABASE_URL");
+    const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!url || !key) return;
+    fetch(`${url}/rest/v1/ttt_usage_log`, {
+      method: "POST",
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({ service, characters: chars, language: lang || null, success }),
+    }).catch(() => {});
+  } catch {}
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -37,7 +53,6 @@ serve(async (req) => {
       );
     }
 
-    // If language not supported by Azure TTS, tell client to use browser fallback
     if (UNSUPPORTED_TTS.has(language) || !TTS_VOICES[language]) {
       return new Response(
         JSON.stringify({ success: true, useBrowserFallback: true, language }),
@@ -53,7 +68,6 @@ serve(async (req) => {
 
     const voiceInfo = TTS_VOICES[language];
 
-    // Build SSML — omit prosody rate when it's default (1.0)
     const rateNum = typeof rate === 'number' ? rate : 1.0;
     const hasCustomRate = Math.abs(rateNum - 1.0) > 0.01;
     const prosodyOpen = hasCustomRate
@@ -82,16 +96,17 @@ serve(async (req) => {
     if (!response.ok) {
       const errText = await response.text();
       console.error("[text-to-speech] Azure error:", response.status, errText, "SSML:", ssml);
+      logUsage("tts", text.length, false, voiceInfo.locale);
       return new Response(
         JSON.stringify({ success: false, error: "Text-to-speech failed." }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
-    // Convert audio response to base64
     const audioBuffer = await response.arrayBuffer();
     const base64 = btoa(String.fromCharCode(...new Uint8Array(audioBuffer)));
 
+    logUsage("tts", text.length, true, voiceInfo.locale);
     console.log(`[text-to-speech] ${voiceInfo.voice}: ${text.substring(0, 40)}… (${audioBuffer.byteLength} bytes)`);
 
     return new Response(
