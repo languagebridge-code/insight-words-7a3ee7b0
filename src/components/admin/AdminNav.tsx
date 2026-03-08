@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/client";
+import { clearAuth } from "./adminApi";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import lbIcon from "@/assets/languagebridge-icon-256.png";
@@ -16,8 +16,8 @@ const tabs = [
 ];
 
 const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
+  const handleSignOut = () => {
+    clearAuth();
     onSignOut();
   };
 
@@ -27,7 +27,6 @@ const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
       style={{ background: "linear-gradient(135deg, #742a69 0%, #f37030 80%, #ffc755 100%)" }}
     >
       <div className="max-w-[1200px] mx-auto flex items-center justify-between h-14">
-        {/* Left */}
         <div className="flex items-center gap-2">
           <img src={lbIcon} alt="LanguageBridge" className="h-8 w-8 rounded" />
           <span className="text-white font-bold text-lg hidden sm:inline">
@@ -36,7 +35,6 @@ const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
           <span className="text-white/70 text-sm hidden md:inline ml-1">Admin Dashboard</span>
         </div>
 
-        {/* Center tabs */}
         <div className="flex items-center gap-1 bg-white/15 rounded-lg p-1">
           {tabs.map((tab) => (
             <button
@@ -53,7 +51,6 @@ const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
           ))}
         </div>
 
-        {/* Right */}
         <div className="flex items-center gap-3">
           <span className="hidden sm:inline-flex items-center px-3 py-1 bg-white/20 rounded-full text-xs text-white font-medium">
             Pilot: Greenbriar

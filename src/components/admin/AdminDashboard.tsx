@@ -1,57 +1,24 @@
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
+import { hasAuth, clearAuth } from "./adminApi";
 import AdminLogin from "./AdminLogin";
 import AdminNav from "./AdminNav";
 import OverviewTab from "./OverviewTab";
 import FlagsTab from "./FlagsTab";
 import ActivityTab from "./ActivityTab";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const AdminDashboard = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [checking, setChecking] = useState(true);
+  const [authenticated, setAuthenticated] = useState(hasAuth());
   const [activeTab, setActiveTab] = useState("overview");
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        const { data: isAdmin } = await supabase.rpc("has_role", {
-          _user_id: session.user.id,
-          _role: "admin",
-        });
-        setAuthenticated(!!isAdmin);
-      }
-      setChecking(false);
-    };
-
-    checkAuth();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === "SIGNED_OUT" || !session) {
-        setAuthenticated(false);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
+  const handleSignOut = () => {
+    clearAuth();
     setAuthenticated(false);
   };
 
   const handleAuthError = () => {
+    clearAuth();
     setAuthenticated(false);
   };
-
-  if (checking) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#f5eaf4" }}>
-        <Skeleton className="h-64 w-96 rounded-xl" />
-      </div>
-    );
-  }
 
   if (!authenticated) {
     return <AdminLogin onAuthenticated={() => setAuthenticated(true)} />;
