@@ -21,6 +21,7 @@ import NotFound from "./pages/NotFound";
 import Media from "./pages/Media";
 import PricingPage from "./pages/PricingPage";
 import TalkToTeacher from "./pages/TalkToTeacher";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
