@@ -114,11 +114,24 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
         <StatCard icon={Clock} label="Last Updated" value={formatDistanceToNow(new Date(stats.totals.lastUpdated), { addSuffix: true })} />
       </div>
 
-      {/* Service Breakdown */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <ServiceCard label="Translations" icon="🌍" value={stats.services.translations} />
-        <ServiceCard label="Text-to-Speech" icon="🔊" value={stats.services.tts} />
-        <ServiceCard label="Speech-to-Text" icon="🎤" value={stats.services.stt} />
+      {/* Service Breakdown — Extension */}
+      <div>
+        <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#742a69" }}>Extension (Chrome)</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <ServiceCard label="Translations" icon="🌍" value={stats.services.translations} />
+          <ServiceCard label="Text-to-Speech" icon="🔊" value={stats.services.tts} />
+          <ServiceCard label="Speech-to-Text" icon="🎤" value={stats.services.stt} />
+        </div>
+      </div>
+
+      {/* Service Breakdown — Talk to Teacher */}
+      <div>
+        <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#f37030" }}>Talk to Teacher (Web)</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <ServiceCard label="Translations" icon="🌍" value={tttUsage?.totals.translate ?? 0} />
+          <ServiceCard label="Text-to-Speech" icon="🔊" value={tttUsage?.totals.tts ?? 0} />
+          <ServiceCard label="Speech-to-Text" icon="🎤" value={tttUsage?.totals.stt ?? 0} />
+        </div>
       </div>
 
       {/* Flags Summary */}
