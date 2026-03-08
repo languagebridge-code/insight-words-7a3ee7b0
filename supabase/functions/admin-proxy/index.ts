@@ -14,40 +14,8 @@ serve(async (req) => {
   }
 
   try {
-    const body = await req.json();
-    const dashPassword = Deno.env.get("ADMIN_DASHBOARD_PASSWORD");
+    const { endpoint, params } = await req.json();
 
-    if (!dashPassword) {
-      console.error("ADMIN_DASHBOARD_PASSWORD not set");
-      return new Response(JSON.stringify({ error: "Not configured" }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Auth check action
-    if (body.action === "auth") {
-      if (body.password && body.password === dashPassword) {
-        return new Response(JSON.stringify({ ok: true }), {
-          status: 200,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-      return new Response(JSON.stringify({ error: "Invalid password" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Verify password on data requests
-    if (!body.password || body.password !== dashPassword) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const { endpoint, params } = body;
     const allowedEndpoints = ["/api/admin-stats", "/api/get-flags"];
     if (!allowedEndpoints.includes(endpoint)) {
       return new Response(JSON.stringify({ error: "Invalid endpoint" }), {
@@ -58,7 +26,6 @@ serve(async (req) => {
 
     const apiKey = Deno.env.get("NETLIFY_ADMIN_API_KEY");
     if (!apiKey) {
-      console.error("NETLIFY_ADMIN_API_KEY not set");
       return new Response(JSON.stringify({ error: "API key not configured" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
