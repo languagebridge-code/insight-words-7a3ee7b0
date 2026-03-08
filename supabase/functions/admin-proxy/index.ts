@@ -26,6 +26,7 @@ serve(async (req) => {
 
     const apiKey = Deno.env.get("NETLIFY_ADMIN_API_KEY");
     if (!apiKey) {
+      console.error("NETLIFY_ADMIN_API_KEY not set");
       return new Response(JSON.stringify({ error: "API key not configured" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -40,10 +41,22 @@ serve(async (req) => {
       );
     }
 
-    const apiRes = await fetch(url.toString());
-    const data = await apiRes.json();
+    console.log("Proxying to:", url.pathname);
 
-    return new Response(JSON.stringify(data), {
+    const apiRes = await fetch(url.toString());
+    const text = await apiRes.text();
+
+    // Check if response is JSON
+    const contentType = apiRes.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      console.error("Non-JSON response from Netlify:", apiRes.status, text.substring(0, 200));
+      return new Response(
+        JSON.stringify({ error: "Upstream returned non-JSON response", status: apiRes.status }),
+        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    return new Response(text, {
       status: apiRes.status,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
