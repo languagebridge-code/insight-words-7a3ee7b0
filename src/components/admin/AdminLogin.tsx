@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { setApiKey } from "./adminApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -10,37 +11,39 @@ interface AdminLoginProps {
 }
 
 const AdminLogin = ({ onAuthenticated }: AdminLoginProps) => {
-  const [password, setPassword] = useState("");
+  const [key, setKey] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!password.trim()) return;
+    if (!key.trim()) return;
 
     setLoading(true);
     setError("");
 
     try {
-      const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-proxy`;
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action: "auth",
-          password: password.trim(),
-        }),
-      });
+      const res = await fetch(
+        "https://exquisite-croissant-4288dd.netlify.app/.netlify/functions/admin-stats?limit=1",
+        { headers: { "X-API-Key": key.trim() } }
+      );
 
-      if (res.ok) {
-        sessionStorage.setItem("lb_admin", password.trim());
-        onAuthenticated();
-      } else {
-        setError("Invalid password. Please try again.");
+      if (res.status === 401 || res.status === 403) {
+        setError("Invalid API key. Please try again.");
+        setLoading(false);
+        return;
       }
+
+      if (!res.ok) {
+        setError("Unable to connect. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      setApiKey(key.trim());
+      onAuthenticated();
     } catch {
-      setError("Network error. Please try again.");
-    } finally {
+      setError("Network error. Please check your connection.");
       setLoading(false);
     }
   };
@@ -60,14 +63,14 @@ const AdminLogin = ({ onAuthenticated }: AdminLoginProps) => {
         <CardContent className="px-8 pb-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium" style={{ color: "#4a1a45" }}>Admin Password</label>
+              <label className="text-sm font-medium" style={{ color: "#4a1a45" }}>Admin API Key</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: "#742a69" }} />
                 <Input
                   type="password"
-                  placeholder="Enter admin password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your API key"
+                  value={key}
+                  onChange={(e) => setKey(e.target.value)}
                   className="pl-10"
                   autoFocus
                 />
@@ -78,7 +81,7 @@ const AdminLogin = ({ onAuthenticated }: AdminLoginProps) => {
             )}
             <Button
               type="submit"
-              disabled={loading || !password.trim()}
+              disabled={loading || !key.trim()}
               className="w-full text-white"
               style={{ background: "#742a69" }}
             >
