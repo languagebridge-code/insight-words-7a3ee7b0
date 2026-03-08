@@ -25,9 +25,16 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
     setLoading(true);
     setError("");
     try {
-      const [s, f] = await Promise.all([fetchAdminStats(), fetchFlags()]);
-      setStats(s);
-      setFlags(f);
+      const [statsResult, flagsResult] = await Promise.allSettled([fetchAdminStats(), fetchFlags()]);
+      if (statsResult.status === "fulfilled") {
+        setStats(statsResult.value);
+      } else {
+        if (statsResult.reason?.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
+        setError("Failed to load stats.");
+      }
+      if (flagsResult.status === "fulfilled") {
+        setFlags(flagsResult.value);
+      }
     } catch (e: any) {
       if (e.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
       setError("Failed to load data.");
