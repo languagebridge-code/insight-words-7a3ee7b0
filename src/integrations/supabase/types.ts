@@ -395,6 +395,39 @@ export type Database = {
           },
         ]
       }
+      ttt_usage_log: {
+        Row: {
+          characters: number
+          created_at: string
+          id: string
+          language: string | null
+          service: string
+          source_language: string | null
+          success: boolean
+          target_language: string | null
+        }
+        Insert: {
+          characters?: number
+          created_at?: string
+          id?: string
+          language?: string | null
+          service: string
+          source_language?: string | null
+          success?: boolean
+          target_language?: string | null
+        }
+        Update: {
+          characters?: number
+          created_at?: string
+          id?: string
+          language?: string | null
+          service?: string
+          source_language?: string | null
+          success?: boolean
+          target_language?: string | null
+        }
+        Relationships: []
+      }
       usage_analytics: {
         Row: {
           created_at: string
