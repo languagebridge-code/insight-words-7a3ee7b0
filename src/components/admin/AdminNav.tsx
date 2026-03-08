@@ -1,4 +1,3 @@
-import { clearAuth } from "./adminApi";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import lbIcon from "@/assets/languagebridge-icon-256.png";
@@ -16,11 +15,6 @@ const tabs = [
 ];
 
 const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
-  const handleSignOut = () => {
-    clearAuth();
-    onSignOut();
-  };
-
   return (
     <nav
       className="sticky top-0 z-50 px-4 sm:px-6"
@@ -51,20 +45,9 @@ const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
-          <span className="hidden sm:inline-flex items-center px-3 py-1 bg-white/20 rounded-full text-xs text-white font-medium">
-            Pilot: Greenbriar
-          </span>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleSignOut}
-            className="text-white/90 hover:text-white hover:bg-white/10 gap-1.5"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Sign out</span>
-          </Button>
-        </div>
+        <span className="hidden sm:inline-flex items-center px-3 py-1 bg-white/20 rounded-full text-xs text-white font-medium">
+          Pilot: Greenbriar
+        </span>
       </div>
     </nav>
   );
