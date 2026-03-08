@@ -1,51 +1,41 @@
-import type { AdminStats, FlagsResponse } from "./types";
+import { supabase } from "@/integrations/supabase/client";
 
-const BASE_URL = "https://exquisite-croissant-4288dd.netlify.app";
+const PROXY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-proxy`;
 
-function getApiKey(): string | null {
-  return localStorage.getItem("lb_admin_key");
+async function getAuthHeaders(): Promise<Record<string, string>> {
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+  if (!token) throw new Error("NOT_AUTHENTICATED");
+  return {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
 }
 
-export function setApiKey(key: string) {
-  localStorage.setItem("lb_admin_key", key);
-}
+async function proxyFetch<T>(endpoint: string, params: Record<string, string> = {}): Promise<T> {
+  const headers = await getAuthHeaders();
+  const res = await fetch(PROXY_URL, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ endpoint, params }),
+  });
 
-export function clearApiKey() {
-  localStorage.removeItem("lb_admin_key");
-}
-
-export function hasApiKey(): boolean {
-  return !!getApiKey();
-}
-
-async function apiFetch<T>(path: string, params: Record<string, string> = {}): Promise<T> {
-  const key = getApiKey();
-  if (!key) throw new Error("NOT_AUTHENTICATED");
-
-  const url = new URL(path, BASE_URL);
-  url.searchParams.set("apiKey", key);
-  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-
-  const res = await fetch(url.toString());
-
-  if (res.status === 401) {
-    clearApiKey();
+  if (res.status === 401 || res.status === 403) {
     throw new Error("NOT_AUTHENTICATED");
   }
-
   if (!res.ok) {
-    throw new Error(`API error: ${res.status}`);
+    const text = await res.text();
+    throw new Error(`API error: ${res.status} - ${text}`);
   }
-
   return res.json();
 }
 
-export async function fetchAdminStats(limit = 50): Promise<AdminStats> {
-  return apiFetch<AdminStats>("/api/admin-stats", { limit: String(limit) });
+export async function fetchAdminStats(limit = 50) {
+  return proxyFetch<any>("/api/admin-stats", { limit: String(limit) });
 }
 
-export async function fetchFlags(status?: string, limit = 100): Promise<FlagsResponse> {
+export async function fetchFlags(status?: string, limit = 100) {
   const params: Record<string, string> = { limit: String(limit) };
   if (status && status !== "all") params.status = status;
-  return apiFetch<FlagsResponse>("/api/get-flags", params);
+  return proxyFetch<any>("/api/get-flags", params);
 }

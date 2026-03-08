@@ -1,6 +1,7 @@
-import { clearApiKey } from "./adminApi";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
+import lbIcon from "@/assets/languagebridge-icon-256.png";
 
 interface AdminNavProps {
   activeTab: string;
@@ -15,8 +16,8 @@ const tabs = [
 ];
 
 const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
-  const handleSignOut = () => {
-    clearApiKey();
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
     onSignOut();
   };
 
@@ -28,7 +29,7 @@ const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
       <div className="max-w-[1200px] mx-auto flex items-center justify-between h-14">
         {/* Left */}
         <div className="flex items-center gap-2">
-          <span className="text-xl">🌉</span>
+          <img src={lbIcon} alt="LanguageBridge" className="h-8 w-8 rounded" />
           <span className="text-white font-bold text-lg hidden sm:inline">
             Language<span className="font-extrabold">Bridge</span>
           </span>
