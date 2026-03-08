@@ -14,9 +14,12 @@ serve(async (req) => {
   }
 
   try {
-    const { endpoint, params } = await req.json();
+    const { endpoint, params, apiKey } = await req.json();
 
-    const allowedEndpoints = ["/api/admin-stats", "/api/get-flags"];
+    const allowedEndpoints = [
+      "/.netlify/functions/admin-stats",
+      "/.netlify/functions/get-flags",
+    ];
     if (!allowedEndpoints.includes(endpoint)) {
       return new Response(JSON.stringify({ error: "Invalid endpoint" }), {
         status: 400,
@@ -24,38 +27,37 @@ serve(async (req) => {
       });
     }
 
-    const apiKey = Deno.env.get("NETLIFY_ADMIN_API_KEY");
-    if (!apiKey) {
-      console.error("NETLIFY_ADMIN_API_KEY not set");
-      return new Response(JSON.stringify({ error: "API key not configured" }), {
-        status: 500,
+    // Use provided key or fall back to server secret
+    const key = apiKey || Deno.env.get("NETLIFY_ADMIN_API_KEY");
+    if (!key) {
+      return new Response(JSON.stringify({ error: "No API key" }), {
+        status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     const url = new URL(endpoint, NETLIFY_BASE);
-    url.searchParams.set("apiKey", apiKey);
     if (params) {
       Object.entries(params).forEach(([k, v]) =>
         url.searchParams.set(k, v as string)
       );
     }
 
-    console.log("Proxying to:", url.pathname);
+    const apiRes = await fetch(url.toString(), {
+      headers: { "X-API-Key": key },
+    });
 
-    const apiRes = await fetch(url.toString());
-    const text = await apiRes.text();
-
-    // Check if response is JSON
     const contentType = apiRes.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
-      console.error("Non-JSON response from Netlify:", apiRes.status, text.substring(0, 200));
+      const text = await apiRes.text();
+      console.error("Non-JSON from Netlify:", apiRes.status, text.substring(0, 200));
       return new Response(
-        JSON.stringify({ error: "Upstream returned non-JSON response", status: apiRes.status }),
+        JSON.stringify({ error: "Upstream error", status: apiRes.status }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
+    const text = await apiRes.text();
     return new Response(text, {
       status: apiRes.status,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
