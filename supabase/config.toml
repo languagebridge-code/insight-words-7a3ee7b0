@@ -15,5 +15,8 @@ verify_jwt = false
 [functions.check-subscription]
 verify_jwt = false
 
+[functions.admin-proxy]
+verify_jwt = false
+
 [functions.customer-portal]
 verify_jwt = false
