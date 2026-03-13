@@ -1,4 +1,4 @@
-import { clearApiKey } from "./adminApi";
+import { Button } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import lbIcon from "@/assets/languagebridge-icon-256.png";

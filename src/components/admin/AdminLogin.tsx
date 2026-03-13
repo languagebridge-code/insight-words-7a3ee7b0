@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { setApiKey } from "./adminApi";
+// adminApi import removed - login gate disabled
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
