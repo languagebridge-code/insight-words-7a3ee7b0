@@ -7,7 +7,11 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const NETLIFY_BASE = "https://exquisite-croissant-4288dd.netlify.app";
+function getSupabase() {
+  const url = Deno.env.get("SUPABASE_URL")!;
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  return createClient(url, key);
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -16,19 +20,12 @@ serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { endpoint, params, apiKey } = body;
+    const { endpoint, params } = body;
 
-    // Special endpoint: get TTT usage from local DB
+    const supabase = getSupabase();
+
+    // TTT usage from ttt_usage_log
     if (endpoint === "/ttt-usage") {
-      const url = Deno.env.get("SUPABASE_URL");
-      const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-      if (!url || !serviceKey) {
-        return new Response(JSON.stringify({ error: "Not configured" }), {
-          status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-      const supabase = createClient(url, serviceKey);
       const { data, error } = await supabase
         .from("ttt_usage_log")
         .select("service, characters, success, created_at")
@@ -43,7 +40,6 @@ serve(async (req) => {
         });
       }
 
-      // Aggregate
       const totals = { stt: 0, translate: 0, tts: 0, characters: 0, requests: 0 };
       for (const row of data || []) {
         totals.requests++;
@@ -58,50 +54,60 @@ serve(async (req) => {
       });
     }
 
-    // Netlify proxy endpoints
-    const allowedEndpoints = [
-      "/.netlify/functions/admin-stats",
-      "/.netlify/functions/get-flags",
-    ];
-    if (!allowedEndpoints.includes(endpoint)) {
-      return new Response(JSON.stringify({ error: "Invalid endpoint" }), {
-        status: 400,
+    // Extension usage from analytics_events
+    if (endpoint === "/extension-usage") {
+      const { data, error } = await supabase
+        .from("analytics_events")
+        .select("event_name, properties, user_id, session_id, created_at")
+        .order("created_at", { ascending: false })
+        .limit(1000);
+
+      if (error) {
+        console.error("Extension usage query error:", error);
+        return new Response(JSON.stringify({ error: "Query failed" }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const rows = data || [];
+      const services = { translations: 0, tts: 0, stt: 0 };
+      let totalCharacters = 0;
+      const uniqueUsers = new Set<string>();
+      const uniqueSessions = new Set<string>();
+
+      for (const row of rows) {
+        uniqueUsers.add(row.user_id);
+        uniqueSessions.add(row.session_id);
+        const chars = (row.properties as any)?.text_length || (row.properties as any)?.characters || 0;
+        totalCharacters += typeof chars === "number" ? chars : parseInt(chars) || 0;
+
+        if (row.event_name === "translation") services.translations++;
+        else if (row.event_name === "tts") services.tts++;
+        else if (row.event_name === "stt") services.stt++;
+      }
+
+      const result = {
+        totals: {
+          requests: services.translations + services.tts + services.stt,
+          characters: totalCharacters,
+          events: rows.length,
+        },
+        services,
+        users: {
+          total: uniqueUsers.size,
+          sessions: uniqueSessions.size,
+        },
+        recentActivity: rows.slice(0, 20),
+      };
+
+      return new Response(JSON.stringify(result), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const key = apiKey || Deno.env.get("NETLIFY_ADMIN_API_KEY");
-    if (!key) {
-      return new Response(JSON.stringify({ error: "No API key" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const url = new URL(endpoint, NETLIFY_BASE);
-    if (params) {
-      Object.entries(params).forEach(([k, v]) =>
-        url.searchParams.set(k, v as string)
-      );
-    }
-
-    const apiRes = await fetch(url.toString(), {
-      headers: { "X-API-Key": key },
-    });
-
-    const contentType = apiRes.headers.get("content-type") || "";
-    if (!contentType.includes("application/json")) {
-      const text = await apiRes.text();
-      console.error("Non-JSON from Netlify:", apiRes.status, text.substring(0, 200));
-      return new Response(
-        JSON.stringify({ error: "Upstream error", status: apiRes.status }),
-        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    const text = await apiRes.text();
-    return new Response(text, {
-      status: apiRes.status,
+    return new Response(JSON.stringify({ error: "Invalid endpoint" }), {
+      status: 400,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
