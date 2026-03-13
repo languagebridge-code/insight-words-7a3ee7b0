@@ -1,4 +1,4 @@
-import type { AdminStats, FlagsResponse } from "./types";
+import type { FlagsResponse } from "./types";
 
 const PROXY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-proxy`;
 
@@ -13,14 +13,11 @@ async function proxyFetch<T>(path: string, params: Record<string, string> = {}):
   return res.json();
 }
 
-export async function fetchAdminStats(limit = 50): Promise<AdminStats> {
-  return proxyFetch<AdminStats>("/.netlify/functions/admin-stats", { limit: String(limit) });
-}
-
-export async function fetchFlags(status?: string, limit = 100): Promise<FlagsResponse> {
-  const params: Record<string, string> = { limit: String(limit) };
-  if (status && status !== "all") params.status = status;
-  return proxyFetch<FlagsResponse>("/.netlify/functions/get-flags", params);
+export interface ExtensionUsage {
+  totals: { requests: number; characters: number; events: number };
+  services: { translations: number; tts: number; stt: number };
+  users: { total: number; sessions: number };
+  recentActivity: Array<{ event_name: string; properties: any; user_id: string; created_at: string }>;
 }
 
 export interface TttUsage {
@@ -28,7 +25,10 @@ export interface TttUsage {
   recentActivity: Array<{ service: string; characters: number; success: boolean; created_at: string }>;
 }
 
+export async function fetchExtensionUsage(): Promise<ExtensionUsage> {
+  return proxyFetch<ExtensionUsage>("/extension-usage", {});
+}
+
 export async function fetchTttUsage(): Promise<TttUsage> {
-  // Always goes through proxy (local DB query)
   return proxyFetch<TttUsage>("/ttt-usage", {});
 }
