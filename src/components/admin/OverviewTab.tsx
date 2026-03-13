@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchAdminStats, fetchFlags, fetchTttUsage } from "./adminApi";
-import type { AdminStats, FlagsResponse } from "./types";
-import type { TttUsage } from "./adminApi";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { fetchExtensionUsage, fetchTttUsage } from "./adminApi";
+import type { ExtensionUsage, TttUsage } from "./adminApi";
+import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FLAG_STATUS_CONFIG } from "./types";
-import { AlertTriangle, Users, BarChart3, Type, Clock, ArrowRight } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+import { Users, BarChart3, Type, Hash } from "lucide-react";
 
 interface OverviewTabProps {
   onNavigateToFlags: () => void;
@@ -17,9 +11,8 @@ interface OverviewTabProps {
 }
 
 const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
-  const [stats, setStats] = useState<AdminStats | null>(null);
-  const [flags, setFlags] = useState<FlagsResponse | null>(null);
-  const [tttUsage, setTttUsage] = useState<TttUsage | null>(null);
+  const [ext, setExt] = useState<ExtensionUsage | null>(null);
+  const [ttt, setTtt] = useState<TttUsage | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -27,19 +20,15 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
     setLoading(true);
     setError("");
     try {
-      const [statsResult, flagsResult, tttResult] = await Promise.allSettled([
-        fetchAdminStats(), fetchFlags(), fetchTttUsage(),
+      const [extResult, tttResult] = await Promise.allSettled([
+        fetchExtensionUsage(), fetchTttUsage(),
       ]);
-      if (statsResult.status === "fulfilled") {
-        setStats(statsResult.value);
-      } else {
-        if (statsResult.reason?.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
-        setError("Failed to load stats.");
+      if (extResult.status === "fulfilled") setExt(extResult.value);
+      if (tttResult.status === "fulfilled") setTtt(tttResult.value);
+      if (extResult.status === "rejected" && tttResult.status === "rejected") {
+        setError("Failed to load data.");
       }
-      if (flagsResult.status === "fulfilled") setFlags(flagsResult.value);
-      if (tttResult.status === "fulfilled") setTttUsage(tttResult.value);
-    } catch (e: any) {
-      if (e.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
+    } catch {
       setError("Failed to load data.");
     } finally {
       setLoading(false);
@@ -51,154 +40,56 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
   if (loading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-28 w-full rounded-xl" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[1,2,3,4].map(i => <Skeleton key={i} className="h-24 rounded-xl" />)}
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[1,2,3].map(i => <Skeleton key={i} className="h-20 rounded-xl" />)}
         </div>
       </div>
     );
   }
 
-  if (error || !stats) {
+  if (error && !ext && !ttt) {
     return (
       <Card className="border-0 shadow-sm">
         <CardContent className="p-8 text-center">
-          <p className="text-red-600 mb-4">{error || "Failed to load data"}</p>
+          <p className="text-red-600 mb-4">{error}</p>
           <button onClick={loadData} className="px-4 py-2 rounded-lg text-white" style={{ background: "#742a69" }}>Retry</button>
         </CardContent>
       </Card>
     );
   }
 
-  const budgetColor = stats.budget.status === "healthy" ? "#22c55e" : stats.budget.status === "warning" ? "#f59e0b" : "#ef4444";
-  const budgetPercent = parseFloat(stats.budget.percentUsed);
+  const totalRequests = (ext?.totals.requests ?? 0) + (ttt?.totals.requests ?? 0);
+  const totalChars = (ext?.totals.characters ?? 0) + (ttt?.totals.characters ?? 0);
 
   return (
     <div className="space-y-6">
-      {/* Budget Card */}
-      <Card className="border-0 shadow-sm overflow-hidden">
-        {stats.budget.alert && (
-          <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2 flex items-center gap-2 text-yellow-800 text-sm">
-            <AlertTriangle className="h-4 w-4" />
-            Budget alert — approaching limit
-          </div>
-        )}
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-lg" style={{ color: "#4a1a45" }}>Pilot Budget</h3>
-            <span className="text-sm font-medium" style={{ color: budgetColor }}>
-              {budgetPercent.toFixed(1)}% used
-            </span>
-          </div>
-          <div className="relative h-4 w-full rounded-full overflow-hidden" style={{ background: "#f5eaf4" }}>
-            <div
-              className="h-full rounded-full transition-all duration-500"
-              style={{ width: `${Math.min(budgetPercent, 100)}%`, background: budgetColor }}
-            />
-          </div>
-          <p className="text-sm mt-2" style={{ color: "#4a1a45" }}>
-            <span className="font-semibold">${parseFloat(stats.budget.used).toFixed(2)}</span> spent of{" "}
-            <span className="font-semibold">${parseFloat(stats.budget.total).toFixed(2)}</span> pilot budget
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* Stats Row */}
+      {/* Combined Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard icon={BarChart3} label="Total Requests" value={stats.totals.requests.toLocaleString()} />
-        <StatCard icon={Users} label="Total Users" value={String(stats.users.total)} subtitle={`${stats.users.active} active today`} />
-        <StatCard icon={Type} label="Total Characters" value={stats.totals.characters.toLocaleString()} />
-        <StatCard icon={Clock} label="Last Updated" value={formatDistanceToNow(new Date(stats.totals.lastUpdated), { addSuffix: true })} />
+        <StatCard icon={BarChart3} label="Total Requests" value={totalRequests.toLocaleString()} />
+        <StatCard icon={Users} label="Extension Users" value={String(ext?.users.total ?? 0)} subtitle={`${ext?.users.sessions ?? 0} sessions`} />
+        <StatCard icon={Type} label="Total Characters" value={totalChars.toLocaleString()} />
+        <StatCard icon={Hash} label="TTT Requests" value={String(ttt?.totals.requests ?? 0)} subtitle={`${ttt?.totals.characters ?? 0} chars`} />
       </div>
 
-      {/* Service Breakdown — Extension */}
+      {/* Extension breakdown */}
       <div>
         <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#742a69" }}>Extension (Chrome)</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <ServiceCard label="Translations" icon="🌍" value={stats.services.translations} />
-          <ServiceCard label="Text-to-Speech" icon="🔊" value={stats.services.tts} />
-          <ServiceCard label="Speech-to-Text" icon="🎤" value={stats.services.stt} />
+          <ServiceCard label="Translations" icon="🌍" value={ext?.services.translations ?? 0} />
+          <ServiceCard label="Text-to-Speech" icon="🔊" value={ext?.services.tts ?? 0} />
+          <ServiceCard label="Speech-to-Text" icon="🎤" value={ext?.services.stt ?? 0} />
         </div>
       </div>
 
-      {/* Service Breakdown — Talk to Teacher */}
+      {/* TTT breakdown */}
       <div>
         <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#f37030" }}>Talk to Teacher (Web)</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <ServiceCard label="Translations" icon="🌍" value={tttUsage?.totals.translate ?? 0} />
-          <ServiceCard label="Text-to-Speech" icon="🔊" value={tttUsage?.totals.tts ?? 0} />
-          <ServiceCard label="Speech-to-Text" icon="🎤" value={tttUsage?.totals.stt ?? 0} />
+          <ServiceCard label="Translations" icon="🌍" value={ttt?.totals.translate ?? 0} />
+          <ServiceCard label="Text-to-Speech" icon="🔊" value={ttt?.totals.tts ?? 0} />
+          <ServiceCard label="Speech-to-Text" icon="🎤" value={ttt?.totals.stt ?? 0} />
         </div>
       </div>
-
-      {/* Flags Summary */}
-      {flags && (
-        <Card className="border-0 shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold" style={{ color: "#4a1a45" }}>Translation Flags</h3>
-              <button
-                onClick={onNavigateToFlags}
-                className="text-sm font-medium flex items-center gap-1 hover:underline"
-                style={{ color: "#742a69" }}
-              >
-                View all flags <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {(["high_priority", "bounty", "elevated", "logged"] as const).map((s) => (
-                <span
-                  key={s}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${FLAG_STATUS_CONFIG[s].bgLight} ${FLAG_STATUS_CONFIG[s].textColor}`}
-                >
-                  <span className={`h-2 w-2 rounded-full ${FLAG_STATUS_CONFIG[s].color}`} />
-                  {FLAG_STATUS_CONFIG[s].label}: {flags.summary[s]}
-                </span>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Top Users */}
-      {stats.users.topUsers.length > 0 && (
-        <Card className="border-0 shadow-sm">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base" style={{ color: "#4a1a45" }}>Top Users</CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>User ID</TableHead>
-                  <TableHead className="text-right">Translations</TableHead>
-                  <TableHead className="text-right">TTS</TableHead>
-                  <TableHead className="text-right">STT</TableHead>
-                  <TableHead className="text-right">Characters</TableHead>
-                  <TableHead className="text-right">Cost</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {[...stats.users.topUsers]
-                  .sort((a, b) => b.totalCost - a.totalCost)
-                  .map((u) => (
-                    <TableRow key={u.userId}>
-                      <TableCell className="font-mono text-xs">…{u.userId.slice(-8)}</TableCell>
-                      <TableCell className="text-right">{u.translations}</TableCell>
-                      <TableCell className="text-right">{u.tts}</TableCell>
-                      <TableCell className="text-right">{u.stt}</TableCell>
-                      <TableCell className="text-right">{u.totalCharacters.toLocaleString()}</TableCell>
-                      <TableCell className="text-right font-medium">${u.totalCost.toFixed(4)}</TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { fetchAdminStats } from "./adminApi";
-import type { ActivityItem } from "./types";
+import { fetchExtensionUsage, fetchTttUsage } from "./adminApi";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -11,14 +10,24 @@ interface ActivityTabProps {
   onAuthError: () => void;
 }
 
+interface UnifiedItem {
+  source: "extension" | "ttt";
+  service: string;
+  characters: number;
+  success: boolean;
+  created_at: string;
+  userId?: string;
+}
+
 const SERVICE_ICONS: Record<string, string> = {
-  translate: "🌍",
+  translation: "🌍", translate: "🌍",
   tts: "🔊",
   stt: "🎤",
+  session_start: "🚀",
 };
 
 const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
-  const [items, setItems] = useState<ActivityItem[]>([]);
+  const [items, setItems] = useState<UnifiedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [autoRefresh, setAutoRefresh] = useState(false);
@@ -28,16 +37,46 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
   const loadData = useCallback(async () => {
     setError("");
     try {
-      const s = await fetchAdminStats(100);
-      setItems(s.recentActivity);
+      const [extRes, tttRes] = await Promise.allSettled([
+        fetchExtensionUsage(), fetchTttUsage(),
+      ]);
+
+      const unified: UnifiedItem[] = [];
+
+      if (extRes.status === "fulfilled") {
+        for (const e of extRes.value.recentActivity) {
+          unified.push({
+            source: "extension",
+            service: e.event_name,
+            characters: e.properties?.text_length || e.properties?.characters || 0,
+            success: true,
+            created_at: e.created_at,
+            userId: e.user_id,
+          });
+        }
+      }
+
+      if (tttRes.status === "fulfilled") {
+        for (const t of tttRes.value.recentActivity.slice(0, 20)) {
+          unified.push({
+            source: "ttt",
+            service: t.service,
+            characters: t.characters,
+            success: t.success,
+            created_at: t.created_at,
+          });
+        }
+      }
+
+      unified.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      setItems(unified);
       setCountdown(30);
-    } catch (e: any) {
-      if (e.message === "NOT_AUTHENTICATED") { onAuthError(); return; }
+    } catch {
       setError("Failed to load activity.");
     } finally {
       setLoading(false);
     }
-  }, [onAuthError]);
+  }, []);
 
   useEffect(() => { loadData(); }, [loadData]);
 
@@ -70,9 +109,16 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
     );
   }
 
+  const serviceName = (s: string) => {
+    if (s === "translation" || s === "translate") return "Translation";
+    if (s === "tts") return "Text-to-Speech";
+    if (s === "stt") return "Speech-to-Text";
+    if (s === "session_start") return "Session Start";
+    return s;
+  };
+
   return (
     <div className="space-y-4">
-      {/* Controls */}
       <div className="flex items-center justify-between">
         <h3 className="font-semibold" style={{ color: "#4a1a45" }}>Recent Activity</h3>
         <div className="flex items-center gap-3">
@@ -95,7 +141,7 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
         <Card className="border-0 shadow-sm">
           <CardContent className="p-12 text-center">
             <Activity className="h-10 w-10 mx-auto mb-3 text-gray-300" />
-            <p className="font-medium text-gray-500">No activity recorded yet for this pilot</p>
+            <p className="font-medium text-gray-500">No activity recorded yet</p>
           </CardContent>
         </Card>
       ) : (
@@ -110,23 +156,31 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-sm font-medium" style={{ color: "#4a1a45" }}>
-                      {item.service === "translate" ? "Translation" : item.service === "tts" ? "Text-to-Speech" : "Speech-to-Text"}
+                      {serviceName(item.service)}
                     </span>
-                    <span className="text-xs text-gray-400">•</span>
-                    <span className="font-mono text-xs text-gray-500">…{item.userId.slice(-8)}</span>
+                    <span className="text-xs px-1.5 py-0.5 rounded" style={{
+                      background: item.source === "extension" ? "#f5eaf4" : "#fff3e0",
+                      color: item.source === "extension" ? "#742a69" : "#f37030",
+                    }}>
+                      {item.source === "extension" ? "Extension" : "TTT"}
+                    </span>
+                    {item.userId && (
+                      <>
+                        <span className="text-xs text-gray-400">•</span>
+                        <span className="font-mono text-xs text-gray-500">…{item.userId.slice(-8)}</span>
+                      </>
+                    )}
                     {!item.success && (
                       <span className="text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded-full font-medium">Failed</span>
                     )}
                   </div>
-                  {item.error && <p className="text-xs text-red-500 mt-1">{item.error}</p>}
                 </div>
                 <div className="text-right shrink-0">
                   <p className="text-sm font-medium" style={{ color: "#4a1a45" }}>{item.characters.toLocaleString()} chars</p>
-                  <p className="text-xs text-gray-500">${parseFloat(item.cost).toFixed(4)}</p>
                 </div>
                 <div className="text-right shrink-0 w-24">
                   <p className="text-xs text-gray-400">
-                    {formatDistanceToNow(new Date(item.timestamp), { addSuffix: true })}
+                    {formatDistanceToNow(new Date(item.created_at), { addSuffix: true })}
                   </p>
                 </div>
               </CardContent>
