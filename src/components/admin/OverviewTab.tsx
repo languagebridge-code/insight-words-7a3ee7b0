@@ -1,14 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { fetchExtensionUsage, fetchTttUsage } from "./adminApi";
 import type { ExtensionUsage, TttUsage } from "./adminApi";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Users, BarChart3, Type, Hash } from "lucide-react";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from "@/components/ui/chart";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid,
+  LineChart, Line, PieChart, Pie, Cell,
+  ResponsiveContainer,
+} from "recharts";
 
 interface OverviewTabProps {
   onNavigateToFlags: () => void;
   onAuthError: () => void;
 }
+
+const SERVICE_COLORS = {
+  translations: "#742a69",
+  tts: "#f37030",
+  stt: "#2a9d8f",
+};
+
+const SOURCE_COLORS = {
+  extension: "#742a69",
+  ttt: "#f37030",
+};
+
+const serviceChartConfig: ChartConfig = {
+  translations: { label: "Translations", color: SERVICE_COLORS.translations },
+  tts: { label: "Text-to-Speech", color: SERVICE_COLORS.tts },
+  stt: { label: "Speech-to-Text", color: SERVICE_COLORS.stt },
+};
+
+const dailyChartConfig: ChartConfig = {
+  extension: { label: "Extension", color: SOURCE_COLORS.extension },
+  ttt: { label: "Talk to Teacher", color: SOURCE_COLORS.ttt },
+};
 
 const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
   const [ext, setExt] = useState<ExtensionUsage | null>(null);
@@ -37,12 +70,57 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
   useEffect(() => { loadData(); }, []);
 
+  // Aggregate daily usage from recentActivity arrays
+  const dailyData = useMemo(() => {
+    const dayMap: Record<string, { extension: number; ttt: number }> = {};
+
+    for (const item of ext?.recentActivity ?? []) {
+      const day = item.created_at?.slice(0, 10);
+      if (!day) continue;
+      if (!dayMap[day]) dayMap[day] = { extension: 0, ttt: 0 };
+      dayMap[day].extension++;
+    }
+    for (const item of ttt?.recentActivity ?? []) {
+      const day = item.created_at?.slice(0, 10);
+      if (!day) continue;
+      if (!dayMap[day]) dayMap[day] = { extension: 0, ttt: 0 };
+      dayMap[day].ttt++;
+    }
+
+    return Object.entries(dayMap)
+      .map(([date, counts]) => ({ date, ...counts }))
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(-14); // last 14 days
+  }, [ext, ttt]);
+
+  // Service breakdown data
+  const serviceData = useMemo(() => {
+    const extS = ext?.services ?? { translations: 0, tts: 0, stt: 0 };
+    const tttT = ttt?.totals ?? { translate: 0, tts: 0, stt: 0 };
+    return [
+      { service: "Translations", extension: extS.translations, ttt: tttT.translate },
+      { service: "TTS", extension: extS.tts, ttt: tttT.tts },
+      { service: "STT", extension: extS.stt, ttt: tttT.stt },
+    ];
+  }, [ext, ttt]);
+
+  // Pie data for source split
+  const pieData = useMemo(() => {
+    const extTotal = ext?.totals.requests ?? 0;
+    const tttTotal = ttt?.totals.requests ?? 0;
+    return [
+      { name: "Extension", value: extTotal, fill: SOURCE_COLORS.extension },
+      { name: "Talk to Teacher", value: tttTotal, fill: SOURCE_COLORS.ttt },
+    ].filter(d => d.value > 0);
+  }, [ext, ttt]);
+
   if (loading) {
     return (
       <div className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[1,2,3,4].map(i => <Skeleton key={i} className="h-24 rounded-xl" />)}
         </div>
+        <Skeleton className="h-64 rounded-xl" />
       </div>
     );
   }
@@ -70,6 +148,84 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
         <StatCard icon={Type} label="Total Characters" value={totalChars.toLocaleString()} />
         <StatCard icon={Hash} label="TTT Requests" value={String(ttt?.totals.requests ?? 0)} subtitle={`${ttt?.totals.characters ?? 0} chars`} />
       </div>
+
+      {/* Charts Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Daily Usage Trend */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-5">
+            <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Daily Usage (Last 14 Days)</p>
+            {dailyData.length > 0 ? (
+              <ChartContainer config={dailyChartConfig} className="h-[220px] w-full">
+                <LineChart data={dailyData}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis
+                    dataKey="date"
+                    tickFormatter={(v) => new Date(v + "T00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                    className="text-xs"
+                  />
+                  <YAxis className="text-xs" />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Line type="monotone" dataKey="extension" stroke={SOURCE_COLORS.extension} strokeWidth={2} dot={false} />
+                  <Line type="monotone" dataKey="ttt" stroke={SOURCE_COLORS.ttt} strokeWidth={2} dot={false} />
+                </LineChart>
+              </ChartContainer>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-10">No daily data available</p>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Source Split Pie */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-5">
+            <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Requests by Source</p>
+            {pieData.length > 0 ? (
+              <ChartContainer config={dailyChartConfig} className="h-[220px] w-full">
+                <PieChart>
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Pie
+                    data={pieData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  >
+                    {pieData.map((entry, i) => (
+                      <Cell key={i} fill={entry.fill} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ChartContainer>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-10">No data available</p>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Service Breakdown Bar Chart */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-5">
+          <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Service Breakdown by Source</p>
+          {serviceData.some(d => d.extension > 0 || d.ttt > 0) ? (
+            <ChartContainer config={dailyChartConfig} className="h-[220px] w-full">
+              <BarChart data={serviceData}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                <XAxis dataKey="service" className="text-xs" />
+                <YAxis className="text-xs" />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Bar dataKey="extension" fill={SOURCE_COLORS.extension} radius={[4, 4, 0, 0]} />
+                <Bar dataKey="ttt" fill={SOURCE_COLORS.ttt} radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ChartContainer>
+          ) : (
+            <p className="text-sm text-muted-foreground text-center py-10">No service data available</p>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Extension breakdown */}
       <div>
