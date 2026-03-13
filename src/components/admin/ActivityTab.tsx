@@ -23,7 +23,7 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
   const [error, setError] = useState("");
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [countdown, setCountdown] = useState(30);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const loadData = useCallback(async () => {
     setError("");
