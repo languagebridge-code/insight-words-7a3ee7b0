@@ -299,7 +299,9 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
           <ServiceCard label="Speech-to-Text" icon="🎤" value={ttt?.totals.stt ?? 0} />
         </div>
       </div>
+      </div>
     </div>
+  );
   );
 };
 
