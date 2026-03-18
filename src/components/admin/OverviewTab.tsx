@@ -1,9 +1,10 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { fetchExtensionUsage, fetchTttUsage } from "./adminApi";
 import type { ExtensionUsage, TttUsage } from "./adminApi";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Users, BarChart3, Type, Hash } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Users, BarChart3, Type, Hash, Download } from "lucide-react";
 import {
   ChartContainer,
   ChartTooltip,
@@ -15,6 +16,8 @@ import {
   LineChart, Line, PieChart, Pie, Cell,
   ResponsiveContainer,
 } from "recharts";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface OverviewTabProps {
   onNavigateToFlags: () => void;
@@ -48,6 +51,45 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
   const [ttt, setTtt] = useState<TttUsage | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [exporting, setExporting] = useState(false);
+  const reportRef = useRef<HTMLDivElement>(null);
+
+  const handleExportPdf = useCallback(async () => {
+    if (!reportRef.current) return;
+    setExporting(true);
+    try {
+      const canvas = await html2canvas(reportRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#f7f7f7",
+      });
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      
+      let heightLeft = pdfHeight;
+      let position = 0;
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0) {
+        position -= pageHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
+        heightLeft -= pageHeight;
+      }
+
+      const date = new Date().toISOString().slice(0, 10);
+      pdf.save(`languagebridge-report-${date}.pdf`);
+    } catch (e) {
+      console.error("PDF export failed:", e);
+    } finally {
+      setExporting(false);
+    }
+  }, []);
 
   const loadData = async () => {
     setLoading(true);
@@ -141,6 +183,19 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
   return (
     <div className="space-y-6">
+      <div className="flex justify-end">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleExportPdf}
+          disabled={exporting}
+          className="gap-1.5"
+        >
+          <Download className="h-3.5 w-3.5" />
+          {exporting ? "Exporting…" : "Export PDF"}
+        </Button>
+      </div>
+      <div ref={reportRef} className="space-y-6">
       {/* Combined Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard icon={BarChart3} label="Total Requests" value={totalRequests.toLocaleString()} />
@@ -245,6 +300,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
           <ServiceCard label="Text-to-Speech" icon="🔊" value={ttt?.totals.tts ?? 0} />
           <ServiceCard label="Speech-to-Text" icon="🎤" value={ttt?.totals.stt ?? 0} />
         </div>
+      </div>
       </div>
     </div>
   );
