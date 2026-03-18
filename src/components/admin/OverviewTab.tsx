@@ -304,7 +304,6 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       </div>
     </div>
   );
-  );
 };
 
 function StatCard({ icon: Icon, label, value, subtitle }: { icon: any; label: string; value: string; subtitle?: string }) {
