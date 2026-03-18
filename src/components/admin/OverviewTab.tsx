@@ -1,9 +1,10 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { fetchExtensionUsage, fetchTttUsage } from "./adminApi";
 import type { ExtensionUsage, TttUsage } from "./adminApi";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Users, BarChart3, Type, Hash } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Users, BarChart3, Type, Hash, Download } from "lucide-react";
 import {
   ChartContainer,
   ChartTooltip,
@@ -15,6 +16,8 @@ import {
   LineChart, Line, PieChart, Pie, Cell,
   ResponsiveContainer,
 } from "recharts";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface OverviewTabProps {
   onNavigateToFlags: () => void;
