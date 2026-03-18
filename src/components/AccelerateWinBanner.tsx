@@ -48,7 +48,7 @@ export const AccelerateWinBanner = () => {
             <ul className="space-y-1.5 text-sm text-muted-foreground mb-4">
               <li className="flex items-start gap-2 justify-center md:justify-start">
                 <span className="text-primary font-bold">→</span>
-                <span>Adding <strong className="text-foreground">Hmong and Nepali</strong> language support</span>
+                <span>Adding <strong className="text-foreground">Dari and Nepali</strong> language support</span>
               </li>
               <li className="flex items-start gap-2 justify-center md:justify-start">
                 <span className="text-primary font-bold">→</span>
