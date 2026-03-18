@@ -16,7 +16,7 @@ async function proxyFetch<T>(path: string, params: Record<string, string> = {}):
 export interface ExtensionUsage {
   totals: { requests: number; characters: number; events: number };
   services: { translations: number; tts: number; stt: number };
-  users: { total: number; sessions: number };
+  users: { total: number; sessions: number; downloads: number };
   recentActivity: Array<{ event_name: string; properties: any; user_id: string; created_at: string }>;
 }
 

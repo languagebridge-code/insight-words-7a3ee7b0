@@ -56,11 +56,21 @@ serve(async (req) => {
 
     // Extension usage from analytics_events
     if (endpoint === "/extension-usage") {
-      const { data, error } = await supabase
-        .from("analytics_events")
-        .select("event_name, properties, user_id, session_id, created_at")
-        .order("created_at", { ascending: false })
-        .limit(1000);
+      const [eventsResult, configResult] = await Promise.all([
+        supabase
+          .from("analytics_events")
+          .select("event_name, properties, user_id, session_id, created_at")
+          .order("created_at", { ascending: false })
+          .limit(1000),
+        supabase
+          .from("app_config")
+          .select("value")
+          .eq("key", "extension_download_count")
+          .maybeSingle(),
+      ]);
+
+      const { data, error } = eventsResult;
+      const downloadCount = configResult.data?.value ? parseInt(configResult.data.value) : null;
 
       if (error) {
         console.error("Extension usage query error:", error);
@@ -97,6 +107,7 @@ serve(async (req) => {
         users: {
           total: uniqueUsers.size,
           sessions: uniqueSessions.size,
+          downloads: downloadCount ?? uniqueUsers.size,
         },
         recentActivity: rows.slice(0, 20),
       };
