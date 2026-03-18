@@ -183,8 +183,19 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
   return (
     <div className="space-y-6">
-      {/* Combined Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="flex justify-end">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleExportPdf}
+          disabled={exporting}
+          className="gap-1.5"
+        >
+          <Download className="h-3.5 w-3.5" />
+          {exporting ? "Exporting…" : "Export PDF"}
+        </Button>
+      </div>
+      <div ref={reportRef} className="space-y-6">
         <StatCard icon={BarChart3} label="Total Requests" value={totalRequests.toLocaleString()} />
         <StatCard icon={Users} label="Extension Users" value={String(ext?.users.total ?? 0)} subtitle={`${ext?.users.sessions ?? 0} sessions`} />
         <StatCard icon={Type} label="Total Characters" value={totalChars.toLocaleString()} />
