@@ -199,7 +199,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       {/* Combined Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard icon={BarChart3} label="Total Requests" value={totalRequests.toLocaleString()} />
-        <StatCard icon={Users} label="Extension Users" value={String(ext?.users.total ?? 0)} subtitle={`${ext?.users.sessions ?? 0} sessions`} />
+        <StatCard icon={Users} label="Extension Users" value={String(ext?.users.downloads ?? 0)} subtitle={`${ext?.users.total ?? 0} active · ${ext?.users.sessions ?? 0} sessions`} />
         <StatCard icon={Type} label="Total Characters" value={totalChars.toLocaleString()} />
         <StatCard icon={Hash} label="TTT Requests" value={String(ttt?.totals.requests ?? 0)} subtitle={`${ttt?.totals.characters ?? 0} chars`} />
       </div>
