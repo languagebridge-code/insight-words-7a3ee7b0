@@ -107,6 +107,7 @@ serve(async (req) => {
         users: {
           total: uniqueUsers.size,
           sessions: uniqueSessions.size,
+          downloads: downloadCount ?? uniqueUsers.size,
         },
         recentActivity: rows.slice(0, 20),
       };
