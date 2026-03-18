@@ -51,6 +51,45 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
   const [ttt, setTtt] = useState<TttUsage | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [exporting, setExporting] = useState(false);
+  const reportRef = useRef<HTMLDivElement>(null);
+
+  const handleExportPdf = useCallback(async () => {
+    if (!reportRef.current) return;
+    setExporting(true);
+    try {
+      const canvas = await html2canvas(reportRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#f7f7f7",
+      });
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      
+      let heightLeft = pdfHeight;
+      let position = 0;
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0) {
+        position -= pageHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
+        heightLeft -= pageHeight;
+      }
+
+      const date = new Date().toISOString().slice(0, 10);
+      pdf.save(`languagebridge-report-${date}.pdf`);
+    } catch (e) {
+      console.error("PDF export failed:", e);
+    } finally {
+      setExporting(false);
+    }
+  }, []);
 
   const loadData = async () => {
     setLoading(true);
