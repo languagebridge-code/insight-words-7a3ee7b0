@@ -1,7 +1,29 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { PageMeta } from "@/components/PageMeta";
-import { Newspaper, Clock, Mail, Phone, Twitter } from "lucide-react";
+import { Newspaper, Mail, Phone, Twitter, ExternalLink } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+
+const articles = [
+  {
+    title: "Advancing great ideas: LanguageBridge wins big at Accelerate Cleveland",
+    outlet: "FreshWater Cleveland",
+    author: "Angelina Bair",
+    date: "March 17, 2026",
+    excerpt:
+      "LanguageBridge, an audio-first Chrome extension designed to help preliterate English learners access classroom content, won the 2026 Accelerate grand prize at the Cleveland Leadership Center pitch contest.",
+    url: "https://www.freshwatercleveland.com/features/LanguageBridge-Wins-Big-At-Accelerate-Cleveland_031726.aspx",
+  },
+  {
+    title: "Ideas accelerate at Cleveland Leadership Center competition",
+    outlet: "Cleveland Jewish News",
+    author: "Staff Report",
+    date: "March 2026",
+    excerpt:
+      "The Cleveland Leadership Center's Accelerate competition showcased innovative ideas from across Northeast Ohio, with LanguageBridge taking the top prize for its mission to support ESL and SLIFE students.",
+    url: "https://www.clevelandjewishnews.com/news/local_news/ideas-accelerate-at-cleveland-leadership-center-competition/article_0a02ffe6-3323-4fcd-93b9-4880f7186714.amp.html",
+  },
+];
 
 const Media = () => {
   return (
@@ -28,17 +50,39 @@ const Media = () => {
             </p>
           </div>
 
-          {/* Coming Soon */}
-          <div className="max-w-2xl mx-auto mb-20">
-            <div className="rounded-2xl border border-border/50 bg-card p-12 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
-                <Clock className="w-8 h-8 text-accent" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-              <p className="text-muted-foreground max-w-md mx-auto">
-                We're compiling our press coverage and articles. Check back soon for links to media features about LanguageBridge.
-              </p>
-            </div>
+          {/* Articles */}
+          <div className="max-w-3xl mx-auto mb-20 space-y-6">
+            {articles.map((article, index) => (
+              <a
+                key={index}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <Card className="border-border/50 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                  <CardContent className="p-6 md:p-8">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-primary mb-2">
+                          {article.outlet} · {article.date}
+                        </p>
+                        <h2 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                          {article.title}
+                        </h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {article.excerpt}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-3">
+                          By {article.author}
+                        </p>
+                      </div>
+                      <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            ))}
           </div>
 
           {/* Media Inquiry */}
