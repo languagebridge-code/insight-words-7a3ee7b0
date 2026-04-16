@@ -39,11 +39,8 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/features" className="text-white/80 hover:text-white transition-colors">Features</Link></li>
-              <li><Link to="/pricing" className="text-white/80 hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link to="/compliance" className="text-white/80 hover:text-white transition-colors">Compliance</Link></li>
-              <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About</Link></li>
-              <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link to="/media" className="text-white/80 hover:text-white transition-colors">Media</Link></li>
+              <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About & Media</Link></li>
+              <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ & Compliance</Link></li>
               <li><Link to="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-white/80 hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
@@ -80,7 +77,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4 - Our Mission */}
+          {/* Column 3 - Our Mission */}
           <div>
             <img src={logo} alt="LanguageBridge Logo" className="w-16 h-16 mb-4" />
             <h3 className="font-bold text-lg mb-4 text-white">Our Mission</h3>

@@ -70,28 +70,10 @@ export const Navigation = () => {
     setMobileDropdownOpen(null);
   }, [location]);
 
-  const productLinks = [
-    { label: "Features", href: "/features", description: "Explore all capabilities" },
-    { label: "Pricing", href: "/pricing", description: "Plans & pricing" },
-  ];
-
   const resourceLinks = [
-    { label: "FAQ", href: "/faq", description: "Common questions" },
-    { label: "Compliance", href: "/compliance", description: "FERPA, Title III & more" },
-    { label: "Media", href: "/media", description: "Press & articles" },
+    { label: "FAQ & Compliance", href: "/faq", description: "Questions & privacy docs" },
+    { label: "About & Media", href: "/about", description: "Our story, awards & press" },
   ];
-
-  const scrollToSection = (href: string, e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
-    setIsMobileMenuOpen(false);
-    
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
 
   return (
     <nav
@@ -131,30 +113,25 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {/* Product Dropdown */}
-            <NavDropdown label="Product" items={productLinks} />
+            <Link
+              to="/features"
+              className={`nav-link text-foreground py-2 ${
+                location.pathname === '/features' ? 'text-primary' : ''
+              }`}
+            >
+              Features
+            </Link>
             
             {/* Resources Dropdown */}
             <NavDropdown label="Resources" items={resourceLinks} />
             
-            {/* Direct Links */}
-            <Link
-              to="/about"
-              className={`nav-link text-foreground py-2 ${
-                location.pathname === '/about' ? 'text-primary' : ''
-              }`}
-            >
-              About
-            </Link>
-            
-            
-            <Link to="/pricing">
+            <Link to="/features#pricing">
               <Button
                 variant="hero"
                 size="default"
                 className="relative overflow-hidden group"
               >
-                <span className="relative z-10">Download Today</span>
+                <span className="relative z-10">Get Started</span>
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </Button>
@@ -186,70 +163,38 @@ export const Navigation = () => {
             <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-4" />
             
             <div className="flex flex-col gap-1 px-2">
-              {/* Product Section */}
-              <button
-                onClick={() => setMobileDropdownOpen(mobileDropdownOpen === 'product' ? null : 'product')}
-                className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+              <Link
+                to="/features"
+                className={`px-4 py-3 rounded-lg transition-colors ${
+                  location.pathname === '/features' ? 'bg-muted text-primary' : 'hover:bg-muted'
+                }`}
               >
-                <span className="font-medium">Product</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileDropdownOpen === 'product' ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`overflow-hidden transition-all duration-200 ${mobileDropdownOpen === 'product' ? 'max-h-40' : 'max-h-0'}`}>
-                <div className="pl-4 space-y-1">
-                  {productLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      className={`block px-4 py-2 rounded-lg transition-colors ${
-                        location.pathname === link.href ? 'bg-muted text-primary' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                Features
+              </Link>
 
-              {/* Resources Section */}
-              <button
-                onClick={() => setMobileDropdownOpen(mobileDropdownOpen === 'resources' ? null : 'resources')}
-                className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+              <Link
+                to="/faq"
+                className={`px-4 py-3 rounded-lg transition-colors ${
+                  location.pathname === '/faq' ? 'bg-muted text-primary' : 'hover:bg-muted'
+                }`}
               >
-                <span className="font-medium">Resources</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileDropdownOpen === 'resources' ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`overflow-hidden transition-all duration-200 ${mobileDropdownOpen === 'resources' ? 'max-h-40' : 'max-h-0'}`}>
-                <div className="pl-4 space-y-1">
-                  {resourceLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      className={`block px-4 py-2 rounded-lg transition-colors ${
-                        location.pathname === link.href ? 'bg-muted text-primary' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                FAQ & Compliance
+              </Link>
 
-              {/* Direct Links */}
               <Link
                 to="/about"
                 className={`px-4 py-3 rounded-lg transition-colors ${
                   location.pathname === '/about' ? 'bg-muted text-primary' : 'hover:bg-muted'
                 }`}
               >
-                About
+                About & Media
               </Link>
-              
               
               {/* CTA Button */}
               <div className="px-2 pt-4">
-                <Link to="/pricing">
+                <Link to="/features#pricing">
                   <Button variant="hero" className="w-full">
-                    Download Today
+                    Get Started
                   </Button>
                 </Link>
               </div>
