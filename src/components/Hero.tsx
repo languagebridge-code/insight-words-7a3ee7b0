@@ -57,7 +57,7 @@ export const Hero = () => {
             
             {/* Subheadline */}
             <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8 fade-in-up delay-200">
-              The audio-first Chrome extension that helps preliterate English learners access classroom content, instantly.
+              The award-winning audio-first Chrome extension that helps preliterate English learners access classroom content, instantly.
             </p>
             
             {/* CTAs */}
