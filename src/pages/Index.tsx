@@ -84,7 +84,7 @@ const Index = () => {
           </p>
           <Link to="/features">
             <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 fade-in-up delay-300">
-              Explore All Features
+              Explore Features & Pricing
             </Button>
           </Link>
         </div>

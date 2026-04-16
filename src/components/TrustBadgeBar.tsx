@@ -7,7 +7,7 @@ export const TrustBadgeBar = () => {
       icon: Trophy,
       text: "Award-Winning Tech",
       description: "2026 Accelerate Grand Prize",
-      link: "/media"
+      link: "/about"
     },
     {
       icon: Shield,
