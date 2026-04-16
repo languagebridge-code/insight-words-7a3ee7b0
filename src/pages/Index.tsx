@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Hero } from "@/components/Hero";
 import { WhoWeServe } from "@/components/WhoWeServe";
-import { AccelerateWinBanner } from "@/components/AccelerateWinBanner";
+
 
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -68,7 +68,6 @@ const Index = () => {
         description="Audio-first language accessibility for preliterate ESL students. Audio Translation, Tiered Language Glossary, and Talk to Teacher tools for K-12 classrooms."
       />
       <Navigation />
-      <AccelerateWinBanner />
       <Hero />
       <TrustBadgeBar />
       <WhoWeServe />

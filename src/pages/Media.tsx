@@ -1,8 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { PageMeta } from "@/components/PageMeta";
-import { Newspaper, Mail, Phone, Twitter, ExternalLink } from "lucide-react";
+import { Newspaper, Mail, Phone, Twitter, ExternalLink, Trophy, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import accelerateWin from "@/assets/accelerate-win.png";
+import accelerateLogo from "@/assets/accelerate-logo.jpg";
 
 const articles = [
   {
@@ -30,7 +32,7 @@ const Media = () => {
     <div className="min-h-screen bg-background">
       <PageMeta
         title="Media | LanguageBridge"
-        description="Press coverage, articles, and media inquiries for LanguageBridge — the first Language Accessibility Screen Reader for ESL students."
+        description="Press coverage, awards, and media inquiries for LanguageBridge — the first Language Accessibility Screen Reader for ESL students."
       />
       <Navigation />
 
@@ -46,11 +48,80 @@ const Media = () => {
               <span className="gradient-text">Media</span>
             </h1>
             <p className="text-muted-foreground text-lg">
-              Articles, press coverage, and news about LanguageBridge and our mission to support preliterate English language learners.
+              Awards, press coverage, and news about LanguageBridge and our mission to support preliterate English language learners.
             </p>
           </div>
 
-          {/* Articles */}
+          {/* Award Feature Section */}
+          <div className="max-w-4xl mx-auto mb-20">
+            <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden">
+              <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+                {/* Photo */}
+                <div className="flex-shrink-0 w-full md:w-72 lg:w-80">
+                  <img
+                    src={accelerateWin}
+                    alt="LanguageBridge team receiving $5,000 grand prize check at the 2026 Accelerate pitch contest"
+                    className="rounded-xl shadow-lg w-full h-auto"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
+                    <img src={accelerateLogo} alt="Cleveland Leadership Center Accelerate" className="h-12 w-auto" />
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <Trophy className="w-4 h-4 text-primary" />
+                        <span className="text-sm font-semibold text-primary uppercase tracking-wide">
+                          2026 Grand Prize Winner
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                    Award-Winning Technology
+                  </h2>
+
+                  <p className="text-muted-foreground leading-relaxed mb-5">
+                    LanguageBridge took home the <strong className="text-foreground">$5,000 grand prize</strong> at the 2026 Cleveland Leadership Center Accelerate Citizens Make Change competition — recognized for our innovative approach to language accessibility in K-12 classrooms.
+                  </p>
+
+                  <ul className="space-y-2 text-sm text-muted-foreground mb-5">
+                    <li className="flex items-start gap-2 justify-center md:justify-start">
+                      <span className="text-primary font-bold">→</span>
+                      <span>Adding <strong className="text-foreground">Dari and Nepali</strong> language support</span>
+                    </li>
+                    <li className="flex items-start gap-2 justify-center md:justify-start">
+                      <span className="text-primary font-bold">→</span>
+                      <span>Building <strong className="text-foreground">LanguageBridge for iPads</strong></span>
+                    </li>
+                    <li className="flex items-start gap-2 justify-center md:justify-start">
+                      <span className="text-primary font-bold">→</span>
+                      <span>Becoming an official <strong className="text-foreground">Ohio TESOL conference sponsor</strong></span>
+                    </li>
+                  </ul>
+
+                  <a
+                    href="https://www.cleveleads.org/2026-accelerate-citizens-make-change-winners-announced/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                  >
+                    Read the announcement
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Press Coverage */}
+          <div className="max-w-3xl mx-auto mb-6">
+            <h2 className="text-2xl font-bold mb-2">Press Coverage</h2>
+            <p className="text-muted-foreground text-sm">Articles and news features about LanguageBridge.</p>
+          </div>
+
           <div className="max-w-3xl mx-auto mb-20 space-y-6">
             {articles.map((article, index) => (
               <a
@@ -67,9 +138,9 @@ const Media = () => {
                         <p className="text-sm font-medium text-primary mb-2">
                           {article.outlet} · {article.date}
                         </p>
-                        <h2 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                        <h3 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
                           {article.title}
-                        </h2>
+                        </h3>
                         <p className="text-muted-foreground leading-relaxed">
                           {article.excerpt}
                         </p>
