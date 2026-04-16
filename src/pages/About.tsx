@@ -4,9 +4,31 @@ import { Footer } from "@/components/Footer";
 import { FounderCredibility } from "@/components/FounderCredibility";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Target, Heart, Users, Lightbulb, MapPin, GraduationCap } from "lucide-react";
+import { Target, Heart, Users, Lightbulb, MapPin, GraduationCap, Trophy, ExternalLink, Mail, Phone, Twitter, Newspaper } from "lucide-react";
 import { useEffect } from "react";
+import accelerateWin from "@/assets/accelerate-win.png";
+import accelerateLogo from "@/assets/accelerate-logo.jpg";
+
+const articles = [
+  {
+    title: "Advancing great ideas: LanguageBridge wins big at Accelerate Cleveland",
+    outlet: "FreshWater Cleveland",
+    author: "Angelina Bair",
+    date: "March 17, 2026",
+    excerpt:
+      "LanguageBridge, an audio-first Chrome extension designed to help preliterate English learners access classroom content, won the 2026 Accelerate grand prize at the Cleveland Leadership Center pitch contest.",
+    url: "https://www.freshwatercleveland.com/features/LanguageBridge-Wins-Big-At-Accelerate-Cleveland_031726.aspx",
+  },
+  {
+    title: "Ideas accelerate at Cleveland Leadership Center competition",
+    outlet: "Cleveland Jewish News",
+    author: "Staff Report",
+    date: "March 2026",
+    excerpt:
+      "The Cleveland Leadership Center's Accelerate competition showcased innovative ideas from across Northeast Ohio, with LanguageBridge taking the top prize for its mission to support ESL and SLIFE students.",
+    url: "https://www.clevelandjewishnews.com/news/local_news/ideas-accelerate-at-cleveland-leadership-center-competition/article_0a02ffe6-3323-4fcd-93b9-4880f7186714.amp.html",
+  },
+];
 
 export default function About() {
   useEffect(() => {
@@ -81,8 +103,134 @@ export default function About() {
 
       <FounderCredibility />
 
-      {/* Mission & Vision */}
+      {/* Award Section */}
       <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+                <Trophy className="w-4 h-4" />
+                Awards & Press
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Award-Winning Technology
+              </h2>
+            </div>
+
+            {/* Award Feature */}
+            <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden mb-12">
+              <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+                <div className="flex-shrink-0 w-full md:w-72 lg:w-80">
+                  <img
+                    src={accelerateWin}
+                    alt="LanguageBridge team receiving $5,000 grand prize check at the 2026 Accelerate pitch contest"
+                    className="rounded-xl shadow-lg w-full h-auto"
+                  />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
+                    <img src={accelerateLogo} alt="Cleveland Leadership Center Accelerate" className="h-12 w-auto" />
+                    <div className="flex items-center gap-1.5">
+                      <Trophy className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-semibold text-primary uppercase tracking-wide">
+                        2026 Grand Prize Winner
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-5">
+                    LanguageBridge took home the <strong className="text-foreground">$5,000 grand prize</strong> at the 2026 Cleveland Leadership Center Accelerate Citizens Make Change competition — recognized for our innovative approach to language accessibility in K-12 classrooms.
+                  </p>
+                  <ul className="space-y-2 text-sm text-muted-foreground mb-5">
+                    <li className="flex items-start gap-2 justify-center md:justify-start">
+                      <span className="text-primary font-bold">→</span>
+                      <span>Adding <strong className="text-foreground">Dari and Nepali</strong> language support</span>
+                    </li>
+                    <li className="flex items-start gap-2 justify-center md:justify-start">
+                      <span className="text-primary font-bold">→</span>
+                      <span>Building <strong className="text-foreground">LanguageBridge for iPads</strong></span>
+                    </li>
+                    <li className="flex items-start gap-2 justify-center md:justify-start">
+                      <span className="text-primary font-bold">→</span>
+                      <span>Becoming an official <strong className="text-foreground">Ohio TESOL conference sponsor</strong></span>
+                    </li>
+                  </ul>
+                  <a
+                    href="https://www.cleveleads.org/2026-accelerate-citizens-make-change-winners-announced/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                  >
+                    Read the announcement
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Press Coverage */}
+            <h3 className="text-2xl font-bold mb-2">Press Coverage</h3>
+            <p className="text-muted-foreground text-sm mb-6">Articles and news features about LanguageBridge.</p>
+            <div className="space-y-6 mb-12">
+              {articles.map((article, index) => (
+                <a
+                  key={index}
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group"
+                >
+                  <Card className="border-border/50 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                    <CardContent className="p-6 md:p-8">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-primary mb-2">
+                            {article.outlet} · {article.date}
+                          </p>
+                          <h4 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                            {article.title}
+                          </h4>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {article.excerpt}
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-3">
+                            By {article.author}
+                          </p>
+                        </div>
+                        <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
+            </div>
+
+            {/* Media Inquiries */}
+            <div className="rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-border/50 p-8 md:p-12 text-center">
+              <h3 className="text-2xl font-bold mb-3">Media Inquiries</h3>
+              <p className="text-muted-foreground mb-8">
+                For press inquiries, interviews, or media requests, please reach out to our team.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="mailto:contact@languagebridge.app" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
+                  <Mail className="w-5 h-5" />
+                  contact@languagebridge.app
+                </a>
+                <a href="tel:+12168006020" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
+                  <Phone className="w-5 h-5" />
+                  (216) 800-6020
+                </a>
+                <a href="https://x.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
+                  <Twitter className="w-5 h-5" />
+                  @_languagebridge
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
@@ -111,7 +259,7 @@ export default function About() {
       </section>
 
       {/* Why LanguageBridge Exists */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
@@ -122,23 +270,18 @@ export default function About() {
               <p>
                 In classrooms across America, preliterate Students with Limited or Interrupted Formal Education (SLIFE) sit silently, not because they lack curiosity or intelligence, but because they cannot access the content being taught.
               </p>
-              
               <p>
                 These students, often refugees and newcomers who have experienced trauma and disrupted schooling, face a unique challenge: <strong className="text-foreground">they cannot read in any language yet</strong>, including their home language.
               </p>
-              
               <p>
                 Existing translation tools assume literacy. Google Translate, Read&Write, and similar platforms require students to read the translated text. For preliterate SLIFE students, these tools provide zero benefit.
               </p>
-              
               <p>
                 Schools respond with workarounds: pulling other students from class to interpret (violating privacy), simplifying curriculum (lowering expectations), or waiting months for students to develop basic English literacy (falling further behind).
               </p>
-              
               <p className="text-foreground font-semibold">
                 LanguageBridge was built to solve this specific problem.
               </p>
-              
               <p>
                 By combining real-time translation with audio playback, teacher communication tools, and tiered academic vocabulary support, LanguageBridge gives preliterate SLIFE students immediate access to grade-level content on day one, not months later.
               </p>
@@ -158,7 +301,7 @@ export default function About() {
       </section>
 
       {/* Where We're Based */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -176,11 +319,9 @@ export default function About() {
                 <p className="text-lg text-muted-foreground mb-4">
                   LanguageBridge was founded in Northeast Ohio, where communities have welcomed thousands of refugee students in recent years, including significant populations of Afghan refugees following the 2021 withdrawal.
                 </p>
-                
                 <p className="text-lg text-muted-foreground mb-4">
                   We're working with local school districts for the 2025-2026 school year, partnering directly with ESL teachers, compliance officers, and IT departments to refine our platform for real-world classroom needs.
                 </p>
-                
                 <p className="text-lg text-muted-foreground">
                   While we started in Ohio, our mission extends nationwide. Every school district with preliterate SLIFE students can benefit from purpose-built language accessibility tools.
                 </p>
@@ -191,7 +332,7 @@ export default function About() {
       </section>
 
       {/* Core Values */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
@@ -234,7 +375,7 @@ export default function About() {
       </section>
 
       {/* Roadmap */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
@@ -295,7 +436,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Join the Movement
@@ -304,13 +445,8 @@ export default function About() {
             Help us ensure every preliterate SLIFE student has access to education from day one
           </p>
           <div className="flex gap-4 justify-center">
-            <Link to="/pricing">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                Download Today
-              </Button>
-            </Link>
             <a href="mailto:contact@languagebridge.app">
-              <Button size="lg" variant="outline">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
                 Get in Touch
               </Button>
             </a>

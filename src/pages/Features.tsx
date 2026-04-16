@@ -4,8 +4,8 @@ import { Footer } from "@/components/Footer";
 import { ThreeTools } from "@/components/ThreeTools";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalSpecs } from "@/components/TechnicalSpecs";
+import { Pricing } from "@/components/Pricing";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import extensionScreenshot from "@/assets/languagebridge-screenshot.jpg";
 
@@ -59,16 +59,16 @@ export default function Features() {
               Three integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
             </p>
             <div className="flex gap-4 justify-center">
-              <Link to="/pricing">
+              <a href="#pricing">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                  Download Today
+                  Get Started
                 </Button>
-              </Link>
-              <Link to="/compliance">
+              </a>
+              <a href="/faq">
                 <Button size="lg" variant="outline">
                   View Compliance Info
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* Product Screenshot */}
@@ -86,6 +86,7 @@ export default function Features() {
       <ThreeTools />
       <HowItWorks />
       <TechnicalSpecs />
+      <Pricing />
       
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
@@ -96,11 +97,11 @@ export default function Features() {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Start using LanguageBridge in your classroom today
           </p>
-          <Link to="/pricing">
+          <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
             <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-              Get Started
+              Get Free Access
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
 
