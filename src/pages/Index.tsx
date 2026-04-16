@@ -2,8 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Hero } from "@/components/Hero";
 import { WhoWeServe } from "@/components/WhoWeServe";
-import { Award } from "lucide-react";
-import accelerateLogo from "@/assets/accelerate-logo.jpg";
+
 
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
