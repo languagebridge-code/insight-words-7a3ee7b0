@@ -119,7 +119,7 @@ export default function Privacy() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy</h1>
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-white/80">
-            <p><strong>Effective Date:</strong> December 1, 2025</p>
+            <p><strong>Effective Date:</strong> May 6, 2026</p>
             <span className="hidden md:inline">•</span>
             <p><strong>Contact:</strong> privacy@languagebridge.app</p>
           </div>
