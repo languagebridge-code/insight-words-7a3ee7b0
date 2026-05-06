@@ -408,7 +408,7 @@ export default function Privacy() {
                     <span>Regular security audits</span>
                   </li>
                 </ul>
-                <p className="mt-6 font-bold">No data breaches: Because we don't store student data, there's nothing to breach.</p>
+                <p className="mt-6 font-bold">Minimized breach exposure: Because LanguageBridge does not store student personally identifiable information or education records, the scope of any potential breach involving student data is structurally limited.</p>
               </CardContent>
             </Card>
           </section>
