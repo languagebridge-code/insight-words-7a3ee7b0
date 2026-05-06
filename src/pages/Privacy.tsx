@@ -255,12 +255,12 @@ export default function Privacy() {
                   <CardContent className="pt-6">
                     <ol className="space-y-2 list-decimal list-inside mb-4">
                       <li>You select text</li>
-                      <li>Text goes to Microsoft Azure via encrypted HTTPS</li>
-                      <li>Azure translates it and sends it back</li>
-                      <li>Azure immediately discards the text</li>
-                      <li>You hear/see the translation</li>
+                      <li>Text is sent to Microsoft Azure via encrypted HTTPS</li>
+                      <li>Azure returns the translation</li>
+                      <li>LanguageBridge does not store the text or the translation</li>
+                      <li>You hear or see the translation</li>
                     </ol>
-                    <p className="font-bold">The text is never stored. Not by us, not by Microsoft.</p>
+                    <p className="font-bold">LanguageBridge does not retain translation text. Microsoft Azure may retain limited transient logs strictly for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</p>
                   </CardContent>
                 </Card>
               </div>
