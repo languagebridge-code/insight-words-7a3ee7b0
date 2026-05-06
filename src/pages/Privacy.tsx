@@ -473,40 +473,53 @@ export default function Privacy() {
             <h2 className="text-3xl font-bold mb-6">5. Children's Privacy (COPPA Compliance)</h2>
             <Card>
               <CardContent className="pt-6 space-y-4">
-                <p>LanguageBridge is designed for use by students, including children under 13.</p>
-                
+                <p>
+                  LanguageBridge is offered to schools as a classroom tool and may be used by students under 13. We comply with the Children's Online Privacy Protection Act (COPPA) and the FTC's COPPA Rule (16 CFR Part 312).
+                </p>
+
                 <div className="border-l-4 border-primary pl-4 my-4">
-                  <p className="font-bold mb-3">COPPA Compliance:</p>
+                  <p className="font-bold mb-3">Data Minimization:</p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>We do <strong>not</strong> collect personal information from children</span>
+                      <span>No student account, login, name, email, or persistent identifier is collected by LanguageBridge</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>No registration or account required</span>
+                      <span>No behavioral profiles, advertising IDs, or cross-site tracking</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>No email addresses collected</span>
+                      <span>Translation text is processed to deliver the service and is not retained by LanguageBridge</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>No data stored about individual children</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Parental consent is <strong>not required</strong> because we collect no personal data</span>
+                      <span>Student data is never used for marketing, advertising, or to build student profiles for non-educational purposes</span>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <p className="font-semibold mb-2">School Use:</p>
+                  <p className="font-semibold mb-2">School Authorization (COPPA School Exception):</p>
+                  <p className="text-muted-foreground mb-2">
+                    LanguageBridge is provided to K-12 schools and districts for use solely in a school-authorized educational context. Consistent with the FTC's longstanding guidance on COPPA and schools, the school or district may provide consent on behalf of parents for the limited collection of student information needed to deliver the service, in lieu of obtaining direct parental consent, when:
+                  </p>
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Schools may deploy LanguageBridge without obtaining parental consent under FERPA's "school official" exception</li>
-                    <li>The extension acts as a tool for educational purposes, similar to a dictionary or calculator</li>
+                    <li>Use is limited to the educational context the school has authorized;</li>
+                    <li>Any information collected is used only to provide the requested educational service;</li>
+                    <li>Information is not used or disclosed for any commercial purpose unrelated to the school-authorized service; and</li>
+                    <li>Parents are given notice of the school's use of the service through the district's standard parent notification practices.</li>
                   </ul>
+                  <p className="text-muted-foreground mt-2">
+                    Schools and districts are responsible for providing required notices to parents and for managing parent opt-outs in accordance with their local policies and applicable law.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">No Direct Marketing to Children:</p>
+                  <p className="text-muted-foreground">
+                    LanguageBridge does not display advertising, market to students, or use any student information to contact a child directly.
+                  </p>
                 </div>
               </CardContent>
             </Card>
