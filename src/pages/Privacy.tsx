@@ -893,13 +893,16 @@ export default function Privacy() {
           <section id="international" className="mb-12">
             <h2 className="text-3xl font-bold mb-6">International Use</h2>
             
-            <Card>
-              <CardContent className="pt-6 space-y-4">
-                <p className="text-muted-foreground">LanguageBridge is based in the United States. Azure may process translations on servers worldwide. Schools outside the U.S. should review local data protection laws.</p>
-                
-                <p className="text-sm"><strong>EU/UK schools:</strong> GDPR-compliant Data Processing Agreements available on request.</p>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardContent className="pt-6 space-y-4">
+                  <p className="text-muted-foreground">
+                    LanguageBridge is based in the United States. Microsoft Azure may process translation requests in data centers in multiple regions under its enterprise privacy and security commitments. Schools outside the U.S. should review their local data protection laws before deploying the service.
+                  </p>
+                  <p className="text-muted-foreground">
+                    For school districts and institutions in the EU, UK, and other jurisdictions with GDPR-equivalent requirements, LanguageBridge will enter into a written Data Processing Agreement (DPA) covering the limited processing activities required to deliver the service, including standard contractual clauses where applicable. Districts can request a DPA at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a>.
+                  </p>
+                </CardContent>
+              </Card>
           </section>
 
           {/* Section: Changes to Policy */}
