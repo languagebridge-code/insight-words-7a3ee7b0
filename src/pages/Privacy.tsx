@@ -658,27 +658,31 @@ export default function Privacy() {
 
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">Breach Notification Protocol</h3>
+                  <h3 className="text-xl font-semibold mb-3">Breach Notification Commitment</h3>
                   <p className="text-muted-foreground mb-4">
-                    In the unlikely event of a security incident, LanguageBridge maintains a comprehensive security incident response plan:
+                    Consistent with Ohio Rev. Code § 3319.325 and our contractual obligations to school districts, LanguageBridge maintains a written security incident response plan and commits to the following:
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Districts notified within 72 hours of any confirmed breach (as required by SB 29)</span>
+                      <span className="text-sm"><strong>30-day breach notification:</strong> Affected school districts will be notified, in writing, within 30 days of LanguageBridge's confirmation of a security breach involving district or student data, or sooner where required by law or contract.</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">24/7 emergency contact available for security concerns</span>
+                      <span className="text-sm">Notifications include the nature and timing of the incident, the categories of data involved, the steps taken to contain it, and recommended actions for the district.</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Written incident response procedures documented</span>
+                      <span className="text-sm">A dedicated security contact is available at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a> for incident reporting and coordination.</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">Written incident response procedures are documented internally and reviewed periodically.</span>
                     </div>
                   </div>
                   <div className="mt-4 p-3 bg-muted rounded-lg">
                     <p className="text-sm text-muted-foreground">
-                      <strong>Note:</strong> Since LanguageBridge does not store educational records, the risk of a data breach affecting student information is minimal. There is no database of student data to breach.
+                      <strong>Note:</strong> Because LanguageBridge does not store student PII or education records, the volume of student information potentially exposed by an incident affecting our systems is structurally limited. Districts remain responsible for breach response involving data they store in their own systems.
                     </p>
                   </div>
                 </CardContent>
