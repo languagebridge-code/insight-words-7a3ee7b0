@@ -1105,18 +1105,18 @@ export default function Privacy() {
                 
                 <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
                   <li>You highlight text</li>
-                  <li>It gets translated by Microsoft</li>
-                  <li>You hear/see the translation</li>
-                  <li>Everything is deleted</li>
+                  <li>It is translated by Microsoft Azure over an encrypted connection</li>
+                  <li>You hear or see the translation</li>
+                  <li>LanguageBridge does not save the text or the translation</li>
                 </ol>
 
                 <div className="border-t border-border pt-4">
                   <p className="font-semibold mb-2">We don't:</p>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    <li>Know who you are</li>
+                    <li>Ask for your name, email, or login</li>
                     <li>Save what you translate</li>
                     <li>Track where you go online</li>
-                    <li>Sell any information</li>
+                    <li>Sell any information or use it for advertising</li>
                   </ul>
                 </div>
 
