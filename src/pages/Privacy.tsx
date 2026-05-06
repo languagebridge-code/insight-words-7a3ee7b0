@@ -358,7 +358,7 @@ export default function Privacy() {
                     </div>
                     <div>
                       <p className="font-semibold mb-2">Storage:</p>
-                      <p className="text-muted-foreground">None - text is processed and immediately deleted</p>
+                      <p className="text-muted-foreground">LanguageBridge does not store translation requests or audio. Microsoft Azure may keep short-lived operational logs for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</p>
                     </div>
                     <div>
                       <p className="font-semibold mb-2">Privacy:</p>
