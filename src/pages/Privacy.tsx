@@ -1013,10 +1013,9 @@ export default function Privacy() {
                   <p className="font-semibold mb-2">Ohio Law Compliance:</p>
                   <p className="text-muted-foreground mb-2 text-sm">As an Ohio-based company, we fully comply with:</p>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
-                    <li><strong>Ohio Senate Bill 29 (SB 29)</strong> - Student Data Privacy Requirements (100% compliant)</li>
-                    <li><strong>Ohio Revised Code § 3319.321</strong> - Student Data Privacy</li>
-                    <li><strong>Ohio Revised Code § 3301.0714</strong> - Data Security Requirements</li>
-                    <li><strong>Ohio Administrative Code 3301-14</strong> - Data Governance</li>
+                    <li><strong>Ohio Senate Bill 29 / Ohio Rev. Code § 3319.325</strong> – Student data privacy and limits on monitoring by K-12 technology providers</li>
+                    <li><strong>Ohio Rev. Code § 3319.321</strong> – Confidentiality of student records</li>
+                    <li><strong>Ohio Rev. Code § 1347 (state data protection)</strong> and applicable Ohio Administrative Code provisions on data governance</li>
                   </ul>
                   <p className="mt-3 text-sm">
                     <a href="#sb29" className="text-primary hover:underline font-semibold">View detailed SB 29 compliance information →</a>
