@@ -527,15 +527,15 @@ export default function Privacy() {
 
           {/* Section: Ohio SB 29 Compliance */}
           <section id="sb29" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Ohio Senate Bill 29 (SB 29) Compliance</h2>
-            
+            <h2 className="text-3xl font-bold mb-6">Ohio Senate Bill 29 (Ohio Rev. Code § 3319.325) Compliance</h2>
+
             <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 mb-6">
               <CardContent className="pt-6">
                 <p className="text-lg mb-4">
-                  Ohio Senate Bill 29 establishes student data privacy requirements for K-12 school districts and technology providers. <strong className="text-primary">LanguageBridge is fully compliant with all SB 29 requirements.</strong>
+                  Ohio Senate Bill 29, codified at <strong>Ohio Revised Code § 3319.325</strong>, governs how K-12 school districts and their technology providers may handle student data. <strong className="text-primary">LanguageBridge is designed to align with the requirements of ORC § 3319.325.</strong>
                 </p>
                 <p className="text-muted-foreground">
-                  Our privacy-first architecture means we exceed SB 29 requirements by design—we don't store educational records, track students, or collect personally identifiable information.
+                  Our privacy-first architecture goes beyond the statutory minimum: LanguageBridge does not store educational records, does not track students, and does not collect student personally identifiable information.
                 </p>
               </CardContent>
             </Card>
