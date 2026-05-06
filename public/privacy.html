@@ -88,7 +88,7 @@
     <div class="container">
       <a href="/">← Back to Home</a>
       <h1>Privacy Policy</h1>
-      <p class="meta"><strong>Effective Date:</strong> December 1, 2025 &bull; <strong>Contact:</strong> privacy@languagebridge.app</p>
+      <p class="meta"><strong>Effective Date:</strong> May 6, 2026 &bull; <strong>Contact:</strong> privacy@languagebridge.app</p>
     </div>
   </header>
 
@@ -183,12 +183,12 @@
         <div class="card card-blue">
           <ol>
             <li>You select text</li>
-            <li>Text goes to Microsoft Azure via encrypted HTTPS</li>
-            <li>Azure translates it and sends it back</li>
-            <li>Azure immediately discards the text</li>
-            <li>You hear/see the translation</li>
+            <li>Text is sent to Microsoft Azure via encrypted HTTPS</li>
+            <li>Azure returns the translation</li>
+            <li>LanguageBridge does not store the text or the translation</li>
+            <li>You hear or see the translation</li>
           </ol>
-          <p><strong>The text is never stored. Not by us, not by Microsoft.</strong></p>
+          <p><strong>LanguageBridge does not retain translation text. Microsoft Azure may retain limited transient logs strictly for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</strong></p>
         </div>
 
         <h3>Google Docs &amp; Clipboard</h3>
@@ -204,7 +204,7 @@
 
         <h3>Text-to-Speech</h3>
         <div class="card">
-          <p>Same as translation - text is sent to Azure Speech Services, processed, and immediately discarded. We don't keep audio files.</p>
+          <p>Same as translation: text is sent to Azure Speech Services over encrypted HTTPS and synthesized audio is returned. LanguageBridge does not store the text or the audio. Audio is played in your browser and discarded.</p>
         </div>
       </section>
 
@@ -233,7 +233,7 @@
         <div class="card">
           <p><strong>Used for:</strong> Translation and text-to-speech</p>
           <p><strong>What they get:</strong> Selected text only (no student names/IDs)</p>
-          <p><strong>Storage:</strong> None - text is processed and immediately deleted</p>
+          <p><strong>Storage:</strong> LanguageBridge does not store translation requests or audio. Microsoft Azure may keep short-lived operational logs for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</p>
           <p><strong>Privacy:</strong> <a href="https://privacy.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft Privacy Policy</a></p>
         </div>
 
@@ -256,7 +256,7 @@
           <div class="check-item"><span class="check">✓</span> Secure API connections to Azure</div>
           <div class="check-item"><span class="check">✓</span> Multi-factor authentication for admin access</div>
           <div class="check-item"><span class="check">✓</span> Regular security audits</div>
-          <p style="margin-top: 1rem;"><strong>No data breaches: Because we don't store student data, there's nothing to breach.</strong></p>
+          <p style="margin-top: 1rem;"><strong>Minimized breach exposure: Because LanguageBridge does not store student personally identifiable information or education records, the scope of any potential breach involving student data is structurally limited.</strong></p>
         </div>
       </section>
 
@@ -265,11 +265,11 @@
         <h2>Data Retention</h2>
         <div class="card">
           <ul>
-            <li><strong>Translated text:</strong> 0 seconds (not stored)</li>
-            <li><strong>Student info:</strong> 0 seconds (not collected)</li>
-            <li><strong>Usage stats:</strong> 2 years (anonymous aggregates only)</li>
-            <li><strong>School contracts:</strong> Contract duration + 7 years (legal requirement)</li>
-            <li><strong>Error logs:</strong> 90 days (no personal info)</li>
+            <li><strong>Translated text &amp; audio:</strong> Not stored by LanguageBridge. Azure may retain short-lived operational logs for security and abuse prevention.</li>
+            <li><strong>Student PII:</strong> Not collected.</li>
+            <li><strong>Usage stats:</strong> Up to 2 years (anonymous, aggregate counts only)</li>
+            <li><strong>School contracts &amp; billing records:</strong> Contract duration plus up to 7 years (legal and tax requirements)</li>
+            <li><strong>Error logs:</strong> Up to 90 days (no student PII)</li>
           </ul>
         </div>
       </section>
@@ -278,18 +278,25 @@
       <section id="coppa">
         <h2>Children's Privacy (COPPA Compliance)</h2>
         <div class="card">
-          <p>LanguageBridge is designed for use by students, including children under 13.</p>
-          <p style="margin-top: 1rem;"><strong>COPPA Compliance:</strong></p>
-          <div class="check-item"><span class="check">✓</span> We do <strong>not</strong> collect personal information from children</div>
-          <div class="check-item"><span class="check">✓</span> No registration or account required</div>
-          <div class="check-item"><span class="check">✓</span> No email addresses collected</div>
-          <div class="check-item"><span class="check">✓</span> No data stored about individual children</div>
-          <div class="check-item"><span class="check">✓</span> Parental consent is <strong>not required</strong> because we collect no personal data</div>
-          <p style="margin-top: 1rem;"><strong>School Use:</strong></p>
+          <p>LanguageBridge is offered to schools as a classroom tool and may be used by students under 13. We comply with the Children's Online Privacy Protection Act (COPPA) and the FTC's COPPA Rule (16 CFR Part 312).</p>
+
+          <p style="margin-top: 1rem;"><strong>Data Minimization:</strong></p>
+          <div class="check-item"><span class="check">✓</span> No student account, login, name, email, or persistent identifier is collected by LanguageBridge</div>
+          <div class="check-item"><span class="check">✓</span> No behavioral profiles, advertising IDs, or cross-site tracking</div>
+          <div class="check-item"><span class="check">✓</span> Translation text is processed to deliver the service and is not retained by LanguageBridge</div>
+          <div class="check-item"><span class="check">✓</span> Student data is never used for marketing, advertising, or to build student profiles for non-educational purposes</div>
+
+          <p style="margin-top: 1rem;"><strong>School Authorization (COPPA School Exception):</strong></p>
+          <p>LanguageBridge is provided to K-12 schools and districts for use solely in a school-authorized educational context. Consistent with the FTC's longstanding guidance on COPPA and schools, the school or district may provide consent on behalf of parents for the limited collection of student information needed to deliver the service, in lieu of obtaining direct parental consent, when:</p>
           <ul>
-            <li>Schools may deploy LanguageBridge without obtaining parental consent under FERPA's "school official" exception</li>
-            <li>The extension acts as a tool for educational purposes, similar to a dictionary or calculator</li>
+            <li>Use is limited to the educational context the school has authorized;</li>
+            <li>Any information collected is used only to provide the requested educational service;</li>
+            <li>Information is not used or disclosed for any commercial purpose unrelated to the school-authorized service; and</li>
+            <li>Parents are given notice of the school's use of the service through the district's standard parent notification practices.</li>
           </ul>
+          <p style="margin-top: 0.75rem;">Schools and districts are responsible for providing required notices to parents and for managing parent opt-outs in accordance with their local policies and applicable law.</p>
+
+          <p style="margin-top: 1rem;"><strong>No Direct Marketing to Children:</strong> LanguageBridge does not display advertising, market to students, or use any student information to contact a child directly.</p>
         </div>
       </section>
 
@@ -321,10 +328,10 @@
 
       <!-- Ohio SB 29 Compliance -->
       <section id="sb29">
-        <h2>Ohio Senate Bill 29 (SB 29) Compliance</h2>
+        <h2>Ohio Senate Bill 29 (Ohio Rev. Code § 3319.325) Compliance</h2>
         <div class="card card-primary">
-          <p><strong style="color: var(--success);">✓ 100% Compliant with Ohio SB 29</strong></p>
-          <p style="margin-top: 0.5rem;">Ohio Senate Bill 29 establishes student data privacy requirements for K-12 school districts and technology providers. LanguageBridge exceeds all SB 29 requirements through our privacy-first architecture.</p>
+          <p><strong style="color: var(--success);">✓ Aligned with Ohio Rev. Code § 3319.325</strong></p>
+          <p style="margin-top: 0.5rem;">Ohio Senate Bill 29, codified at <strong>Ohio Revised Code § 3319.325</strong>, governs how K-12 school districts and their technology providers handle student data. LanguageBridge is designed to align with the requirements of ORC § 3319.325; our privacy-first architecture goes beyond the statutory minimum because we do not store educational records, track students, or collect student personally identifiable information.</p>
         </div>
         
         <div class="card">
@@ -379,7 +386,7 @@
                 <td style="padding: 0.5rem; color: var(--muted);">Audio features on-demand only (student-initiated)</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 0.5rem; color: var(--muted);">72-hour breach notification</td>
+                <td style="padding: 0.5rem; color: var(--muted);">Breach notification (within 30 days)</td>
                 <td style="padding: 0.5rem; text-align: center; color: var(--success); font-weight: bold;">✓</td>
                 <td style="padding: 0.5rem; color: var(--muted);">Written protocol; 24/7 emergency contact</td>
               </tr>
@@ -417,11 +424,13 @@
         </div>
 
         <div class="card card-green">
-          <h3>Breach Notification Protocol</h3>
-          <div class="check-item"><span class="check">✓</span> Districts notified within 72 hours of any confirmed breach (as required by SB 29)</div>
-          <div class="check-item"><span class="check">✓</span> 24/7 emergency contact available for security concerns</div>
-          <div class="check-item"><span class="check">✓</span> Written incident response procedures documented</div>
-          <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--muted);"><strong>Note:</strong> Since LanguageBridge does not store educational records, the risk of a data breach affecting student information is minimal.</p>
+          <h3>Breach Notification Commitment</h3>
+          <p style="margin-bottom: 0.75rem;">Consistent with Ohio Rev. Code § 3319.325 and our contractual obligations to school districts, LanguageBridge maintains a written security incident response plan and commits to the following:</p>
+          <div class="check-item"><span class="check">✓</span> <strong>30-day breach notification:</strong> Affected school districts will be notified, in writing, within 30 days of LanguageBridge's confirmation of a security breach involving district or student data, or sooner where required by law or contract.</div>
+          <div class="check-item"><span class="check">✓</span> Notifications include the nature and timing of the incident, categories of data involved, containment steps, and recommended actions.</div>
+          <div class="check-item"><span class="check">✓</span> Dedicated security contact: <a href="mailto:privacy@languagebridge.app">privacy@languagebridge.app</a></div>
+          <div class="check-item"><span class="check">✓</span> Written incident response procedures documented internally and reviewed periodically.</div>
+          <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--muted);"><strong>Note:</strong> Because LanguageBridge does not store student PII or education records, the volume of student information potentially exposed by an incident affecting our systems is structurally limited. Districts remain responsible for breach response involving data they store in their own systems.</p>
         </div>
 
         <div class="card">
@@ -440,8 +449,8 @@
       <section id="schools">
         <h2>For Schools</h2>
         <div class="card">
-          <p>Schools may deploy LanguageBridge without obtaining parental consent under FERPA's "school official" exception. The extension acts as a tool for educational purposes, similar to a dictionary or calculator.</p>
-          <p style="margin-top: 1rem;">We can provide Data Processing Agreements (DPAs) upon request for school districts.</p>
+          <p>School districts may authorize LanguageBridge for classroom use under FERPA's "school official" exception (34 CFR § 99.31(a)(1)(i)(B)) and, for students under 13, may provide consent on behalf of parents under the COPPA school-authorization framework, as described in the Children's Privacy section above. The service is used solely for the educational purposes the district authorizes.</p>
+          <p style="margin-top: 1rem;">A written Data Processing Agreement (DPA) and SB 29 contract addendum are available for any school district that requests one at <a href="mailto:privacy@languagebridge.app">privacy@languagebridge.app</a>.</p>
         </div>
       </section>
 
@@ -449,8 +458,8 @@
       <section id="international">
         <h2>International Use</h2>
         <div class="card">
-          <p>LanguageBridge is based in the United States. Azure may process translations on servers worldwide. Schools outside the U.S. should review local data protection laws.</p>
-          <p style="margin-top: 1rem;"><strong>EU/UK schools:</strong> GDPR-compliant Data Processing Agreements available on request.</p>
+          <p>LanguageBridge is based in the United States. Microsoft Azure may process translation requests in data centers in multiple regions under its enterprise privacy and security commitments. Schools outside the U.S. should review their local data protection laws before deploying the service.</p>
+          <p style="margin-top: 1rem;">For school districts and institutions in the EU, UK, and other jurisdictions with GDPR-equivalent requirements, LanguageBridge will enter into a written Data Processing Agreement (DPA) covering the limited processing activities required to deliver the service, including standard contractual clauses where applicable. Districts can request a DPA at <a href="mailto:privacy@languagebridge.app">privacy@languagebridge.app</a>.</p>
         </div>
       </section>
 
@@ -499,10 +508,9 @@
           <p><strong>Ohio Law Compliance:</strong></p>
           <p style="margin-top: 0.5rem;">As an Ohio-based company, we fully comply with:</p>
           <ul>
-            <li><strong>Ohio Senate Bill 29 (SB 29)</strong> - Student Data Privacy Requirements (100% compliant)</li>
-            <li><strong>Ohio Revised Code § 3319.321</strong> - Student Data Privacy</li>
-            <li><strong>Ohio Revised Code § 3301.0714</strong> - Data Security Requirements</li>
-            <li><strong>Ohio Administrative Code 3301-14</strong> - Data Governance</li>
+            <li><strong>Ohio Senate Bill 29 / Ohio Rev. Code § 3319.325</strong> – Student data privacy and limits on monitoring by K-12 technology providers</li>
+            <li><strong>Ohio Rev. Code § 3319.321</strong> – Confidentiality of student records</li>
+            <li><strong>Ohio Rev. Code § 1347</strong> and applicable Ohio Administrative Code provisions on data governance</li>
           </ul>
           <p style="margin-top: 0.75rem;"><a href="#sb29" style="font-weight: 600;">View detailed SB 29 compliance information →</a></p>
         </div>

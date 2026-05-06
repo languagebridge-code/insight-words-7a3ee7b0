@@ -119,7 +119,7 @@ export default function Privacy() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy</h1>
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-white/80">
-            <p><strong>Effective Date:</strong> December 1, 2025</p>
+            <p><strong>Effective Date:</strong> May 6, 2026</p>
             <span className="hidden md:inline">•</span>
             <p><strong>Contact:</strong> privacy@languagebridge.app</p>
           </div>
@@ -255,12 +255,12 @@ export default function Privacy() {
                   <CardContent className="pt-6">
                     <ol className="space-y-2 list-decimal list-inside mb-4">
                       <li>You select text</li>
-                      <li>Text goes to Microsoft Azure via encrypted HTTPS</li>
-                      <li>Azure translates it and sends it back</li>
-                      <li>Azure immediately discards the text</li>
-                      <li>You hear/see the translation</li>
+                      <li>Text is sent to Microsoft Azure via encrypted HTTPS</li>
+                      <li>Azure returns the translation</li>
+                      <li>LanguageBridge does not store the text or the translation</li>
+                      <li>You hear or see the translation</li>
                     </ol>
-                    <p className="font-bold">The text is never stored. Not by us, not by Microsoft.</p>
+                    <p className="font-bold">LanguageBridge does not retain translation text. Microsoft Azure may retain limited transient logs strictly for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -289,7 +289,7 @@ export default function Privacy() {
                 <h3 className="text-2xl font-semibold mb-4">Text-to-Speech</h3>
                 <Card>
                   <CardContent className="pt-6">
-                    <p className="text-muted-foreground">Same as translation - text is sent to Azure Speech Services, processed, and immediately discarded. We don't keep audio files.</p>
+                    <p className="text-muted-foreground">Same as translation: text is sent to Azure Speech Services over encrypted HTTPS and synthesized audio is returned. LanguageBridge does not store the text or the audio. Audio is played in your browser and discarded.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -358,7 +358,7 @@ export default function Privacy() {
                     </div>
                     <div>
                       <p className="font-semibold mb-2">Storage:</p>
-                      <p className="text-muted-foreground">None - text is processed and immediately deleted</p>
+                      <p className="text-muted-foreground">LanguageBridge does not store translation requests or audio. Microsoft Azure may keep short-lived operational logs for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</p>
                     </div>
                     <div>
                       <p className="font-semibold mb-2">Privacy:</p>
@@ -408,7 +408,7 @@ export default function Privacy() {
                     <span>Regular security audits</span>
                   </li>
                 </ul>
-                <p className="mt-6 font-bold">No data breaches: Because we don't store student data, there's nothing to breach.</p>
+                <p className="mt-6 font-bold">Minimized breach exposure: Because LanguageBridge does not store student personally identifiable information or education records, the scope of any potential breach involving student data is structurally limited.</p>
               </CardContent>
             </Card>
           </section>
@@ -420,11 +420,11 @@ export default function Privacy() {
             <Card>
               <CardContent className="pt-6">
                 <ul className="space-y-3 text-muted-foreground">
-                  <li><strong>Translated text:</strong> 0 seconds (not stored)</li>
-                  <li><strong>Student info:</strong> 0 seconds (not collected)</li>
-                  <li><strong>Usage stats:</strong> 2 years (anonymous aggregates only)</li>
-                  <li><strong>School contracts:</strong> Contract duration + 7 years (legal requirement)</li>
-                  <li><strong>Error logs:</strong> 90 days (no personal info)</li>
+                  <li><strong>Translated text & audio:</strong> Not stored by LanguageBridge. Azure may retain short-lived operational logs for security and abuse prevention.</li>
+                  <li><strong>Student PII:</strong> Not collected.</li>
+                  <li><strong>Usage stats:</strong> Up to 2 years (anonymous, aggregate counts only)</li>
+                  <li><strong>School contracts & billing records:</strong> Contract duration plus up to 7 years (legal and tax requirements)</li>
+                  <li><strong>Error logs:</strong> Up to 90 days (no student PII)</li>
                 </ul>
               </CardContent>
             </Card>
@@ -461,7 +461,7 @@ export default function Privacy() {
                       <li>Subpoenas</li>
                       <li>Legal processes</li>
                     </ul>
-                    <p className="mt-4 text-sm font-semibold">However, since we <strong>do not collect or store user data</strong>, there is typically nothing to disclose.</p>
+                    <p className="mt-4 text-sm font-semibold">Because LanguageBridge does not collect or store student PII or education records, in most cases there is no student data available to disclose.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -473,40 +473,53 @@ export default function Privacy() {
             <h2 className="text-3xl font-bold mb-6">5. Children's Privacy (COPPA Compliance)</h2>
             <Card>
               <CardContent className="pt-6 space-y-4">
-                <p>LanguageBridge is designed for use by students, including children under 13.</p>
-                
+                <p>
+                  LanguageBridge is offered to schools as a classroom tool and may be used by students under 13. We comply with the Children's Online Privacy Protection Act (COPPA) and the FTC's COPPA Rule (16 CFR Part 312).
+                </p>
+
                 <div className="border-l-4 border-primary pl-4 my-4">
-                  <p className="font-bold mb-3">COPPA Compliance:</p>
+                  <p className="font-bold mb-3">Data Minimization:</p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>We do <strong>not</strong> collect personal information from children</span>
+                      <span>No student account, login, name, email, or persistent identifier is collected by LanguageBridge</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>No registration or account required</span>
+                      <span>No behavioral profiles, advertising IDs, or cross-site tracking</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>No email addresses collected</span>
+                      <span>Translation text is processed to deliver the service and is not retained by LanguageBridge</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>No data stored about individual children</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Parental consent is <strong>not required</strong> because we collect no personal data</span>
+                      <span>Student data is never used for marketing, advertising, or to build student profiles for non-educational purposes</span>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <p className="font-semibold mb-2">School Use:</p>
+                  <p className="font-semibold mb-2">School Authorization (COPPA School Exception):</p>
+                  <p className="text-muted-foreground mb-2">
+                    LanguageBridge is provided to K-12 schools and districts for use solely in a school-authorized educational context. Consistent with the FTC's longstanding guidance on COPPA and schools, the school or district may provide consent on behalf of parents for the limited collection of student information needed to deliver the service, in lieu of obtaining direct parental consent, when:
+                  </p>
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Schools may deploy LanguageBridge without obtaining parental consent under FERPA's "school official" exception</li>
-                    <li>The extension acts as a tool for educational purposes, similar to a dictionary or calculator</li>
+                    <li>Use is limited to the educational context the school has authorized;</li>
+                    <li>Any information collected is used only to provide the requested educational service;</li>
+                    <li>Information is not used or disclosed for any commercial purpose unrelated to the school-authorized service; and</li>
+                    <li>Parents are given notice of the school's use of the service through the district's standard parent notification practices.</li>
                   </ul>
+                  <p className="text-muted-foreground mt-2">
+                    Schools and districts are responsible for providing required notices to parents and for managing parent opt-outs in accordance with their local policies and applicable law.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">No Direct Marketing to Children:</p>
+                  <p className="text-muted-foreground">
+                    LanguageBridge does not display advertising, market to students, or use any student information to contact a child directly.
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -514,15 +527,15 @@ export default function Privacy() {
 
           {/* Section: Ohio SB 29 Compliance */}
           <section id="sb29" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Ohio Senate Bill 29 (SB 29) Compliance</h2>
-            
+            <h2 className="text-3xl font-bold mb-6">Ohio Senate Bill 29 (Ohio Rev. Code § 3319.325) Compliance</h2>
+
             <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 mb-6">
               <CardContent className="pt-6">
                 <p className="text-lg mb-4">
-                  Ohio Senate Bill 29 establishes student data privacy requirements for K-12 school districts and technology providers. <strong className="text-primary">LanguageBridge is fully compliant with all SB 29 requirements.</strong>
+                  Ohio Senate Bill 29, codified at <strong>Ohio Revised Code § 3319.325</strong>, governs how K-12 school districts and their technology providers may handle student data. <strong className="text-primary">LanguageBridge is designed to align with the requirements of ORC § 3319.325.</strong>
                 </p>
                 <p className="text-muted-foreground">
-                  Our privacy-first architecture means we exceed SB 29 requirements by design—we don't store educational records, track students, or collect personally identifiable information.
+                  Our privacy-first architecture goes beyond the statutory minimum: LanguageBridge does not store educational records, does not track students, and does not collect student personally identifiable information.
                 </p>
               </CardContent>
             </Card>
@@ -581,9 +594,9 @@ export default function Privacy() {
                         <td className="p-3 text-muted-foreground">Audio features on-demand only (student-initiated)</td>
                       </tr>
                       <tr>
-                        <td className="p-3 text-muted-foreground">72-hour breach notification</td>
+                        <td className="p-3 text-muted-foreground">Breach notification (within 30 days)</td>
                         <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Written protocol established; 24/7 emergency contact</td>
+                        <td className="p-3 text-muted-foreground">Written commitment to notify districts within 30 days of confirmed breach; 24/7 emergency contact</td>
                       </tr>
                       <tr>
                         <td className="p-3 text-muted-foreground">Data security measures</td>
@@ -645,27 +658,31 @@ export default function Privacy() {
 
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">Breach Notification Protocol</h3>
+                  <h3 className="text-xl font-semibold mb-3">Breach Notification Commitment</h3>
                   <p className="text-muted-foreground mb-4">
-                    In the unlikely event of a security incident, LanguageBridge maintains a comprehensive security incident response plan:
+                    Consistent with Ohio Rev. Code § 3319.325 and our contractual obligations to school districts, LanguageBridge maintains a written security incident response plan and commits to the following:
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Districts notified within 72 hours of any confirmed breach (as required by SB 29)</span>
+                      <span className="text-sm"><strong>30-day breach notification:</strong> Affected school districts will be notified, in writing, within 30 days of LanguageBridge's confirmation of a security breach involving district or student data, or sooner where required by law or contract.</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">24/7 emergency contact available for security concerns</span>
+                      <span className="text-sm">Notifications include the nature and timing of the incident, the categories of data involved, the steps taken to contain it, and recommended actions for the district.</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Written incident response procedures documented</span>
+                      <span className="text-sm">A dedicated security contact is available at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a> for incident reporting and coordination.</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">Written incident response procedures are documented internally and reviewed periodically.</span>
                     </div>
                   </div>
                   <div className="mt-4 p-3 bg-muted rounded-lg">
                     <p className="text-sm text-muted-foreground">
-                      <strong>Note:</strong> Since LanguageBridge does not store educational records, the risk of a data breach affecting student information is minimal. There is no database of student data to breach.
+                      <strong>Note:</strong> Because LanguageBridge does not store student PII or education records, the volume of student information potentially exposed by an incident affecting our systems is structurally limited. Districts remain responsible for breach response involving data they store in their own systems.
                     </p>
                   </div>
                 </CardContent>
@@ -876,13 +893,16 @@ export default function Privacy() {
           <section id="international" className="mb-12">
             <h2 className="text-3xl font-bold mb-6">International Use</h2>
             
-            <Card>
-              <CardContent className="pt-6 space-y-4">
-                <p className="text-muted-foreground">LanguageBridge is based in the United States. Azure may process translations on servers worldwide. Schools outside the U.S. should review local data protection laws.</p>
-                
-                <p className="text-sm"><strong>EU/UK schools:</strong> GDPR-compliant Data Processing Agreements available on request.</p>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardContent className="pt-6 space-y-4">
+                  <p className="text-muted-foreground">
+                    LanguageBridge is based in the United States. Microsoft Azure may process translation requests in data centers in multiple regions under its enterprise privacy and security commitments. Schools outside the U.S. should review their local data protection laws before deploying the service.
+                  </p>
+                  <p className="text-muted-foreground">
+                    For school districts and institutions in the EU, UK, and other jurisdictions with GDPR-equivalent requirements, LanguageBridge will enter into a written Data Processing Agreement (DPA) covering the limited processing activities required to deliver the service, including standard contractual clauses where applicable. Districts can request a DPA at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a>.
+                  </p>
+                </CardContent>
+              </Card>
           </section>
 
           {/* Section: Changes to Policy */}
@@ -993,10 +1013,9 @@ export default function Privacy() {
                   <p className="font-semibold mb-2">Ohio Law Compliance:</p>
                   <p className="text-muted-foreground mb-2 text-sm">As an Ohio-based company, we fully comply with:</p>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
-                    <li><strong>Ohio Senate Bill 29 (SB 29)</strong> - Student Data Privacy Requirements (100% compliant)</li>
-                    <li><strong>Ohio Revised Code § 3319.321</strong> - Student Data Privacy</li>
-                    <li><strong>Ohio Revised Code § 3301.0714</strong> - Data Security Requirements</li>
-                    <li><strong>Ohio Administrative Code 3301-14</strong> - Data Governance</li>
+                    <li><strong>Ohio Senate Bill 29 / Ohio Rev. Code § 3319.325</strong> – Student data privacy and limits on monitoring by K-12 technology providers</li>
+                    <li><strong>Ohio Rev. Code § 3319.321</strong> – Confidentiality of student records</li>
+                    <li><strong>Ohio Rev. Code § 1347 (state data protection)</strong> and applicable Ohio Administrative Code provisions on data governance</li>
                   </ul>
                   <p className="mt-3 text-sm">
                     <a href="#sb29" className="text-primary hover:underline font-semibold">View detailed SB 29 compliance information →</a>
@@ -1086,18 +1105,18 @@ export default function Privacy() {
                 
                 <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
                   <li>You highlight text</li>
-                  <li>It gets translated by Microsoft</li>
-                  <li>You hear/see the translation</li>
-                  <li>Everything is deleted</li>
+                  <li>It is translated by Microsoft Azure over an encrypted connection</li>
+                  <li>You hear or see the translation</li>
+                  <li>LanguageBridge does not save the text or the translation</li>
                 </ol>
 
                 <div className="border-t border-border pt-4">
                   <p className="font-semibold mb-2">We don't:</p>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    <li>Know who you are</li>
+                    <li>Ask for your name, email, or login</li>
                     <li>Save what you translate</li>
                     <li>Track where you go online</li>
-                    <li>Sell any information</li>
+                    <li>Sell any information or use it for advertising</li>
                   </ul>
                 </div>
 
