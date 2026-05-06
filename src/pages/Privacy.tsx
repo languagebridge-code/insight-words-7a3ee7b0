@@ -461,7 +461,7 @@ export default function Privacy() {
                       <li>Subpoenas</li>
                       <li>Legal processes</li>
                     </ul>
-                    <p className="mt-4 text-sm font-semibold">However, since we <strong>do not collect or store user data</strong>, there is typically nothing to disclose.</p>
+                    <p className="mt-4 text-sm font-semibold">Because LanguageBridge does not collect or store student PII or education records, in most cases there is no student data available to disclose.</p>
                   </CardContent>
                 </Card>
               </div>
