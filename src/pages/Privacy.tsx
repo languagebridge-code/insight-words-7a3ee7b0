@@ -420,11 +420,11 @@ export default function Privacy() {
             <Card>
               <CardContent className="pt-6">
                 <ul className="space-y-3 text-muted-foreground">
-                  <li><strong>Translated text:</strong> 0 seconds (not stored)</li>
-                  <li><strong>Student info:</strong> 0 seconds (not collected)</li>
-                  <li><strong>Usage stats:</strong> 2 years (anonymous aggregates only)</li>
-                  <li><strong>School contracts:</strong> Contract duration + 7 years (legal requirement)</li>
-                  <li><strong>Error logs:</strong> 90 days (no personal info)</li>
+                  <li><strong>Translated text & audio:</strong> Not stored by LanguageBridge. Azure may retain short-lived operational logs for security and abuse prevention.</li>
+                  <li><strong>Student PII:</strong> Not collected.</li>
+                  <li><strong>Usage stats:</strong> Up to 2 years (anonymous, aggregate counts only)</li>
+                  <li><strong>School contracts & billing records:</strong> Contract duration plus up to 7 years (legal and tax requirements)</li>
+                  <li><strong>Error logs:</strong> Up to 90 days (no student PII)</li>
                 </ul>
               </CardContent>
             </Card>
