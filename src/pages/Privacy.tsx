@@ -289,7 +289,7 @@ export default function Privacy() {
                 <h3 className="text-2xl font-semibold mb-4">Text-to-Speech</h3>
                 <Card>
                   <CardContent className="pt-6">
-                    <p className="text-muted-foreground">Same as translation - text is sent to Azure Speech Services, processed, and immediately discarded. We don't keep audio files.</p>
+                    <p className="text-muted-foreground">Same as translation: text is sent to Azure Speech Services over encrypted HTTPS and synthesized audio is returned. LanguageBridge does not store the text or the audio. Audio is played in your browser and discarded.</p>
                   </CardContent>
                 </Card>
               </div>
