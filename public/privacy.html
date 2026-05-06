@@ -183,12 +183,12 @@
         <div class="card card-blue">
           <ol>
             <li>You select text</li>
-            <li>Text goes to Microsoft Azure via encrypted HTTPS</li>
-            <li>Azure translates it and sends it back</li>
-            <li>Azure immediately discards the text</li>
-            <li>You hear/see the translation</li>
+            <li>Text is sent to Microsoft Azure via encrypted HTTPS</li>
+            <li>Azure returns the translation</li>
+            <li>LanguageBridge does not store the text or the translation</li>
+            <li>You hear or see the translation</li>
           </ol>
-          <p><strong>The text is never stored. Not by us, not by Microsoft.</strong></p>
+          <p><strong>LanguageBridge does not retain translation text. Microsoft Azure may retain limited transient logs strictly for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</strong></p>
         </div>
 
         <h3>Google Docs &amp; Clipboard</h3>
@@ -204,7 +204,7 @@
 
         <h3>Text-to-Speech</h3>
         <div class="card">
-          <p>Same as translation - text is sent to Azure Speech Services, processed, and immediately discarded. We don't keep audio files.</p>
+          <p>Same as translation: text is sent to Azure Speech Services over encrypted HTTPS and synthesized audio is returned. LanguageBridge does not store the text or the audio. Audio is played in your browser and discarded.</p>
         </div>
       </section>
 
