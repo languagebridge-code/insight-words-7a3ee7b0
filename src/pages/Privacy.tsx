@@ -594,9 +594,9 @@ export default function Privacy() {
                         <td className="p-3 text-muted-foreground">Audio features on-demand only (student-initiated)</td>
                       </tr>
                       <tr>
-                        <td className="p-3 text-muted-foreground">72-hour breach notification</td>
+                        <td className="p-3 text-muted-foreground">Breach notification (within 30 days)</td>
                         <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Written protocol established; 24/7 emergency contact</td>
+                        <td className="p-3 text-muted-foreground">Written commitment to notify districts within 30 days of confirmed breach; 24/7 emergency contact</td>
                       </tr>
                       <tr>
                         <td className="p-3 text-muted-foreground">Data security measures</td>
