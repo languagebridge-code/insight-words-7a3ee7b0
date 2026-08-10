@@ -32,11 +32,11 @@ export default function Compliance() {
                   Contact Compliance Team
                 </Button>
               </a>
-              <Link to="/pricing">
+              <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
                 <Button size="lg" variant="outline">
                   Download Today
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

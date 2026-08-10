@@ -125,7 +125,7 @@ export const Navigation = () => {
             {/* Resources Dropdown */}
             <NavDropdown label="Resources" items={resourceLinks} />
             
-            <Link to="/features#pricing">
+            <Link to="/features">
               <Button
                 variant="hero"
                 size="default"
@@ -192,7 +192,7 @@ export const Navigation = () => {
               
               {/* CTA Button */}
               <div className="px-2 pt-4">
-                <Link to="/features#pricing">
+                <Link to="/features">
                   <Button variant="hero" className="w-full">
                     Get Started
                   </Button>
