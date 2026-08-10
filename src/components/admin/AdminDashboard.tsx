@@ -3,6 +3,7 @@ import AdminNav from "./AdminNav";
 import OverviewTab from "./OverviewTab";
 import FlagsTab from "./FlagsTab";
 import ActivityTab from "./ActivityTab";
+import SignupsTab from "./SignupsTab";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -23,6 +24,7 @@ const AdminDashboard = () => {
         )}
         {activeTab === "flags" && <FlagsTab onAuthError={() => {}} />}
         {activeTab === "activity" && <ActivityTab onAuthError={() => {}} />}
+        {activeTab === "signups" && <SignupsTab />}
       </div>
     </div>
   );

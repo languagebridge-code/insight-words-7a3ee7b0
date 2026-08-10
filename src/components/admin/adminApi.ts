@@ -25,10 +25,23 @@ export interface TttUsage {
   recentActivity: Array<{ service: string; characters: number; success: boolean; created_at: string }>;
 }
 
+export interface Signup {
+  full_name: string;
+  email: string;
+  role: string | null;
+  organization: string;
+  created_at: string;
+}
+
 export async function fetchExtensionUsage(): Promise<ExtensionUsage> {
   return proxyFetch<ExtensionUsage>("/extension-usage", {});
 }
 
 export async function fetchTttUsage(): Promise<TttUsage> {
   return proxyFetch<TttUsage>("/ttt-usage", {});
+}
+
+export async function fetchSignups(password: string): Promise<Signup[]> {
+  const res = await proxyFetch<{ signups: Signup[] }>("/signups", { password });
+  return res.signups;
 }

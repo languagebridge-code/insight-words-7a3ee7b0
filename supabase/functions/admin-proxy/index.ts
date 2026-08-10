@@ -24,6 +24,44 @@ serve(async (req) => {
 
     const supabase = getSupabase();
 
+    // Signup list (name, email, role, organization) — password protected
+    if (endpoint === "/signups") {
+      const expected = Deno.env.get("ADMIN_DASHBOARD_PASSWORD");
+      if (!expected || params?.password !== expected) {
+        return new Response(JSON.stringify({ error: "Unauthorized" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const [profilesResult, orgsResult] = await Promise.all([
+        supabase
+          .from("profiles")
+          .select("full_name, email, role, pilot_id, created_at")
+          .order("created_at", { ascending: false })
+          .limit(2000),
+        supabase.from("pilot_organizations").select("pilot_id, name"),
+      ]);
+
+      if (profilesResult.error) {
+        console.error("Signups query error:", profilesResult.error);
+        return new Response(JSON.stringify({ error: "Query failed" }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const orgMap = new Map((orgsResult.data || []).map((o: any) => [o.pilot_id, o.name]));
+      const signups = (profilesResult.data || []).map((p: any) => ({
+        ...p,
+        organization: p.pilot_id ? orgMap.get(p.pilot_id) || p.pilot_id : "Not selected",
+      }));
+
+      return new Response(JSON.stringify({ signups }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     // TTT usage from ttt_usage_log
     if (endpoint === "/ttt-usage") {
       const { data, error } = await supabase
