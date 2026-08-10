@@ -11,7 +11,7 @@ The website is a focused 6-page conversion funnel:
 5. Privacy Policy (/privacy)
 6. Terms of Service (/terms)
 
-Redirects in place: /compliance → /faq, /pricing → /features#pricing, /media → /about
+Redirects in place: /compliance → /faq, /media → /about
 
 Hidden/utility routes: /admin, /teacher (PWA), /dashboard, /teacher-dashboard, /teacher-auth, /teacher-signup, /reset-password
 
