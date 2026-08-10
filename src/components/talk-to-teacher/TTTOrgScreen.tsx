@@ -44,8 +44,7 @@ export function TTTOrgScreen({ userId, onComplete }: Props) {
     setSaving(true);
     const { error } = await supabase
       .from('profiles')
-      .update({ pilot_id: selected })
-      .eq('id', userId);
+      .upsert({ id: userId, pilot_id: selected }, { onConflict: 'id' });
     setSaving(false);
     if (error) {
       toast.error('Could not save your selection. Please try again.');
