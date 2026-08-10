@@ -24,6 +24,7 @@ const AdminDashboard = () => {
         )}
         {activeTab === "flags" && <FlagsTab onAuthError={() => {}} />}
         {activeTab === "activity" && <ActivityTab onAuthError={() => {}} />}
+        {activeTab === "signups" && <SignupsTab />}
       </div>
     </div>
   );
