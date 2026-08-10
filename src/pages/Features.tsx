@@ -4,7 +4,6 @@ import { Footer } from "@/components/Footer";
 import { ThreeTools } from "@/components/ThreeTools";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalSpecs } from "@/components/TechnicalSpecs";
-import { Pricing } from "@/components/Pricing";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import extensionScreenshot from "@/assets/languagebridge-screenshot.jpg";
@@ -59,7 +58,7 @@ export default function Features() {
               Three integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
             </p>
             <div className="flex gap-4 justify-center">
-              <a href="#pricing">
+              <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
                   Get Started
                 </Button>
@@ -86,8 +85,7 @@ export default function Features() {
       <ThreeTools />
       <HowItWorks />
       <TechnicalSpecs />
-      <Pricing />
-      
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4 text-center">

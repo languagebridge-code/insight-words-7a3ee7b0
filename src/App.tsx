@@ -46,7 +46,6 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
           {/* Redirects for removed pages */}
           <Route path="/compliance" element={<Navigate to="/faq" replace />} />
-          <Route path="/pricing" element={<Navigate to="/features#pricing" replace />} />
           <Route path="/media" element={<Navigate to="/about" replace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
