@@ -121,6 +121,13 @@ const addToMailchimp = async (email: string, firstName: string, lastName: string
   }
 };
 
+function escapeHtml(value: unknown): string {
+  const map: Record<string, string> = {
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;",
+  };
+  return String(value ?? "").replace(/[&<>"']/g, (m) => map[m]);
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -137,27 +144,27 @@ const handler = async (req: Request): Promise<Response> => {
       subject = "New Ohio Pilot Application";
       emailHtml = `
         <h2>New Ohio Pilot Application</h2>
-        <p><strong>Contact Name:</strong> ${body.name}</p>
-        <p><strong>Email:</strong> ${body.email}</p>
-        <p><strong>Phone:</strong> ${body.phone || "Not provided"}</p>
-        <p><strong>School/District:</strong> ${body.school}</p>
-        <p><strong>Role:</strong> ${body.role}</p>
-        <p><strong>Number of ELL Students:</strong> ${body.studentCount}</p>
-        <p><strong>Primary Languages:</strong> ${body.languages}</p>
-        <p><strong>How They Heard About Us:</strong> ${body.hearAbout || "Not specified"}</p>
+        <p><strong>Contact Name:</strong> ${escapeHtml(body.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(body.email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(body.phone || "Not provided")}</p>
+        <p><strong>School/District:</strong> ${escapeHtml(body.school)}</p>
+        <p><strong>Role:</strong> ${escapeHtml(body.role)}</p>
+        <p><strong>Number of ELL Students:</strong> ${escapeHtml(body.studentCount)}</p>
+        <p><strong>Primary Languages:</strong> ${escapeHtml(body.languages)}</p>
+        <p><strong>How They Heard About Us:</strong> ${escapeHtml(body.hearAbout || "Not specified")}</p>
         <p><strong>Grant Interest:</strong> ${body.grantInterest ? "Yes" : "No"}</p>
         <p><strong>Additional Info:</strong></p>
-        <p>${body.additionalInfo || "None provided"}</p>
+        <p>${escapeHtml(body.additionalInfo || "None provided")}</p>
       `;
     } else if (type === "general") {
       subject = "New General Interest Form Submission";
       emailHtml = `
         <h2>New General Interest Form</h2>
-        <p><strong>Name:</strong> ${body.name}</p>
-        <p><strong>Email:</strong> ${body.email}</p>
-        <p><strong>Organization:</strong> ${body.organization || "Not provided"}</p>
+        <p><strong>Name:</strong> ${escapeHtml(body.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(body.email)}</p>
+        <p><strong>Organization:</strong> ${escapeHtml(body.organization || "Not provided")}</p>
         <p><strong>Interest:</strong></p>
-        <p>${body.interest}</p>
+        <p>${escapeHtml(body.interest)}</p>
       `;
 
       const nameParts = body.name.split(" ");
@@ -169,7 +176,7 @@ const handler = async (req: Request): Promise<Response> => {
       emailHtml = `
         <h2>New Free Tier Signup</h2>
         <p>A new user has signed up for the free tier and downloaded the extension.</p>
-        <p><strong>Email:</strong> ${body.email}</p>
+        <p><strong>Email:</strong> ${escapeHtml(body.email)}</p>
         <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
       `;
     }
