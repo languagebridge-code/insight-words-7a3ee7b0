@@ -19,6 +19,11 @@ import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import TalkToTeacher from "./pages/TalkToTeacher";
 import Admin from "./pages/Admin";
+import { configureApi } from "./features/talk-to-teacher/lib/api";
+
+// Talk to Teacher calls the lb-proxy edge function, which is the only place the
+// LanguageBridge API key exists. No key ever reaches the browser.
+configureApi(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/lb-proxy`);
 
 const queryClient = new QueryClient();
 
