@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { LANGUAGE_LIST, langInfo } from './languages';
 import { MicRecorder, micErrorMessage } from './lib/audioWav';
+import type { MicError, WavResult } from './lib/audioWav';
 import { transcribe, translate } from './lib/api';
+import type { SttOk, SttErr, TranslateOk, TranslateErr } from './lib/api';
 import { TtsPlayer } from './lib/tts';
 import './TalkToTeacher.css';
 
@@ -102,38 +104,41 @@ export default function TalkToTeacher({ studentCode, studentLanguage = 'dari', o
 
     const audio = await recorder.current.stop();
     if (!audio.ok) {
-      const micIssue = audio.code === 'mic-permission' || audio.code === 'no-mic' || audio.code === 'insecure-context';
-      finishError(micErrorMessage(audio.code), micIssue);
+      const audioErr = audio as MicError;
+      const micIssue = audioErr.code === 'mic-permission' || audioErr.code === 'no-mic' || audioErr.code === 'insecure-context';
+      finishError(micErrorMessage(audioErr.code), micIssue);
       return;
     }
-    if (audio.peak < 0.02) {
+    const wav = audio as WavResult;
+    if (wav.peak < 0.02) {
       finishError("I didn't hear anything. Check your sound is on and speak toward the mic.");
       return;
     }
-    const noisy = audio.clipRatio > 0.25;
+    const noisy = wav.clipRatio > 0.25;
 
     setPendingSide(side); // show the "Translating…" bubble
 
-    const stt = await transcribe(audio.wavBase64, fromLang, studentCode);
+    const stt = await transcribe(wav.wavBase64, fromLang, studentCode);
     if (!stt.ok) {
       setPendingSide(null);
-      const msg = stt.code === 'empty'
+      const sttErr = stt as SttErr;
+      const msg = sttErr.code === 'empty'
         ? (noisy ? 'Too much background noise — try somewhere quieter.' : "I couldn't make that out. Try again.")
-        : stt.error;
+        : sttErr.error;
       finishError(msg);
       return;
     }
 
-    const tr = await translate(stt.text, fromLang, toLang, studentCode);
+    const tr = await translate((stt as SttOk).text, fromLang, toLang, studentCode);
     setPendingSide(null);
-    if (!tr.ok) { finishError(tr.error); return; }
+    if (!tr.ok) { finishError((tr as TranslateErr).error); return; }
 
-    setBubbles((prev) => [...prev, { id: ++bubbleSeq, side, original: stt.text, translated: tr.text, fromLang, toLang }]);
+    setBubbles((prev) => [...prev, { id: ++bubbleSeq, side, original: (stt as SttOk).text, translated: (tr as TranslateOk).text, fromLang, toLang }]);
     setStatus({ text: '', kind: '' });
     processingRef.current = false;
     activeSideRef.current = null;
 
-    try { await tts.current.speak(tr.text, toLang, studentCode); } catch { /* playback is best-effort */ }
+    try { await tts.current.speak((tr as TranslateOk).text, toLang, studentCode); } catch { /* playback is best-effort */ }
   }, [langA, langB, studentCode, finishError]);
 
   const startSide = useCallback(async (side: Side) => {
@@ -142,8 +147,9 @@ export default function TalkToTeacher({ studentCode, studentLanguage = 'dari', o
     setShowMicFix(false);
     const start = await recorder.current.start();
     if (!start.ok) {
-      const micIssue = start.code === 'mic-permission' || start.code === 'no-mic' || start.code === 'insecure-context';
-      finishError(micErrorMessage(start.code), micIssue);
+      const startErr = start as MicError;
+      const micIssue = startErr.code === 'mic-permission' || startErr.code === 'no-mic' || startErr.code === 'insecure-context';
+      finishError(micErrorMessage(startErr.code), micIssue);
       return;
     }
     recordingRef.current = true;
