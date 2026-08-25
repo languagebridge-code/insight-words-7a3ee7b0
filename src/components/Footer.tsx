@@ -1,5 +1,6 @@
 import { Mail, Phone, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import logo from "@/assets/languagebridge-logo-new.svg";
 
 export const Footer = () => {
@@ -13,8 +14,15 @@ export const Footer = () => {
               <span className="gradient-text">Get in Touch</span>
             </h2>
             <p className="text-white/80 mb-6 text-lg">
-              Have questions about LanguageBridge? We'd love to hear from you.
+              Have questions about LanguageBridge? Request a walkthrough and we'll reply within one business day.
             </p>
+            <div className="mb-6">
+              <Link to="/demo">
+                <Button size="lg" className="gradient-primary text-primary-foreground shadow-lg hover:opacity-90">
+                  Get a Demo
+                </Button>
+              </Link>
+            </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a href="mailto:contact@languagebridge.app" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
                 <Mail className="w-5 h-5" />
@@ -39,6 +47,7 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/features" className="text-white/80 hover:text-white transition-colors">Features</Link></li>
+              <li><Link to="/demo" className="text-white/80 hover:text-white transition-colors">Get a Demo</Link></li>
               <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About & Media</Link></li>
               <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ & Compliance</Link></li>
               <li><Link to="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy Policy</Link></li>

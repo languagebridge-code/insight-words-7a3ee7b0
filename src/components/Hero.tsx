@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLeadDialog } from "@/components/leads/LeadDialog";
 
 import heroStudent1 from "@/assets/hero-student-1.jpg";
 import heroStudentCarlos from "@/assets/hero-student-carlos.jpg";
@@ -15,6 +16,8 @@ import {
 } from "@/components/ui/carousel";
 
 export const Hero = () => {
+  const { openLeadDialog } = useLeadDialog();
+
   const scrollToSection = (id: string) => {
     const element = document.querySelector(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -63,14 +66,12 @@ export const Hero = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10 fade-in-up delay-300">
               <Button
-                asChild
                 size="xl"
+                onClick={() => openLeadDialog("hero")}
                 className="group gradient-primary text-primary-foreground shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 text-lg px-8 py-6"
               >
-                <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
-                  Download Today
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </a>
+                Get Started Free
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
               <Button
                 asChild
@@ -78,10 +79,10 @@ export const Hero = () => {
                 size="xl"
                 className="group border-2 hover:bg-muted/50 transition-all duration-300 text-lg px-8 py-6"
               >
-                <a href="https://www.cleveleads.org/clc-events/accelerate/event-night-hub/" target="_blank" rel="noopener noreferrer">
+                <Link to="/demo">
                   <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  Watch Our Pitch
-                </a>
+                  See a Demo
+                </Link>
               </Button>
             </div>
 
