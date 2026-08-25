@@ -35,28 +35,32 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <BreadcrumbSchema />
-        <WebsiteSchema />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/teacher-signup" element={<TeacherSignup />} />
-          <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
-          <Route path="/teacher-auth" element={<TeacherAuth />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/teacher" element={<TalkToTeacher />} />
-          <Route path="/admin" element={<Admin />} />
-          {/* Redirects for removed pages */}
-          <Route path="/compliance" element={<Navigate to="/faq" replace />} />
-          <Route path="/media" element={<Navigate to="/about" replace />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <LeadDialogProvider>
+          <BreadcrumbSchema />
+          <WebsiteSchema />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/teacher-signup" element={<TeacherSignup />} />
+            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+            <Route path="/teacher-auth" element={<TeacherAuth />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/teacher" element={<TalkToTeacher />} />
+            <Route path="/admin" element={<Admin />} />
+            {/* Redirects for removed pages */}
+            <Route path="/compliance" element={<Navigate to="/faq" replace />} />
+            <Route path="/media" element={<Navigate to="/about" replace />} />
+            <Route path="/contact" element={<Navigate to="/demo" replace />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LeadDialogProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
