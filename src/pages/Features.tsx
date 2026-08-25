@@ -58,16 +58,16 @@ export default function Features() {
               Three integrated tools designed specifically for preliterate SLIFE students who need to hear, not just read, content in their language
             </p>
             <div className="flex gap-4 justify-center">
-              <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
+              <Link to="/demo">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                  Get Started
+                  Get a Demo
                 </Button>
-              </a>
-              <a href="/faq">
+              </Link>
+              <Link to="/faq">
                 <Button size="lg" variant="outline">
                   View Compliance Info
                 </Button>
-              </a>
+              </Link>
             </div>
 
             {/* Product Screenshot */}
@@ -86,22 +86,11 @@ export default function Features() {
       <HowItWorks />
       <TechnicalSpecs />
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to See It in Action?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Start using LanguageBridge in your classroom today
-          </p>
-          <a href="mailto:info@languagebridge.app?subject=Free%20Demo">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-              Get Free Access
-            </Button>
-          </a>
-        </div>
-      </section>
+      <LeadCtaSection
+        source="features-cta"
+        title="Ready to See It in Action?"
+        subtitle="Tell us where to send setup details, district pricing, and compliance documentation. Justin replies personally within one business day."
+      />
 
       <Footer />
     </div>
