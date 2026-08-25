@@ -7,6 +7,7 @@ import { WhoWeServe } from "@/components/WhoWeServe";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { TrustBadgeBar } from "@/components/TrustBadgeBar";
+import { LeadCtaSection } from "@/components/leads/LeadCtaSection";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -73,7 +74,7 @@ const Index = () => {
       <WhoWeServe />
       
       {/* Feature Invitation */}
-      <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10 fade-in-up delay-700">
+      <section className="py-20 fade-in-up delay-700">
         <div className="container mx-auto px-4 text-center">
           <Sparkles className="w-12 h-12 mx-auto mb-6 text-primary fade-in delay-100" />
           <h2 className="text-3xl md:text-4xl font-bold mb-6 fade-in-up delay-100">
@@ -83,12 +84,14 @@ const Index = () => {
             Audio translation, tiered language glossary, and teacher communication. See how our three tools work together to support your students.
           </p>
           <Link to="/features">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 fade-in-up delay-300">
-              Explore Features & Pricing
+            <Button size="lg" variant="outline" className="border-2 hover-lift transition-all duration-300 fade-in-up delay-300">
+              Explore the Features
             </Button>
           </Link>
         </div>
       </section>
+
+      <LeadCtaSection source="home-cta" />
       
 
       
