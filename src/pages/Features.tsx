@@ -5,6 +5,8 @@ import { ThreeTools } from "@/components/ThreeTools";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalSpecs } from "@/components/TechnicalSpecs";
 import { Button } from "@/components/ui/button";
+import { LeadCtaSection } from "@/components/leads/LeadCtaSection";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import extensionScreenshot from "@/assets/languagebridge-screenshot.jpg";
 
