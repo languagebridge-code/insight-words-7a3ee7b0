@@ -16,6 +16,13 @@ const TTS_VOICES: Record<string, { locale: string; voice: string }> = {
   uk: { locale: "uk-UA", voice: "uk-UA-OstapNeural" },
   es: { locale: "es-US", voice: "es-US-AlonsoNeural" },
   en: { locale: "en-US", voice: "en-US-JennyNeural" },
+  fr: { locale: "fr-FR", voice: "fr-FR-DeniseNeural" },
+  pt: { locale: "pt-BR", voice: "pt-BR-FranciscaNeural" },
+  ne: { locale: "ne-NP", voice: "ne-NP-HemkalaNeural" },
+  my: { locale: "my-MM", voice: "my-MM-NilarNeural" },
+  sw: { locale: "sw-KE", voice: "sw-KE-ZuriNeural" },
+  tl: { locale: "fil-PH", voice: "fil-PH-BlessicaNeural" },
+  vi: { locale: "vi-VN", voice: "vi-VN-HoaiMyNeural" },
 };
 
 const UNSUPPORTED_TTS = new Set<string>([]);

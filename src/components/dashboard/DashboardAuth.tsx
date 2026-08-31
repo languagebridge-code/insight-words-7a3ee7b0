@@ -134,7 +134,7 @@ const DashboardAuth = () => {
             </div>
             <CardTitle className="text-2xl font-bold">Teacher Dashboard</CardTitle>
             <CardDescription>
-              Sign in to view your LanguageBridge™ classroom analytics
+              Sign in to view your LanguageBridge classroom analytics
             </CardDescription>
           </CardHeader>
           <CardContent>

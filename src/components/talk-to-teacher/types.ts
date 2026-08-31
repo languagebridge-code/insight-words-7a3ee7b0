@@ -36,6 +36,13 @@ export const SUPPORTED_LANGUAGES: Language[] = [
   { code: 'uk', name: 'Ukrainian', nativeName: 'Українська', rtl: false },
   { code: 'es', name: 'Spanish', nativeName: 'Español', rtl: false },
   { code: 'en', name: 'English', nativeName: 'English', rtl: false },
+  { code: 'fr', name: 'French', nativeName: 'Français', rtl: false },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português', rtl: false },
+  { code: 'ne', name: 'Nepali', nativeName: 'नेपाली', rtl: false },
+  { code: 'my', name: 'Burmese', nativeName: 'မြန်မာ', rtl: false },
+  { code: 'sw', name: 'Swahili', nativeName: 'Kiswahili', rtl: false },
+  { code: 'tl', name: 'Tagalog', nativeName: 'Tagalog', rtl: false },
+  { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt', rtl: false },
 ];
 
 export const RTL_LANGUAGES = ['prs', 'fa', 'ps', 'ar', 'ur'];

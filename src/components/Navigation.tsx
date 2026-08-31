@@ -107,7 +107,7 @@ export const Navigation = () => {
               <div className="absolute inset-0 -z-10 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300 bg-gradient-to-br from-primary/40 to-accent/40 rounded-full scale-150" />
             </div>
             <span className="font-heading font-bold text-xl hidden sm:inline logo-text">
-              LanguageBridge™
+              LanguageBridge
             </span>
           </Link>
 
