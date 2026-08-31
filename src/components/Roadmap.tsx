@@ -10,7 +10,7 @@ export const Roadmap = () => {
       description: "Bringing LanguageBridge to Ohio schools for the 2025-2026 school year",
       features: [
         "Chrome extension for instant translations",
-        "9 languages (Somali, Urdu, Ukrainian, Persian, Dari, Pashto, Arabic, Spanish, English)",
+        "16 languages (Somali, Urdu, Ukrainian, Persian, Dari, Pashto, Arabic, Spanish, English, French, Portuguese, Nepali, Burmese, Swahili, Tagalog, Vietnamese)",
         "Teacher dashboard and analytics",
         "Professional development program",
       ],

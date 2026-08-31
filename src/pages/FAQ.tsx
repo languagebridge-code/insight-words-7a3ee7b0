@@ -63,7 +63,7 @@ const FAQ = () => {
     },
     {
       question: "What languages are supported?",
-      answer: "Currently 9 languages with more coming. We prioritize languages based on refugee resettlement patterns and district requests. Audio support is available for all languages to support preliterate students."
+      answer: "16 languages: Arabic, Burmese, Dari, English, French, Nepali, Pashto, Persian, Portuguese, Somali, Spanish, Swahili, Tagalog, Ukrainian, Urdu, and Vietnamese — with more coming. Audio support is available for all languages to support preliterate students."
     },
     {
       question: "How is this different from Read&Write or Immersive Reader?",
