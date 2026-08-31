@@ -17,6 +17,13 @@ const STT_LOCALE: Record<string, string> = {
   uk: "uk-UA",
   es: "es-US",
   en: "en-US",
+  fr: "fr-FR",
+  pt: "pt-BR",
+  ne: "ne-NP",
+  my: "my-MM",
+  sw: "sw-KE",
+  tl: "fil-PH",
+  vi: "vi-VN",
 };
 
 function logUsage(service: string, chars: number, success: boolean, lang?: string) {
