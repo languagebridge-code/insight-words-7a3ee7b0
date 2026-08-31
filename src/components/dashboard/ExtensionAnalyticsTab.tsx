@@ -156,11 +156,12 @@ const ExtensionAnalyticsTab = ({ classroomId }: ExtensionAnalyticsTabProps) => {
     const sessionEvents: Record<string, { first: Date; last: Date }> = {};
     eventData.forEach((e) => {
       const ts = new Date(e.timestamp);
-      if (!sessionEvents[e.session_id]) {
+      const existing = sessionEvents[e.session_id];
+      if (!existing) {
         sessionEvents[e.session_id] = { first: ts, last: ts };
       } else {
-        if (ts < sessionEvents[e.session_id].first) sessionEvents[e.session_id].first = ts;
-        if (ts > sessionEvents[e.session_id].last) sessionEvents[e.session_id].last = ts;
+        if (ts < existing.first) existing.first = ts;
+        if (ts > existing.last) existing.last = ts;
       }
     });
 
@@ -187,7 +188,7 @@ const ExtensionAnalyticsTab = ({ classroomId }: ExtensionAnalyticsTabProps) => {
     return Object.entries(counts).map(([name, value]) => ({
       name,
       value,
-      color: EVENT_COLORS[name] || EVENT_COLORS.default,
+      color: EVENT_COLORS[name] || EVENT_COLORS['default'],
     }));
   };
 
@@ -479,7 +480,7 @@ const ExtensionAnalyticsTab = ({ classroomId }: ExtensionAnalyticsTabProps) => {
                     <td className="py-3 px-4">
                       <Badge
                         style={{
-                          backgroundColor: EVENT_COLORS[event.event_name] || EVENT_COLORS.default,
+                          backgroundColor: EVENT_COLORS[event.event_name] || EVENT_COLORS['default'],
                           color: 'white',
                         }}
                       >
@@ -490,8 +491,8 @@ const ExtensionAnalyticsTab = ({ classroomId }: ExtensionAnalyticsTabProps) => {
                       {truncateUserId(event.user_id)}
                     </td>
                     <td className="py-3 px-4 text-sm text-muted-foreground">
-                      {event.properties?.language_pair ||
-                        event.properties?.feature ||
+                      {event.properties?.['language_pair'] ||
+                        event.properties?.['feature'] ||
                         Object.keys(event.properties || {}).join(', ') ||
                         '-'}
                     </td>

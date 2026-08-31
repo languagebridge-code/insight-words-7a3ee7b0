@@ -23,7 +23,7 @@ import appCss from "../styles.css?url";
 
 // ported from App.tsx — Talk to Teacher calls the lb-proxy edge function, which is
 // the only place the LanguageBridge API key exists. No key ever reaches the browser.
-configureApi(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/lb-proxy`);
+configureApi(`${import.meta.env['VITE_SUPABASE_URL']}/functions/v1/lb-proxy`);
 
 const SITE_TITLE =
   "LanguageBridge - The First Language Accessibility Screen Reader for ESL Students";

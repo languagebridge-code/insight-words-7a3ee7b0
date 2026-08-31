@@ -34,7 +34,7 @@ function encodeWav(samples: Float32Array, sampleRate: number): ArrayBuffer {
   view.setUint32(40, numSamples * 2, true);
 
   for (let i = 0; i < numSamples; i++) {
-    const s = Math.max(-1, Math.min(1, samples[i]));
+    const s = Math.max(-1, Math.min(1, samples[i] ?? 0));
     view.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
   }
 
@@ -52,7 +52,7 @@ function downsample(buffer: Float32Array, sourceSR: number, targetSR: number): F
     const low = Math.floor(idx);
     const high = Math.min(low + 1, buffer.length - 1);
     const frac = idx - low;
-    result[i] = buffer[low] * (1 - frac) + buffer[high] * frac;
+    result[i] = (buffer[low] ?? 0) * (1 - frac) + (buffer[high] ?? 0) * frac;
   }
 
   return result;
@@ -128,7 +128,7 @@ export function useAudioRecorder(): UseAudioRecorderReturn {
                 const left = decoded.getChannelData(0);
                 const right = decoded.getChannelData(1);
                 const mixed = new Float32Array(decoded.length);
-                for (let i = 0; i < decoded.length; i++) mixed[i] = (left[i] + right[i]) * 0.5;
+                for (let i = 0; i < decoded.length; i++) mixed[i] = ((left[i] ?? 0) + (right[i] ?? 0)) * 0.5;
                 return mixed;
               })()
             : decoded.getChannelData(0);

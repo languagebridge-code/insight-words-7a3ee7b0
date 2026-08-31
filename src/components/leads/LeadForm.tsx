@@ -124,7 +124,7 @@ export const LeadForm = ({
           maxLength={200}
           autoComplete="name"
         />
-        {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
+        {errors['name'] && <p className="text-sm text-destructive">{errors['name']}</p>}
       </div>
 
       <div className="space-y-2">
@@ -138,7 +138,7 @@ export const LeadForm = ({
           maxLength={255}
           autoComplete="email"
         />
-        {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+        {errors['email'] && <p className="text-sm text-destructive">{errors['email']}</p>}
       </div>
 
       <div className="space-y-2">
@@ -155,7 +155,7 @@ export const LeadForm = ({
             ))}
           </SelectContent>
         </Select>
-        {errors.role && <p className="text-sm text-destructive">{errors.role}</p>}
+        {errors['role'] && <p className="text-sm text-destructive">{errors['role']}</p>}
       </div>
 
       {showMessage && (
@@ -174,7 +174,7 @@ export const LeadForm = ({
         </div>
       )}
 
-      {errors.form && <p className="text-sm text-destructive">{errors.form}</p>}
+      {errors['form'] && <p className="text-sm text-destructive">{errors['form']}</p>}
 
       <Button
         type="submit"
