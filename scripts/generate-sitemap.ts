@@ -20,13 +20,10 @@ const routes: SitemapRoute[] = [
 ];
 
 export function generateSitemap(): string {
-  const today = new Date().toISOString().split("T")[0];
-
   const urls = routes
     .map(
       (route) => `  <url>
     <loc>${SITE_URL}${route.path}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority.toFixed(1)}</priority>
   </url>`
