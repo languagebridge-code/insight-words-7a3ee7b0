@@ -124,7 +124,7 @@ export function speakText(text: string, languageCode: string, rate = 0.9): Promi
     // Try to find a matching voice
     const voices = window.speechSynthesis.getVoices();
     const bcp47 = getBcp47(languageCode);
-    const match = voices.find(v => v.lang.startsWith(bcp47.split('-')[0]));
+    const match = voices.find(v => v.lang.startsWith(bcp47.split('-')[0] ?? bcp47));
 
     if (!match) {
       console.warn(`[TTT] No browser voice available for ${bcp47}`);

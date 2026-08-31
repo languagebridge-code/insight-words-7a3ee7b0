@@ -129,8 +129,9 @@ const TeacherDashboard = () => {
       setTeacherName(teacher.name);
       setSchoolName((teacher.schools as any)?.name || 'Unknown School');
       setClassrooms(classroomData || []);
-      if (classroomData && classroomData.length > 0) {
-        setSelectedClassroom(classroomData[0].id);
+      const firstClassroom = classroomData?.[0];
+      if (firstClassroom) {
+        setSelectedClassroom(firstClassroom.id);
       }
     } catch (error) {
       console.error('Load teacher data error:', error);
@@ -323,7 +324,7 @@ const TeacherDashboard = () => {
   };
 
   const formatLanguagePair = (pair: string) => {
-    const [from, to] = pair.split('-');
+    const [from = '', to = ''] = pair.split('-');
     return `${LANGUAGE_NAMES[from] || from} → ${LANGUAGE_NAMES[to] || to}`;
   };
 

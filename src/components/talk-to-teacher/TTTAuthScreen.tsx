@@ -34,7 +34,7 @@ export function TTTAuthScreen() {
       if (mode === 'signup') {
         const parsed = schema.safeParse({ fullName, email, password, role });
         if (!parsed.success) {
-          toast.error(parsed.error.issues[0].message);
+          toast.error(parsed.error.issues[0]?.message ?? 'Invalid input');
           return;
         }
         const { error } = await supabase.auth.signUp({

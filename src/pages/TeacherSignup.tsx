@@ -47,8 +47,8 @@ const TeacherSignup = () => {
         setFormData(prev => ({
           ...prev,
           teacherEmail: session.user.email || prev.teacherEmail,
-          teacherName: session.user.user_metadata?.full_name || prev.teacherName,
-          schoolName: session.user.user_metadata?.school_name || prev.schoolName,
+          teacherName: session.user.user_metadata?.['full_name'] || prev.teacherName,
+          schoolName: session.user.user_metadata?.['school_name'] || prev.schoolName,
         }));
       }
     });
@@ -59,8 +59,8 @@ const TeacherSignup = () => {
         setFormData(prev => ({
           ...prev,
           teacherEmail: session.user.email || prev.teacherEmail,
-          teacherName: session.user.user_metadata?.full_name || prev.teacherName,
-          schoolName: session.user.user_metadata?.school_name || prev.schoolName,
+          teacherName: session.user.user_metadata?.['full_name'] || prev.teacherName,
+          schoolName: session.user.user_metadata?.['school_name'] || prev.schoolName,
         }));
       }
     });

@@ -138,9 +138,10 @@ async function transcodeToWav(blob: Blob): Promise<WavResult> {
 
   let peak = 0, sumSq = 0, clipped = 0;
   for (let i = 0; i < samples.length; i++) {
-    const a = Math.abs(samples[i]);
+    const v = samples[i] ?? 0;
+    const a = Math.abs(v);
     if (a > peak) peak = a;
-    sumSq += samples[i] * samples[i];
+    sumSq += v * v;
     if (a > 0.98) clipped++;
   }
   const rms = Math.sqrt(sumSq / samples.length);
@@ -176,7 +177,7 @@ function encodeWav(samples: Float32Array, sampleRate: number): ArrayBuffer {
 
   let off = 44;
   for (let i = 0; i < samples.length; i++) {
-    const s = Math.max(-1, Math.min(1, samples[i]));
+    const s = Math.max(-1, Math.min(1, samples[i] ?? 0));
     view.setInt16(off, s < 0 ? s * 0x8000 : s * 0x7fff, true);
     off += 2;
   }
