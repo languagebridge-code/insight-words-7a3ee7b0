@@ -14,6 +14,13 @@ const LANG_TO_BCP47: Record<string, string> = {
   uk:  'uk-UA',   // Ukrainian
   es:  'es-US',   // Spanish (US variant — common in schools)
   en:  'en-US',   // English
+  fr:  'fr-FR',   // French
+  pt:  'pt-BR',   // Portuguese
+  ne:  'ne-NP',   // Nepali
+  my:  'my-MM',   // Burmese
+  sw:  'sw-KE',   // Swahili
+  tl:  'fil-PH',  // Tagalog (Filipino)
+  vi:  'vi-VN',   // Vietnamese
 };
 
 export function getBcp47(code: string): string {
