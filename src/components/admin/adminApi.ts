@@ -1,6 +1,6 @@
 import type { FlagsResponse } from "./types";
 
-const PROXY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-proxy`;
+const PROXY_URL = `${import.meta.env['VITE_SUPABASE_URL']}/functions/v1/admin-proxy`;
 
 async function proxyFetch<T>(path: string, params: Record<string, string> = {}): Promise<T> {
   const res = await fetch(PROXY_URL, {
