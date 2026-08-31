@@ -50,7 +50,7 @@ export const BreadcrumbSchema = () => {
       breadcrumbs.push({ name, path: currentPath });
     });
 
-    const baseUrl = "https://www.languagebridge.app";
+    const baseUrl = "https://languagebridge.app";
 
     const breadcrumbSchema = {
       "@context": "https://schema.org",

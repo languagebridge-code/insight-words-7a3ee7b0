@@ -23,7 +23,7 @@ const Index = () => {
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Chrome OS, Windows, macOS",
       "description": "Audio-first language accessibility Chrome extension for preliterate ESL/SLIFE students. Includes Audio Translation, Tiered Language Glossary, and Talk to Teacher tools.",
-      "url": "https://www.languagebridge.app",
+      "url": "https://languagebridge.app",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -47,7 +47,7 @@ const Index = () => {
       "publisher": {
         "@type": "Organization",
         "name": "LanguageBridge",
-        "url": "https://www.languagebridge.app"
+        "url": "https://languagebridge.app"
       }
     };
 
