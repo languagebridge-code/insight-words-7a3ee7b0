@@ -1,7 +1,7 @@
 // Auto-generates sitemap.xml at build time from route definitions
 // Add/remove routes here — the sitemap updates on every deploy
 
-const SITE_URL = "https://www.languagebridge.app";
+const SITE_URL = "https://languagebridge.app";
 
 interface SitemapRoute {
   path: string;
