@@ -17,6 +17,13 @@ const TRANSLATOR_CODE: Record<string, string> = {
   uk: "uk",
   es: "es",
   en: "en",
+  fr: "fr",
+  pt: "pt",
+  ne: "ne",
+  my: "my",
+  sw: "sw",
+  tl: "fil",
+  vi: "vi",
 };
 
 function logUsage(service: string, chars: number, success: boolean, lang?: string, srcLang?: string, tgtLang?: string) {
