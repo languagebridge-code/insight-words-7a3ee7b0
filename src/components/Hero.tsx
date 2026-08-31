@@ -56,7 +56,11 @@ export const Hero = () => {
               <span className="text-foreground">Deserves to</span>
               <br />
               <span className="gradient-text">Understand</span>
+              <span className="sr-only">
+                {" "}— LanguageBridge, audio-first language accessibility for preliterate ESL students
+              </span>
             </h1>
+
             
             {/* Subheadline */}
             <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-normal max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8 fade-in-up delay-200">
@@ -99,6 +103,8 @@ export const Hero = () => {
 
           {/* Right Column - Image Carousel */}
           <div className="fade-in-up delay-300 lg:pl-8">
+            <h2 className="sr-only">Student stories from LanguageBridge classrooms</h2>
+
             <Carousel 
               className="w-full" 
               opts={{ loop: true }}

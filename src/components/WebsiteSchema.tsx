@@ -31,6 +31,37 @@ export const WebsiteSchema = () => {
       }
     };
 
+    const organizationSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      "name": "LanguageBridge",
+      "legalName": "LanguageBridge LLC",
+      "url": baseUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/favicon.png`
+      },
+      "description": "LanguageBridge builds award-winning audio-first language accessibility tools for preliterate English learners in K-12 classrooms.",
+      "areaServed": "US",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Northeast Ohio, United States"
+      },
+      "sameAs": [baseUrl]
+    };
+
+    const existingOrg = document.getElementById("organization-schema");
+    if (existingOrg) {
+      existingOrg.remove();
+    }
+
+    const orgScript = document.createElement("script");
+    orgScript.type = "application/ld+json";
+    orgScript.id = "organization-schema";
+    orgScript.textContent = JSON.stringify(organizationSchema);
+    document.head.appendChild(orgScript);
+
     const existingScript = document.getElementById("website-schema");
     if (existingScript) {
       existingScript.remove();
@@ -43,10 +74,8 @@ export const WebsiteSchema = () => {
     document.head.appendChild(script);
 
     return () => {
-      const scriptToRemove = document.getElementById("website-schema");
-      if (scriptToRemove) {
-        scriptToRemove.remove();
-      }
+      document.getElementById("website-schema")?.remove();
+      document.getElementById("organization-schema")?.remove();
     };
   }, []);
 
