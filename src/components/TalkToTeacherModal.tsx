@@ -10,7 +10,7 @@ export const TalkToTeacherPanel = ({ onClose }: TalkToTeacherPanelProps) => {
       {/* Header */}
       <div className="flex items-center justify-between px-3 py-2 text-white">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+          <div className="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-xs">
             <span className="text-sm">💬</span>
           </div>
           <h3 className="font-semibold text-sm">Talk to Teacher</h3>
@@ -45,7 +45,7 @@ export const TalkToTeacherPanel = ({ onClose }: TalkToTeacherPanelProps) => {
             </div>
 
             {/* Microphone Button */}
-            <button className="w-14 h-14 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 backdrop-blur-sm border-2 border-white/30">
+            <button className="w-14 h-14 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 backdrop-blur-xs border-2 border-white/30">
               <Mic className="w-5 h-5 text-white" />
             </button>
           </div>
@@ -71,7 +71,7 @@ export const TalkToTeacherPanel = ({ onClose }: TalkToTeacherPanelProps) => {
             </div>
 
             {/* Microphone Button */}
-            <button className="w-14 h-14 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 backdrop-blur-sm border-2 border-white/30">
+            <button className="w-14 h-14 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 backdrop-blur-xs border-2 border-white/30">
               <Mic className="w-5 h-5 text-white" />
             </button>
           </div>
@@ -80,13 +80,13 @@ export const TalkToTeacherPanel = ({ onClose }: TalkToTeacherPanelProps) => {
 
       {/* Footer Controls */}
       <div className="bg-gradient-to-br from-orange-600 to-orange-500 px-3 py-2 flex items-center justify-center gap-2">
-        <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all backdrop-blur-sm" title="Dictionary">
+        <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all backdrop-blur-xs" title="Dictionary">
           <Book className="w-4 h-4 text-white" />
         </button>
-        <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all backdrop-blur-sm" title="Settings">
+        <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all backdrop-blur-xs" title="Settings">
           <Settings className="w-4 h-4 text-white" />
         </button>
-        <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all backdrop-blur-sm" title="Minimize">
+        <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all backdrop-blur-xs" title="Minimize">
           <Minimize2 className="w-4 h-4 text-white" />
         </button>
       </div>

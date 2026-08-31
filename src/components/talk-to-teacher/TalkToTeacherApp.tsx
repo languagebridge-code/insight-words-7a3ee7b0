@@ -95,21 +95,21 @@ export function TalkToTeacherApp() {
       <nav className="flex items-center justify-center gap-4 px-4 py-4">
         <button
           onClick={() => setHistoryOpen(true)}
-          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
+          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center hover:bg-white/30 transition-colors"
           aria-label="History"
         >
           <History className="w-6 h-6 text-white/80" />
         </button>
         <button
           onClick={() => setSettingsOpen(true)}
-          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
+          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center hover:bg-white/30 transition-colors"
           aria-label="Settings"
         >
           <Settings className="w-6 h-6 text-white/80" />
         </button>
         <button
           onClick={() => { store.clearHistory(); toast.success('History cleared'); }}
-          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
+          className="w-16 h-16 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center hover:bg-white/30 transition-colors"
           aria-label="Clear history"
         >
           <Trash2 className="w-6 h-6 text-white/80" />

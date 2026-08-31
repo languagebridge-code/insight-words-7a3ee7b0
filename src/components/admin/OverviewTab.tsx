@@ -169,7 +169,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
   if (error && !ext && !ttt) {
     return (
-      <Card className="border-0 shadow-sm">
+      <Card className="border-0 shadow-xs">
         <CardContent className="p-8 text-center">
           <p className="text-red-600 mb-4">{error}</p>
           <button onClick={loadData} className="px-4 py-2 rounded-lg text-white" style={{ background: "#742a69" }}>Retry</button>
@@ -207,7 +207,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Daily Usage Trend */}
-        <Card className="border-0 shadow-sm">
+        <Card className="border-0 shadow-xs">
           <CardContent className="p-5">
             <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Daily Usage (Last 14 Days)</p>
             {dailyData.length > 0 ? (
@@ -232,7 +232,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
         </Card>
 
         {/* Source Split Pie */}
-        <Card className="border-0 shadow-sm">
+        <Card className="border-0 shadow-xs">
           <CardContent className="p-5">
             <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Requests by Source</p>
             {pieData.length > 0 ? (
@@ -262,7 +262,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       </div>
 
       {/* Service Breakdown Bar Chart */}
-      <Card className="border-0 shadow-sm">
+      <Card className="border-0 shadow-xs">
         <CardContent className="p-5">
           <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Service Breakdown by Source</p>
           {serviceData.some(d => d.extension > 0 || d.ttt > 0) ? (
@@ -308,7 +308,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
 function StatCard({ icon: Icon, label, value, subtitle }: { icon: any; label: string; value: string; subtitle?: string }) {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-xs">
       <CardContent className="p-5">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-lg flex items-center justify-center" style={{ background: "#f5eaf4" }}>
@@ -327,7 +327,7 @@ function StatCard({ icon: Icon, label, value, subtitle }: { icon: any; label: st
 
 function ServiceCard({ label, icon, value }: { label: string; icon: string; value: number }) {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-xs">
       <CardContent className="p-5 flex items-center gap-3">
         <span className="text-2xl">{icon}</span>
         <div>

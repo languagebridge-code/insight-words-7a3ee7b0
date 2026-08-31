@@ -47,7 +47,7 @@ const SignupsTab = () => {
 
   if (!signups) {
     return (
-      <div className="max-w-sm bg-white rounded-xl p-6 shadow-sm">
+      <div className="max-w-sm bg-white rounded-xl p-6 shadow-xs">
         <h2 className="font-bold text-lg mb-1" style={{ color: "#4a1a45" }}>
           Signups
         </h2>
@@ -70,7 +70,7 @@ const SignupsTab = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm">
+    <div className="bg-white rounded-xl p-6 shadow-xs">
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-lg" style={{ color: "#4a1a45" }}>
           Signups ({signups.length})

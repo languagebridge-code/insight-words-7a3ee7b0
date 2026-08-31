@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { PageMeta } from "@/components/PageMeta";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Mail, ArrowUp, CheckCircle2, XCircle, Download } from "lucide-react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -101,7 +101,7 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-background">
       <PageMeta title="Privacy Policy" description="LanguageBridge Privacy Policy. Zero student PII collection, FERPA and COPPA compliant. Read how we protect student data and privacy." />
-      <header className="bg-gradient-to-br from-primary via-primary/90 to-secondary text-white py-12 sticky top-0 z-40 shadow-lg backdrop-blur-sm">
+      <header className="bg-gradient-to-br from-primary via-primary/90 to-secondary text-white py-12 sticky top-0 z-40 shadow-lg backdrop-blur-xs">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-start mb-4">
             <Link to="/" className="text-white/90 hover:text-white inline-block transition-colors">

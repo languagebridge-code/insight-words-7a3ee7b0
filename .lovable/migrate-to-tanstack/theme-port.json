@@ -1,0 +1,29 @@
+{
+  "customizations": [
+    { "token": "--primary (plum 310 47% 31%)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--primary-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--accent (orange 32 95% 58%)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--lavender", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--peach", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--deep-purple", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--burnt-orange", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--gradient-primary", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--gradient-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-elegant", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--transition-smooth", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "full :root + .dark HSL palette (background/foreground/card/popover/secondary/muted/destructive/border/input/ring/sidebar)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--font-sans Inter / --font-heading DM Sans", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "spacing 18/88/112/128", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "container (center, 2rem padding, 1400px)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "accordion-down/accordion-up animations", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "base layer typography (h1-h6 scale, body 16px/1.7, scroll-behavior)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "gradient-primary / gradient-text / bg-gradient-radial utilities", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "glow-primary / shooting-star / pulse-glow / shoot keyframes", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "hover-scale / hover-lift utilities", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "fade-in-up/down / fade-in / slide-in-left/right + keyframes", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "delay-100..800 utilities", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "nav-link / nav-dropdown / logo-glow / logo-text utilities", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "ttt-wave keyframes", "source": "src/index.css", "reappliedIn": "src/styles.css" }
+  ]
+}

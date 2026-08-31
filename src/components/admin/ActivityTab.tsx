@@ -100,7 +100,7 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
 
   if (error) {
     return (
-      <Card className="border-0 shadow-sm">
+      <Card className="border-0 shadow-xs">
         <CardContent className="p-8 text-center">
           <p className="text-red-600 mb-4">{error}</p>
           <button onClick={loadData} className="px-4 py-2 rounded-lg text-white" style={{ background: "#742a69" }}>Retry</button>
@@ -138,7 +138,7 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
       </div>
 
       {items.length === 0 ? (
-        <Card className="border-0 shadow-sm">
+        <Card className="border-0 shadow-xs">
           <CardContent className="p-12 text-center">
             <Activity className="h-10 w-10 mx-auto mb-3 text-gray-300" />
             <p className="font-medium text-gray-500">No activity recorded yet</p>
@@ -149,7 +149,7 @@ const ActivityTab = ({ onAuthError }: ActivityTabProps) => {
           {items.map((item, i) => (
             <Card
               key={i}
-              className={`border-0 shadow-sm overflow-hidden ${!item.success ? "border-l-4 border-l-red-500" : ""}`}
+              className={`border-0 shadow-xs overflow-hidden ${!item.success ? "border-l-4 border-l-red-500" : ""}`}
             >
               <CardContent className="p-4 flex items-center gap-4">
                 <span className="text-xl">{SERVICE_ICONS[item.service] || "📡"}</span>

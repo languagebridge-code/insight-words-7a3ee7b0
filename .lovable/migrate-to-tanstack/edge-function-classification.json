@@ -1,0 +1,19 @@
+{"functions": [
+  {"name": "admin-proxy", "classification": "unknown", "signal": "called from src/components/admin/adminApi.ts but requires SUPABASE_SERVICE_ROLE_KEY + ADMIN_DASHBOARD_PASSWORD, secrets only available in the Supabase runtime", "outcome": "left"},
+  {"name": "check-subscription", "classification": "unknown", "signal": "no src/ call sites; Stripe secret only in Supabase runtime; default to external", "outcome": "left"},
+  {"name": "create-checkout", "classification": "unknown", "signal": "no src/ call sites; Stripe secret only in Supabase runtime; default to external", "outcome": "left"},
+  {"name": "customer-portal", "classification": "unknown", "signal": "no src/ call sites; Stripe secret only in Supabase runtime; default to external", "outcome": "left"},
+  {"name": "lb-proxy", "classification": "external-caller", "signal": "PWA calls it by fixed /functions/v1/lb-proxy URL (configureApi); holds LB_API_KEY", "outcome": "left"},
+  {"name": "send-form-submission", "classification": "unknown", "signal": "no src/ call sites; Zoho/Mailchimp secrets only in Supabase runtime; default to external", "outcome": "left"},
+  {"name": "speech-to-text", "classification": "external-caller", "signal": "called from src/ but Azure keys live only in Supabase runtime; Chrome extension may also call by URL (extension fetches bypass CORS)", "outcome": "left"},
+  {"name": "submit-contact-form", "classification": "unknown", "signal": "no src/ call sites; service-role + Resend secrets; default to external", "outcome": "left"},
+  {"name": "submit-extension-event", "classification": "external-caller", "signal": "buildCorsHeaders(req, true) — called by Chrome extension via raw URL", "outcome": "left"},
+  {"name": "submit-lead", "classification": "external-caller", "signal": "called from src/components/leads/LeadForm.tsx but requires SUPABASE_SERVICE_ROLE_KEY + Zoho secrets only in Supabase runtime", "outcome": "left"},
+  {"name": "submit-pilot-application", "classification": "unknown", "signal": "no src/ call sites; service-role + Resend secrets; default to external", "outcome": "left"},
+  {"name": "submit-usage-analytics", "classification": "external-caller", "signal": "buildCorsHeaders(req, true) — called by Chrome extension via raw URL", "outcome": "left"},
+  {"name": "subscribe-newsletter", "classification": "unknown", "signal": "no src/ call sites; service-role + Resend secrets; default to external", "outcome": "left"},
+  {"name": "talk-to-teacher-proxy", "classification": "external-caller", "signal": "fixed-URL proxy for the Talk to Teacher PWA; TTT_* secrets only in Supabase runtime", "outcome": "left"},
+  {"name": "text-to-speech", "classification": "external-caller", "signal": "called from src/ but Azure keys live only in Supabase runtime; Chrome extension may also call by URL", "outcome": "left"},
+  {"name": "translate-text", "classification": "external-caller", "signal": "called from src/ but Azure keys live only in Supabase runtime; Chrome extension may also call by URL", "outcome": "left"},
+  {"name": "zoho-token-exchange", "classification": "webhook receiver", "signal": "Zoho OAuth exchange; Zoho client secrets only in Supabase runtime", "outcome": "left"}
+]}

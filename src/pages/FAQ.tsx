@@ -5,7 +5,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, CheckCircle2, GraduationCap, Server, Shield, Lock, FileCheck, Users, Database, Scale, XCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { useEffect, useState } from "react";
 
 const FAQ = () => {
@@ -165,7 +165,7 @@ const FAQ = () => {
                 onClick={() => setActiveTab('general')}
                 className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   activeTab === 'general'
-                    ? 'bg-background text-foreground shadow-sm'
+                    ? 'bg-background text-foreground shadow-xs'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -175,7 +175,7 @@ const FAQ = () => {
                 onClick={() => setActiveTab('compliance')}
                 className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   activeTab === 'compliance'
-                    ? 'bg-background text-foreground shadow-sm'
+                    ? 'bg-background text-foreground shadow-xs'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >

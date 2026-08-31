@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { useLeadDialog } from "@/components/leads/LeadDialog";
 
 import heroStudent1 from "@/assets/hero-student-1.jpg";

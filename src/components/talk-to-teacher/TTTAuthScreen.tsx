@@ -104,7 +104,7 @@ export function TTTAuthScreen() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
-                  className="w-full rounded-lg border px-3 py-2.5 outline-none focus:ring-2"
+                  className="w-full rounded-lg border px-3 py-2.5 outline-hidden focus:ring-2"
                   style={{ borderColor: '#f5eaf4', color: '#4a1a45' }}
                 />
               </div>
@@ -121,7 +121,7 @@ export function TTTAuthScreen() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-lg border px-3 py-2.5 outline-none focus:ring-2"
+                className="w-full rounded-lg border px-3 py-2.5 outline-hidden focus:ring-2"
                 style={{ borderColor: '#f5eaf4', color: '#4a1a45' }}
               />
             </div>
@@ -136,7 +136,7 @@ export function TTTAuthScreen() {
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
                   required
-                  className="w-full rounded-lg border px-3 py-2.5 bg-white outline-none focus:ring-2"
+                  className="w-full rounded-lg border px-3 py-2.5 bg-white outline-hidden focus:ring-2"
                   style={{ borderColor: '#f5eaf4', color: '#4a1a45' }}
                 >
                   <option value="">Select your role</option>
@@ -160,7 +160,7 @@ export function TTTAuthScreen() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full rounded-lg border px-3 py-2.5 outline-none focus:ring-2"
+                className="w-full rounded-lg border px-3 py-2.5 outline-hidden focus:ring-2"
                 style={{ borderColor: '#f5eaf4', color: '#4a1a45' }}
               />
             </div>

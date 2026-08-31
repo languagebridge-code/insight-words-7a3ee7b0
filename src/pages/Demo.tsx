@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";

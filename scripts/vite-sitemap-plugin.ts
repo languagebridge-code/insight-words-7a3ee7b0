@@ -7,10 +7,19 @@ export function sitemapPlugin(): Plugin {
   return {
     name: "vite-plugin-sitemap",
     closeBundle() {
-      const sitemap = generateSitemap();
-      const outPath = path.resolve(__dirname, "../dist/sitemap.xml");
-      fs.writeFileSync(outPath, sitemap, "utf-8");
-      console.log("✅ sitemap.xml generated with today's date");
+      try {
+        const sitemap = generateSitemap();
+        // Always refresh the static copy served from public/.
+        fs.writeFileSync(path.resolve(__dirname, "../public/sitemap.xml"), sitemap, "utf-8");
+        // Also write into dist/ when a classic client build output exists.
+        const distDir = path.resolve(__dirname, "../dist");
+        if (fs.existsSync(distDir)) {
+          fs.writeFileSync(path.join(distDir, "sitemap.xml"), sitemap, "utf-8");
+        }
+        console.log("✅ sitemap.xml generated with today's date");
+      } catch (err) {
+        console.warn("⚠️ sitemap generation skipped:", err);
+      }
     },
   };
 }

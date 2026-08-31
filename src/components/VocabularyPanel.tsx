@@ -59,7 +59,7 @@ export const VocabularyPanel = ({ onClose }: VocabularyPanelProps) => {
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 text-white border-b border-white/20">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-xs">
             <span className="text-lg">📚</span>
           </div>
           <h3 className="font-semibold text-base">Academic Vocabulary</h3>
@@ -73,7 +73,7 @@ export const VocabularyPanel = ({ onClose }: VocabularyPanelProps) => {
       </div>
 
       {/* Vocabulary List */}
-      <div className="overflow-y-auto max-h-[520px] bg-white/5 backdrop-blur-sm">
+      <div className="overflow-y-auto max-h-[520px] bg-white/5 backdrop-blur-xs">
         {vocabularyTerms.map((item, index) => (
           <div 
             key={index}
