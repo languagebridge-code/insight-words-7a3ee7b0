@@ -37,7 +37,7 @@ const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
               onClick={() => onTabChange(tab.id)}
               className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${
                 activeTab === tab.id
-                  ? "bg-white text-[#4a1a45] shadow-sm"
+                  ? "bg-white text-[#4a1a45] shadow-xs"
                   : "text-white/90 hover:bg-white/10"
               }`}
             >

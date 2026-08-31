@@ -7,7 +7,7 @@ interface FlagsTabProps {
 
 const FlagsTab = ({ onAuthError }: FlagsTabProps) => {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border-0 shadow-xs">
       <CardContent className="p-12 text-center">
         <Flag className="h-10 w-10 mx-auto mb-3 text-gray-300" />
         <p className="font-medium text-gray-500">Flags feature coming soon</p>

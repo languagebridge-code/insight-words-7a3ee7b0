@@ -33,7 +33,7 @@ export function HistoryPanel({ open, entries, onClear, onClose }: HistoryPanelPr
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
       <div className="bg-slate-900 border border-white/20 rounded-2xl w-full max-w-md shadow-2xl flex flex-col max-h-[80vh]">
         <div className="flex items-center justify-between p-6 pb-4 border-b border-white/10">
           <h2 className="text-lg font-bold text-white">Conversation History</h2>

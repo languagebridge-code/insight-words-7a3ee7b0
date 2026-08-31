@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "@/lib/router-compat";
 import { X, MessageSquareHeart } from "lucide-react";
 import { useLeadDialog } from "@/components/leads/LeadDialog";
 

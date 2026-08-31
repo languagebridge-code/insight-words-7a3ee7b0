@@ -42,7 +42,7 @@ export const InteractiveDemo = () => {
 
           {/* Assignment Content */}
           <div className="p-6 bg-gray-50">
-            <div className="bg-white rounded-lg p-6 shadow">
+            <div className="bg-white rounded-lg p-6 shadow-sm">
               <h3 className="text-lg font-bold mb-4">Assignment: Read Chapter 1</h3>
               
               <div className="text-base leading-relaxed mb-4 text-gray-700">
@@ -74,7 +74,7 @@ export const InteractiveDemo = () => {
               </div>
 
               {/* Text Input */}
-              <div className="flex-1 bg-white/10 rounded-lg px-4 py-2 text-sm text-white/90 backdrop-blur-sm border border-white/20 min-w-0">
+              <div className="flex-1 bg-white/10 rounded-lg px-4 py-2 text-sm text-white/90 backdrop-blur-xs border border-white/20 min-w-0">
                 Tap to speak text to translate
               </div>
 
@@ -107,7 +107,7 @@ export const InteractiveDemo = () => {
               </button>
 
               {/* Language Selector */}
-              <div className="bg-white/20 px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-sm border border-white/30 flex-shrink-0">
+              <div className="bg-white/20 px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-xs border border-white/30 flex-shrink-0">
                 <span className="hidden sm:inline">دری </span>Dari
               </div>
 

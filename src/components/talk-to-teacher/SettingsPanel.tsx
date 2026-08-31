@@ -12,7 +12,7 @@ export function SettingsPanel({ open, settings, onUpdate, onClose }: SettingsPan
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
       <div className="bg-slate-900 border border-white/20 rounded-2xl w-full max-w-md p-6 shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -34,7 +34,7 @@ export function SettingsPanel({ open, settings, onUpdate, onClose }: SettingsPan
           <select
             value={settings.studentLanguage}
             onChange={e => onUpdate({ studentLanguage: e.target.value })}
-            className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#742a69]/60 appearance-none"
+            className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-[#742a69]/60 appearance-none"
           >
             {SUPPORTED_LANGUAGES.filter(l => l.code !== 'en').map(l => (
               <option key={l.code} value={l.code} className="bg-slate-900 text-white">
@@ -52,7 +52,7 @@ export function SettingsPanel({ open, settings, onUpdate, onClose }: SettingsPan
           <select
             value={settings.teacherLanguage}
             onChange={e => onUpdate({ teacherLanguage: e.target.value })}
-            className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#742a69]/60 appearance-none"
+            className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-[#742a69]/60 appearance-none"
           >
             {SUPPORTED_LANGUAGES.map(l => (
               <option key={l.code} value={l.code} className="bg-slate-900 text-white">
