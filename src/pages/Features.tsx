@@ -74,7 +74,7 @@ export default function Features() {
 
             {/* Product Screenshot */}
             <div className="mt-12 max-w-5xl mx-auto">
-              <img 
+              <img loading="lazy" decoding="async" 
                 src={extensionScreenshot} 
                 alt="LanguageBridge Chrome extension showing audio-first translation, 3-tiered glossary, and Talk to Teacher features" 
                 className="w-full rounded-2xl shadow-2xl border border-border"

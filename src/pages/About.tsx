@@ -121,7 +121,7 @@ export default function About() {
             <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden mb-12">
               <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
                 <div className="flex-shrink-0 w-full md:w-72 lg:w-80">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={accelerateWin}
                     alt="LanguageBridge team receiving $5,000 grand prize check at the 2026 Accelerate pitch contest"
                     className="rounded-xl shadow-lg w-full h-auto"
@@ -129,7 +129,7 @@ export default function About() {
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
-                    <img src={accelerateLogo} alt="Cleveland Leadership Center Accelerate" className="h-12 w-auto" />
+                    <img loading="lazy" decoding="async" src={accelerateLogo} alt="Cleveland Leadership Center Accelerate" className="h-12 w-auto" />
                     <div className="flex items-center gap-1.5">
                       <Trophy className="w-4 h-4 text-primary" />
                       <span className="text-sm font-semibold text-primary uppercase tracking-wide">

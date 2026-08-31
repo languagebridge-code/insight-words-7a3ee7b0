@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
@@ -28,6 +29,8 @@ const points = [
 ];
 
 export default function Demo() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen">
       <PageMeta
@@ -68,7 +71,7 @@ export default function Demo() {
               <p className="text-muted-foreground mb-6">
                 No student data required. No obligation.
               </p>
-              <LeadForm source="demo-page" />
+              <LeadForm source="demo-page" onSuccess={() => navigate("/thank-you")} />
             </div>
           </div>
         </div>
