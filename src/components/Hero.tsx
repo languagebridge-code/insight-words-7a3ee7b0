@@ -103,6 +103,8 @@ export const Hero = () => {
 
           {/* Right Column - Image Carousel */}
           <div className="fade-in-up delay-300 lg:pl-8">
+            <h2 className="sr-only">Student stories from LanguageBridge classrooms</h2>
+
             <Carousel 
               className="w-full" 
               opts={{ loop: true }}
