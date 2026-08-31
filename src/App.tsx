@@ -20,6 +20,9 @@ import NotFound from "./pages/NotFound";
 import TalkToTeacher from "./pages/TalkToTeacher";
 import Admin from "./pages/Admin";
 import Demo from "./pages/Demo";
+import ThankYou from "./pages/ThankYou";
+import { StickyCtaBar } from "@/components/StickyCtaBar";
+import { CookieBanner } from "@/components/CookieBanner";
 import { LeadDialogProvider } from "@/components/leads/LeadDialog";
 import { configureApi } from "./features/talk-to-teacher/lib/api";
 
@@ -42,6 +45,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/features" element={<Features />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy" element={<Privacy />} />
@@ -60,6 +64,8 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <StickyCtaBar />
+          <CookieBanner />
         </LeadDialogProvider>
       </BrowserRouter>
     </TooltipProvider>
