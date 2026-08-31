@@ -8,7 +8,7 @@ interface LeadCtaSectionProps {
 
 export const LeadCtaSection = ({
   source,
-  title = "Bring LanguageBridge™ to your students",
+  title = "Bring LanguageBridge to your students",
   subtitle = "Tell us where to send setup details, district pricing, and compliance documentation. Justin replies personally within one business day.",
 }: LeadCtaSectionProps) => (
   <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">

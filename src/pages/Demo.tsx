@@ -44,7 +44,7 @@ export default function Demo() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start max-w-6xl mx-auto">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                See LanguageBridge™ <span className="gradient-text">in your classroom</span>
+                See LanguageBridge <span className="gradient-text">in your classroom</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
                 Tell us a little about your role and we'll send everything you need to bring
