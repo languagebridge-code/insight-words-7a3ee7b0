@@ -65,7 +65,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <PageMeta
-        title="LanguageBridge - The First Language Accessibility Screen Reader for ESL Students"
+        title="LanguageBridge - An Audio-First Language Accessibility Screen Reader for ESL Students"
         description="Audio-first language accessibility for preliterate ESL students. Audio Translation, Tiered Language Glossary, and Talk to Teacher tools for K-12 classrooms."
       />
       <Navigation />

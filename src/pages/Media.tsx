@@ -32,7 +32,7 @@ const Media = () => {
     <div className="min-h-screen bg-background">
       <PageMeta
         title="Media | LanguageBridge"
-        description="Press coverage, awards, and media inquiries for LanguageBridge — the first Language Accessibility Screen Reader for ESL students."
+        description="Press coverage, awards, and media inquiries for LanguageBridge — an audio-first Language Accessibility Screen Reader for ESL students."
       />
       <Navigation />
 

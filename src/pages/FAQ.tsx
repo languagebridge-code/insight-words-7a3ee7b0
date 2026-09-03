@@ -12,7 +12,7 @@ const FAQ = () => {
   const [activeTab, setActiveTab] = useState<'general' | 'compliance'>('general');
 
   const allFAQs = [
-    { question: "What is LanguageBridge?", answer: "LanguageBridge is a Chrome extension and the first language accessibility screen reader built for preliterate ESL students. It's a toolbar that follows students on every window they open. No tab-switching required." },
+    { question: "What is LanguageBridge?", answer: "LanguageBridge is a Chrome extension and an audio-first Language Accessibility Screen Reader built for preliterate ESL students. It's a toolbar that follows students on every window they open. No tab-switching required." },
     { question: "Do teachers need training?", answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We provide a 3-hour professional development session, but the tool is intuitive enough to start using immediately. Students need zero training." },
     { question: "What's included in the Chrome extension?", answer: "Everything. One toolbar includes all three tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher. Students highlight text, hit play, and a second later they hear it in their native language. It works on Google Docs, PDFs, and is seamlessly integrated into Google Classroom." },
     { question: "What languages are supported?", answer: "16 languages: Arabic, Burmese, Dari, English, French, Nepali, Pashto, Persian, Portuguese, Somali, Spanish, Swahili, Tagalog, Ukrainian, Urdu, and Vietnamese — with more coming. We prioritize languages based on refugee resettlement patterns and district requests." },
@@ -51,7 +51,7 @@ const FAQ = () => {
   const teacherFAQs = [
     {
       question: "What is LanguageBridge?",
-      answer: "LanguageBridge is a Chrome extension and the first language accessibility screen reader built for preliterate ESL students. We built it as a toolbar that follows students on every window they open. No tab-switching required. It answers the question many teachers have: what do I do with this student that doesn't know English?"
+      answer: "LanguageBridge is a Chrome extension and an audio-first Language Accessibility Screen Reader built for preliterate ESL students. We built it as a toolbar that follows students on every window they open. No tab-switching required. It answers the question many teachers have: what do I do with this student that doesn't know English?"
     },
     {
       question: "Do teachers need training?",
