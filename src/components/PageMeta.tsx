@@ -51,7 +51,7 @@ export const PageMeta = ({ title, description, canonical }: PageMetaProps) => {
     link.href = canonicalUrl;
 
     return () => {
-      document.title = "LanguageBridge - The First Language Accessibility Screen Reader for ESL Students";
+      document.title = "LanguageBridge - An Audio-First Language Accessibility Screen Reader for ESL Students";
     };
   }, [title, description, canonical, pathname]);
 

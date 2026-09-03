@@ -4,7 +4,7 @@ export const FAQExpanded = () => {
   const faqs = [
     {
       question: "What is LanguageBridge?",
-      answer: "LanguageBridge is a Chrome extension and the first language accessibility screen reader built for preliterate ESL students. It's a toolbar that follows students on every window they open. No tab-switching required. It answers the question many teachers have: what do I do with this student that doesn't know English?"
+      answer: "LanguageBridge is a Chrome extension and an audio-first Language Accessibility Screen Reader built for preliterate ESL students. It's a toolbar that follows students on every window they open. No tab-switching required. It answers the question many teachers have: what do I do with this student that doesn't know English?"
     },
     {
       question: "Why can't schools just use Google Translate?",
