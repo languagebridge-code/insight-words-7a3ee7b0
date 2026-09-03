@@ -10,7 +10,7 @@ export const WebsiteSchema = () => {
       "name": "LanguageBridge",
       "alternateName": "LanguageBridge Screen Reader",
       "url": baseUrl,
-      "description": "Audio-first language accessibility for preliterate ESL students. Three integrated tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher.",
+      "description": "LanguageBridge is an audio-first Language Accessibility Screen Reader for preliterate ESL students. Three integrated tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -42,7 +42,7 @@ export const WebsiteSchema = () => {
         "@type": "ImageObject",
         "url": `${baseUrl}/favicon.png`
       },
-      "description": "LanguageBridge builds award-winning audio-first language accessibility tools for preliterate English learners in K-12 classrooms.",
+      "description": "LanguageBridge builds an award-winning audio-first Language Accessibility Screen Reader for preliterate English learners in K-12 classrooms.",
       "areaServed": "US",
       "foundingLocation": {
         "@type": "Place",

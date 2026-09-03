@@ -18,10 +18,10 @@ export default function Features() {
       "name": "LanguageBridge Chrome Extension",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Chrome OS, Windows, macOS",
-      "description": "Three integrated tools: Audio Translation for preliterate students, Tiered Language Glossary for academic vocabulary, and Talk to Teacher for classroom communication.",
+      "description": "LanguageBridge is an audio-first Language Accessibility Screen Reader with three integrated tools: Audio Translation for preliterate students, Tiered Language Glossary for academic vocabulary, and Talk to Teacher for classroom communication.",
       "url": "https://www.languagebridge.app/features",
       "featureList": [
-        "Audio Translation with 9+ language support",
+        "Audio Translation with 16 language support",
         "Tiered Language Glossary (Tier 1, 2, 3 vocabulary)",
         "Talk to Teacher real-time communication",
         "Alt+Shift+L keyboard shortcut activation",
@@ -43,7 +43,7 @@ export default function Features() {
 
   return (
     <div className="min-h-screen">
-      <PageMeta title="Features - Audio Translation, Glossary & Talk to Teacher" description="Explore LanguageBridge's three core tools: Audio Translation for preliterate students, Tiered Language Glossary, and Talk to Teacher communication bridge." />
+      <PageMeta title="Features - Audio Translation, Glossary & Talk to Teacher" description="Explore the three core tools of our audio-first Language Accessibility Screen Reader: Audio Translation for preliterate students, Tiered Language Glossary, and Talk to Teacher communication bridge." />
       <Navigation />
       
       {/* Hero Section */}

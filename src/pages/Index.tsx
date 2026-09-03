@@ -22,7 +22,7 @@ const Index = () => {
       "name": "LanguageBridge",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Chrome OS, Windows, macOS",
-      "description": "Audio-first language accessibility Chrome extension for preliterate ESL/SLIFE students. Includes Audio Translation, Tiered Language Glossary, and Talk to Teacher tools.",
+      "description": "LanguageBridge is an audio-first Language Accessibility Screen Reader for preliterate ESL/SLIFE students. Includes Audio Translation, Tiered Language Glossary, and Talk to Teacher tools.",
       "url": "https://languagebridge.app",
       "offers": {
         "@type": "Offer",
@@ -32,7 +32,7 @@ const Index = () => {
         "availability": "https://schema.org/InStock"
       },
       "featureList": [
-        "Real-time audio translation in 9+ languages",
+        "Real-time audio translation in 16 languages",
         "Tiered academic language glossary",
         "Talk to Teacher communication bridge",
         "FERPA & COPPA compliant",
@@ -66,7 +66,7 @@ const Index = () => {
     <div className="min-h-screen">
       <PageMeta
         title="LanguageBridge - An Audio-First Language Accessibility Screen Reader for ESL Students"
-        description="Audio-first language accessibility for preliterate ESL students. Audio Translation, Tiered Language Glossary, and Talk to Teacher tools for K-12 classrooms."
+        description="LanguageBridge is an audio-first Language Accessibility Screen Reader for preliterate ESL students. Audio Translation, Tiered Language Glossary, and Talk to Teacher tools for K-12 classrooms."
       />
       <Navigation />
       <Hero />
