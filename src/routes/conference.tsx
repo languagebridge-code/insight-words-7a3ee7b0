@@ -39,6 +39,20 @@ function ConferencePage() {
             Leave your details and we'll follow up with a free pilot for your
             school or district — no obligation, no data stored.
           </p>
+
+          {/* QR code — clean block for flyer reuse */}
+          <div className="mt-6 flex flex-col items-center">
+            <img
+              src="/conference-qr.png"
+              alt="QR code linking to LanguageBridge conference sign-up at languagebridge.app/conference"
+              width={220}
+              height={220}
+              className="block bg-white rounded-xl p-2 shadow-[var(--shadow-elegant)]"
+            />
+            <span className="mt-2 text-xs font-medium text-muted-foreground">
+              Scan to sign up — languagebridge.app/conference
+            </span>
+          </div>
         </div>
 
         {/* Google Form embed */}
