@@ -20,7 +20,7 @@ export const WhoWeServe = () => {
       subtitle: "Who Use It Daily",
       concerns: [
         "Three integrated tools: audio translation, tiered glossary, and Talk to Teacher",
-        "Audio support for preliterate students in 9+ languages",
+        "Audio support for preliterate students in 16 languages",
         "Works in Google Classroom, Canvas, and any website",
         "One keyboard shortcut (Alt+Shift+L) for instant access"
       ],
