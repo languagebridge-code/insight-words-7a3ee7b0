@@ -13,7 +13,7 @@ const articles = [
     author: "Angelina Bair",
     date: "March 17, 2026",
     excerpt:
-      "LanguageBridge, an audio-first Chrome extension designed to help preliterate English learners access classroom content, won the 2026 Accelerate grand prize at the Cleveland Leadership Center pitch contest.",
+      "LanguageBridge, an audio-first Language Accessibility Screen Reader designed to help preliterate English learners access classroom content, won the 2026 Accelerate grand prize at the Cleveland Leadership Center pitch contest.",
     url: "https://www.freshwatercleveland.com/features/LanguageBridge-Wins-Big-At-Accelerate-Cleveland_031726.aspx",
   },
   {

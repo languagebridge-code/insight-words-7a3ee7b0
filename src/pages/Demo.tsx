@@ -35,7 +35,7 @@ export default function Demo() {
     <div className="min-h-screen">
       <PageMeta
         title="Request a Demo - LanguageBridge for Schools & Districts"
-        description="Get a personal walkthrough of LanguageBridge, district pricing, and full FERPA, COPPA, and Ohio SB 29 compliance documentation. Reply within one business day."
+        description="Get a personal walkthrough of LanguageBridge, the audio-first Language Accessibility Screen Reader, plus district pricing and full FERPA, COPPA, and Ohio SB 29 compliance documentation. Reply within one business day."
       />
       <Navigation />
 
