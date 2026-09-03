@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ComplianceRouteImport } from './routes/compliance'
+import { Route as ConferenceRouteImport } from './routes/conference'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DemoRouteImport } from './routes/demo'
@@ -46,6 +47,11 @@ const AdminRoute = AdminRouteImport.update({
 const ComplianceRoute = ComplianceRouteImport.update({
   id: '/compliance',
   path: '/compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConferenceRoute = ConferenceRouteImport.update({
+  id: '/conference',
+  path: '/conference',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/compliance': typeof ComplianceRoute
+  '/conference': typeof ConferenceRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/demo': typeof DemoRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/compliance': typeof ComplianceRoute
+  '/conference': typeof ConferenceRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/demo': typeof DemoRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/compliance': typeof ComplianceRoute
+  '/conference': typeof ConferenceRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/demo': typeof DemoRoute
@@ -187,6 +196,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/compliance'
+    | '/conference'
     | '/contact'
     | '/dashboard'
     | '/demo'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/compliance'
+    | '/conference'
     | '/contact'
     | '/dashboard'
     | '/demo'
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/compliance'
+    | '/conference'
     | '/contact'
     | '/dashboard'
     | '/demo'
@@ -248,6 +260,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   ComplianceRoute: typeof ComplianceRoute
+  ConferenceRoute: typeof ConferenceRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   DemoRoute: typeof DemoRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/compliance'
       fullPath: '/compliance'
       preLoaderRoute: typeof ComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conference': {
+      id: '/conference'
+      path: '/conference'
+      fullPath: '/conference'
+      preLoaderRoute: typeof ConferenceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -400,6 +420,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   ComplianceRoute: ComplianceRoute,
+  ConferenceRoute: ConferenceRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   DemoRoute: DemoRoute,
