@@ -38,7 +38,7 @@ export default function About() {
       "name": "LanguageBridge",
       "url": "https://www.languagebridge.app",
       "logo": "https://www.languagebridge.app/favicon.png",
-      "description": "Audio-first language accessibility tools for preliterate ESL/SLIFE students in K-12 classrooms.",
+      "description": "LanguageBridge builds an audio-first Language Accessibility Screen Reader for preliterate ESL/SLIFE students in K-12 classrooms.",
       "founder": {
         "@type": "Person",
         "name": "Justin Bernard",
@@ -80,7 +80,7 @@ export default function About() {
     <div className="min-h-screen">
       <PageMeta
         title="About Us - Our Mission to Support ELL Students"
-        description="Learn about LanguageBridge's mission to break language barriers for preliterate ESL students with audio-first accessibility tools built for K-12 classrooms."
+        description="Learn about LanguageBridge's mission to break language barriers for preliterate ESL students with an audio-first Language Accessibility Screen Reader built for K-12 classrooms."
       />
       <Navigation />
       

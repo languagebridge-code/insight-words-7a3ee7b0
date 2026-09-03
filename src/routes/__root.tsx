@@ -28,7 +28,7 @@ configureApi(`${import.meta.env['VITE_SUPABASE_URL']}/functions/v1/lb-proxy`);
 const SITE_TITLE =
   "LanguageBridge - An Audio-First Language Accessibility Screen Reader for ESL Students";
 const SITE_DESCRIPTION =
-  "Audio-first language accessibility for preliterate ESL students. Three integrated tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher. Free pilot for Ohio schools.";
+  "LanguageBridge is an audio-first Language Accessibility Screen Reader for preliterate ESL students. Three integrated tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher. Free pilot for Ohio schools.";
 
 const SOFTWARE_APPLICATION_JSONLD = JSON.stringify({
   "@context": "https://schema.org",

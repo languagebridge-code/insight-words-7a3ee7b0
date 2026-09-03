@@ -92,7 +92,7 @@ export default function TermsOfService() {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta title="Terms of Service" description="LanguageBridge Terms of Service. Review our terms for using the Language Accessibility Screen Reader Chrome extension and platform." />
+      <PageMeta title="Terms of Service" description="LanguageBridge Terms of Service. Review our terms for using the audio-first Language Accessibility Screen Reader Chrome extension and platform." />
       <header className="bg-gradient-to-br from-primary via-primary/90 to-secondary text-white py-12 sticky top-0 z-40 shadow-lg backdrop-blur-xs">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-start mb-4">

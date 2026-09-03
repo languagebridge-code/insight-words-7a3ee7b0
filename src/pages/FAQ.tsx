@@ -145,7 +145,7 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen">
-      <PageMeta title="FAQ & Compliance - LanguageBridge" description="Answers to common questions about LanguageBridge plus FERPA, COPPA, Ohio SB 29, and Title VI compliance documentation for school districts." />
+      <PageMeta title="FAQ & Compliance - LanguageBridge" description="Answers to common questions about our audio-first Language Accessibility Screen Reader, plus FERPA, COPPA, Ohio SB 29, and Title VI compliance documentation for school districts." />
       <Navigation />
       
       {/* Hero Section */}

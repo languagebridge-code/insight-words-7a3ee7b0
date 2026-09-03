@@ -9,7 +9,7 @@ import { Link } from "@/lib/router-compat";
 export default function Compliance() {
   return (
     <div className="min-h-screen">
-      <PageMeta title="Compliance - FERPA, COPPA & Title VI" description="LanguageBridge meets FERPA, COPPA, and Title VI requirements. Zero student data collection, no PII storage, and full compliance documentation for districts." />
+      <PageMeta title="Compliance - FERPA, COPPA & Title VI" description="LanguageBridge, an audio-first Language Accessibility Screen Reader, meets FERPA, COPPA, and Title VI requirements. Zero student data collection, no PII storage, and full compliance documentation for districts." />
       <Navigation />
       
       {/* Hero Section */}
