@@ -88,9 +88,7 @@ export default function Privacy() {
     { id: "retention", title: "Data Retention" },
     { id: "ferpa", title: "Student Rights (FERPA)" },
     { id: "coppa", title: "Children's Privacy (COPPA)" },
-    { id: "sb29", title: "Ohio SB 29 Compliance" },
     { id: "schools", title: "For Schools" },
-    { id: "international", title: "International Use" },
     { id: "changes", title: "Changes to This Policy" },
     { id: "transparency", title: "Transparency Commitments" },
     { id: "legal", title: "Legal Compliance" },
@@ -525,225 +523,6 @@ export default function Privacy() {
             </Card>
           </section>
 
-          {/* Section: Ohio SB 29 Compliance */}
-          <section id="sb29" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Ohio Senate Bill 29 (Ohio Rev. Code § 3319.325) Compliance</h2>
-
-            <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 mb-6">
-              <CardContent className="pt-6">
-                <p className="text-lg mb-4">
-                  Ohio Senate Bill 29, codified at <strong>Ohio Revised Code § 3319.325</strong>, governs how K-12 school districts and their technology providers may handle student data. <strong className="text-primary">LanguageBridge is designed to align with the requirements of ORC § 3319.325.</strong>
-                </p>
-                <p className="text-muted-foreground">
-                  Our privacy-first architecture goes beyond the statutory minimum: LanguageBridge does not store educational records, does not track students, and does not collect student personally identifiable information.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="mb-6">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">SB 29 Compliance Summary</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm border-collapse">
-                    <thead>
-                      <tr className="border-b-2 border-border">
-                        <th className="text-left p-3 font-bold">SB 29 Requirement</th>
-                        <th className="text-center p-3 font-bold w-24">Status</th>
-                        <th className="text-left p-3 font-bold">How We Comply</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                      <tr>
-                        <td className="p-3 text-muted-foreground">Educational records protection</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">No educational records stored; ephemeral processing only</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">No data selling/sharing</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Zero data selling; no third-party sharing for commercial purposes</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">Restricted employee access</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">LanguageBridge employees have zero access to student data</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">FERPA alignment</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Uses FERPA-compliant Azure; collects no PII</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">No location tracking</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Extension does not request or use location permissions</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">No keystroke logging</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">No monitoring of keystroke activity</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">No browsing history tracking</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Extension does not access or track browsing history</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">No passive monitoring</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Audio features on-demand only (student-initiated)</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">Breach notification (within 30 days)</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Written commitment to notify districts within 30 days of confirmed breach; 24/7 emergency contact</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">Data security measures</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">HTTPS encryption, SOC 2 infrastructure, FERPA-compliant processing</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">Parent rights</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">Transparent practices; opt-out available</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-muted-foreground">Contract requirements</td>
-                        <td className="p-3 text-center"><span className="text-green-600 font-bold">✓</span></td>
-                        <td className="p-3 text-muted-foreground">SB 29-compliant contract language provided</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p className="mt-4 text-center font-bold text-primary">Overall Compliance: 12/12 (100%)</p>
-              </CardContent>
-            </Card>
-
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">No Prohibited Monitoring Activities</h3>
-                  <p className="text-muted-foreground mb-4">
-                    SB 29 prohibits certain monitoring activities unless specific conditions are met. LanguageBridge does NOT engage in any of these activities:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    <div className="flex items-start gap-2">
-                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Location tracking of students</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Recording keystrokes</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Activating camera or microphone without consent</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Recording browsing history</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Passive monitoring of student activity</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Creating behavioral profiles</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">Breach Notification Commitment</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Consistent with Ohio Rev. Code § 3319.325 and our contractual obligations to school districts, LanguageBridge maintains a written security incident response plan and commits to the following:
-                  </p>
-                  <div className="space-y-2">
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm"><strong>30-day breach notification:</strong> Affected school districts will be notified, in writing, within 30 days of LanguageBridge's confirmation of a security breach involving district or student data, or sooner where required by law or contract.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Notifications include the nature and timing of the incident, the categories of data involved, the steps taken to contain it, and recommended actions for the district.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">A dedicated security contact is available at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a> for incident reporting and coordination.</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">Written incident response procedures are documented internally and reviewed periodically.</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-3 bg-muted rounded-lg">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>Note:</strong> Because LanguageBridge does not store student PII or education records, the volume of student information potentially exposed by an incident affecting our systems is structurally limited. Districts remain responsible for breach response involving data they store in their own systems.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">Parent & Student Rights Under SB 29</h3>
-                  <p className="text-muted-foreground mb-4">
-                    SB 29 guarantees certain rights to parents and students. Here's how LanguageBridge supports these rights:
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong className="text-sm">Right to Inspect:</strong>
-                        <p className="text-sm text-muted-foreground">Since we don't collect or store student data, there are no records to inspect. Parents can verify this through our transparent privacy practices.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong className="text-sm">Right to Opt-Out:</strong>
-                        <p className="text-sm text-muted-foreground">Students can stop using LanguageBridge at any time by simply not activating the extension. Districts can also disable access through standard Chromebook management.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong className="text-sm">Right to Deletion:</strong>
-                        <p className="text-sm text-muted-foreground">Uninstalling the extension removes all locally stored preferences. No server-side student data exists to delete.</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-semibold mb-3">SB 29 Contract Compliance</h3>
-                  <p className="text-muted-foreground mb-4">
-                    LanguageBridge provides SB 29-compliant contract language for Ohio school districts, including:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                    <li>Data protection and privacy provisions</li>
-                    <li>FERPA compliance commitments</li>
-                    <li>Prohibition on data selling/sharing</li>
-                    <li>Security requirements</li>
-                    <li>Breach notification protocol</li>
-                    <li>Monitoring limitations</li>
-                    <li>Indemnification and liability</li>
-                    <li>Termination and data deletion procedures</li>
-                  </ul>
-                  <p className="mt-4 text-sm">
-                    <strong>For Ohio Districts:</strong> Contact <a href="mailto:info@languagebridge.app" className="text-primary hover:underline">info@languagebridge.app</a> to request our complete SB 29 compliance guide package, including contract addendum templates and parent notification letter templates.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
           {/* Section 6: FERPA */}
           <section id="ferpa" className="mb-12">
             <h2 className="text-3xl font-bold mb-6">6. FERPA Compliance (Student Privacy)</h2>
@@ -889,22 +668,6 @@ export default function Privacy() {
             </div>
           </section>
 
-          {/* Section: International Use */}
-          <section id="international" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">International Use</h2>
-            
-              <Card>
-                <CardContent className="pt-6 space-y-4">
-                  <p className="text-muted-foreground">
-                    LanguageBridge is based in the United States. Microsoft Azure may process translation requests in data centers in multiple regions under its enterprise privacy and security commitments. Schools outside the U.S. should review their local data protection laws before deploying the service.
-                  </p>
-                  <p className="text-muted-foreground">
-                    For school districts and institutions in the EU, UK, and other jurisdictions with GDPR-equivalent requirements, LanguageBridge will enter into a written Data Processing Agreement (DPA) covering the limited processing activities required to deliver the service, including standard contractual clauses where applicable. Districts can request a DPA at <a href="mailto:privacy@languagebridge.app" className="text-primary hover:underline">privacy@languagebridge.app</a>.
-                  </p>
-                </CardContent>
-              </Card>
-          </section>
-
           {/* Section: Changes to Policy */}
           <section id="changes" className="mb-12">
             <h2 className="text-3xl font-bold mb-6">Changes to This Policy</h2>
@@ -1005,21 +768,6 @@ export default function Privacy() {
                       <span className="text-sm">We will not change our privacy practices without advance notice</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-primary/30 bg-primary/5">
-                <CardContent className="pt-6">
-                  <p className="font-semibold mb-2">Ohio Law Compliance:</p>
-                  <p className="text-muted-foreground mb-2 text-sm">As an Ohio-based company, we fully comply with:</p>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
-                    <li><strong>Ohio Senate Bill 29 / Ohio Rev. Code § 3319.325</strong> – Student data privacy and limits on monitoring by K-12 technology providers</li>
-                    <li><strong>Ohio Rev. Code § 3319.321</strong> – Confidentiality of student records</li>
-                    <li><strong>Ohio Rev. Code § 1347 (state data protection)</strong> and applicable Ohio Administrative Code provisions on data governance</li>
-                  </ul>
-                  <p className="mt-3 text-sm">
-                    <a href="#sb29" className="text-primary hover:underline font-semibold">View detailed SB 29 compliance information →</a>
-                  </p>
                 </CardContent>
               </Card>
 

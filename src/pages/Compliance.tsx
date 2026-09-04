@@ -257,9 +257,9 @@ export default function Compliance() {
                 </div>
 
                 <div className="text-center pt-4">
-                  <Link to="/privacy#sb29">
+                  <Link to="/privacy">
                     <Button variant="outline">
-                      View Full SB 29 Compliance Details →
+                      View Full Privacy Policy →
                     </Button>
                   </Link>
                 </div>
