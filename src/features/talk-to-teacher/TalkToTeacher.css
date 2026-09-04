@@ -185,6 +185,7 @@
 .lb-ttt-picker-opt.selected { background: rgba(255, 255, 255, 0.22); }
 .lb-ttt-picker-en { opacity: 0.7; font-size: 13px; }
 
-@media (max-width: 440px) {
-  .lb-ttt-panel { width: auto; height: 100vh; height: 100dvh; max-height: none; border-radius: 0; margin: 0; }
+@media (max-width: 768px) {
+  .lb-ttt-page { padding: 0; align-items: stretch; justify-content: stretch; }
+  .lb-ttt-panel { width: 100%; max-width: none; height: 100vh; height: 100dvh; max-height: none; border-radius: 0; margin: 0; }
 }
