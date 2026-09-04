@@ -8,7 +8,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "Why can't schools just use Google Translate?",
-      answer: "Google Translate doesn't support Dari audio. Translator paraprofessionals cost hourly rates. Live phone translators charge per minute. So schools do what thousands of districts do: they use another student to translate. That student becomes a privacy risk, not out of carelessness, but because there are no better options. LanguageBridge is FERPA/COPPA compliant, reads translations aloud, and gives students control of their own learning from day one."
+      answer: "Google Translate is an additional tool that does not provide FERPA protections. When students use it, there is no data protection agreement for schools, and Google Translate and similar tools may also use student translations to train their AI models. It doesn't support Dari audio either. Translator paraprofessionals cost hourly rates. Live phone translators charge per minute. So schools do what thousands of districts do: they use another student to translate. That student becomes a privacy risk, not out of carelessness, but because there are no better options. LanguageBridge is specifically built for FERPA and HIPAA protection of student data, reads translations aloud, and gives students control of their own learning from day one."
     },
     {
       question: "Can we try it before we purchase?",
