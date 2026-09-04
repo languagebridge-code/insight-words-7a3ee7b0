@@ -20,7 +20,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "Do teachers need training?",
-      answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We offer a 3-hour professional development session, but the tool is intuitive enough to start using immediately. Students need zero training. They just highlight text and hit play."
+      answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We offer a complimentary professional development session for best practices and classroom integration, but the tool is intuitive enough to use right away. Students need zero training. They just highlight text and hit play."
     },
     {
       question: "Is this Title III fundable?",
