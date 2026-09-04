@@ -78,7 +78,7 @@ const FAQ = () => {
   const itFAQs = [
     {
       question: "What do we need technically?",
-      answer: "Just Chrome 90+ or any Chromebook with internet access. IT installs via Google Admin Console in 30 minutes. No extra software, no servers, no configuration needed. Works on standard school networks with content filters. Requires HTTPS access to Azure Cognitive Services (standard SSL, no firewall changes)."
+      answer: "Just Chrome 90+ or any Chromebook with internet access. IT installs via Google Admin Console in 30 minutes. No extra software, no servers, no configuration needed. Works on standard school networks with content filters."
     },
     {
       question: "How long does implementation take?",
