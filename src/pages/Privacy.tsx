@@ -771,21 +771,6 @@ export default function Privacy() {
                 </CardContent>
               </Card>
 
-              <Card className="border-primary/30 bg-primary/5">
-                <CardContent className="pt-6">
-                  <p className="font-semibold mb-2">Ohio Law Compliance:</p>
-                  <p className="text-muted-foreground mb-2 text-sm">As an Ohio-based company, we fully comply with:</p>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground text-sm">
-                    <li><strong>Ohio Senate Bill 29 / Ohio Rev. Code § 3319.325</strong> – Student data privacy and limits on monitoring by K-12 technology providers</li>
-                    <li><strong>Ohio Rev. Code § 3319.321</strong> – Confidentiality of student records</li>
-                    <li><strong>Ohio Rev. Code § 1347 (state data protection)</strong> and applicable Ohio Administrative Code provisions on data governance</li>
-                  </ul>
-                  <p className="mt-3 text-sm">
-                    <a href="#sb29" className="text-primary hover:underline font-semibold">View detailed SB 29 compliance information →</a>
-                  </p>
-                </CardContent>
-              </Card>
-
               <Card>
                 <CardContent className="pt-6">
                   <p className="font-semibold mb-2">Federal & Other State Laws:</p>
