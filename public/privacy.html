@@ -233,9 +233,9 @@
       <section id="third-party">
         <h2>Third-Party Services</h2>
         
-        <h3>Microsoft Azure (Translation &amp; Speech)</h3>
+        <h3>Microsoft Azure Speech Services</h3>
         <div class="card">
-          <p><strong>Used for:</strong> Translation and text-to-speech</p>
+          <p><strong>Used for:</strong> Translation, text-to-speech, and speech-to-text (transcription in Talk to Teacher). Processes selected text (to generate read-aloud audio) and, in Talk to Teacher, your spoken audio (to transcribe it into text). Audio and text are used only to produce the translation or transcription and are not retained by Azure or by LanguageBridge.</p>
           <p><strong>What they get:</strong> Selected text only (no student names/IDs)</p>
           <p><strong>Storage:</strong> LanguageBridge does not store translation requests or audio. Microsoft Azure may keep short-lived operational logs for abuse prevention, security, and service reliability under its enterprise privacy commitments, and does not use customer data to train its translation models.</p>
           <p><strong>Privacy:</strong> <a href="https://privacy.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft Privacy Policy</a></p>
@@ -270,6 +270,7 @@
         <div class="card">
           <ul>
             <li><strong>Translated text &amp; audio:</strong> Not stored by LanguageBridge. Azure may retain short-lived operational logs for security and abuse prevention.</li>
+            <li><strong>Voice recordings:</strong> Not stored by LanguageBridge. Sent to Microsoft Azure for transcription, then discarded (0 seconds retained).</li>
             <li><strong>Student PII:</strong> Not collected.</li>
             <li><strong>Usage stats:</strong> Up to 2 years (anonymous, aggregate counts only)</li>
             <li><strong>School contracts &amp; billing records:</strong> Contract duration plus up to 7 years (legal and tax requirements)</li>
