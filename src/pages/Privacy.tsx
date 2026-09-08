@@ -117,7 +117,7 @@ export default function Privacy() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Privacy Policy</h1>
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-white/80">
-            <p><strong>Effective Date:</strong> May 6, 2026</p>
+            <p><strong>Effective Date:</strong> September 8, 2026</p>
             <span className="hidden md:inline">•</span>
             <p><strong>Contact:</strong> privacy@languagebridge.app</p>
           </div>
@@ -173,6 +173,9 @@ export default function Privacy() {
                       </li>
                       <li>
                         <strong>Usage stats:</strong> Anonymous counts like "150 translations today" (no names, no personal info).
+                      </li>
+                      <li>
+                        <strong>Voice recordings (only in Talk to Teacher):</strong> When you use the Talk to Teacher conversation feature — and only after you allow microphone access — we capture audio from your microphone while you are actively recording. We send that audio to Microsoft Azure to convert it into text (transcription), and then discard it. We never turn on your microphone at any other time, and we never store voice recordings.
                       </li>
                     </ul>
                   </CardContent>
@@ -291,6 +294,15 @@ export default function Privacy() {
                   </CardContent>
                 </Card>
               </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Talk to Teacher (voice)</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <p className="text-muted-foreground">You tap to record, speak, and tap to stop. Your recorded audio is sent over encrypted HTTPS to Microsoft Azure Speech Services, transcribed into text, and immediately discarded. That text is then translated and read aloud in the other person's language. The audio is never saved.</p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </section>
 
@@ -341,14 +353,16 @@ export default function Privacy() {
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-semibold mb-4">Microsoft Azure (Translation & Speech)</h3>
+                <h3 className="text-2xl font-semibold mb-4">Microsoft Azure Speech Services</h3>
                 <Card>
                   <CardContent className="pt-6 space-y-4">
                     <div>
                       <p className="font-semibold mb-2">Used for:</p>
                       <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                         <li>Translation and text-to-speech</li>
+                        <li>Speech-to-text (transcription in Talk to Teacher)</li>
                       </ul>
+                      <p className="text-muted-foreground mt-2">Processes selected text (to generate read-aloud audio) and, in Talk to Teacher, your spoken audio (to transcribe it into text). Audio and text are used only to produce the translation or transcription and are not retained by Azure or by LanguageBridge.</p>
                     </div>
                     <div>
                       <p className="font-semibold mb-2">What they get:</p>
@@ -419,6 +433,7 @@ export default function Privacy() {
               <CardContent className="pt-6">
                 <ul className="space-y-3 text-muted-foreground">
                   <li><strong>Translated text & audio:</strong> Not stored by LanguageBridge. Azure may retain short-lived operational logs for security and abuse prevention.</li>
+                  <li><strong>Voice recordings:</strong> Not stored by LanguageBridge. Sent to Microsoft Azure for transcription, then discarded (0 seconds retained).</li>
                   <li><strong>Student PII:</strong> Not collected.</li>
                   <li><strong>Usage stats:</strong> Up to 2 years (anonymous, aggregate counts only)</li>
                   <li><strong>School contracts & billing records:</strong> Contract duration plus up to 7 years (legal and tax requirements)</li>
@@ -517,6 +532,13 @@ export default function Privacy() {
                   <p className="font-semibold mb-2">No Direct Marketing to Children:</p>
                   <p className="text-muted-foreground">
                     LanguageBridge does not display advertising, market to students, or use any student information to contact a child directly.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">Talk to Teacher Voice Feature:</p>
+                  <p className="text-muted-foreground">
+                    The Talk to Teacher voice feature records audio only while a student is actively speaking, uses it solely to produce a transcription, and never stores it. No voice recordings of children are retained by LanguageBridge.
                   </p>
                 </div>
               </CardContent>
@@ -859,6 +881,8 @@ export default function Privacy() {
                 </ol>
 
                 <div className="border-t border-border pt-4">
+                  <p className="font-semibold mb-2">If you use Talk to Teacher:</p>
+                  <p className="text-muted-foreground mb-4">We record your voice only while you're speaking, send it to be turned into text, and then delete it — we never keep voice recordings.</p>
                   <p className="font-semibold mb-2">We don't:</p>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                     <li>Ask for your name, email, or login</li>
