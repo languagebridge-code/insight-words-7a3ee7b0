@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { LeadCtaSection } from "@/components/leads/LeadCtaSection";
 import { Link } from "@/lib/router-compat";
 import { useEffect } from "react";
-import extensionScreenshot from "@/assets/languagebridge-screenshot.jpg";
+import { Play } from "lucide-react";
 
 export default function Features() {
   useEffect(() => {
@@ -72,13 +72,27 @@ export default function Features() {
               </Link>
             </div>
 
-            {/* Product Screenshot */}
+            {/* Product video placeholder */}
             <div className="mt-12 max-w-5xl mx-auto">
-              <img loading="lazy" decoding="async" 
-                src={extensionScreenshot} 
-                alt="LanguageBridge Chrome extension showing audio-first translation, 3-tiered glossary, and Talk to Teacher features" 
-                className="w-full rounded-2xl shadow-2xl border border-border"
-              />
+              <div
+                className="relative aspect-video overflow-hidden rounded-xl border border-border bg-muted shadow-2xl"
+                role="img"
+                aria-label="LanguageBridge product demonstration video coming soon"
+              >
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg">
+                    <Play className="h-7 w-7 translate-x-0.5" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="mb-1 text-xl font-bold text-foreground sm:text-2xl">
+                      Product Demo Video
+                    </p>
+                    <p className="mb-0 text-sm text-muted-foreground sm:text-base">
+                      Coming soon
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
