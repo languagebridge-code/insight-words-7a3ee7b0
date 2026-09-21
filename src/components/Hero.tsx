@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
@@ -8,6 +9,7 @@ import heroStudentAbdullah from "@/assets/hero-student-abdullah-new.png";
 import heroStudentSophia from "@/assets/hero-student-sophia-new.png";
 import Autoplay from "embla-carousel-autoplay";
 import {
+  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -15,13 +17,47 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+const stories = [
+  {
+    name: "amira",
+    image: heroStudentAmira,
+    alt: "Amira, a middle school student wearing a black headscarf, smiling at her desk in a bright classroom with whiteboards and classmates behind her.",
+    title: "Amira's Journey",
+    caption: "Hover or focus to read Amira's story →",
+    body: "Amira is an Afghan refugee who can't read Dari, her own language. Google Translate doesn't even support Dari audio. LanguageBridge reads her classroom content aloud in Dari so she can finally participate.",
+  },
+  {
+    name: "abdullah",
+    image: heroStudentAbdullah,
+    alt: "Abdullah, a student in a black hoodie, smiling at his desk in front of a classroom whiteboard listing the day's objectives.",
+    title: "Abdullah's Progress",
+    caption: "Hover or focus to read Abdullah's story →",
+    body: "Abdullah is learning English while keeping up with grade-level work. With Talk to Teacher, he can communicate directly with his teacher, ask questions, share concerns, and build trust without relying on a student interpreter.",
+  },
+  {
+    name: "sophia",
+    image: heroStudentSophia,
+    alt: "Sophia, a student in a gray hoodie with long dark hair, smiling in her classroom with a whiteboard and world map behind her.",
+    title: "Sophia's Breakthrough",
+    caption: "Hover or focus to read Sophia's story →",
+    body: "Sophia moved from Colombia and constantly translates two languages in her head. It made her feel \"not smart.\" With LanguageBridge, she highlights any text and the glossary generates word-to-word translations side by side.",
+  },
+];
+
 export const Hero = () => {
   const { openLeadDialog } = useLeadDialog();
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
 
-  const scrollToSection = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   const benefits = [
     "Audio-first translation for preliterate learners",
