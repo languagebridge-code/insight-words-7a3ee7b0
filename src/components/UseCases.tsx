@@ -3,9 +3,9 @@ import { AlertCircle, CheckCircle } from "lucide-react";
 export const UseCases = () => {
   const cases = [
     {
-      name: "Carlos",
+      name: "Abdullah",
       problem: "A bright 4th grader who teachers say 'doesn't do any work' because he cannot read English yet. He shuts down in class, unable to access grade-level content. Teachers flag him for special education services, when what he really needs is language support.",
-      solution: "With LanguageBridge, Carlos gains the confidence to ask questions directly in his own language and relay them to the teacher. He can read along with the class, accessing the same content as his peers and demonstrating his true academic abilities.",
+      solution: "With LanguageBridge, Abdullah gains the confidence to ask questions directly in his own language and relay them to the teacher. He can read along with the class, accessing the same content as his peers and demonstrating his true academic abilities.",
       impact: "No more misdiagnosis. No more isolation. Just access."
     },
     {
