@@ -105,95 +105,78 @@ export const Hero = () => {
           <div className="fade-in-up delay-300 lg:pl-8">
             <h2 className="sr-only">Student stories from LanguageBridge classrooms</h2>
 
-            <Carousel 
-              className="w-full" 
+            <Carousel
+              className="w-full"
               opts={{ loop: true }}
+              setApi={setApi}
+              aria-label="Student stories. Use the previous and next buttons, or the left and right arrow keys, to move between stories."
+              tabIndex={0}
               plugins={[
                 Autoplay({
                   delay: 6000,
                   stopOnInteraction: true,
                   stopOnMouseEnter: true,
+                  stopOnFocusIn: true,
                 }),
               ]}
             >
               <CarouselContent>
-                {/* Amira's Story */}
-                <CarouselItem>
-                  <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer aspect-[4/3]">
-                    <img 
-                      src={heroStudentAmira} 
-                      alt="Amira smiling in her classroom" 
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6 lg:p-8">
-                      <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
-                        <h3 className="text-2xl lg:text-3xl font-bold">Amira's Journey</h3>
-                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Amira is an Afghan refugee who can't read Dari, her own language. Google Translate doesn't even support Dari audio. LanguageBridge reads her classroom content aloud in Dari so she can finally participate.
-                        </p>
+                {stories.map((story, index) => (
+                  <CarouselItem key={story.name} aria-label={`Story ${index + 1} of ${stories.length}: ${story.title}`}>
+                    <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group aspect-[4/3] focus-within:ring-4 focus-within:ring-primary/40">
+                      <img
+                        src={story.image}
+                        alt={story.alt}
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500 flex items-end p-6 lg:p-8">
+                        <div className="text-primary-foreground space-y-3 transform translate-y-4 group-hover:translate-y-0 group-focus-within:translate-y-0 transition-transform duration-500">
+                          <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
+                          <h3 className="text-2xl lg:text-3xl font-bold">{story.title}</h3>
+                          <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">{story.body}</p>
+                        </div>
+                      </div>
+                      {/* Always visible caption */}
+                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/80 to-transparent p-4 lg:p-6 group-hover:opacity-0 group-focus-within:opacity-0 transition-opacity duration-500">
+                        <p className="text-primary-foreground font-medium text-lg">{story.caption}</p>
                       </div>
                     </div>
-                    {/* Always visible caption */}
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/80 to-transparent p-4 lg:p-6 group-hover:opacity-0 transition-opacity duration-500">
-                      <p className="text-white font-medium text-lg">Hover to read Amira's story →</p>
-                    </div>
-                  </div>
-                </CarouselItem>
-
-                {/* Abdullah's Story */}
-                <CarouselItem>
-                  <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer aspect-[4/3]">
-                    <img 
-                      src={heroStudentAbdullah} 
-                      alt="Abdullah smiling in his classroom" 
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6 lg:p-8">
-                      <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
-                        <h3 className="text-2xl lg:text-3xl font-bold">Abdullah's Progress</h3>
-                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Abdullah is learning English while keeping up with grade-level work. With Talk to Teacher, he can communicate directly with his teacher, ask questions, share concerns, and build trust without relying on a student interpreter.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/80 to-transparent p-4 lg:p-6 group-hover:opacity-0 transition-opacity duration-500">
-                      <p className="text-white font-medium text-lg">Hover to read Abdullah's story →</p>
-                    </div>
-                  </div>
-                </CarouselItem>
-
-                {/* Sophia's Story */}
-                <CarouselItem>
-                  <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer aspect-[4/3]">
-                    <img 
-                      src={heroStudentSophia} 
-                      alt="Sophia smiling in her classroom" 
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6 lg:p-8">
-                      <div className="text-white space-y-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="inline-block px-3 py-1 bg-primary/90 rounded-full text-sm font-medium">Student Story</span>
-                        <h3 className="text-2xl lg:text-3xl font-bold">Sophia's Breakthrough</h3>
-                        <p className="text-base lg:text-lg leading-relaxed opacity-90 line-clamp-4">
-                          Sophia moved from Colombia and constantly translates two languages in her head. It made her feel "not smart." With LanguageBridge, she highlights any text and the glossary generates word-to-word translations side by side.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/80 to-transparent p-4 lg:p-6 group-hover:opacity-0 transition-opacity duration-500">
-                      <p className="text-white font-medium text-lg">Hover to read Sophia's story →</p>
-                    </div>
-                  </div>
-                </CarouselItem>
+                  </CarouselItem>
+                ))}
               </CarouselContent>
-              <CarouselPrevious className="left-3 bg-background/90 hover:bg-background shadow-lg border-0" />
-              <CarouselNext className="right-3 bg-background/90 hover:bg-background shadow-lg border-0" />
+              <CarouselPrevious
+                aria-label="Previous student story"
+                className="left-2 sm:left-3 h-11 w-11 bg-background/95 hover:bg-background shadow-lg border border-border text-foreground"
+              />
+              <CarouselNext
+                aria-label="Next student story"
+                className="right-2 sm:right-3 h-11 w-11 bg-background/95 hover:bg-background shadow-lg border border-border text-foreground"
+              />
             </Carousel>
-            
-            {/* Carousel dots indicator text */}
-            <p className="text-center text-muted-foreground mt-4 text-sm">
-              Real students. Real impact. Swipe to explore.
+
+            {/* Slide indicators */}
+            <div className="flex items-center justify-center gap-2 mt-4">
+              {stories.map((story, index) => (
+                <button
+                  key={story.name}
+                  type="button"
+                  onClick={() => api?.scrollTo(index)}
+                  aria-label={`Show ${story.title}`}
+                  aria-current={current === index}
+                  className={`h-3 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                    current === index ? "w-8 bg-primary" : "w-3 bg-muted-foreground/40 hover:bg-muted-foreground/70"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <p aria-live="polite" className="sr-only">
+              {stories[current]?.title} — story {current + 1} of {stories.length}
+            </p>
+
+            {/* Carousel helper text */}
+            <p className="text-center text-muted-foreground mt-3 text-sm">
+              Real students. Real impact. Use the arrows or arrow keys to explore.
             </p>
           </div>
         </div>
