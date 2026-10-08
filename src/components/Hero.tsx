@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
-import { useLeadDialog } from "@/components/leads/LeadDialog";
 
 import heroStudentAmira from "@/assets/hero-student-amira-new.png";
 import heroStudentAbdullah from "@/assets/hero-student-abdullah-new.png";
@@ -45,7 +44,6 @@ const stories = [
 ];
 
 export const Hero = () => {
-  const { openLeadDialog } = useLeadDialog();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -106,12 +104,14 @@ export const Hero = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10 fade-in-up delay-300">
               <Button
+                asChild
                 size="xl"
-                onClick={() => openLeadDialog("hero")}
                 className="group gradient-primary text-primary-foreground shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 text-lg px-8 py-6"
               >
-                Get Started Free
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <Link to="/conference">
+                  Get Started Free
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
               </Button>
               <Button
                 asChild
