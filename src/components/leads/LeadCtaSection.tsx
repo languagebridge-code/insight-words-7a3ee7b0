@@ -1,4 +1,4 @@
-import { LeadForm } from "./LeadForm";
+import { GoogleLeadForm } from "./GoogleLeadForm";
 
 interface LeadCtaSectionProps {
   source: string;
@@ -7,7 +7,6 @@ interface LeadCtaSectionProps {
 }
 
 export const LeadCtaSection = ({
-  source,
   title = "Bring LanguageBridge to your students",
   subtitle = "Tell us where to send setup details, district pricing, and compliance documentation. Justin replies personally within one business day.",
 }: LeadCtaSectionProps) => (
@@ -17,7 +16,7 @@ export const LeadCtaSection = ({
         <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
         <p className="text-lg text-muted-foreground mb-8">{subtitle}</p>
         <div className="bg-card border border-border rounded-3xl shadow-xl p-6 md:p-8">
-          <LeadForm source={source} />
+          <GoogleLeadForm />
         </div>
       </div>
     </div>

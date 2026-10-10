@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { LeadForm } from "./LeadForm";
+import { GoogleLeadForm } from "./GoogleLeadForm";
 
 interface LeadDialogContextValue {
   openLeadDialog: (source?: string) => void;
@@ -20,10 +20,8 @@ export const useLeadDialog = () => useContext(LeadDialogContext);
 
 export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
-  const [source, setSource] = useState("modal");
 
-  const openLeadDialog = useCallback((nextSource = "modal") => {
-    setSource(nextSource);
+  const openLeadDialog = useCallback(() => {
     setOpen(true);
   }, []);
 
@@ -33,7 +31,7 @@ export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) 
     <LeadDialogContext.Provider value={value}>
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md bg-background">
+        <DialogContent className="sm:max-w-lg bg-background max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl">Get LanguageBridge in your classroom</DialogTitle>
             <DialogDescription>
@@ -41,7 +39,7 @@ export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) 
               documentation. Takes about 20 seconds.
             </DialogDescription>
           </DialogHeader>
-          <LeadForm source={source} showMessage={false} onSuccess={() => undefined} />
+          <GoogleLeadForm height={640} />
         </DialogContent>
       </Dialog>
     </LeadDialogContext.Provider>
