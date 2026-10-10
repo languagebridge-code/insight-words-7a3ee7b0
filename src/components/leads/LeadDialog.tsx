@@ -31,7 +31,7 @@ export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) 
     <LeadDialogContext.Provider value={value}>
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md bg-background">
+        <DialogContent className="sm:max-w-lg bg-background max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl">Get LanguageBridge in your classroom</DialogTitle>
             <DialogDescription>
