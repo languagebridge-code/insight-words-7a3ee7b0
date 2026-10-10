@@ -1,4 +1,4 @@
-import { LeadForm } from "./LeadForm";
+import { GoogleLeadForm } from "./GoogleLeadForm";
 
 interface LeadCtaSectionProps {
   source: string;

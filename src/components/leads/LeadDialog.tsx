@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { LeadForm } from "./LeadForm";
+import { GoogleLeadForm } from "./GoogleLeadForm";
 
 interface LeadDialogContextValue {
   openLeadDialog: (source?: string) => void;
