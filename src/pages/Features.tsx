@@ -10,6 +10,7 @@ import { Link } from "@/lib/router-compat";
 import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import demoVideoAsset from "@/assets/product-demo-video.mp4.asset.json";
+import demoVideoWebmAsset from "@/assets/product-demo-video.webm.asset.json";
 import demoPosterAsset from "@/assets/product-demo-poster.jpg.asset.json";
 
 const SITE_ORIGIN = "https://languagebridge.app";
@@ -104,14 +105,17 @@ export default function Features() {
                 {isPlaying ? (
                   <video
                     className="h-full w-full bg-black"
-                    src={demoVideoAsset.url}
                     poster={demoPosterAsset.url}
                     controls
                     autoPlay
                     playsInline
                     preload="metadata"
                     aria-label="LanguageBridge product demonstration video: a student uses audio translation, the tiered glossary, and Talk to Teacher on a Chromebook"
-                  />
+                  >
+                    <source src={demoVideoAsset.url} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+                    <source src={demoVideoWebmAsset.url} type="video/webm; codecs=vp9,opus" />
+                    Your browser can&apos;t play this video.
+                  </video>
                 ) : (
                   <button
                     type="button"
