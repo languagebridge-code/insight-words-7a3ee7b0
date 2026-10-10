@@ -7,7 +7,6 @@ interface LeadCtaSectionProps {
 }
 
 export const LeadCtaSection = ({
-  source,
   title = "Bring LanguageBridge to your students",
   subtitle = "Tell us where to send setup details, district pricing, and compliance documentation. Justin replies personally within one business day.",
 }: LeadCtaSectionProps) => (

@@ -1,4 +1,3 @@
-import { useNavigate } from "@/lib/router-compat";
 import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
@@ -29,8 +28,6 @@ const points = [
 ];
 
 export default function Demo() {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen">
       <PageMeta
