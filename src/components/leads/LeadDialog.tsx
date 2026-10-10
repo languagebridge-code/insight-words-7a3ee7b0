@@ -20,10 +20,8 @@ export const useLeadDialog = () => useContext(LeadDialogContext);
 
 export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
-  const [source, setSource] = useState("modal");
 
-  const openLeadDialog = useCallback((nextSource = "modal") => {
-    setSource(nextSource);
+  const openLeadDialog = useCallback(() => {
     setOpen(true);
   }, []);
 
