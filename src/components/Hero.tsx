@@ -119,10 +119,10 @@ export const Hero = () => {
                 size="xl"
                 className="group border-2 hover:bg-muted/50 transition-all duration-300 text-lg px-8 py-6"
               >
-                <Link to="/teacher">
+                <a href="#demo">
                   <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  See a Demo
-                </Link>
+                  Watch the Demo
+                </a>
               </Button>
             </div>
 
