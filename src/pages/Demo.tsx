@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
-import { GoogleLeadForm } from "@/components/leads/GoogleLeadForm";
+import { LeadForm } from "@/components/leads/LeadForm";
 import { CheckCircle2, Clock, ShieldCheck, Users } from "lucide-react";
 
 const points = [
@@ -68,7 +68,7 @@ export default function Demo() {
               <p className="text-muted-foreground mb-6">
                 No student data required. No obligation.
               </p>
-              <GoogleLeadForm />
+              <LeadForm source="demo-page" />
             </div>
           </div>
         </div>

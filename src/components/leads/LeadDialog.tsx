@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { GoogleLeadForm } from "./GoogleLeadForm";
+import { LeadForm } from "./LeadForm";
 
 interface LeadDialogContextValue {
   openLeadDialog: (source?: string) => void;
@@ -20,8 +20,10 @@ export const useLeadDialog = () => useContext(LeadDialogContext);
 
 export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
+  const [source, setSource] = useState<string>("popup");
 
-  const openLeadDialog = useCallback(() => {
+  const openLeadDialog = useCallback((src?: string) => {
+    setSource(src || "popup");
     setOpen(true);
   }, []);
 
@@ -39,7 +41,7 @@ export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) 
               documentation. Takes about 20 seconds.
             </DialogDescription>
           </DialogHeader>
-          <GoogleLeadForm height={640} />
+          <LeadForm source={source} />
         </DialogContent>
       </Dialog>
     </LeadDialogContext.Provider>
