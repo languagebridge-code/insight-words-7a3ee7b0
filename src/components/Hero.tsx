@@ -108,7 +108,7 @@ export const Hero = () => {
                 size="xl"
                 className="group gradient-primary text-primary-foreground shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 text-lg px-8 py-6"
               >
-                <Link to="/conference">
+                <Link to="/teacher">
                   Get Started Free
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
