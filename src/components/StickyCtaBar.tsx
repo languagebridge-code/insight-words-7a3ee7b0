@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getCookieConsent } from "@/components/CookieBanner";
 import { useLocation } from "@/lib/router-compat";
 import { X, MessageSquareHeart } from "lucide-react";
 import { useLeadDialog } from "@/components/leads/LeadDialog";
@@ -19,8 +20,16 @@ export const StickyCtaBar = () => {
   const [isDismissed, setIsDismissed] = useState(false);
   const { pathname } = useLocation();
   const { openLeadDialog } = useLeadDialog();
+  const [consented, setConsented] = useState(false);
 
-  if (isDismissed) return null;
+  useEffect(() => {
+    setConsented(!!getCookieConsent());
+    const onConsent = () => setConsented(true);
+    window.addEventListener("lb-cookie-consent", onConsent);
+    return () => window.removeEventListener("lb-cookie-consent", onConsent);
+  }, []);
+
+  if (isDismissed || !consented) return null;
   if (HIDDEN_PREFIXES.some((prefix) => pathname.startsWith(prefix))) return null;
 
   return (
@@ -32,7 +41,7 @@ export const StickyCtaBar = () => {
             className="flex-1 flex items-center justify-center gap-2 gradient-primary text-primary-foreground font-semibold text-sm rounded-xl py-3 shadow-lg active:opacity-90"
           >
             <MessageSquareHeart className="w-4 h-4 flex-shrink-0" />
-            Get a demo — reply in 1 business day
+            Request a demo
           </button>
           <button
             onClick={() => setIsDismissed(true)}
