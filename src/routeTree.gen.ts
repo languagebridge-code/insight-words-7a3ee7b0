@@ -28,7 +28,6 @@ import { Route as TeacherDashboardRouteImport } from './routes/teacher-dashboard
 import { Route as TeacherSignupRouteImport } from './routes/teacher-signup'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
-import { Route as ApiPublicZohoExchangeRouteImport } from './routes/api/public/zoho-exchange'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -125,11 +124,6 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicZohoExchangeRoute = ApiPublicZohoExchangeRouteImport.update({
-  id: '/api/public/zoho-exchange',
-  path: '/api/public/zoho-exchange',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -151,7 +145,6 @@ export interface FileRoutesByFullPath {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/api/public/zoho-exchange': typeof ApiPublicZohoExchangeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -173,7 +166,6 @@ export interface FileRoutesByTo {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/api/public/zoho-exchange': typeof ApiPublicZohoExchangeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -196,7 +188,6 @@ export interface FileRoutesById {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/api/public/zoho-exchange': typeof ApiPublicZohoExchangeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -220,7 +211,6 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
-    | '/api/public/zoho-exchange'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -242,7 +232,6 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
-    | '/api/public/zoho-exchange'
   id:
     | '__root__'
     | '/'
@@ -264,7 +253,6 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
-    | '/api/public/zoho-exchange'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -287,7 +275,6 @@ export interface RootRouteChildren {
   TeacherSignupRoute: typeof TeacherSignupRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
-  ApiPublicZohoExchangeRoute: typeof ApiPublicZohoExchangeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -425,13 +412,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/zoho-exchange': {
-      id: '/api/public/zoho-exchange'
-      path: '/api/public/zoho-exchange'
-      fullPath: '/api/public/zoho-exchange'
-      preLoaderRoute: typeof ApiPublicZohoExchangeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -455,7 +435,6 @@ const rootRouteChildren: RootRouteChildren = {
   TeacherSignupRoute: TeacherSignupRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
-  ApiPublicZohoExchangeRoute: ApiPublicZohoExchangeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
