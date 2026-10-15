@@ -11,31 +11,17 @@ export const Footer = () => {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl p-8 md:p-12 text-center border border-white/10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="gradient-text">Get in Touch</span>
+              <span className="gradient-text">Ready to see it with your team?</span>
             </h2>
             <p className="text-white/80 mb-6 text-lg">
-              Have questions about LanguageBridge? Request a walkthrough and we'll reply within one business day.
+              A 20-minute walkthrough for your district. We reply within one business day.
             </p>
-            <div className="mb-6">
+            <div>
               <Link to="/demo">
                 <Button size="lg" className="gradient-primary text-primary-foreground shadow-lg hover:opacity-90">
-                  Get a Demo
+                  Request a Demo
                 </Button>
               </Link>
-            </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href="mailto:contact@languagebridge.app" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
-                <Mail className="w-5 h-5" />
-                contact@languagebridge.app
-              </a>
-              <a href="tel:+12168006020" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
-                <Phone className="w-5 h-5" />
-                (216) 800-6020
-              </a>
-              <a href="https://x.com/_languagebridge" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white hover:text-primary transition-colors text-lg font-medium">
-                <Twitter className="w-5 h-5" />
-                @_languagebridge
-              </a>
             </div>
           </div>
         </div>
@@ -47,7 +33,7 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/features" className="text-white/80 hover:text-white transition-colors">Features</Link></li>
-              <li><Link to="/demo" className="text-white/80 hover:text-white transition-colors">Get a Demo</Link></li>
+              <li><Link to="/demo" className="text-white/80 hover:text-white transition-colors">Request a Demo</Link></li>
               <li><Link to="/about" className="text-white/80 hover:text-white transition-colors">About & Media</Link></li>
               <li><Link to="/faq" className="text-white/80 hover:text-white transition-colors">FAQ & Compliance</Link></li>
               <li><Link to="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy Policy</Link></li>

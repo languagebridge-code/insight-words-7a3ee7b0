@@ -131,7 +131,7 @@ export const Navigation = () => {
                 size="default"
                 className="relative overflow-hidden group"
               >
-                <span className="relative z-10">Get a Demo</span>
+                <span className="relative z-10">Request a Demo</span>
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </Button>
@@ -194,7 +194,7 @@ export const Navigation = () => {
               <div className="px-2 pt-4">
                 <Link to="/demo">
                   <Button variant="hero" className="w-full">
-                    Get a Demo
+                    Request a Demo
                   </Button>
                 </Link>
               </div>

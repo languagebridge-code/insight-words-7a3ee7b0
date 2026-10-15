@@ -82,8 +82,8 @@ const Index = () => {
           </div>
           <DemoVideo />
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/teacher"><Button size="lg" className="gradient-primary text-primary-foreground w-full sm:w-auto">Get Started Free</Button></Link>
-            <Link to="/teacher"><Button size="lg" variant="outline" className="border-2 w-full sm:w-auto">Try Talk to Teacher</Button></Link>
+            <Link to="/demo"><Button size="lg" className="gradient-primary text-primary-foreground w-full sm:w-auto">Request a Demo</Button></Link>
+            <Link to="/teacher"><Button size="lg" variant="outline" className="border-2 w-full sm:w-auto">Preview Talk to Teacher live</Button></Link>
           </div>
         </div>
       </section>
@@ -91,19 +91,6 @@ const Index = () => {
       <WhoWeServe />
       <HowItWorks />
 
-      <section className="py-20">
-        <div className="container mx-auto px-4 text-center">
-          <Sparkles className="w-12 h-12 mx-auto mb-6 text-primary" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Questions about privacy or setup?</h2>
-          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            FERPA and COPPA answers, technical details, and what teachers and IT can expect.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/faq"><Button size="lg" variant="outline" className="border-2">FAQ & Compliance</Button></Link>
-            <Link to="/features"><Button size="lg" variant="outline" className="border-2">Full Feature Details</Button></Link>
-          </div>
-        </div>
-      </section>
 
       <LeadCtaSection source="home-cta" />
       

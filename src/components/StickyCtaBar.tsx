@@ -32,7 +32,7 @@ export const StickyCtaBar = () => {
             className="flex-1 flex items-center justify-center gap-2 gradient-primary text-primary-foreground font-semibold text-sm rounded-xl py-3 shadow-lg active:opacity-90"
           >
             <MessageSquareHeart className="w-4 h-4 flex-shrink-0" />
-            Get a demo — reply in 1 business day
+            Request a demo
           </button>
           <button
             onClick={() => setIsDismissed(true)}

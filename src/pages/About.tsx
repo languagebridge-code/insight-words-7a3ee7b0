@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { PageMeta } from "@/components/PageMeta";
 import { Footer } from "@/components/Footer";
+import { LeadCtaSection } from "@/components/leads/LeadCtaSection";
 import { FounderCredibility } from "@/components/FounderCredibility";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -435,24 +436,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join the Movement
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Help us ensure every preliterate SLIFE student has access to education from day one
-          </p>
-          <div className="flex gap-4 justify-center">
-            <a href="mailto:contact@languagebridge.app">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                Get in Touch
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+      <LeadCtaSection source="about-page" />
 
       <Footer />
     </div>
