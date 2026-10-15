@@ -19,6 +19,11 @@ export const LeadCtaSection = ({
         <div className="bg-card border border-border rounded-3xl shadow-xl p-6 md:p-8">
           <LeadForm source={source} />
         </div>
+        <ul className="mt-6 space-y-2 text-sm text-muted-foreground text-left sm:text-center">
+          <li><strong className="text-foreground">No student data stored.</strong> Audio is processed and discarded.</li>
+          <li><strong className="text-foreground">FERPA and COPPA aligned</strong>, with documentation for your IT team.</li>
+          <li><strong className="text-foreground">Questions first?</strong> See our <a href="/faq" className="underline hover:text-primary">FAQ &amp; compliance answers</a>.</li>
+        </ul>
       </div>
     </div>
   </section>

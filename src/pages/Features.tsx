@@ -87,7 +87,7 @@ export default function Features() {
             <div className="flex gap-4 justify-center">
               <Link to="/demo">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                  Get a Demo
+                  Request a Demo
                 </Button>
               </Link>
               <Link to="/faq">

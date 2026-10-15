@@ -65,7 +65,7 @@ const NotFound = () => {
               onClick={() => openLeadDialog("404-page")}
               className="gradient-primary text-primary-foreground shadow-lg hover:opacity-90"
             >
-              Get a Demo
+              Request a Demo
             </Button>
           </div>
         </div>

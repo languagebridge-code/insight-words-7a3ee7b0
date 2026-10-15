@@ -14,7 +14,6 @@ import { LeadCtaSection } from "@/components/leads/LeadCtaSection";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/router-compat";
-import { Sparkles } from "lucide-react";
 import { useEffect } from "react";
 
 const Index = () => {

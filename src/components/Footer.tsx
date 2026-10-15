@@ -14,7 +14,7 @@ export const Footer = () => {
               <span className="gradient-text">Ready to see it with your team?</span>
             </h2>
             <p className="text-white/80 mb-6 text-lg">
-              A 20-minute walkthrough for your district. We reply within one business day.
+              A short walkthrough for your district team. We reply within one business day.
             </p>
             <div>
               <Link to="/demo">
