@@ -41,7 +41,7 @@ export const LeadDialogProvider = ({ children }: { children: React.ReactNode }) 
               documentation. Takes about 20 seconds.
             </DialogDescription>
           </DialogHeader>
-          <GoogleLeadForm height={640} />
+          <LeadForm source={source} />
         </DialogContent>
       </Dialog>
     </LeadDialogContext.Provider>
