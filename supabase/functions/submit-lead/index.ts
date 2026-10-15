@@ -33,7 +33,9 @@ async function sendZohoEmail(to: string, subject: string, htmlContent: string): 
     }),
   });
   const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) throw new Error("Failed to get Zoho access token");
+  if (!tokenData.access_token) {
+    throw new Error(`Failed to get Zoho access token: ${tokenData.error ?? tokenRes.status}`);
+  }
 
   const accountsRes = await fetch(ZOHO_MAIL_API, {
     headers: { Authorization: `Zoho-oauthtoken ${tokenData.access_token}` },
