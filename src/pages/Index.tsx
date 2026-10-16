@@ -12,8 +12,6 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { TrustBadgeBar } from "@/components/TrustBadgeBar";
 import { LeadCtaSection } from "@/components/leads/LeadCtaSection";
 
-import { Button } from "@/components/ui/button";
-import { Link } from "@/lib/router-compat";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -80,10 +78,6 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">A student highlights text, hears it in her language, checks a hard word, and talks to her teacher.</p>
           </div>
           <DemoVideo />
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/demo"><Button size="lg" className="gradient-primary text-primary-foreground w-full sm:w-auto">Request a Demo</Button></Link>
-            <Link to="/teacher"><Button size="lg" variant="outline" className="border-2 w-full sm:w-auto">Try it now</Button></Link>
-          </div>
         </div>
       </section>
       <ThreeTools />
