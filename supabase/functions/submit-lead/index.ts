@@ -86,10 +86,38 @@ const handler = async (req: Request): Promise<Response> => {
     if (role.length > 120) return json({ error: "Role is too long." }, 400);
     if (message.length > 2000) return json({ error: "Message is too long." }, 400);
 
+    // --- Spam protection: bots get a silent "success" so they don't retry ---
+    const honeypot = str(body.website);
+    const elapsed = Number(body.elapsedMs);
+    const combined = `${name} ${message}`;
+    const linkCount = (combined.match(/https?:\/\/|www\.|\[url|<a\s/gi) || []).length;
+    const looksSpammy =
+      honeypot.length > 0 ||
+      !Number.isFinite(elapsed) || elapsed < 3000 ||
+      /https?:\/\/|www\./i.test(name) ||
+      linkCount > 1 ||
+      /\b(viagra|casino|crypto|bitcoin|forex|seo services|backlinks|loan offer|porn)\b/i.test(combined);
+    if (looksSpammy) {
+      console.warn("submit-lead: spam blocked", { source, honeypot: !!honeypot, elapsed, linkCount });
+      return json({ success: true }, 200);
+    }
+
     const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
+
+    // Ignore repeat submissions from the same email within 10 minutes
+    const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+    const { count: recent } = await supabaseAdmin
+      .from("leads")
+      .select("id", { count: "exact", head: true })
+      .ilike("email", email)
+      .gte("created_at", since);
+    if ((recent ?? 0) > 0) {
+      console.warn("submit-lead: repeat within 10 min ignored");
+      return json({ success: true }, 200);
+    }
 
     const { error: dbError } = await supabaseAdmin.from("leads").insert({
       name,
