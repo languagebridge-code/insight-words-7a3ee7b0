@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLocation } from "@/lib/router-compat";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
@@ -58,6 +58,8 @@ export const LeadForm = ({
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot, hidden from people
+  const startedAt = useRef(Date.now());
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -80,7 +82,13 @@ export const LeadForm = ({
     setSubmitting(true);
     try {
       const { data, error } = await supabase.functions.invoke("submit-lead", {
-        body: { ...parsed.data, source, pagePath: location.pathname },
+        body: {
+          ...parsed.data,
+          source,
+          pagePath: location.pathname,
+          website,
+          elapsedMs: Date.now() - startedAt.current,
+        },
       });
       if (error || (data && (data as { error?: string }).error)) {
         setErrors({
@@ -114,6 +122,18 @@ export const LeadForm = ({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 text-left">
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor={`lead-website-${source}`}>Website</label>
+        <input
+          id={`lead-website-${source}`}
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
       <div className="space-y-2">
         <Label htmlFor={`lead-name-${source}`}>Name</Label>
         <Input
