@@ -82,7 +82,7 @@ const Index = () => {
           <DemoVideo />
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/demo"><Button size="lg" className="gradient-primary text-primary-foreground w-full sm:w-auto">Request a Demo</Button></Link>
-            <Link to="/teacher"><Button size="lg" variant="outline" className="border-2 w-full sm:w-auto">Preview Talk to Teacher live</Button></Link>
+            <Link to="/teacher"><Button size="lg" variant="outline" className="border-2 w-full sm:w-auto">Try it now</Button></Link>
           </div>
         </div>
       </section>
