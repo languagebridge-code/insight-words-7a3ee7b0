@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { staffInviteOptions } from "@/lib/staff-invite-options";
 import { hasOperationsRole, isOperationsAccount, isOperationsRoute, matchesDashboardIdentity, type VerifiedDashboardUser } from "@/lib/lb-dashboard-access";
 
 // Server route: /api/lb-dashboard/*
@@ -112,9 +113,7 @@ async function handle(request: Request): Promise<Response> {
         if (route === "ops/invite" && result?.inviteSent === false) {
           const email = typeof result?.email === "string" ? result.email : null;
           if (email) {
-            const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
-              redirectTo: `${ORIGIN}/dashboard`,
-            });
+            const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, staffInviteOptions());
             if (error) return json(502, { error: "INVITE_EMAIL_FAILED", details: error.message }, headers);
           }
         }
