@@ -4,6 +4,7 @@ import { Link } from "@/lib/router-compat";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import type { AuthLayer } from "@/lib/lb-dashboard-api";
+import { hasOperationsRole, OPERATIONS_ADMIN_EMAIL } from "@/lib/lb-dashboard-access";
 import languageBridgeLogo from "@/assets/languagebridge-logo.svg";
 import HealthBannerBar from "./HealthBannerBar";
 import DistrictInsights from "./DistrictInsights";
@@ -16,7 +17,8 @@ import LbOperations from "./LbOperations";
 type View = "insights" | "students" | "ops";
 
 const LbDashboardShell = ({ auth }: { auth: AuthLayer }) => {
-  const isSuper = auth.role === "super_admin" || auth.isSuperAdmin;
+  // Presentation only. The proxy independently verifies identity and Azure role.
+  const isSuper = auth.email.toLowerCase() === OPERATIONS_ADMIN_EMAIL && hasOperationsRole(auth);
   const [view, setView] = useState<View>("insights");
   const [opsHealthFocus, setOpsHealthFocus] = useState(0);
 
