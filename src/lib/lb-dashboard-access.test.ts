@@ -2,12 +2,12 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { isOperationsAccount, isOperationsRoute, hasOperationsRole, matchesDashboardIdentity } from "./lb-dashboard-access";
 
-test("only confirmed languagebridge.contact@gmail.com can occupy the Operations seat", () => {
+test("only confirmed admin@languagebridge.app can occupy the Operations seat", () => {
   const confirmed = { id: "admin-id", email_confirmed_at: "2026-10-17" };
-  assert.equal(isOperationsAccount({ ...confirmed, email: "languagebridge.contact@gmail.com" }), true);
-  assert.equal(isOperationsAccount({ ...confirmed, email: "admin@languagebridge.app" }), false);
-  assert.equal(isOperationsAccount({ ...confirmed, email: "languagebridge.contact@gmail.com.attacker.com" }), false);
-  assert.equal(isOperationsAccount({ id: "admin-id", email: "languagebridge.contact@gmail.com" }), false);
+  assert.equal(isOperationsAccount({ ...confirmed, email: "admin@languagebridge.app" }), true);
+  assert.equal(isOperationsAccount({ ...confirmed, email: "languagebridge.contact@gmail.com" }), false);
+  assert.equal(isOperationsAccount({ ...confirmed, email: "admin@languagebridge.app.attacker.com" }), false);
+  assert.equal(isOperationsAccount({ id: "admin-id", email: "admin@languagebridge.app" }), false);
 });
 
 test("every Operations and flag endpoint is restricted, not district insight endpoints", () => {
