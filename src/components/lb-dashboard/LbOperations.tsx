@@ -712,7 +712,7 @@ const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
     ["districts", "Districts & schools"],
     ["invite", "Invite staff"],
     ["pricing", "Pricing"],
-    ["flags", "Flag queue"],
+    // Flag queue hidden until the Azure flag-queue routes are deployed; code stays.
   ];
   return (
     <div className="space-y-6">
