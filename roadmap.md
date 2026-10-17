@@ -1,2 +1,2 @@
-- [ ] Restrict LB Operations to the confirmed administrator account with server-side enforcement and tests.
-- [ ] Verify the completed Azure connection with an authorized session and report any external blocker.
+- [x] Restrict LB Operations to the confirmed administrator account with server-side enforcement and four passing tests.
+- [ ] Verify Azure end to end: blocked because admin@languagebridge.app is not registered in this site's auth and configured Azure ops/health, ops/districts, and ops/pricing return 404; need admin invitation and the deployed dashboard API address.
