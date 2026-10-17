@@ -95,7 +95,7 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
         .select("layout, filters")
         .eq("user_id", auth.userId)
         .maybeSingle();
-      if (row?.layout && Array.isArray(row.layout)) setLayout(row.layout as LayoutItem[]);
+      if (row?.layout && Array.isArray(row.layout)) setLayout(row.layout as unknown as LayoutItem[]);
       const f = row?.filters as { preset?: DatePreset; schoolCodes?: string[] } | null;
       if (f?.preset) setPreset(f.preset);
       if (f?.schoolCodes?.length) setSchoolCodes(f.schoolCodes);
@@ -107,7 +107,7 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
     async (nextLayout: LayoutItem[], nextPreset: DatePreset, nextSchools: string[]) => {
       await supabase.from("dashboard_layouts").upsert({
         user_id: auth.userId,
-        layout: nextLayout,
+        layout: JSON.parse(JSON.stringify(nextLayout)),
         filters: { preset: nextPreset, schoolCodes: nextSchools },
         updated_at: new Date().toISOString(),
       });
