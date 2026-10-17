@@ -123,7 +123,7 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
       const res = await lbApi.summary({
         startDate: from.toISOString(),
         endDate: to.toISOString(),
-        schoolCodes: schoolCodes.length ? schoolCodes : undefined,
+        ...(schoolCodes.length ? { schoolCodes } : {}),
       });
       setData(res);
       setUpdatedAt(new Date());
@@ -151,13 +151,18 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
   const move = (i: number, dir: -1 | 1) => {
     const next = [...layout];
     const j = i + dir;
-    if (j < 0 || j >= next.length) return;
-    [next[i], next[j]] = [next[j], next[i]];
+    const a = next[i];
+    const b = next[j];
+    if (!a || !b) return;
+    next[i] = b;
+    next[j] = a;
     updateLayout(next);
   };
 
   const toggleWidth = (i: number) => {
-    const next = layout.map((item, k) => (k === i ? { ...item, w: item.w === 1 ? 2 : 1 } : item));
+    const next = layout.map((item, k): LayoutItem =>
+      k === i ? { ...item, w: item.w === 1 ? 2 : 1 } : item,
+    );
     updateLayout(next);
   };
 

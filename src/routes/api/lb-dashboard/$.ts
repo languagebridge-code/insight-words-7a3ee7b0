@@ -61,7 +61,7 @@ async function handle(request: Request): Promise<Response> {
     const upstream = await fetch(`${LB_API_BASE}/${route}${url.search}`, {
       method: request.method,
       headers: { "Content-Type": "application/json", Authorization: auth },
-      body: request.method === "GET" ? undefined : await request.text(),
+      body: request.method === "GET" ? null : await request.text(),
       signal: controller.signal,
     });
     return new Response(await upstream.text(), { status: upstream.status, headers });

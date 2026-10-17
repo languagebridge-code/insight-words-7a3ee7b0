@@ -32,7 +32,7 @@ async function call<T>(
       Authorization: `Bearer ${session.access_token}`,
       "Content-Type": "application/json",
     },
-    body: opts.body === undefined ? undefined : JSON.stringify(opts.body),
+    body: opts.body === undefined ? null : JSON.stringify(opts.body),
   });
 
   if (res.status === 429 && !retried) {

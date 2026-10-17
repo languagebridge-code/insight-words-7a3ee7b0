@@ -491,9 +491,11 @@ function InviteTab() {
       const res = await lbApi.invite({
         email: form.email,
         role: form.role,
-        displayName: form.displayName || undefined,
-        schoolIds: form.role === "champion" ? form.schoolIds.split(",").map((s) => s.trim()).filter(Boolean) : undefined,
-        districtId: form.role === "district_admin" ? form.districtId : undefined,
+        ...(form.displayName ? { displayName: form.displayName } : {}),
+        ...(form.role === "champion"
+          ? { schoolIds: form.schoolIds.split(",").map((s) => s.trim()).filter(Boolean) }
+          : {}),
+        ...(form.role === "district_admin" ? { districtId: form.districtId } : {}),
       });
       toast({
         title: res.alreadyHadAccount ? "Access updated" : "Invite sent",
@@ -678,7 +680,7 @@ function FlagsTab() {
                       <td className="py-2 pr-4">{f.flagType}</td>
                       <td className="py-2 pr-4">{f.word ?? "—"}</td>
                       <td className="py-2 pr-4"><Badge variant="secondary">{f.status}</Badge></td>
-                      <td className="py-2 pr-4">{typeof f.schoolCount === "number" ? f.schoolCount : "—"}</td>
+                      <td className="py-2 pr-4">{typeof f["schoolCount"] === "number" ? f["schoolCount"] : "—"}</td>
                       <td className="py-2">
                         <div className="flex gap-1">
                           {["in_review", "resolved", "dismissed", "reopen"].map((a) => (
