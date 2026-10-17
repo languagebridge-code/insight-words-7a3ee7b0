@@ -1,4 +1,4 @@
-- [ ] Standardize LanguageBridge logos across website pages, staff sign-in, and browser/share icons.
+- [x] Standardize LanguageBridge logos across website pages, staff sign-in, and browser/share icons; visual checks and page checks passed.
 - [x] Redirect legacy teacher sign-in to the dashboard and preserve password recovery; redirect tests and browser checks passed.
 - [x] Restrict LB Operations to the confirmed administrator account with server-side enforcement and four passing tests.
 - [x] Create the administrator account (languagebridge.contact@gmail.com) through the normal sign-in service, assign the administrator role, and verify sign-in in the browser.
