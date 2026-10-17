@@ -1,13 +1,12 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import Index from "@/pages/Index";
 import { homepageAuthDestination } from "@/lib/homepage-auth-redirect";
 
 export const Route = createFileRoute("/")({
-  beforeLoad: ({ location }) => {
-    const destination = homepageAuthDestination(location.href);
-    if (destination) throw redirect({ href: destination, replace: true, reloadDocument: true });
-  },
   head: () => ({
+    scripts: [{
+      children: `(() => { const destination = (${homepageAuthDestination.toString()})(window.location.href); if (destination) window.location.replace(destination); })();`,
+    }],
     meta: [
       {
             "title": "LanguageBridge | Audio-First Language Access"
