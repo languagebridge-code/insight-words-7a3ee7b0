@@ -1,6 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import TeacherAuth from "@/pages/TeacherAuth";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+export function redirectToStaffDashboard(hash: string) {
+  throw redirect({ to: "/dashboard", hash, replace: true });
+}
 
 export const Route = createFileRoute("/teacher-auth")({
-  component: TeacherAuth,
+  beforeLoad: ({ location }) => redirectToStaffDashboard(location.hash),
 });

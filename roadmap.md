@@ -1,3 +1,4 @@
+- [ ] Redirect legacy teacher sign-in to the dashboard and preserve password recovery.
 - [x] Restrict LB Operations to the confirmed administrator account with server-side enforcement and four passing tests.
 - [x] Create the administrator account (languagebridge.contact@gmail.com) through the normal sign-in service, assign the administrator role, and verify sign-in in the browser.
 - [ ] Verify Azure end to end: blocked because the Azure backend's `auth-layer` answers 500 "Auth service not configured" and `ops/health`, `ops/districts`, `ops/pricing`, `insights/summary` return 404 at languagebridge-api.azurewebsites.net; need the Azure app fixed/redeployed, then the same account granted the super-admin dashboard role there.

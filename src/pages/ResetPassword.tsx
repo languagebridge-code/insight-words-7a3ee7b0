@@ -86,7 +86,7 @@ const ResetPassword = () => {
 
       // Redirect to dashboard after a short delay
       setTimeout(() => {
-        navigate('/teacher-dashboard');
+        navigate('/dashboard');
       }, 2000);
 
     } catch (error: any) {
@@ -112,7 +112,7 @@ const ResetPassword = () => {
                 <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
                 <h2 className="text-xl font-semibold mb-2">Reset Link Invalid</h2>
                 <p className="text-muted-foreground mb-4">{error}</p>
-                <Button onClick={() => navigate('/teacher-auth')}>
+                <Button onClick={() => navigate('/dashboard')}>
                   Back to Login
                 </Button>
               </div>
