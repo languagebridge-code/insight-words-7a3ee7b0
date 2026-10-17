@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import languageBridgeLogo from "@/assets/languagebridge-logo.svg";
+import languageBridgeLogo from "@/assets/languagebridge-logo-new.svg";
 
 // Sign-in for the LanguageBridge dashboard. No public sign-up: accounts are
 // created by LanguageBridge super-admins through LB Operations → Invite staff.
