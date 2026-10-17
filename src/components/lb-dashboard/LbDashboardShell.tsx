@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import type { AuthLayer } from "@/lib/lb-dashboard-api";
 import { hasOperationsRole, OPERATIONS_ADMIN_EMAIL } from "@/lib/lb-dashboard-access";
-import languageBridgeLogo from "@/assets/languagebridge-logo.svg";
+import languageBridgeLogo from "@/assets/languagebridge-logo-new.svg";
 import HealthBannerBar from "./HealthBannerBar";
 import DistrictInsights from "./DistrictInsights";
 import MyStudents from "./MyStudents";

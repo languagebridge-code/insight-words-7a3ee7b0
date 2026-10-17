@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Play, BookMarked, MessageSquare, Settings, Minimize2, HelpCircle, Volume2 } from 'lucide-react';
-import languageBridgeIcon from '@/assets/languagebridge-icon.png';
+import languageBridgeIcon from '@/assets/languagebridge-icon.svg';
 import { TalkToTeacherPanel } from './TalkToTeacherModal';
 import { VocabularyPanel } from './VocabularyPanel';
 
