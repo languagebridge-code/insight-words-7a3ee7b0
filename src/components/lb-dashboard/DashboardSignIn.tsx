@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import languageBridgeLogo from "@/assets/languagebridge-logo-new.svg";
+import { staffPasswordResetOptions } from "@/lib/staff-invite-options";
 
 // Sign-in for the LanguageBridge dashboard. No public sign-up: accounts are
 // created by LanguageBridge super-admins through LB Operations → Invite staff.
@@ -69,9 +70,7 @@ const DashboardSignIn = ({ mode, onPasswordSet }: Props) => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/dashboard`,
-    });
+    const { error } = await supabase.auth.resetPasswordForEmail(email, staffPasswordResetOptions());
     setLoading(false);
     if (error) {
       toast({ title: "Couldn't send reset email", description: error.message, variant: "destructive" });
