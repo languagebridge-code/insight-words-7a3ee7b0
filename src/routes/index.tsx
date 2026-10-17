@@ -1,7 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import Index from "@/pages/Index";
+import { homepageAuthDestination } from "@/lib/homepage-auth-redirect";
 
 export const Route = createFileRoute("/")({
+  beforeLoad: ({ location }) => {
+    const destination = homepageAuthDestination(location.href);
+    if (destination) throw redirect({ href: destination, replace: true, reloadDocument: true });
+  },
   head: () => ({
     meta: [
       {
