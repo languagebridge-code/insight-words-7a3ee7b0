@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { redirectToStaffDashboard } from "./teacher-auth";
+import { redirectToStaffDashboard } from "../routes/teacher-auth";
 
 test("legacy teacher sign-in redirects to the shared staff dashboard", () => {
   assert.throws(() => redirectToStaffDashboard(""), (result: unknown) => {
