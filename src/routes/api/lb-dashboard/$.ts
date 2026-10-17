@@ -104,6 +104,38 @@ async function handle(request: Request): Promise<Response> {
         return json(403, { error: "OPERATIONS_RESTRICTED", details: "This administrator seat is restricted to the designated account." }, headers);
       }
     }
+    // Staff lifecycle follow-ups: Azure records the change; this project owns sign-in.
+    if (upstream.ok && (route === "ops/invite" || route === "ops/revoke")) {
+      try {
+        const result = JSON.parse(text);
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        if (route === "ops/invite" && result?.inviteSent === false) {
+          const email = typeof result?.email === "string" ? result.email : null;
+          if (email) {
+            const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
+              redirectTo: `${ORIGIN}/dashboard`,
+            });
+            if (error) return json(502, { error: "INVITE_EMAIL_FAILED", details: error.message }, headers);
+          }
+        }
+        if (route === "ops/revoke" && result?.allAccessRemoved === true) {
+          const email = typeof result?.email === "string" ? result.email : null;
+          if (email) {
+            const { data: list, error: listError } = await supabaseAdmin.auth.admin.listUsers();
+            if (listError) return json(502, { error: "REVOKE_LOOKUP_FAILED", details: listError.message }, headers);
+            const target = list.users.find((u) => u.email?.toLowerCase() === email.toLowerCase());
+            if (target) {
+              const { error: banError } = await supabaseAdmin.auth.admin.updateUserById(target.id, {
+                ban_duration: "876000h",
+              });
+              if (banError) return json(502, { error: "REVOKE_BAN_FAILED", details: banError.message }, headers);
+            }
+          }
+        }
+      } catch {
+        return json(502, { error: "STAFF_LIFECYCLE_FOLLOWUP_FAILED" }, headers);
+      }
+    }
     return new Response(text, { status: upstream.status, headers });
   } catch (err) {
     const aborted = (err as Error)?.name === "AbortError";
