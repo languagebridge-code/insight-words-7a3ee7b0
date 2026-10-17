@@ -1,0 +1,2 @@
+- [ ] Restrict LB Operations to the confirmed administrator account with server-side enforcement and tests.
+- [ ] Verify the completed Azure connection with an authorized session and report any external blocker.
