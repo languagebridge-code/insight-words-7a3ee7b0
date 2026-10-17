@@ -28,6 +28,7 @@ import { Route as TeacherDashboardRouteImport } from './routes/teacher-dashboard
 import { Route as TeacherSignupRouteImport } from './routes/teacher-signup'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as ApiLbDashboardSplatRouteImport } from './routes/api/lb-dashboard/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -124,6 +125,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiLbDashboardSplatRoute = ApiLbDashboardSplatRouteImport.update({
+  id: '/api/lb-dashboard/$',
+  path: '/api/lb-dashboard/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/api/lb-dashboard/$': typeof ApiLbDashboardSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/api/lb-dashboard/$': typeof ApiLbDashboardSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/api/lb-dashboard/$': typeof ApiLbDashboardSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
+    | '/api/lb-dashboard/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
+    | '/api/lb-dashboard/$'
   id:
     | '__root__'
     | '/'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
+    | '/api/lb-dashboard/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   TeacherSignupRoute: typeof TeacherSignupRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  ApiLbDashboardSplatRoute: typeof ApiLbDashboardSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/lb-dashboard/$': {
+      id: '/api/lb-dashboard/$'
+      path: '/api/lb-dashboard/$'
+      fullPath: '/api/lb-dashboard/$'
+      preLoaderRoute: typeof ApiLbDashboardSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -435,6 +455,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeacherSignupRoute: TeacherSignupRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  ApiLbDashboardSplatRoute: ApiLbDashboardSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -209,6 +209,27 @@ export type Database = {
         }
         Relationships: []
       }
+      dashboard_layouts: {
+        Row: {
+          filters: Json | null
+          layout: Json
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          filters?: Json | null
+          layout: Json
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          filters?: Json | null
+          layout?: Json
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       district_admins: {
         Row: {
           created_at: string
