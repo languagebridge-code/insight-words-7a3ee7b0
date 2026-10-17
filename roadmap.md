@@ -1,4 +1,5 @@
 - [x] Pin every server-sent staff invite to the published dashboard; concrete redirect test added.
+- [ ] Pin dashboard password-reset requests to the published dashboard and verify the outgoing request without sending a test email.
 - [x] Add and verify the homepage auth-link safety net preserving raw query/hash; 13 tests and browser checks passed, ready for requested publish.
 - [ ] Save and read back hosted auth Site URL and redirect allowlist, and inspect Invite/Reset/Confirm templates: blocked because available auth controls expose neither URL configuration nor existing templates; requires settings access in More → Users → Auth settings and More → Emails.
 - [x] Standardize LanguageBridge logos across website pages, staff sign-in, and browser/share icons; visual checks and page checks passed.

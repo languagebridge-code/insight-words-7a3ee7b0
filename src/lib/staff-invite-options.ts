@@ -2,3 +2,7 @@
 export function staffInviteOptions() {
   return { redirectTo: "https://languagebridge.app/dashboard" };
 }
+
+export function staffPasswordResetOptions() {
+  return staffInviteOptions();
+}
