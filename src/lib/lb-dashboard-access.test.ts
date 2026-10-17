@@ -22,7 +22,7 @@ test("admin email does not grant a role without Azure dashboard permission", () 
 });
 
 test("Azure auth-layer must belong to the verified signed-in user", () => {
-  const user = { id: "admin-id", email: "languagebridge.contact@gmail.com" };
-  assert.equal(matchesDashboardIdentity({ userId: "admin-id", email: "languagebridge.contact@gmail.com" }, user), true);
-  assert.equal(matchesDashboardIdentity({ userId: "other-id", email: "languagebridge.contact@gmail.com" }, user), false);
+  const user = { id: "admin-id", email: "admin@languagebridge.app" };
+  assert.equal(matchesDashboardIdentity({ userId: "admin-id", email: "admin@languagebridge.app" }, user), true);
+  assert.equal(matchesDashboardIdentity({ userId: "other-id", email: "admin@languagebridge.app" }, user), false);
 });
