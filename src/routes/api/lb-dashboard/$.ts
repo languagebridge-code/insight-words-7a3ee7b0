@@ -18,6 +18,8 @@ const ALLOWED: Record<string, string[]> = {
   "auth-layer": ["GET"],
   "insights/summary": ["POST"],
   "insights/students": ["POST"],
+  "insights/audit": ["POST"],
+  "insights/data-inventory": ["POST"],
   dashboard: ["POST"],
   "flag-queue": ["GET"],
   "ops/health": ["GET"],
@@ -25,6 +27,8 @@ const ALLOWED: Record<string, string[]> = {
   "ops/pricing": ["GET", "PUT"],
   "ops/districts": ["GET", "PUT"],
   "ops/invite": ["POST"],
+  "ops/revoke": ["POST"],
+  "ops/audit": ["GET"],
 };
 const FLAG_ACTION = /^flag-queue\/[a-f0-9]{64}\/action$/; // POST
 

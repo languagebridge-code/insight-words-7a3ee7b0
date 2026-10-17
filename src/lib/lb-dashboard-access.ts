@@ -1,5 +1,5 @@
 // Additional restriction, never a role grant: Azure remains the role authority.
-export const OPERATIONS_ADMIN_EMAIL = "languagebridge.contact@gmail.com";
+export const OPERATIONS_ADMIN_EMAIL = "admin@languagebridge.app";
 
 export interface VerifiedDashboardUser {
   id: string;
