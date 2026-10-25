@@ -16,7 +16,7 @@ export const FAQExpanded = () => {
     },
     {
       question: "How long does implementation take?",
-      answer: "Complete implementation takes 3 weeks: Week 1, IT installs via Google Admin Console (30 minutes). Week 2, teacher professional development (3 hours). Week 3, students independently accessing grade-level content. No complex setup, no servers to configure, no ongoing maintenance required."
+      answer: "Complete implementation takes 3 weeks: Week 1, IT installs via Google Admin Console (30 minutes). Week 2, a complimentary professional development session for teachers. Week 3, students independently accessing grade-level content. No complex setup, no servers to configure, no ongoing maintenance required."
     },
     {
       question: "Do teachers need training?",
