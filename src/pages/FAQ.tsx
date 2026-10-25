@@ -13,7 +13,7 @@ const FAQ = () => {
 
   const allFAQs = [
     { question: "What is LanguageBridge?", answer: "LanguageBridge is a Chrome extension and an audio-first Language Accessibility Screen Reader built for preliterate ESL students. It's a toolbar that follows students on every window they open. No tab-switching required." },
-    { question: "Do teachers need training?", answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We provide a 3-hour professional development session, but the tool is intuitive enough to start using immediately. Students need zero training." },
+    { question: "Do teachers need training?", answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We provide a complimentary professional development session, but the tool is intuitive enough to start using immediately. Students need zero training." },
     { question: "What's included in the Chrome extension?", answer: "Everything. One toolbar includes all three tools: Audio Translation, Tiered Language Glossary, and Talk to Teacher. Students highlight text, hit play, and a second later they hear it in their native language. It works on Google Docs, PDFs, and is seamlessly integrated into Google Classroom." },
     { question: "What languages are supported?", answer: "16 languages: Arabic, Burmese, Dari, English, French, Nepali, Pashto, Persian, Portuguese, Somali, Spanish, Swahili, Tagalog, Ukrainian, Urdu, and Vietnamese — with more coming. We prioritize languages based on refugee resettlement patterns and district requests." },
     { question: "How is this different from Google Translate?", answer: "Google Translate doesn't support Dari audio. Translator paraprofessionals cost hourly rates. Live phone translators charge per minute. So schools use other students to translate, creating privacy risks. LanguageBridge is FERPA/COPPA compliant with zero data tracking, reads translations aloud for preliterate students, and provides teacher communication and academic glossaries." },
@@ -55,7 +55,7 @@ const FAQ = () => {
     },
     {
       question: "Do teachers need training?",
-      answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We offer a 3-hour professional development session for best practices and classroom integration, but the tool is intuitive enough to use right away. Students need zero training. They just highlight text and hit play."
+      answer: "For teachers, nothing changes. No new platforms. No passwords. No disruption. We offer a complimentary professional development session for best practices and classroom integration, but the tool is intuitive enough to use right away. Students need zero training. They just highlight text and hit play."
     },
     {
       question: "What's included in the Chrome extension?",
@@ -82,7 +82,7 @@ const FAQ = () => {
     },
     {
       question: "How long does implementation take?",
-      answer: "Complete implementation takes 3 weeks: Week 1 - IT installs via Google Admin Console (30 minutes), Week 2 - Teacher professional development (3 hours), Week 3 - Students independently accessing grade-level content with translation and communication tools. No complex setup, no servers to configure, no ongoing maintenance required."
+      answer: "Complete implementation takes 3 weeks: Week 1 - IT installs via Google Admin Console (30 minutes), Week 2 - Complimentary professional development session for teachers, Week 3 - Students independently accessing grade-level content with translation and communication tools. No complex setup, no servers to configure, no ongoing maintenance required."
     },
     {
       question: "What data is collected?",
