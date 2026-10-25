@@ -11,6 +11,10 @@ export const FAQExpanded = () => {
       answer: "Google Translate is an additional tool that does not provide FERPA protections. When students use it, there is no data protection agreement for schools, and Google Translate and similar tools may also use student translations to train their AI models. It doesn't support Dari audio either. Translator paraprofessionals cost hourly rates. Live phone translators charge per minute. So schools do what thousands of districts do: they use another student to translate. That student becomes a privacy risk, not out of carelessness, but because there are no better options. LanguageBridge is specifically built for FERPA and HIPAA protection of student data, reads translations aloud, and gives students control of their own learning from day one."
     },
     {
+      question: "Why do some schools block Google Translate?",
+      answer: "Google Translate is one of Google's 'Additional Services,' so it is not covered by the data privacy agreement a district signs with Google for core tools like Classroom and Docs. Text and voice that students enter can be sent to Google's servers and used to improve Google's products. In 2025, New York State directed districts to turn it off for student accounts, and many other districts now block it or require parent consent. LanguageBridge was built for exactly this situation: we never store student data, and translations happen in real time without saving personal information."
+    },
+    {
       question: "Can we try it before we purchase?",
       answer: "Yes. LanguageBridge is live on the Chrome Web Store. Contact us at contact@languagebridge.app to set up a free 30-day trial for your school or district."
     },
