@@ -1,4 +1,5 @@
-- [ ] Protect all admin data endpoints, add admin-only login/reset/sign-out and eight-hour inactivity expiry, remove redundant Schools/Signups prompts, verify access and account/redirect setup.
+- [x] Add admin-only login/recovery/sign-out and eight-hour inactivity expiry; deploy protection for all existing admin-proxy endpoints; remove Schools and Signups prompts. Tests pass, real unsigned/non-admin access rejected, account and wildcard reset allowlist confirmed.
+- [ ] Verify successful admin sign-in and emailed password update end to end: specific admin session mint requires approval unavailable here; owner must sign in as admin@languagebridge.app and use a fresh reset email. Publish new admin pages when requested.
 - [x] Add Schools registry tab with protected access, forms, filters, status changes, and IT policy copying; 16 tests pass, signed-out and real non-admin rejection verified, form/table/clipboard checked with isolated fixtures.
 - [ ] Verify real Schools create/edit/status operations: blocked on AZURE_ADMIN_BASE_URL and AZURE_ADMIN_KEY in Project Settings → Secrets, and a usable admin@languagebridge.app session (specific-user mint unavailable).
 - [x] Pin every server-sent staff invite to the published dashboard; concrete redirect test added.

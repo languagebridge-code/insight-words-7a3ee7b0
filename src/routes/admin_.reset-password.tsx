@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useServerFn } from '@tanstack/react-start';
 import { supabase } from '@/integrations/supabase/client';
 import { adminSession } from '@/lib/admin-session.functions';
@@ -24,7 +24,10 @@ function AdminReset() {
   const [confirmation, setConfirmation] = useState('');
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
+  const initializing = useRef(false);
   useEffect(() => {
+    if (initializing.current) return;
+    initializing.current = true;
     let active = true;
     const authorize = async () => {
       try {
@@ -34,7 +37,7 @@ function AdminReset() {
       } catch { if (active) setState('invalid'); }
     };
     const { data: { subscription } } = supabase.auth.onAuthStateChange(event => {
-      if (event === 'PASSWORD_RECOVERY') void authorize();
+      if (event === 'PASSWORD_RECOVERY') setTimeout(() => { if (active) void authorize(); }, 0);
     });
     const initialize = async () => {
       const hash = new URLSearchParams(window.location.hash.slice(1));
@@ -61,7 +64,7 @@ function AdminReset() {
       } catch { if (active) setState('invalid'); }
     };
     void initialize();
-    return () => { active = false; subscription.unsubscribe(); };
+    return () => { active = false; subscription.unsubscribe(); initializing.current = false; };
   }, [checkAdmin]);
   const submit = async (event: React.FormEvent) => {
     event.preventDefault(); const issue = adminPasswordError(password, confirmation);
