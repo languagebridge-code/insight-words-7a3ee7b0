@@ -172,7 +172,7 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
     if (!data) return;
     csvDownload("schools.csv", [
       ["School", "Code", "Seats used", "Seats purchased", "Term end", "Status"],
-      ...data.schools.map((s) => [s.schoolName, s.schoolCode, s.seatsUsed, s.seatsPurchased, s.termEnd, s.status]),
+      ...data.schools.map((s) => [s.schoolName, s.schoolCode, s.seatsUsed, s.seatsPurchased ?? "Not available", s.termEnd, s.status]),
     ]);
     csvDownload("weekly-active.csv", [
       ["Week of", "Active students"],
