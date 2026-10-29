@@ -1,26 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Download } from "lucide-react";
 import { fetchSignups, type Signup } from "./adminApi";
 import { toast } from "sonner";
 
 const SignupsTab = () => {
-  const [password, setPassword] = useState("");
   const [signups, setSignups] = useState<Signup[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const load = async () => {
     setLoading(true);
     try {
-      const data = await fetchSignups(password);
+      const data = await fetchSignups();
       setSignups(data);
     } catch {
-      toast.error("Could not load signups. Check the admin password.");
+      toast.error("Could not load signups. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => { void load(); }, []);
 
   const exportCsv = () => {
     if (!signups) return;
@@ -47,32 +47,24 @@ const SignupsTab = () => {
 
   if (!signups) {
     return (
-      <div className="max-w-sm bg-white rounded-xl p-6 shadow-xs">
-        <h2 className="font-bold text-lg mb-1" style={{ color: "#4a1a45" }}>
+      <div className="max-w-sm bg-card rounded-lg p-6 shadow-xs">
+        <h2 className="font-bold text-lg mb-1 text-primary">
           Signups
         </h2>
         <p className="text-sm text-muted-foreground mb-4">
-          Enter the admin password to view the signup list.
+          {loading ? "Loading signups..." : "Signups could not be loaded."}
         </p>
-        <Input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && load()}
-          placeholder="Admin password"
-          className="mb-3"
-        />
-        <Button onClick={load} disabled={loading || !password} className="w-full">
-          {loading ? "Loading…" : "View signups"}
+        <Button onClick={load} disabled={loading} className="w-full">
+          {loading ? "Loading..." : "Retry"}
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-xs">
+    <div className="bg-card rounded-lg p-6 shadow-xs">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-bold text-lg" style={{ color: "#4a1a45" }}>
+        <h2 className="font-bold text-lg text-primary">
           Signups ({signups.length})
         </h2>
         <Button onClick={exportCsv} size="sm" className="gap-1.5">
@@ -94,9 +86,9 @@ const SignupsTab = () => {
           <tbody>
             {signups.map((s, i) => (
               <tr key={i} className="border-b last:border-0">
-                <td className="py-2 pr-4">{s.full_name || "—"}</td>
+                <td className="py-2 pr-4">{s.full_name || "Not set"}</td>
                 <td className="py-2 pr-4">{s.email}</td>
-                <td className="py-2 pr-4">{s.role || "—"}</td>
+                <td className="py-2 pr-4">{s.role || "Not set"}</td>
                 <td className="py-2 pr-4">{s.organization}</td>
                 <td className="py-2">{new Date(s.created_at).toLocaleDateString()}</td>
               </tr>
