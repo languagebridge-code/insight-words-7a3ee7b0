@@ -13,6 +13,7 @@ const tabs = [
   { id: "flags", label: "Flags" },
   { id: "activity", label: "Activity" },
   { id: "signups", label: "Signups" },
+  { id: "schools", label: "Schools" },
 ];
 
 const AdminNav = ({ activeTab, onTabChange, onSignOut }: AdminNavProps) => {
