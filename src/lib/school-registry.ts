@@ -32,3 +32,23 @@ export function visibleSchools(schools: School[], region: string, status: string
   const query = search.trim().toLowerCase();
   return schools.filter(s => (region === "all" || s.region === region) && (status === "all" || s.status === status) && `${s.code} ${s.districtName}`.toLowerCase().includes(query)).sort((a, b) => a.region.localeCompare(b.region) || a.code.localeCompare(b.code));
 }
+export const CONTACT_ROLES = { district_admin: "District admin", champion: "Champion teacher" } as const;
+export type ContactRole = keyof typeof CONTACT_ROLES;
+export const schoolContactSchema = z.object({
+  email: z.string().trim().toLowerCase().min(1, "Contact email is required").max(255).email("Enter a valid contact email"),
+  role: z.enum(["district_admin", "champion"]),
+  name: z.string().trim().max(120).nullable().optional(),
+});
+export type SchoolContact = z.infer<typeof schoolContactSchema> & { invitedAt?: string | null };
+export const schoolContactsSchema = z.array(schoolContactSchema).refine(list => new Set(list.map(c => c.email)).size === list.length, "Each contact email can only appear once");
+export function primaryContactSummary(contacts: { email: string }[] | undefined) {
+  if (!contacts || contacts.length === 0) return null;
+  return { email: contacts[0]!.email, more: contacts.length - 1 };
+}
+export type InviteStatus = "not invited" | "invited" | "active";
+export function contactInviteStatus(contact: { email: string; invitedAt?: string | null }, staff: { email: string; invitedAt?: string; active?: boolean }[]): InviteStatus {
+  const match = staff.find(s => s.email.toLowerCase() === contact.email.toLowerCase());
+  if (match?.active) return "active";
+  if (match || contact.invitedAt) return "invited";
+  return "not invited";
+}
