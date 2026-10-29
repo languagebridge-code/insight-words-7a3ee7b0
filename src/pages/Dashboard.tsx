@@ -7,6 +7,7 @@ import LbDashboardShell from "@/components/lb-dashboard/LbDashboardShell";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { OPERATIONS_ADMIN_EMAIL } from '@/lib/lb-dashboard-access';
 
 // /dashboard — the real LanguageBridge dashboard. Sign-in (invite-only),
 // then GET auth-layer decides which views the user sees.
@@ -26,6 +27,9 @@ const Dashboard = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, s) => {
       setSession(s);
       setSessionReady(true);
+      if (event === 'SIGNED_IN' && s?.user.email?.toLowerCase() === OPERATIONS_ADMIN_EMAIL) {
+        localStorage.setItem(`lb-operations-activity:${s.user.id}`, String(Date.now()));
+      }
       if (event === "SIGNED_OUT") setAuthLayer(null);
     });
     supabase.auth.getSession().then(({ data: { session: s } }) => {

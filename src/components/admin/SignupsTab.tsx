@@ -47,7 +47,7 @@ const SignupsTab = () => {
 
   if (!signups) {
     return (
-      <div className="max-w-sm bg-card rounded-lg p-6 shadow-xs">
+      <div className="max-w-sm bg-card border border-border/50 rounded-lg p-6">
         <h2 className="font-bold text-lg mb-1 text-primary">
           Signups
         </h2>
@@ -62,7 +62,7 @@ const SignupsTab = () => {
   }
 
   return (
-    <div className="bg-card rounded-lg p-6 shadow-xs">
+    <div className="bg-card border border-border/50 rounded-lg p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-lg text-primary">
           Signups ({signups.length})

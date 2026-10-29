@@ -10,6 +10,8 @@ import HealthBannerBar from "./HealthBannerBar";
 import DistrictInsights from "./DistrictInsights";
 import MyStudents from "./MyStudents";
 import LbOperations from "./LbOperations";
+import { useOperationsIdle } from './useOperationsIdle';
+import { useQueryClient } from '@tanstack/react-query';
 
 // Dashboard shell: role-based navigation, health banner bar for super-admins
 // on every view, sign-out. No third-party trackers on these pages.
@@ -17,6 +19,8 @@ import LbOperations from "./LbOperations";
 type View = "insights" | "students" | "ops";
 
 const LbDashboardShell = ({ auth }: { auth: AuthLayer }) => {
+  useOperationsIdle(auth);
+  const queryClient = useQueryClient();
   // Presentation only. The proxy independently verifies identity and Azure role.
   const isSuper = auth.email.toLowerCase() === OPERATIONS_ADMIN_EMAIL && hasOperationsRole(auth);
   const [view, setView] = useState<View>("insights");
@@ -29,6 +33,10 @@ const LbDashboardShell = ({ auth }: { auth: AuthLayer }) => {
   ];
 
   const signOut = async () => {
+    if (isSuper) {
+      await queryClient.cancelQueries(); queryClient.clear();
+      localStorage.removeItem(`lb-operations-activity:${auth.userId}`);
+    }
     await supabase.auth.signOut();
   };
 

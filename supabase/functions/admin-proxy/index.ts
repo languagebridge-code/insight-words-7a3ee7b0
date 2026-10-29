@@ -1,7 +1,10 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { verifyOperations } from '../_shared/operations-access.ts';
+import { forwardSchoolAdmin } from '../_shared/school-admin.ts';
 
 const corsHeaders = {
+  "Cache-Control": "no-store",
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
@@ -20,17 +23,22 @@ serve(async (req) => {
   }
 
   try {
-    const fail = (status: number) => new Response(JSON.stringify({ error: status === 401 ? "Unauthorized" : "Forbidden" }), { status, headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "no-store" } });
-    const bearer = req.headers.get("Authorization")?.match(/^Bearer (.+)$/i)?.[1];
-    if (!bearer) return fail(401);
-    const supabase = getSupabase();
-    const { data: identity, error: identityError } = await supabase.auth.getUser(bearer);
-    if (identityError || !identity.user) return fail(401);
-    const admins = (Deno.env.get("ADMIN_EMAILS") ?? "").split(",").map(email => email.trim().toLowerCase()).filter(Boolean);
-    if (!identity.user.email || !admins.includes(identity.user.email.toLowerCase())) return fail(403);
+    const access = await verifyOperations(req.headers.get('Authorization'), {
+      authBase: Deno.env.get('SUPABASE_URL'),
+      publicKey: Deno.env.get('SUPABASE_ANON_KEY'),
+      azureBase: Deno.env.get('LB_API_BASE'),
+    });
+    if (!access.ok) return new Response(JSON.stringify({ error: access.error }), { status: access.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     if (req.method !== "POST") return new Response(null, { status: 405, headers: corsHeaders });
     const body = await req.json();
     const { endpoint } = body;
+    // School registry is dispatched through the existing function because this
+    // project cannot create new Edge Functions. It shares the exact operations gate.
+    if (endpoint === '/school-admin') {
+      const result = await forwardSchoolAdmin(body.params, access, { base: Deno.env.get('AZURE_ADMIN_BASE_URL'), key: Deno.env.get('AZURE_ADMIN_KEY') });
+      return new Response(JSON.stringify(result.body), { status: result.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    }
+    const supabase = getSupabase();
 
     // All endpoints below require verified administrator identity.
     if (endpoint === "/signups") {

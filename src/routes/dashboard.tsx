@@ -4,13 +4,13 @@ import Dashboard from "@/pages/Dashboard";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "District Dashboard — LanguageBridge" },
+      { title: "Dashboard | LanguageBridge" },
       {
         name: "description",
         content:
-          "LanguageBridge district dashboard: usage insights, seats, and student activity by LanguageBridge code only — no student names, ever.",
+          "LanguageBridge dashboard: district insights, operations, seats, and student activity by LanguageBridge code only. No student names.",
       },
-      { property: "og:title", content: "District Dashboard — LanguageBridge" },
+      { property: "og:title", content: "Dashboard | LanguageBridge" },
       {
         property: "og:description",
         content: "Usage insights and student activity for LanguageBridge districts. Zero student PII.",

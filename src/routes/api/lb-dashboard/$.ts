@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { staffInviteOptions } from "@/lib/staff-invite-options";
-import { hasOperationsRole, isOperationsAccount, isOperationsRoute, matchesDashboardIdentity, type VerifiedDashboardUser } from "@/lib/lb-dashboard-access";
+import { isOperationsAccount, isOperationsRoute, matchesDashboardIdentity, type VerifiedDashboardUser } from "@/lib/lb-dashboard-access";
+import { verifyOperations } from '../../../../supabase/functions/_shared/operations-access';
 
 // Server route: /api/lb-dashboard/*
 //
@@ -71,24 +72,20 @@ async function handle(request: Request): Promise<Response> {
   const timer = setTimeout(() => controller.abort(), 30_000);
   try {
     // Auth service revalidates the token. Never trust a decoded JWT or caller email.
+    let user: VerifiedDashboardUser;
+    if (isOperationsRoute(route)) {
+      const access = await verifyOperations(auth, { authBase, publicKey: publishableKey, azureBase: LB_API_BASE });
+      if (!access.ok) return json(access.status, { error: 'OPERATIONS_RESTRICTED', details: access.error }, headers);
+      user = access.user;
+    } else {
     const identityResponse = await fetch(`${authBase.replace(/\/$/, "")}/auth/v1/user`, {
       headers: { apikey: publishableKey, Authorization: auth },
       signal: controller.signal,
     });
     if (!identityResponse.ok) return json(identityResponse.status >= 500 ? 502 : 401, { error: "IDENTITY_VERIFICATION_FAILED" }, headers);
-    const user = await identityResponse.json() as VerifiedDashboardUser;
+    user = await identityResponse.json() as VerifiedDashboardUser;
     if (!user.id) return json(401, { error: "INVALID_IDENTITY" }, headers);
 
-    if (isOperationsRoute(route)) {
-      if (!isOperationsAccount(user)) return json(403, { error: "OPERATIONS_RESTRICTED" }, headers);
-      const roleResponse = await fetch(`${LB_API_BASE}/auth-layer`, {
-        headers: { Authorization: auth }, signal: controller.signal,
-      });
-      if (!roleResponse.ok) return new Response(await roleResponse.text(), { status: roleResponse.status, headers });
-      const layer = await roleResponse.json();
-      if (!matchesDashboardIdentity(layer, user) || !hasOperationsRole(layer)) {
-        return json(403, { error: "OPERATIONS_RESTRICTED" }, headers);
-      }
     }
 
     const upstream = await fetch(`${LB_API_BASE}/${route}${url.search}`, {
