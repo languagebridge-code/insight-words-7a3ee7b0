@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, LogIn } from "lucide-react";
 import { Link, useLocation } from "@/lib/router-compat";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/languagebridge-logo-new.svg";
 
 interface NavDropdownProps {
@@ -54,6 +55,7 @@ export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -62,6 +64,16 @@ export const Navigation = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setIsSignedIn(!!data.session);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsSignedIn(!!session);
+    });
+    return () => sub.subscription.unsubscribe();
   }, []);
 
   // Close mobile menu on route change
