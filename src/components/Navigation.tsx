@@ -137,6 +137,14 @@ export const Navigation = () => {
             {/* Resources Dropdown */}
             <NavDropdown label="Resources" items={resourceLinks} />
             
+            <Link
+              to="/dashboard"
+              className="nav-link flex items-center gap-1.5 text-muted-foreground hover:text-foreground py-2 text-sm transition-colors"
+            >
+              <LogIn className="w-4 h-4" />
+              {isSignedIn ? "Dashboard" : "Sign in"}
+            </Link>
+            
             <Link to="/demo">
               <Button
                 variant="hero"
@@ -200,6 +208,16 @@ export const Navigation = () => {
                 }`}
               >
                 About & Media
+              </Link>
+              
+              <Link
+                to="/dashboard"
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-colors text-muted-foreground ${
+                  location.pathname === '/dashboard' ? 'bg-muted text-primary' : 'hover:bg-muted'
+                }`}
+              >
+                <LogIn className="w-4 h-4" />
+                {isSignedIn ? "Dashboard" : "Sign in"}
               </Link>
               
               {/* CTA Button */}
