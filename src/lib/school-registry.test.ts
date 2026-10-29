@@ -40,3 +40,11 @@ test("bridge uses exact list/create/update API shapes and preserves Azure errors
   assert.deepEqual(JSON.parse(String(calls[2]?.init?.body)), { status: "expired" });
   assert.deepEqual(result, { status: 409, body: { error: "Code already exists" } });
 });
+import { schoolContactsSchema as contactsRule, primaryContactSummary as primary, contactInviteStatus as inviteStatus } from "./school-registry";
+describe("school contacts", () => {
+  it("rejects an invalid contact email", () => { expect(contactsRule.safeParse([{ email: "not-an-email", role: "champion" }]).success).toBe(false); });
+  it("only allows district_admin or champion roles", () => { expect(contactsRule.safeParse([{ email: "a@d.org", role: "student" }]).success).toBe(false); });
+  it("rejects duplicate emails", () => { expect(contactsRule.safeParse([{ email: "a@d.org", role: "champion" }, { email: "A@d.org", role: "district_admin" }]).success).toBe(false); });
+  it("shows first email with +N for extra contacts", () => { expect(primary([{ email: "a@d.org" }, { email: "b@d.org" }, { email: "c@d.org" }])).toEqual({ email: "a@d.org", more: 2 }); });
+  it("reports invited when the email is in the staff list", () => { expect(inviteStatus({ email: "A@d.org" }, [{ email: "a@d.org" }])).toBe("invited"); expect(inviteStatus({ email: "x@d.org" }, [])).toBe("not invited"); });
+});
