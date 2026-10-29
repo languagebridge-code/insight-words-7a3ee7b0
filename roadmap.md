@@ -1,3 +1,5 @@
+- [x] Add Schools registry tab with protected access, forms, filters, status changes, and IT policy copying; 16 tests pass, signed-out and real non-admin rejection verified, form/table/clipboard checked with isolated fixtures.
+- [ ] Verify real Schools create/edit/status operations: blocked on AZURE_ADMIN_BASE_URL and AZURE_ADMIN_KEY in Project Settings → Secrets, and a usable admin@languagebridge.app session (specific-user mint unavailable).
 - [x] Pin every server-sent staff invite to the published dashboard; concrete redirect test added.
 - [x] Pin dashboard password-reset requests to the published dashboard; browser interception and two tests passed without sending a test email. Preview change awaits publishing.
 - [x] Add and verify the homepage auth-link safety net preserving raw query/hash; 13 tests and browser checks passed, ready for requested publish.
