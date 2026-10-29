@@ -447,6 +447,36 @@ export type Database = {
           },
         ]
       }
+      school_contacts: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          invited_at: string | null
+          name: string | null
+          role: string
+          school_code: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          invited_at?: string | null
+          name?: string | null
+          role: string
+          school_code: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          invited_at?: string | null
+          name?: string | null
+          role?: string
+          school_code?: string
+        }
+        Relationships: []
+      }
       schools: {
         Row: {
           building_code: string | null

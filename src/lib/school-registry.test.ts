@@ -40,3 +40,9 @@ test("bridge uses exact list/create/update API shapes and preserves Azure errors
   assert.deepEqual(JSON.parse(String(calls[2]?.init?.body)), { status: "expired" });
   assert.deepEqual(result, { status: 409, body: { error: "Code already exists" } });
 });
+import { schoolContactsSchema as contactsRule, primaryContactSummary as primary, contactInviteStatus as inviteStatus } from "./school-registry";
+test("school contacts: rejects an invalid contact email", () => { assert.equal(contactsRule.safeParse([{ email: "not-an-email", role: "champion" }]).success, false); });
+test("school contacts: only allows district_admin or champion roles", () => { assert.equal(contactsRule.safeParse([{ email: "a@d.org", role: "student" }]).success, false); });
+test("school contacts: rejects duplicate emails", () => { assert.equal(contactsRule.safeParse([{ email: "a@d.org", role: "champion" }, { email: "A@d.org", role: "district_admin" }]).success, false); });
+test("school contacts: shows first email with +N for extra contacts", () => { assert.deepEqual(primary([{ email: "a@d.org" }, { email: "b@d.org" }, { email: "c@d.org" }]), { email: "a@d.org", more: 2 }); });
+test("school contacts: reports invited when the email is in the staff list", () => { assert.equal(inviteStatus({ email: "A@d.org" }, [{ email: "a@d.org" }]), "invited"); assert.equal(inviteStatus({ email: "x@d.org" }, []), "not invited"); });
