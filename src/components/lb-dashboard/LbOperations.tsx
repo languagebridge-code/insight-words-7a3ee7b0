@@ -16,6 +16,10 @@ import OverviewTab from "@/components/admin/OverviewTab";
 import ActivityTab from "@/components/admin/ActivityTab";
 import SignupsTab from "@/components/admin/SignupsTab";
 import SchoolsTab from "@/components/admin/SchoolsTab";
+import { markContactInvited } from "@/lib/school-contacts";
+import type { SchoolContact } from "@/lib/school-registry";
+
+type InvitePrefill = { email: string; role: string; schoolCode: string; displayName: string };
 
 // LB Operations: super-admins only. Tabs: Health, Business, Districts &
 // schools, Invite staff, Pricing, Flag queue. Costs and margins appear ONLY
@@ -484,8 +488,8 @@ function DistrictsTab() {
 
 // ---------- Invite staff ----------
 
-function InviteTab() {
-  const [form, setForm] = useState({ email: "", role: "champion", schoolIds: "", districtId: "", displayName: "" });
+function InviteTab({ prefill, onSent }: { prefill?: InvitePrefill | null; onSent?: (email: string) => void }) {
+  const [form, setForm] = useState({ email: prefill?.email ?? "", role: prefill?.role ?? "champion", schoolIds: prefill?.schoolCode ?? "", districtId: "", displayName: prefill?.displayName ?? "" });
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
 
@@ -506,6 +510,7 @@ function InviteTab() {
         title: res.alreadyHadAccount ? "Access updated" : "Invite sent",
         description: res.alreadyHadAccount ? `${form.email} already had an account; their access was updated.` : `${form.email} will get an email invite to set their password.`,
       });
+      onSent?.(form.email);
       setForm({ email: "", role: "champion", schoolIds: "", districtId: "", displayName: "" });
     } catch (err) {
       toast({ title: "Couldn't invite", description: errorMessage(err), variant: "destructive" });
@@ -711,6 +716,8 @@ function FlagsTab() {
 
 const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
   const [tab, setTab] = useState<Tab>(initialTab);
+  const [prefill, setPrefill] = useState<InvitePrefill | null>(null);
+  const inviteContact = (c: SchoolContact, code: string) => { setPrefill({ email: c.email, role: c.role, schoolCode: code, displayName: c.name ?? "" }); setTab("invite"); };
   const tabs: [Tab, string][] = [
     ["health", "Health & usage"],
     ["business", "Business overview"],
@@ -731,7 +738,7 @@ const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
             key={id}
             role="tab"
             aria-selected={tab === id}
-            onClick={() => setTab(id)}
+            onClick={() => { if (id === "invite") setPrefill(null); setTab(id); }}
             className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
               tab === id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
             }`}
@@ -743,12 +750,12 @@ const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
       {tab === "health" && <HealthTab />}
       {tab === "business" && <BusinessTab />}
       {tab === "districts" && <DistrictsTab />}
-      {tab === "invite" && <InviteTab />}
+      {tab === "invite" && <InviteTab key={prefill ? `${prefill.schoolCode}:${prefill.email}` : "blank"} prefill={prefill} onSent={(email) => { if (prefill && prefill.email === email) void markContactInvited(prefill.schoolCode, email); setPrefill(null); }} />}
       {tab === "pricing" && <PricingTab />}
       {tab === "flags" && <FlagsTab />}
       {tab === "activity" && <ActivityTab />}
       {tab === "signups" && <SignupsTab />}
-      {tab === "schools" && <SchoolsTab />}
+      {tab === "schools" && <SchoolsTab onInvite={inviteContact} />}
     </div>
   );
 };
