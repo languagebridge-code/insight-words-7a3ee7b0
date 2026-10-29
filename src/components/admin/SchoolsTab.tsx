@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import { Building2, Copy, Pencil, Plus, RefreshCw, Search } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { schoolAdmin } from "@/lib/school-admin.functions";
+import { requestSchoolAdmin, OperationsDataError } from './adminApi';
 import { REGIONS, STATUSES, visibleSchools, itPolicy, type School, type SchoolRequest } from "@/lib/school-registry";
 import SchoolForm, { SchoolSelect } from "./SchoolForm";
 
@@ -16,20 +15,12 @@ const statusClasses = {
   expired: "bg-school-expired-bg text-school-expired",
   suspended: "bg-school-suspended-bg text-school-suspended",
 };
-class RegistryError extends Error { constructor(message: string, public status: number) { super(message); } }
 
 export default function SchoolsTab() {
-  const invoke = useServerFn(schoolAdmin);
   const queryClient = useQueryClient();
   const queryKey = ["school-registry"];
   const request = async (input: SchoolRequest): Promise<unknown> => {
-    const result = await invoke({ data: input });
-    const body: unknown = JSON.parse(result.body);
-    if (result.status >= 400) {
-      const message = body && typeof body === "object" && "error" in body && typeof body.error === "string" ? body.error : "Unable to complete school request";
-      throw new RegistryError(message, result.status);
-    }
-    return body;
+    return requestSchoolAdmin(input);
   };
   const schoolsQuery = useQuery({ queryKey, queryFn: async () => {
     const result = await request({ action: "list" });
@@ -54,7 +45,7 @@ export default function SchoolsTab() {
   };
   const copy = async (code: string) => { try { await navigator.clipboard.writeText(itPolicy(code)); toast.success("Copied"); } catch { toast.error("Could not copy IT policy"); } };
   const error = schoolsQuery.error;
-  const blocked = error instanceof RegistryError && (error.status === 403 || error.status === 401);
+  const blocked = error instanceof OperationsDataError && (error.status === 403 || error.status === 401);
   return <section className="space-y-6 text-foreground">
     <div className="flex flex-wrap items-center justify-between gap-3"><div className="flex items-center gap-3"><Building2 className="h-6 w-6 text-primary" /><h2 className="text-2xl tracking-normal">Schools</h2></div><div className="flex gap-2"><Button variant="outline" size="icon" title="Refresh schools" aria-label="Refresh schools" disabled={schoolsQuery.isFetching} onClick={() => schoolsQuery.refetch()}><RefreshCw className={schoolsQuery.isFetching ? "animate-spin" : ""} /></Button><Button size="sm" disabled={!schoolsQuery.isSuccess} onClick={() => setForm({ school: null })}><Plus />Add school</Button></div></div>
     {error ? <div role="alert" className="border-l-4 border-primary bg-card px-5 py-4"><p className="m-0 font-medium">{blocked ? "Not authorized" : error.message}</p></div> : schoolsQuery.isPending ? <div className="py-12 text-center text-muted-foreground">Loading schools...</div> : <>

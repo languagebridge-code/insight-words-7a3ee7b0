@@ -1,15 +1,21 @@
 import { supabase } from '@/integrations/supabase/client';
+import type { SchoolRequest } from '@/lib/school-registry';
 
-async function proxyFetch<T>(path: string, params: Record<string, string> = {}): Promise<T> {
+async function proxyFetch<T>(path: string, params: unknown = {}): Promise<T> {
   const { data, error } = await supabase.functions.invoke('admin-proxy', {
     body: { endpoint: path, params },
   });
   if (error) {
-    if (error.context?.status === 401 || error.context?.status === 403) window.dispatchEvent(new Event('lb-admin-access-lost'));
-    throw new Error('Could not load admin data.');
+    const status = error.context?.status;
+    if (status === 401 || status === 403) window.dispatchEvent(new Event('lb-operations-access-lost'));
+    let message = 'Could not load operations data.';
+    try { const body = await error.context?.json(); if (typeof body?.error === 'string') message = body.error; } catch { /* Generic fallback. */ }
+    throw new OperationsDataError(message, status ?? 500);
   }
   return data as T;
 }
+export class OperationsDataError extends Error { constructor(message: string, public status: number) { super(message); } }
+export function requestSchoolAdmin(input: SchoolRequest): Promise<unknown> { return proxyFetch('/school-admin', input); }
 
 export interface ExtensionUsage {
   totals: { requests: number; characters: number; events: number };
