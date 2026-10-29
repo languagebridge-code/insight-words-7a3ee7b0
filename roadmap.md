@@ -1,3 +1,4 @@
+- [ ] Protect all admin data endpoints, add admin-only login/reset/sign-out and eight-hour inactivity expiry, remove redundant Schools/Signups prompts, verify access and account/redirect setup.
 - [x] Add Schools registry tab with protected access, forms, filters, status changes, and IT policy copying; 16 tests pass, signed-out and real non-admin rejection verified, form/table/clipboard checked with isolated fixtures.
 - [ ] Verify real Schools create/edit/status operations: blocked on AZURE_ADMIN_BASE_URL and AZURE_ADMIN_KEY in Project Settings → Secrets, and a usable admin@languagebridge.app session (specific-user mint unavailable).
 - [x] Pin every server-sent staff invite to the published dashboard; concrete redirect test added.
