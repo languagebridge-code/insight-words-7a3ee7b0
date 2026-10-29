@@ -8,9 +8,10 @@ const corsHeaders = {
 };
 
 function getSupabase() {
-  const url = Deno.env.get("SUPABASE_URL")!;
-  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-  return createClient(url, key);
+  const url = Deno.env.get("SUPABASE_URL");
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!url || !key) throw new Error("Service not configured");
+  return createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 }
 
 serve(async (req) => {
@@ -19,21 +20,20 @@ serve(async (req) => {
   }
 
   try {
-    const body = await req.json();
-    const { endpoint, params } = body;
-
+    const fail = (status: number) => new Response(JSON.stringify({ error: status === 401 ? "Unauthorized" : "Forbidden" }), { status, headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "no-store" } });
+    const bearer = req.headers.get("Authorization")?.match(/^Bearer (.+)$/i)?.[1];
+    if (!bearer) return fail(401);
     const supabase = getSupabase();
+    const { data: identity, error: identityError } = await supabase.auth.getUser(bearer);
+    if (identityError || !identity.user) return fail(401);
+    const admins = (Deno.env.get("ADMIN_EMAILS") ?? "").split(",").map(email => email.trim().toLowerCase()).filter(Boolean);
+    if (!identity.user.email || !admins.includes(identity.user.email.toLowerCase())) return fail(403);
+    if (req.method !== "POST") return new Response(null, { status: 405, headers: corsHeaders });
+    const body = await req.json();
+    const { endpoint } = body;
 
-    // Signup list (name, email, role, organization) — password protected
+    // All endpoints below require verified administrator identity.
     if (endpoint === "/signups") {
-      const expected = Deno.env.get("ADMIN_DASHBOARD_PASSWORD");
-      if (!expected || params?.password !== expected) {
-        return new Response(JSON.stringify({ error: "Unauthorized" }), {
-          status: 401,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-
       const [profilesResult, orgsResult] = await Promise.all([
         supabase
           .from("profiles")

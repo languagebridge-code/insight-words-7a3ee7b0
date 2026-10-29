@@ -1,16 +1,14 @@
-import type { FlagsResponse } from "./types";
-
-const PROXY_URL = `${import.meta.env['VITE_SUPABASE_URL']}/functions/v1/admin-proxy`;
+import { supabase } from '@/integrations/supabase/client';
 
 async function proxyFetch<T>(path: string, params: Record<string, string> = {}): Promise<T> {
-  const res = await fetch(PROXY_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ endpoint: path, params }),
+  const { data, error } = await supabase.functions.invoke('admin-proxy', {
+    body: { endpoint: path, params },
   });
-
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
-  return res.json();
+  if (error) {
+    if (error.context?.status === 401 || error.context?.status === 403) window.dispatchEvent(new Event('lb-admin-access-lost'));
+    throw new Error('Could not load admin data.');
+  }
+  return data as T;
 }
 
 export interface ExtensionUsage {
@@ -41,7 +39,7 @@ export async function fetchTttUsage(): Promise<TttUsage> {
   return proxyFetch<TttUsage>("/ttt-usage", {});
 }
 
-export async function fetchSignups(password: string): Promise<Signup[]> {
-  const res = await proxyFetch<{ signups: Signup[] }>("/signups", { password });
+export async function fetchSignups(): Promise<Signup[]> {
+  const res = await proxyFetch<{ signups: Signup[] }>("/signups");
   return res.signups;
 }

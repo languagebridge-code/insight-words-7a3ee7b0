@@ -28,6 +28,8 @@ import { Route as TeacherDashboardRouteImport } from './routes/teacher-dashboard
 import { Route as TeacherSignupRouteImport } from './routes/teacher-signup'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as AdminLoginRouteImport } from './routes/admin_.login'
+import { Route as AdminResetPasswordRouteImport } from './routes/admin_.reset-password'
 import { Route as ApiLbDashboardSplatRouteImport } from './routes/api/lb-dashboard/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -125,6 +127,16 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin_/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
+  id: '/admin_/reset-password',
+  path: '/admin/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiLbDashboardSplatRoute = ApiLbDashboardSplatRouteImport.update({
   id: '/api/lb-dashboard/$',
   path: '/api/lb-dashboard/$',
@@ -151,6 +163,8 @@ export interface FileRoutesByFullPath {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
   '/api/lb-dashboard/$': typeof ApiLbDashboardSplatRoute
 }
 export interface FileRoutesByTo {
@@ -173,6 +187,8 @@ export interface FileRoutesByTo {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
   '/api/lb-dashboard/$': typeof ApiLbDashboardSplatRoute
 }
 export interface FileRoutesById {
@@ -196,6 +212,8 @@ export interface FileRoutesById {
   '/teacher-signup': typeof TeacherSignupRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/admin_/login': typeof AdminLoginRoute
+  '/admin_/reset-password': typeof AdminResetPasswordRoute
   '/api/lb-dashboard/$': typeof ApiLbDashboardSplatRoute
 }
 export interface FileRouteTypes {
@@ -220,6 +238,8 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
+    | '/admin/login'
+    | '/admin/reset-password'
     | '/api/lb-dashboard/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -242,6 +262,8 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
+    | '/admin/login'
+    | '/admin/reset-password'
     | '/api/lb-dashboard/$'
   id:
     | '__root__'
@@ -264,6 +286,8 @@ export interface FileRouteTypes {
     | '/teacher-signup'
     | '/terms'
     | '/thank-you'
+    | '/admin_/login'
+    | '/admin_/reset-password'
     | '/api/lb-dashboard/$'
   fileRoutesById: FileRoutesById
 }
@@ -287,6 +311,8 @@ export interface RootRouteChildren {
   TeacherSignupRoute: typeof TeacherSignupRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminResetPasswordRoute: typeof AdminResetPasswordRoute
   ApiLbDashboardSplatRoute: typeof ApiLbDashboardSplatRoute
 }
 
@@ -425,6 +451,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin_/login': {
+      id: '/admin_/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/reset-password': {
+      id: '/admin_/reset-password'
+      path: '/admin/reset-password'
+      fullPath: '/admin/reset-password'
+      preLoaderRoute: typeof AdminResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/lb-dashboard/$': {
       id: '/api/lb-dashboard/$'
       path: '/api/lb-dashboard/$'
@@ -455,6 +495,8 @@ const rootRouteChildren: RootRouteChildren = {
   TeacherSignupRoute: TeacherSignupRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminResetPasswordRoute: AdminResetPasswordRoute,
   ApiLbDashboardSplatRoute: ApiLbDashboardSplatRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,4 +1,5 @@
 # AGENTS.md
+- Admin login and recovery are unnested public routes; /admin validates identity via an authenticated admin-session server function before rendering, and the existing admin-proxy independently revalidates JWTs against ADMIN_EMAILS on every endpoint. New Edge Functions are not supported, so session validation uses TanStack server functions. Admin inactivity timestamps are scoped per user and used only for sign-out timing, never authorization.
 
 - School registry operations use an authenticated TanStack server function with live Auth identity revalidation and a server-secret email allowlist; Azure credentials stay server-only because new edge functions are blocked. Shared registry validation enforces the API contract in both form and bridge.
 
