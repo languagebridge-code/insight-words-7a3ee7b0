@@ -1,5 +1,7 @@
 # AGENTS.md
 
+- School registry operations use an authenticated TanStack server function with live Auth identity revalidation and a server-secret email allowlist; Azure credentials stay server-only because new edge functions are blocked. Shared registry validation enforces the API contract in both form and bridge.
+
 - Dashboard→Azure proxy lives at `src/routes/api/lb-dashboard/$.ts` (TanStack server route), NOT a Supabase Edge Function — new edge functions are blocked in this project. It whitelists routes, revalidates bearer identity with Auth, and forwards that bearer to `LB_API_BASE`; it holds no Azure API key. Secrets: `LB_API_BASE`, `LB_DASHBOARD_ORIGIN`.
 - Dashboard Operations routes (including legacy dashboard and flags) require both the verified designated administrator identity and Azure's trusted super-admin dashboard role; `src/lib/lb-dashboard-access.ts` centralizes these restrictions so an email match never grants privileges by itself.
 - The real dashboard (`src/pages/Dashboard.tsx` + `src/components/lb-dashboard/`) replaced the old demo-mode dashboard. Sign-in is invite-only; invite/recovery links (`type=invite|recovery` in URL hash) show a set-password screen.
