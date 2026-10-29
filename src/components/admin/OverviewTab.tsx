@@ -19,20 +19,15 @@ import {
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-interface OverviewTabProps {
-  onNavigateToFlags: () => void;
-  onAuthError: () => void;
-}
-
 const SERVICE_COLORS = {
-  translations: "#742a69",
-  tts: "#f37030",
-  stt: "#2a9d8f",
+  translations: "var(--color-primary)",
+  tts: "var(--color-accent)",
+  stt: "var(--color-school-active)",
 };
 
 const SOURCE_COLORS = {
-  extension: "#742a69",
-  ttt: "#f37030",
+  extension: "var(--color-primary)",
+  ttt: "var(--color-accent)",
 };
 
 const serviceChartConfig: ChartConfig = {
@@ -46,7 +41,7 @@ const dailyChartConfig: ChartConfig = {
   ttt: { label: "Talk to Teacher", color: SOURCE_COLORS.ttt },
 };
 
-const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
+const OverviewTab = () => {
   const [ext, setExt] = useState<ExtensionUsage | null>(null);
   const [ttt, setTtt] = useState<TttUsage | null>(null);
   const [loading, setLoading] = useState(true);
@@ -61,7 +56,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       const canvas = await html2canvas(reportRef.current, {
         scale: 2,
         useCORS: true,
-        backgroundColor: "#f7f7f7",
+        backgroundColor: getComputedStyle(reportRef.current).backgroundColor,
       });
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
@@ -160,19 +155,19 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
     return (
       <div className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[1,2,3,4].map(i => <Skeleton key={i} className="h-24 rounded-xl" />)}
+          {[1,2,3,4].map(i => <Skeleton key={i} className="h-24 rounded-lg" />)}
         </div>
-        <Skeleton className="h-64 rounded-xl" />
+        <Skeleton className="h-64 rounded-lg" />
       </div>
     );
   }
 
   if (error && !ext && !ttt) {
     return (
-      <Card className="border-0 shadow-xs">
+      <Card className="border-border/50">
         <CardContent className="p-8 text-center">
-          <p className="text-red-600 mb-4">{error}</p>
-          <button onClick={loadData} className="px-4 py-2 rounded-lg text-white" style={{ background: "#742a69" }}>Retry</button>
+          <p className="text-destructive mb-4">{error}</p>
+          <Button onClick={loadData}>Retry</Button>
         </CardContent>
       </Card>
     );
@@ -207,9 +202,9 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Daily Usage Trend */}
-        <Card className="border-0 shadow-xs">
+        <Card className="border-border/50">
           <CardContent className="p-5">
-            <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Daily Usage (Last 14 Days)</p>
+            <p className="text-sm font-semibold mb-4" >Daily Usage (Last 14 Days)</p>
             {dailyData.length > 0 ? (
               <ChartContainer config={dailyChartConfig} className="h-[220px] w-full">
                 <LineChart data={dailyData}>
@@ -232,9 +227,9 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
         </Card>
 
         {/* Source Split Pie */}
-        <Card className="border-0 shadow-xs">
+        <Card className="border-border/50">
           <CardContent className="p-5">
-            <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Requests by Source</p>
+            <p className="text-sm font-semibold mb-4" >Requests by Source</p>
             {pieData.length > 0 ? (
               <ChartContainer config={dailyChartConfig} className="h-[220px] w-full">
                 <PieChart>
@@ -262,9 +257,9 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
       </div>
 
       {/* Service Breakdown Bar Chart */}
-      <Card className="border-0 shadow-xs">
+      <Card className="border-border/50">
         <CardContent className="p-5">
-          <p className="text-sm font-semibold mb-4" style={{ color: "#4a1a45" }}>Service Breakdown by Source</p>
+          <p className="text-sm font-semibold mb-4" >Service Breakdown by Source</p>
           {serviceData.some(d => d.extension > 0 || d.ttt > 0) ? (
             <ChartContainer config={dailyChartConfig} className="h-[220px] w-full">
               <BarChart data={serviceData}>
@@ -284,7 +279,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
       {/* Extension breakdown */}
       <div>
-        <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#742a69" }}>Extension (Chrome)</p>
+        <p className="text-xs font-medium uppercase tracking-wider mb-3" >Extension (Chrome)</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <ServiceCard label="Translations" icon="🌍" value={ext?.services.translations ?? 0} />
           <ServiceCard label="Text-to-Speech" icon="🔊" value={ext?.services.tts ?? 0} />
@@ -294,7 +289,7 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
       {/* TTT breakdown */}
       <div>
-        <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "#f37030" }}>Talk to Teacher (Web)</p>
+        <p className="text-xs font-medium uppercase tracking-wider mb-3" >Talk to Teacher (Web)</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <ServiceCard label="Translations" icon="🌍" value={ttt?.totals.translate ?? 0} />
           <ServiceCard label="Text-to-Speech" icon="🔊" value={ttt?.totals.tts ?? 0} />
@@ -308,16 +303,16 @@ const OverviewTab = ({ onNavigateToFlags, onAuthError }: OverviewTabProps) => {
 
 function StatCard({ icon: Icon, label, value, subtitle }: { icon: any; label: string; value: string; subtitle?: string }) {
   return (
-    <Card className="border-0 shadow-xs">
+    <Card className="border-border/50">
       <CardContent className="p-5">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-lg flex items-center justify-center" style={{ background: "#f5eaf4" }}>
-            <Icon className="h-5 w-5" style={{ color: "#742a69" }} />
+          <div className="h-10 w-10 rounded-lg flex items-center justify-center bg-primary/10 text-primary" >
+            <Icon className="h-5 w-5"  />
           </div>
           <div>
-            <p className="text-xs font-medium" style={{ color: "#742a69" }}>{label}</p>
-            <p className="text-xl font-bold" style={{ color: "#4a1a45" }}>{value}</p>
-            {subtitle && <p className="text-xs text-gray-500">{subtitle}</p>}
+            <p className="text-xs font-medium" >{label}</p>
+            <p className="text-xl font-bold" >{value}</p>
+            {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
           </div>
         </div>
       </CardContent>
@@ -327,12 +322,12 @@ function StatCard({ icon: Icon, label, value, subtitle }: { icon: any; label: st
 
 function ServiceCard({ label, icon, value }: { label: string; icon: string; value: number }) {
   return (
-    <Card className="border-0 shadow-xs">
+    <Card className="border-border/50">
       <CardContent className="p-5 flex items-center gap-3">
         <span className="text-2xl">{icon}</span>
         <div>
-          <p className="text-xs font-medium text-gray-500">{label}</p>
-          <p className="text-xl font-bold" style={{ color: "#4a1a45" }}>{value.toLocaleString()}</p>
+          <p className="text-xs font-medium text-muted-foreground">{label}</p>
+          <p className="text-xl font-bold" >{value.toLocaleString()}</p>
         </div>
       </CardContent>
     </Card>

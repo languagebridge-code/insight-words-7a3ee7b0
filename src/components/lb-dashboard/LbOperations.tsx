@@ -12,15 +12,19 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronDown, ChevronRight, RefreshCw } from "lucide-react";
+import OverviewTab from "@/components/admin/OverviewTab";
+import ActivityTab from "@/components/admin/ActivityTab";
+import SignupsTab from "@/components/admin/SignupsTab";
+import SchoolsTab from "@/components/admin/SchoolsTab";
 
-// LB Operations — super-admins only. Tabs: Health, Business, Districts &
+// LB Operations: super-admins only. Tabs: Health, Business, Districts &
 // schools, Invite staff, Pricing, Flag queue. Costs and margins appear ONLY
-// here — never in district or teacher views.
+// here: never in district or teacher views.
 
-type Tab = "health" | "business" | "districts" | "invite" | "pricing" | "flags";
+type Tab = "health" | "business" | "districts" | "invite" | "pricing" | "flags" | "activity" | "signups" | "schools";
 
 const money = (n: number) => `$${n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-const dash = (v: number | null | undefined, suffix = "") => (v === null || v === undefined ? "—" : `${v.toLocaleString()}${suffix}`);
+const dash = (v: number | null | undefined, suffix = "") => (v === null || v === undefined ? "Not available" : `${v.toLocaleString()}${suffix}`);
 
 // ---------- Health ----------
 
@@ -77,7 +81,7 @@ function HealthTab() {
     <div className="space-y-6">
       {error && <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive">{error}</div>}
       {health && !health.monitoringAvailable && (
-        <div className="rounded-lg border border-border bg-muted/50 p-3 text-sm">Azure monitoring not connected — some fields show "—".</div>
+        <div className="rounded-lg border border-border bg-muted/50 p-3 text-sm">Azure monitoring not connected: some fields show "Not available".</div>
       )}
       {health && (
         <>
@@ -144,6 +148,7 @@ function HealthTab() {
           </section>
         </>
       )}
+      <section className="border-t border-border pt-6"><h3 className="text-lg font-semibold mb-4">Usage overview</h3><OverviewTab /></section>
     </div>
   );
 }
@@ -205,7 +210,7 @@ function BusinessTab() {
                 {expanded === d.pilotId ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm">
-                    {d.name} {d.isDemo && <Badge variant="outline" className="ml-2">demo — excluded from totals</Badge>}
+                    {d.name} {d.isDemo && <Badge variant="outline" className="ml-2">demo: excluded from totals</Badge>}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     {d.activeStudents} active students · seats {d.seatsUsed}/{d.seatsPurchased} · Azure dependency {d.azureDependencyPct}%
@@ -355,7 +360,7 @@ function DistrictsTab() {
                   <p className="text-xs font-medium text-muted-foreground mb-1">Schools</p>
                   <ul className="text-sm space-y-0.5">
                     {d.schools.map((s) => (
-                      <li key={s.schoolCode}>{s.schoolName} — {s.tier}, {s.seats} seats, {s.status}</li>
+                      <li key={s.schoolCode}>{s.schoolName}: {s.tier}, {s.seats} seats, {s.status}</li>
                     ))}
                   </ul>
                 </div>
@@ -363,7 +368,7 @@ function DistrictsTab() {
                   <p className="text-xs font-medium text-muted-foreground mb-1">Staff</p>
                   <ul className="text-sm space-y-0.5">
                     {d.staff.map((s) => (
-                      <li key={s.email}>{s.displayName ? `${s.displayName} — ` : ""}{s.email} ({s.role}){s.invitedAt ? ` · invited ${new Date(s.invitedAt).toLocaleDateString()}` : ""}</li>
+                      <li key={s.email}>{s.displayName ? `${s.displayName}: ` : ""}{s.email} ({s.role}){s.invitedAt ? ` · invited ${new Date(s.invitedAt).toLocaleDateString()}` : ""}</li>
                     ))}
                   </ul>
                 </div>
@@ -678,9 +683,9 @@ function FlagsTab() {
                     <tr key={f.id} className="border-b border-border/50">
                       <td className="py-2 pr-4 capitalize">{f.language}</td>
                       <td className="py-2 pr-4">{f.flagType}</td>
-                      <td className="py-2 pr-4">{f.word ?? "—"}</td>
+                      <td className="py-2 pr-4">{f.word ?? "Not available"}</td>
                       <td className="py-2 pr-4"><Badge variant="secondary">{f.status}</Badge></td>
-                      <td className="py-2 pr-4">{typeof f["schoolCount"] === "number" ? f["schoolCount"] : "—"}</td>
+                      <td className="py-2 pr-4">{typeof f["schoolCount"] === "number" ? f["schoolCount"] : "Not available"}</td>
                       <td className="py-2">
                         <div className="flex gap-1">
                           {["in_review", "resolved", "dismissed", "reopen"].map((a) => (
@@ -707,18 +712,22 @@ function FlagsTab() {
 const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
   const [tab, setTab] = useState<Tab>(initialTab);
   const tabs: [Tab, string][] = [
-    ["health", "Health"],
+    ["health", "Health & usage"],
     ["business", "Business overview"],
     ["districts", "Districts & schools"],
     ["invite", "Invite staff"],
     ["pricing", "Pricing"],
-    // Flag queue hidden until the Azure flag-queue routes are deployed; code stays.
+    ["activity", "Activity"],
+    ["signups", "Signups"],
+    ["schools", "Schools"],
+    ["flags", "Flags"],
   ];
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-1 rounded-lg border border-border p-1 w-fit" role="tablist">
         {tabs.map(([id, label]) => (
-          <button
+          <Button
+            variant="ghost"
             key={id}
             role="tab"
             aria-selected={tab === id}
@@ -728,7 +737,7 @@ const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
             }`}
           >
             {label}
-          </button>
+          </Button>
         ))}
       </div>
       {tab === "health" && <HealthTab />}
@@ -737,6 +746,9 @@ const LbOperations = ({ initialTab = "health" }: { initialTab?: Tab }) => {
       {tab === "invite" && <InviteTab />}
       {tab === "pricing" && <PricingTab />}
       {tab === "flags" && <FlagsTab />}
+      {tab === "activity" && <ActivityTab />}
+      {tab === "signups" && <SignupsTab />}
+      {tab === "schools" && <SchoolsTab />}
     </div>
   );
 };
