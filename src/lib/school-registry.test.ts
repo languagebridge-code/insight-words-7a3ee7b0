@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { generatedSchoolCode, schoolCodePattern, schoolFormSchema, itPolicy, visibleSchools, type School } from "./school-registry";
-import { forwardSchoolAdmin } from "./school-admin.server";
+import { forwardSchoolAdmin } from '../../supabase/functions/_shared/school-admin';
+const adminAccess = { ok: true as const, user: { id: 'admin-id', email: 'admin@languagebridge.app', email_confirmed_at: '2026-10-17' } };
 test("district abbreviation is uppercased in OLEN-CO-01", () => assert.equal(generatedSchoolCode("olen", "CO", "01"), "OLEN-CO-01"));
 test("codes require 3 to 5 letters, a supported region, and two digits", () => {
   for (const code of ["ABC-NEO-01", "ABCDE-INT-99", "OLEN-CO-01", "ABC-NWO-01", "ABC-SEO-01", "ABC-SWO-01"]) assert.equal(schoolCodePattern.test(code), true);
@@ -21,19 +22,19 @@ test("sort by region then code and filter district search", () => {
 });
 test("unsigned and non-admin requests never reach Azure", async () => {
   let calls = 0; const send: typeof fetch = async () => { calls++; return new Response("[]"); };
-  const config = { admins: "admin@languagebridge.app", base: "https://example.org/api", key: "test-only" };
-  assert.equal((await forwardSchoolAdmin({ action: "list" }, undefined, config, send)).status, 401);
-  assert.deepEqual((await forwardSchoolAdmin({ action: "list" }, "teacher@example.org", config, send)).body, { error: "Not authorized" });
+  const config = { base: "https://example.org/api", key: "test-only" };
+  assert.equal((await forwardSchoolAdmin({ action: "list" }, { ok: false, status: 401, error: 'Not signed in' }, config, send)).status, 401);
+  assert.deepEqual((await forwardSchoolAdmin({ action: "list" }, { ok: false, status: 403, error: 'Not authorized' }, config, send)).body, { error: "Not authorized" });
   assert.equal(calls, 0);
 });
-test("admin sees not connected when Azure secrets are absent", async () => assert.deepEqual(await forwardSchoolAdmin({ action: "list" }, "admin@languagebridge.app", { admins: "admin@languagebridge.app" }), { status: 503, body: { error: "Azure admin API not connected yet" } }));
+test("admin sees not connected when Azure secrets are absent", async () => assert.deepEqual(await forwardSchoolAdmin({ action: "list" }, adminAccess, {}), { status: 503, body: { error: "Azure admin API not connected yet" } }));
 test("bridge uses exact list/create/update API shapes and preserves Azure errors", async () => {
   const calls: { url: string; init: RequestInit | undefined }[] = [];
   const send: typeof fetch = async (url, init) => { calls.push({ url: String(url), init }); return new Response(JSON.stringify({ error: "Code already exists" }), { status: 409 }); };
-  const config = { admins: " ADMIN@languagebridge.app ", base: "https://example.org/api/", key: "test-only" };
-  await forwardSchoolAdmin({ action: "list" }, "admin@languagebridge.app", config, send);
-  const result = await forwardSchoolAdmin({ action: "create", data: { code: "OLEN-CO-01", districtName: "Olentangy", status: "pilot" } }, "admin@languagebridge.app", config, send);
-  await forwardSchoolAdmin({ action: "update", code: "OLEN-CO-01", data: { status: "expired" } }, "admin@languagebridge.app", config, send);
+  const config = { base: "https://example.org/api/", key: "test-only" };
+  await forwardSchoolAdmin({ action: "list" }, adminAccess, config, send);
+  const result = await forwardSchoolAdmin({ action: "create", data: { code: "OLEN-CO-01", districtName: "Olentangy", status: "pilot" } }, adminAccess, config, send);
+  await forwardSchoolAdmin({ action: "update", code: "OLEN-CO-01", data: { status: "expired" } }, adminAccess, config, send);
   assert.equal(calls[0]?.init?.method, "GET"); assert.equal(calls[0]?.init?.body, undefined);
   assert.equal(calls[1]?.init?.method, "POST"); assert.equal(calls[2]?.url, "https://example.org/api/schools/OLEN-CO-01"); assert.equal(calls[2]?.init?.method, "PATCH");
   assert.deepEqual(JSON.parse(String(calls[2]?.init?.body)), { status: "expired" });
