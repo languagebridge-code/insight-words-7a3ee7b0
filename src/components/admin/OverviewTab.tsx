@@ -235,6 +235,7 @@ const OverviewTab = () => {
                 <PieChart>
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Pie
+                    isAnimationActive={false}
                     data={pieData}
                     dataKey="value"
                     nameKey="name"
@@ -267,8 +268,8 @@ const OverviewTab = () => {
                 <XAxis dataKey="service" className="text-xs" />
                 <YAxis className="text-xs" />
                 <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="extension" fill={SOURCE_COLORS.extension} radius={[4, 4, 0, 0]} />
-                <Bar dataKey="ttt" fill={SOURCE_COLORS.ttt} radius={[4, 4, 0, 0]} />
+                <Bar isAnimationActive={false} dataKey="extension" fill={SOURCE_COLORS.extension} radius={[4, 4, 0, 0]} />
+                <Bar isAnimationActive={false} dataKey="ttt" fill={SOURCE_COLORS.ttt} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ChartContainer>
           ) : (

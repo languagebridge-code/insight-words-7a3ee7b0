@@ -8,7 +8,7 @@ export function isOperationsRoute(route: string): boolean {
   return route.startsWith('ops/') || route === 'dashboard' || route === 'flag-queue' || route.startsWith('flag-queue/');
 }
 export function hasOperationsRole(layer: { role?: string; isSuperAdmin?: boolean; permissions?: string[] }): boolean {
-  return (layer.role === 'super_admin' || layer.isSuperAdmin === true) && layer.permissions?.includes('view_dashboard') === true;
+  return (layer.role === 'super_admin' || layer.isSuperAdmin === true) && Array.isArray(layer.permissions) && layer.permissions.includes('view_dashboard');
 }
 export function matchesDashboardIdentity(layer: { userId?: string; email?: string }, user: VerifiedDashboardUser): boolean {
   return layer.userId === user.id && Boolean(user.email) && layer.email?.toLowerCase() === user.email?.toLowerCase();

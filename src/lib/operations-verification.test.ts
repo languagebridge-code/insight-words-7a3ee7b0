@@ -19,7 +19,7 @@ test('operations require confirmed designated email', async () => {
   }
 });
 test('operations require matching Azure super-admin and view_dashboard', async () => {
-  for (const invalid of [{ ...layer, role: 'district_admin' }, { ...layer, permissions: [] }, { ...layer, userId: 'other-id' }]) {
+  for (const invalid of [{ ...layer, role: 'district_admin' }, { ...layer, permissions: [] }, { ...layer, permissions: 'view_dashboard' }, { ...layer, userId: 'other-id' }]) {
     const send: typeof fetch = async url => Response.json(String(url).endsWith('/auth/v1/user') ? user : invalid);
     assert.equal((await verifyOperations('Bearer test-token', config, send)).ok, false);
   }
