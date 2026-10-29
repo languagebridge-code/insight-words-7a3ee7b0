@@ -41,6 +41,15 @@ All colors MUST be HSL.
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 100%;
 
+  --school-pilot: 213 75% 39%;
+  --school-pilot-bg: 213 90% 95%;
+  --school-active: 145 65% 28%;
+  --school-active-bg: 145 60% 94%;
+  --school-expired: 215 12% 40%;
+  --school-expired-bg: 215 14% 94%;
+  --school-suspended: 0 70% 40%;
+  --school-suspended-bg: 0 85% 96%;
+
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
   --ring: 310 47% 31%;
@@ -90,6 +99,15 @@ All colors MUST be HSL.
   --burnt-orange: 40 100% 60%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
+
+  --school-pilot: 213 90% 78%;
+  --school-pilot-bg: 213 45% 20%;
+  --school-active: 145 65% 72%;
+  --school-active-bg: 145 40% 17%;
+  --school-expired: 215 15% 75%;
+  --school-expired-bg: 215 15% 22%;
+  --school-suspended: 0 85% 80%;
+  --school-suspended-bg: 0 50% 20%;
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 310 42% 45%;
@@ -104,6 +122,14 @@ All colors MUST be HSL.
 }
 
 @theme inline {
+  --color-school-pilot: hsl(var(--school-pilot));
+  --color-school-pilot-bg: hsl(var(--school-pilot-bg));
+  --color-school-active: hsl(var(--school-active));
+  --color-school-active-bg: hsl(var(--school-active-bg));
+  --color-school-expired: hsl(var(--school-expired));
+  --color-school-expired-bg: hsl(var(--school-expired-bg));
+  --color-school-suspended: hsl(var(--school-suspended));
+  --color-school-suspended-bg: hsl(var(--school-suspended-bg));
   /* Fonts (ported from tailwind.config.ts) */
   --font-sans: "Inter", sans-serif;
   --font-heading: "DM Sans", sans-serif;
