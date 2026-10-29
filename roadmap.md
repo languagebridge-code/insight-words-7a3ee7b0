@@ -1,3 +1,4 @@
+- [ ] Add the Schools registry tab with protected Azure access, forms, filters, status changes, IT policy copying, and verification. Azure connection requires AZURE_ADMIN_BASE_URL and AZURE_ADMIN_KEY.
 - [x] Pin every server-sent staff invite to the published dashboard; concrete redirect test added.
 - [x] Pin dashboard password-reset requests to the published dashboard; browser interception and two tests passed without sending a test email. Preview change awaits publishing.
 - [x] Add and verify the homepage auth-link safety net preserving raw query/hash; 13 tests and browser checks passed, ready for requested publish.
