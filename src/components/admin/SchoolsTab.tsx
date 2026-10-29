@@ -51,12 +51,12 @@ function SchoolRegistry({ userId }: { userId: string }) {
   const queryKey = ["school-registry", userId];
   const request = async (input: SchoolRequest): Promise<unknown> => {
     const result = await invoke({ data: input });
+    const body: unknown = JSON.parse(result.body);
     if (result.status >= 400) {
-      const body = result.body;
       const message = body && typeof body === "object" && "error" in body && typeof body.error === "string" ? body.error : "Unable to complete school request";
       throw new RegistryError(message, result.status);
     }
-    return result.body;
+    return body;
   };
   const schoolsQuery = useQuery({ queryKey, queryFn: async () => {
     const result = await request({ action: "list" });

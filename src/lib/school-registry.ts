@@ -13,7 +13,7 @@ export const schoolFields = z.object({
   licenseTerm: z.enum(["10mo", "12mo"]).nullable().optional(),
   seatCap: z.number().int("Seat cap must be a whole number").nonnegative("Seat cap cannot be negative").nullable().optional(),
 });
-function validDates(data: { licenseStart?: string | null; licenseEnd?: string | null }) {
+function validDates(data: { licenseStart?: string | null | undefined; licenseEnd?: string | null | undefined }) {
   return !data.licenseStart || !data.licenseEnd || data.licenseEnd > data.licenseStart;
 }
 export const schoolFormSchema = schoolFields.refine(validDates, { message: "License end must be after start", path: ["licenseEnd"] });
