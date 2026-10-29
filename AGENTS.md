@@ -13,3 +13,4 @@
 - Privacy invariants enforced in UI: students are codes only; teacher nicknames live in localStorage only (`lb-student-nicknames`); suppressed groups render "Fewer than 10 students"; costs/margins only in LB Operations (super-admin).
 - Brand image references must use the same approved artwork as the main navigation, including dashboard and interactive demo views, to prevent legacy marks from resurfacing.
 - School contacts live in public.school_contacts (operations account only via RLS), keyed by school code, because the Azure registry contract has no contacts field; Invite reuses the LB Operations Invite staff tab pre-filled.
+- District insight metrics use the shared dashboard-metrics formatter and seat-percentage helper; unavailable measurements must not crash widgets or appear as zero or a measured percentage.

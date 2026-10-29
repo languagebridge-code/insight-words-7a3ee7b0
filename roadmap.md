@@ -1,3 +1,4 @@
+- [ ] Fix and verify the signed-in dashboard crash from null purchased-seat totals; inspect remaining operations errors separately.
 - [x] Merge admin tools into LB Operations, combine Health/usage and existing Flags queue, share operations authorization, redirect /admin, remove separate admin pages/navigation and both obsolete secrets; 20 tests and real unsigned/non-admin rejection pass; migrated tabs and registry mutations verified with isolated fixtures.
 - [x] Add Schools registry tab with protected access, forms, filters, status changes, and IT policy copying; 16 tests pass, signed-out and real non-admin rejection verified, form/table/clipboard checked with isolated fixtures.
 - [ ] Verify real Schools create/edit/status operations: blocked on AZURE_ADMIN_BASE_URL and AZURE_ADMIN_KEY in Project Settings → Secrets, and a usable admin@languagebridge.app session (specific-user mint unavailable).

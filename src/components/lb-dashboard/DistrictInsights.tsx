@@ -11,6 +11,7 @@ import {
   LineChart, Line,
 } from "recharts";
 import { ArrowDown, ArrowUp, Download, RefreshCw, Settings2, X } from "lucide-react";
+import { formatDashboardMetric as fmt, seatUsagePercent } from '@/lib/dashboard-metrics';
 
 // District insights — one POST insights/summary call drives every widget.
 // Users customize which widgets appear, their order and width; the layout and
@@ -71,8 +72,6 @@ function csvDownload(filename: string, rows: (string | number)[][]) {
   a.click();
   URL.revokeObjectURL(a.href);
 }
-
-const fmt = (n: number) => n.toLocaleString();
 
 const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
   const [preset, setPreset] = useState<DatePreset>("month");
@@ -206,7 +205,7 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
           ),
         };
       case "seats": {
-        const pct = data.seats.purchased ? Math.round((data.seats.used / data.seats.purchased) * 100) : 0;
+        const pct = seatUsagePercent(data.seats.used, data.seats.purchased);
         return {
           title: "Seats",
           node: (
@@ -214,9 +213,9 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
               <p className="text-3xl font-bold">
                 {fmt(data.seats.used)} <span className="text-base font-normal text-muted-foreground">/ {fmt(data.seats.purchased)}</span>
               </p>
-              <div className="mt-2 h-2 rounded-full bg-muted overflow-hidden" role="img" aria-label={`${pct}% of seats used`}>
+              {pct !== null && <div className="mt-2 h-2 rounded-full bg-muted overflow-hidden" role="img" aria-label={`${pct}% of seats used`}>
                 <div className={`h-full ${data.seats.overSeat ? "bg-amber-500" : "bg-primary"}`} style={{ width: `${Math.min(pct, 100)}%` }} />
-              </div>
+              </div>}
               {data.seats.overSeat && (
                 <p className="text-xs text-amber-600 mt-2">
                   Over seat count — we'll sort it out at renewal; no student is locked out.
@@ -262,7 +261,7 @@ const DistrictInsights = ({ auth }: { auth: AuthLayer }) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <p className="text-3xl font-bold cursor-help">${data.value.estimatedInterpreterValueUsd.toFixed(2)}</p>
+                  <p className="text-3xl font-bold cursor-help">{fmt(data.value.estimatedInterpreterValueUsd, true)}</p>
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
                   <p className="text-xs">{data.value.note}</p>

@@ -76,12 +76,12 @@ export interface SummaryResponse {
   schools: {
     schoolCode: string;
     schoolName: string;
-    seatsPurchased: number;
+    seatsPurchased: number | null;
     seatsUsed: number;
     termEnd: string;
     status: string;
   }[];
-  seats: { purchased: number; used: number; overSeat: boolean };
+  seats: { purchased: number | null; used: number; overSeat: boolean };
   students: { enrolled: number; active: number };
   weeklyActive: { weekOf: string; students: number }[];
   languages: { language: string; students: number | null; suppressed: boolean }[];
