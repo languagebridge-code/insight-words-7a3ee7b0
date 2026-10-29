@@ -540,6 +540,18 @@ All colors MUST be HSL.
 }
 
 /* Talk to Teacher waveform animation */
+.school-calendar { width: 280px; position: relative; }
+.school-calendar .rdp-month_caption { height: 36px; text-align: center; }
+.school-calendar .rdp-nav { display: flex; justify-content: space-between; position: absolute; top: 12px; left: 12px; right: 12px; }
+.school-calendar .rdp-button_previous, .school-calendar .rdp-button_next { width: 28px; height: 28px; border: 1px solid hsl(var(--border)); border-radius: 4px; display: grid; place-items: center; }
+.school-calendar .rdp-month_grid { width: 100%; table-layout: fixed; border-collapse: collapse; }
+.school-calendar .rdp-weekday { width: 36px; font-size: 12px; font-weight: 400; color: hsl(var(--muted-foreground)); }
+.school-calendar .rdp-day { width: 36px; height: 36px; text-align: center; padding: 0; }
+.school-calendar .rdp-day_button { width: 36px; height: 36px; border-radius: 4px; font-size: 13px; }
+.school-calendar .rdp-day_button:hover { background: hsl(var(--muted)); }
+.school-calendar .rdp-selected .rdp-day_button { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+.school-calendar .rdp-outside { opacity: .4; }
+
 @keyframes ttt-wave {
   0% { height: 20%; }
   100% { height: 100%; }
